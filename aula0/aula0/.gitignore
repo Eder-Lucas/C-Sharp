@@ -1,0 +1,6 @@
+# Build
+bin/
+obj/
+
+# auto gerado
+helloWorld.sln
