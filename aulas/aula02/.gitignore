@@ -1,8 +1,8 @@
-# build
+# Build
 bin/
 obj/
 
-# vs code
+# visual studio
 .vs/
 
 # others
