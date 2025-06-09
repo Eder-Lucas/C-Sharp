@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             lblMensagem = new Label();
             btnMostrarMensagem = new Button();
+            btnPropriedadesCheckBox = new Button();
             SuspendLayout();
             // 
             // lblMensagem
@@ -44,20 +45,37 @@
             // 
             // btnMostrarMensagem
             // 
-            btnMostrarMensagem.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMostrarMensagem.Location = new Point(308, 344);
+            btnMostrarMensagem.BackColor = SystemColors.Desktop;
+            btnMostrarMensagem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMostrarMensagem.ForeColor = Color.Magenta;
+            btnMostrarMensagem.Location = new Point(196, 351);
             btnMostrarMensagem.Name = "btnMostrarMensagem";
-            btnMostrarMensagem.Size = new Size(187, 44);
+            btnMostrarMensagem.Size = new Size(213, 44);
             btnMostrarMensagem.TabIndex = 1;
             btnMostrarMensagem.Text = "Mostrar Mensagem";
-            btnMostrarMensagem.UseVisualStyleBackColor = true;
+            btnMostrarMensagem.UseVisualStyleBackColor = false;
             btnMostrarMensagem.Click += btnMostrarMensagem_Click;
+            // 
+            // btnPropriedadesCheckBox
+            // 
+            btnPropriedadesCheckBox.BackColor = SystemColors.Desktop;
+            btnPropriedadesCheckBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPropriedadesCheckBox.ForeColor = Color.Magenta;
+            btnPropriedadesCheckBox.Location = new Point(437, 351);
+            btnPropriedadesCheckBox.Name = "btnPropriedadesCheckBox";
+            btnPropriedadesCheckBox.Size = new Size(130, 44);
+            btnPropriedadesCheckBox.TabIndex = 2;
+            btnPropriedadesCheckBox.Text = "CheckBox";
+            btnPropriedadesCheckBox.UseVisualStyleBackColor = false;
+            btnPropriedadesCheckBox.Click += btnPropriedadesCheckBox_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnPropriedadesCheckBox);
             Controls.Add(btnMostrarMensagem);
             Controls.Add(lblMensagem);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -74,5 +92,6 @@
 
         private Label lblMensagem;
         private Button btnMostrarMensagem;
+        private Button btnPropriedadesCheckBox;
     }
 }

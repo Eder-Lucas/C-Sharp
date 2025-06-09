@@ -9,9 +9,15 @@ namespace primeiroApp
 
         private void btnMostrarMensagem_Click(object sender, EventArgs e) //evento click
         {
-            lblMensagem.Text = "Primeiro Aplicativo em C-Sharp"; //adiciona o texto no label
-            lblMensagem.ForeColor = Color.Purple; //muda a cor do label para roxo
+            lblMensagem.Text = "Primeiro Aplicativo em C-Sharp"; //define o texto que vai ser mostrado
+            lblMensagem.ForeColor = Color.Magenta; //muda a cor do label para magenta
 
+        }
+
+        private void btnPropriedadesCheckBox_Click(object sender, EventArgs e) //ao clicar no botao CheckBox
+        {
+            frmPropriedadesCheckBox propriedades = new frmPropriedadesCheckBox(); //istanciacao
+            propriedades.ShowDialog(); //mostra o formulario CheckBox
         }
     }
 }
