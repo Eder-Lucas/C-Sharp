@@ -36,28 +36,28 @@
             // lblMensagem
             // 
             lblMensagem.AutoSize = true;
-            lblMensagem.Font = new Font("Sitka Small", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMensagem.Location = new Point(54, 35);
+            lblMensagem.Font = new Font("Rockwell", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMensagem.Location = new Point(127, 34);
             lblMensagem.Name = "lblMensagem";
             lblMensagem.Size = new Size(0, 42);
             lblMensagem.TabIndex = 0;
             // 
             // btnMostrarMensagem
             // 
-            btnMostrarMensagem.Font = new Font("Arial Narrow", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMostrarMensagem.Location = new Point(198, 236);
+            btnMostrarMensagem.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMostrarMensagem.Location = new Point(308, 344);
             btnMostrarMensagem.Name = "btnMostrarMensagem";
-            btnMostrarMensagem.Size = new Size(188, 37);
+            btnMostrarMensagem.Size = new Size(187, 44);
             btnMostrarMensagem.TabIndex = 1;
             btnMostrarMensagem.Text = "Mostrar Mensagem";
             btnMostrarMensagem.UseVisualStyleBackColor = true;
-            btnMostrarMensagem.Click += this.btnMostrarMensagem_Click;
+            btnMostrarMensagem.Click += btnMostrarMensagem_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(593, 333);
+            ClientSize = new Size(800, 450);
             Controls.Add(btnMostrarMensagem);
             Controls.Add(lblMensagem);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -65,7 +65,7 @@
             MaximizeBox = false;
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Primeiro Aplicativo em C#";
+            Text = "Primeiro Aplicativo em C-Sharp";
             ResumeLayout(false);
             PerformLayout();
         }
