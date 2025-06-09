@@ -35,10 +35,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(411, 282);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Tênis C#";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Tênis C-Sharp";
             ResumeLayout(false);
         }
 
