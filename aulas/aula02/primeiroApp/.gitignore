@@ -1,9 +1,0 @@
-# Build
-bin/
-obj/
-
-# visual studio
-.vs/
-
-# auto gerado
-helloWorld.sln

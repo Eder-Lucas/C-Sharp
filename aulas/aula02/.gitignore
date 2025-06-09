@@ -1,0 +1,9 @@
+# build
+bin/
+obj/
+
+# vs code
+.vs/
+
+# others
+primeiroApp.csproj.user
