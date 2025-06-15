@@ -19,5 +19,11 @@ namespace primeiroApp
             frmPropriedadesCheckBox propriedades = new frmPropriedadesCheckBox(); //istanciacao
             propriedades.ShowDialog(); //mostra o formulario CheckBox
         }
+
+        private void btnImagens_Click(object sender, EventArgs e)
+        {
+            frmVizualizadorImagens imagens = new frmVizualizadorImagens();
+            imagens.ShowDialog();
+        }
     }
 }

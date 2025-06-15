@@ -32,6 +32,7 @@
             lblMensagem = new Label();
             btnMostrarMensagem = new Button();
             btnPropriedadesCheckBox = new Button();
+            btnImagens = new Button();
             SuspendLayout();
             // 
             // lblMensagem
@@ -69,12 +70,26 @@
             btnPropriedadesCheckBox.UseVisualStyleBackColor = false;
             btnPropriedadesCheckBox.Click += btnPropriedadesCheckBox_Click;
             // 
+            // btnImagens
+            // 
+            btnImagens.BackColor = SystemColors.Desktop;
+            btnImagens.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnImagens.ForeColor = Color.Magenta;
+            btnImagens.Location = new Point(584, 351);
+            btnImagens.Name = "btnImagens";
+            btnImagens.Size = new Size(130, 44);
+            btnImagens.TabIndex = 3;
+            btnImagens.Text = "Imagens";
+            btnImagens.UseVisualStyleBackColor = false;
+            btnImagens.Click += btnImagens_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnImagens);
             Controls.Add(btnPropriedadesCheckBox);
             Controls.Add(btnMostrarMensagem);
             Controls.Add(lblMensagem);
@@ -93,5 +108,6 @@
         private Label lblMensagem;
         private Button btnMostrarMensagem;
         private Button btnPropriedadesCheckBox;
+        private Button btnImagens;
     }
 }

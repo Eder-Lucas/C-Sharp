@@ -32,15 +32,15 @@
             chkPessoaFisica = new CheckBox();
             chkPessoaJuridica = new CheckBox();
             pnlPessoaFisica = new Panel();
-            lblNomeFisica = new Label();
-            textBox1 = new TextBox();
-            lblCpf = new Label();
             textBox2 = new TextBox();
+            lblCpf = new Label();
+            textBox1 = new TextBox();
+            lblNomeFisica = new Label();
             pnlPessoaJuridica = new Panel();
+            lblNomeJuridica = new Label();
             textBox3 = new TextBox();
             lblCnpj = new Label();
             textBox4 = new TextBox();
-            lblNomeJuridica = new Label();
             pnlPessoaFisica.SuspendLayout();
             pnlPessoaJuridica.SuspendLayout();
             SuspendLayout();
@@ -55,6 +55,7 @@
             chkPessoaFisica.TabIndex = 0;
             chkPessoaFisica.Text = "Pessoa física";
             chkPessoaFisica.UseVisualStyleBackColor = true;
+            chkPessoaFisica.CheckStateChanged += chkPessoaFisica_CheckStateChanged;
             // 
             // chkPessoaJuridica
             // 
@@ -66,6 +67,7 @@
             chkPessoaJuridica.TabIndex = 1;
             chkPessoaJuridica.Text = "Pessoa jurídica";
             chkPessoaJuridica.UseVisualStyleBackColor = true;
+            chkPessoaJuridica.CheckStateChanged += chkPessoaJuridica_CheckStateChanged;
             // 
             // pnlPessoaFisica
             // 
@@ -79,24 +81,15 @@
             pnlPessoaFisica.Name = "pnlPessoaFisica";
             pnlPessoaFisica.Size = new Size(287, 151);
             pnlPessoaFisica.TabIndex = 2;
+            pnlPessoaFisica.Visible = false;
             // 
-            // lblNomeFisica
+            // textBox2
             // 
-            lblNomeFisica.AutoSize = true;
-            lblNomeFisica.Font = new Font("Arial", 10.8F);
-            lblNomeFisica.Location = new Point(30, 33);
-            lblNomeFisica.Name = "lblNomeFisica";
-            lblNomeFisica.Size = new Size(62, 21);
-            lblNomeFisica.TabIndex = 0;
-            lblNomeFisica.Text = "Nome:";
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Arial", 10.8F);
-            textBox1.Location = new Point(89, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 28);
-            textBox1.TabIndex = 1;
+            textBox2.Font = new Font("Arial", 10.8F);
+            textBox2.Location = new Point(98, 85);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 28);
+            textBox2.TabIndex = 3;
             // 
             // lblCpf
             // 
@@ -108,13 +101,23 @@
             lblCpf.TabIndex = 2;
             lblCpf.Text = "CPF:";
             // 
-            // textBox2
+            // textBox1
             // 
-            textBox2.Font = new Font("Arial", 10.8F);
-            textBox2.Location = new Point(89, 82);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 28);
-            textBox2.TabIndex = 3;
+            textBox1.Font = new Font("Arial", 10.8F);
+            textBox1.Location = new Point(98, 30);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 28);
+            textBox1.TabIndex = 1;
+            // 
+            // lblNomeFisica
+            // 
+            lblNomeFisica.AutoSize = true;
+            lblNomeFisica.Font = new Font("Arial", 10.8F);
+            lblNomeFisica.Location = new Point(30, 33);
+            lblNomeFisica.Name = "lblNomeFisica";
+            lblNomeFisica.Size = new Size(62, 21);
+            lblNomeFisica.TabIndex = 0;
+            lblNomeFisica.Text = "Nome:";
             // 
             // pnlPessoaJuridica
             // 
@@ -128,11 +131,22 @@
             pnlPessoaJuridica.Name = "pnlPessoaJuridica";
             pnlPessoaJuridica.Size = new Size(287, 151);
             pnlPessoaJuridica.TabIndex = 4;
+            pnlPessoaJuridica.Visible = false;
+            // 
+            // lblNomeJuridica
+            // 
+            lblNomeJuridica.AutoSize = true;
+            lblNomeJuridica.Font = new Font("Arial", 10.8F);
+            lblNomeJuridica.Location = new Point(30, 30);
+            lblNomeJuridica.Name = "lblNomeJuridica";
+            lblNomeJuridica.Size = new Size(62, 21);
+            lblNomeJuridica.TabIndex = 4;
+            lblNomeJuridica.Text = "Nome:";
             // 
             // textBox3
             // 
             textBox3.Font = new Font("Arial", 10.8F);
-            textBox3.Location = new Point(89, 82);
+            textBox3.Location = new Point(98, 82);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 28);
             textBox3.TabIndex = 3;
@@ -150,20 +164,10 @@
             // textBox4
             // 
             textBox4.Font = new Font("Arial", 10.8F);
-            textBox4.Location = new Point(89, 30);
+            textBox4.Location = new Point(98, 30);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(125, 28);
             textBox4.TabIndex = 1;
-            // 
-            // lblNomeJuridica
-            // 
-            lblNomeJuridica.AutoSize = true;
-            lblNomeJuridica.Font = new Font("Arial", 10.8F);
-            lblNomeJuridica.Location = new Point(30, 30);
-            lblNomeJuridica.Name = "lblNomeJuridica";
-            lblNomeJuridica.Size = new Size(62, 21);
-            lblNomeJuridica.TabIndex = 4;
-            lblNomeJuridica.Text = "Nome:";
             // 
             // frmPropriedadesCheckBox
             // 
