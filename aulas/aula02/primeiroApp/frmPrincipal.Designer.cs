@@ -39,20 +39,21 @@
             // lblMensagem
             // 
             lblMensagem.AutoSize = true;
-            lblMensagem.Font = new Font("Rockwell", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMensagem.Location = new Point(79, 189);
+            lblMensagem.Font = new Font("Bauhaus 93", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMensagem.ForeColor = Color.Black;
+            lblMensagem.Location = new Point(35, 222);
             lblMensagem.Name = "lblMensagem";
-            lblMensagem.Size = new Size(0, 42);
+            lblMensagem.Size = new Size(0, 32);
             lblMensagem.TabIndex = 0;
             // 
             // btnMostrarMensagem
             // 
-            btnMostrarMensagem.BackColor = SystemColors.Desktop;
-            btnMostrarMensagem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMostrarMensagem.ForeColor = Color.Magenta;
-            btnMostrarMensagem.Location = new Point(252, 366);
+            btnMostrarMensagem.BackColor = Color.White;
+            btnMostrarMensagem.Font = new Font("Arial", 10.8F);
+            btnMostrarMensagem.ForeColor = Color.Black;
+            btnMostrarMensagem.Location = new Point(140, 365);
             btnMostrarMensagem.Name = "btnMostrarMensagem";
-            btnMostrarMensagem.Size = new Size(213, 44);
+            btnMostrarMensagem.Size = new Size(213, 50);
             btnMostrarMensagem.TabIndex = 1;
             btnMostrarMensagem.Text = "Mostrar Mensagem";
             btnMostrarMensagem.UseVisualStyleBackColor = false;
@@ -60,40 +61,52 @@
             // 
             // btnPropriedadesCheckBox
             // 
-            btnPropriedadesCheckBox.BackColor = SystemColors.Desktop;
-            btnPropriedadesCheckBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPropriedadesCheckBox.ForeColor = Color.Magenta;
+            btnPropriedadesCheckBox.BackColor = Color.White;
+            btnPropriedadesCheckBox.Enabled = false;
+            btnPropriedadesCheckBox.Font = new Font("Arial", 10.8F);
+            btnPropriedadesCheckBox.ForeColor = Color.Black;
+            btnPropriedadesCheckBox.Image = Properties.Resources.check;
+            btnPropriedadesCheckBox.ImageAlign = ContentAlignment.TopCenter;
             btnPropriedadesCheckBox.Location = new Point(22, 21);
             btnPropriedadesCheckBox.Name = "btnPropriedadesCheckBox";
-            btnPropriedadesCheckBox.Size = new Size(130, 44);
+            btnPropriedadesCheckBox.Size = new Size(130, 100);
             btnPropriedadesCheckBox.TabIndex = 2;
             btnPropriedadesCheckBox.Text = "CheckBox";
+            btnPropriedadesCheckBox.TextAlign = ContentAlignment.BottomCenter;
             btnPropriedadesCheckBox.UseVisualStyleBackColor = false;
             btnPropriedadesCheckBox.Click += btnPropriedadesCheckBox_Click;
             // 
             // btnImagens
             // 
-            btnImagens.BackColor = SystemColors.Desktop;
-            btnImagens.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnImagens.ForeColor = Color.Magenta;
-            btnImagens.Location = new Point(196, 21);
+            btnImagens.BackColor = Color.White;
+            btnImagens.Enabled = false;
+            btnImagens.Font = new Font("Arial", 10.8F);
+            btnImagens.ForeColor = Color.Black;
+            btnImagens.Image = Properties.Resources.gallery;
+            btnImagens.ImageAlign = ContentAlignment.TopCenter;
+            btnImagens.Location = new Point(183, 21);
             btnImagens.Name = "btnImagens";
-            btnImagens.Size = new Size(130, 44);
+            btnImagens.Size = new Size(130, 100);
             btnImagens.TabIndex = 3;
             btnImagens.Text = "Imagens";
+            btnImagens.TextAlign = ContentAlignment.BottomCenter;
             btnImagens.UseVisualStyleBackColor = false;
             btnImagens.Click += btnImagens_Click;
             // 
             // btnTabuada
             // 
-            btnTabuada.BackColor = SystemColors.Desktop;
-            btnTabuada.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnTabuada.ForeColor = Color.Magenta;
-            btnTabuada.Location = new Point(369, 21);
+            btnTabuada.BackColor = Color.White;
+            btnTabuada.Enabled = false;
+            btnTabuada.Font = new Font("Arial", 10.8F);
+            btnTabuada.ForeColor = Color.Black;
+            btnTabuada.Image = Properties.Resources.tabuada;
+            btnTabuada.ImageAlign = ContentAlignment.TopCenter;
+            btnTabuada.Location = new Point(347, 21);
             btnTabuada.Name = "btnTabuada";
-            btnTabuada.Size = new Size(130, 44);
+            btnTabuada.Size = new Size(130, 100);
             btnTabuada.TabIndex = 4;
             btnTabuada.Text = "Tabuada";
+            btnTabuada.TextAlign = ContentAlignment.BottomCenter;
             btnTabuada.UseVisualStyleBackColor = false;
             btnTabuada.Click += btnTabuada_Click;
             // 
@@ -102,7 +115,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(724, 450);
+            ClientSize = new Size(498, 450);
             Controls.Add(btnTabuada);
             Controls.Add(btnImagens);
             Controls.Add(btnPropriedadesCheckBox);
@@ -114,6 +127,7 @@
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Primeiro Aplicativo em C-Sharp";
+            Load += frmPrincipal_Load;
             ResumeLayout(false);
             PerformLayout();
         }
