@@ -25,5 +25,11 @@ namespace primeiroApp
             frmVizualizadorImagens imagens = new frmVizualizadorImagens();
             imagens.ShowDialog();
         }
+
+        private void btnTabuada_Click(object sender, EventArgs e)
+        {
+            frmTabuada tabuada = new frmTabuada();
+            tabuada.ShowDialog();
+        }
     }
 }

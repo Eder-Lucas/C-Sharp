@@ -33,13 +33,14 @@
             btnMostrarMensagem = new Button();
             btnPropriedadesCheckBox = new Button();
             btnImagens = new Button();
+            btnTabuada = new Button();
             SuspendLayout();
             // 
             // lblMensagem
             // 
             lblMensagem.AutoSize = true;
             lblMensagem.Font = new Font("Rockwell", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMensagem.Location = new Point(127, 34);
+            lblMensagem.Location = new Point(79, 189);
             lblMensagem.Name = "lblMensagem";
             lblMensagem.Size = new Size(0, 42);
             lblMensagem.TabIndex = 0;
@@ -49,7 +50,7 @@
             btnMostrarMensagem.BackColor = SystemColors.Desktop;
             btnMostrarMensagem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMostrarMensagem.ForeColor = Color.Magenta;
-            btnMostrarMensagem.Location = new Point(196, 351);
+            btnMostrarMensagem.Location = new Point(252, 366);
             btnMostrarMensagem.Name = "btnMostrarMensagem";
             btnMostrarMensagem.Size = new Size(213, 44);
             btnMostrarMensagem.TabIndex = 1;
@@ -62,7 +63,7 @@
             btnPropriedadesCheckBox.BackColor = SystemColors.Desktop;
             btnPropriedadesCheckBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPropriedadesCheckBox.ForeColor = Color.Magenta;
-            btnPropriedadesCheckBox.Location = new Point(437, 351);
+            btnPropriedadesCheckBox.Location = new Point(22, 21);
             btnPropriedadesCheckBox.Name = "btnPropriedadesCheckBox";
             btnPropriedadesCheckBox.Size = new Size(130, 44);
             btnPropriedadesCheckBox.TabIndex = 2;
@@ -75,7 +76,7 @@
             btnImagens.BackColor = SystemColors.Desktop;
             btnImagens.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnImagens.ForeColor = Color.Magenta;
-            btnImagens.Location = new Point(584, 351);
+            btnImagens.Location = new Point(196, 21);
             btnImagens.Name = "btnImagens";
             btnImagens.Size = new Size(130, 44);
             btnImagens.TabIndex = 3;
@@ -83,12 +84,26 @@
             btnImagens.UseVisualStyleBackColor = false;
             btnImagens.Click += btnImagens_Click;
             // 
+            // btnTabuada
+            // 
+            btnTabuada.BackColor = SystemColors.Desktop;
+            btnTabuada.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTabuada.ForeColor = Color.Magenta;
+            btnTabuada.Location = new Point(369, 21);
+            btnTabuada.Name = "btnTabuada";
+            btnTabuada.Size = new Size(130, 44);
+            btnTabuada.TabIndex = 4;
+            btnTabuada.Text = "Tabuada";
+            btnTabuada.UseVisualStyleBackColor = false;
+            btnTabuada.Click += btnTabuada_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(724, 450);
+            Controls.Add(btnTabuada);
             Controls.Add(btnImagens);
             Controls.Add(btnPropriedadesCheckBox);
             Controls.Add(btnMostrarMensagem);
@@ -109,5 +124,6 @@
         private Button btnMostrarMensagem;
         private Button btnPropriedadesCheckBox;
         private Button btnImagens;
+        private Button btnTabuada;
     }
 }
