@@ -42,7 +42,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Image = Properties.Resources.moldura;
             pictureBox1.Location = new Point(3, -5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(811, 481);
