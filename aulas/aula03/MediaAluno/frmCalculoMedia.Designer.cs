@@ -51,16 +51,22 @@
             btnLimpar = new Button();
             label8 = new Label();
             numNotaCorte = new NumericUpDown();
+            groupBox1 = new GroupBox();
+            lblSituacao = new Label();
+            groupBox2 = new GroupBox();
+            txtRecuperacao = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numNotaCorte).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.painelMediaAluno;
-            pictureBox1.Location = new Point(191, 12);
+            pictureBox1.Location = new Point(229, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(403, 172);
+            pictureBox1.Size = new Size(403, 152);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -71,7 +77,7 @@
             txtNota1.Location = new Point(75, 250);
             txtNota1.Name = "txtNota1";
             txtNota1.Size = new Size(125, 32);
-            txtNota1.TabIndex = 1;
+            txtNota1.TabIndex = 0;
             txtNota1.TextAlign = HorizontalAlignment.Center;
             // 
             // txtNota2
@@ -80,7 +86,7 @@
             txtNota2.Location = new Point(222, 250);
             txtNota2.Name = "txtNota2";
             txtNota2.Size = new Size(125, 32);
-            txtNota2.TabIndex = 1;
+            txtNota2.TabIndex = 2;
             txtNota2.TextAlign = HorizontalAlignment.Center;
             // 
             // txtTrabalho
@@ -89,7 +95,7 @@
             txtTrabalho.Location = new Point(369, 250);
             txtTrabalho.Name = "txtTrabalho";
             txtTrabalho.Size = new Size(125, 32);
-            txtTrabalho.TabIndex = 1;
+            txtTrabalho.TabIndex = 4;
             txtTrabalho.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
@@ -131,7 +137,7 @@
             cboPesoNota1.Location = new Point(75, 288);
             cboPesoNota1.Name = "cboPesoNota1";
             cboPesoNota1.Size = new Size(125, 34);
-            cboPesoNota1.TabIndex = 3;
+            cboPesoNota1.TabIndex = 1;
             // 
             // cboPesoNota2
             // 
@@ -153,24 +159,24 @@
             cboPesoTrabalho.Location = new Point(369, 288);
             cboPesoTrabalho.Name = "cboPesoTrabalho";
             cboPesoTrabalho.Size = new Size(125, 34);
-            cboPesoTrabalho.TabIndex = 3;
+            cboPesoTrabalho.TabIndex = 5;
             // 
             // txtQdeAulas
             // 
             txtQdeAulas.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtQdeAulas.Location = new Point(311, 351);
+            txtQdeAulas.Location = new Point(236, 351);
             txtQdeAulas.Name = "txtQdeAulas";
-            txtQdeAulas.Size = new Size(125, 32);
-            txtQdeAulas.TabIndex = 1;
+            txtQdeAulas.Size = new Size(111, 32);
+            txtQdeAulas.TabIndex = 6;
             txtQdeAulas.TextAlign = HorizontalAlignment.Center;
             // 
             // txtQdeFaltas
             // 
             txtQdeFaltas.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtQdeFaltas.Location = new Point(311, 404);
+            txtQdeFaltas.Location = new Point(236, 401);
             txtQdeFaltas.Name = "txtQdeFaltas";
-            txtQdeFaltas.Size = new Size(125, 32);
-            txtQdeFaltas.TabIndex = 1;
+            txtQdeFaltas.Size = new Size(111, 32);
+            txtQdeFaltas.TabIndex = 7;
             txtQdeFaltas.TextAlign = HorizontalAlignment.Center;
             // 
             // label4
@@ -179,9 +185,9 @@
             label4.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(75, 354);
             label4.Name = "label4";
-            label4.Size = new Size(228, 26);
+            label4.Size = new Size(155, 26);
             label4.TabIndex = 2;
-            label4.Text = "Quantidade de aulas:";
+            label4.Text = "Qtd. de aulas:";
             // 
             // label5
             // 
@@ -189,9 +195,9 @@
             label5.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(75, 404);
             label5.Name = "label5";
-            label5.Size = new Size(230, 26);
+            label5.Size = new Size(157, 26);
             label5.TabIndex = 2;
-            label5.Text = "Quantidade de faltas:";
+            label5.Text = "Qtd. de faltas:";
             // 
             // label6
             // 
@@ -209,7 +215,7 @@
             txtMediaFinal.Location = new Point(74, 490);
             txtMediaFinal.Name = "txtMediaFinal";
             txtMediaFinal.Size = new Size(125, 32);
-            txtMediaFinal.TabIndex = 1;
+            txtMediaFinal.TabIndex = 16;
             txtMediaFinal.TextAlign = HorizontalAlignment.Center;
             // 
             // label7
@@ -228,7 +234,7 @@
             txtAproveitamento.Location = new Point(254, 490);
             txtAproveitamento.Name = "txtAproveitamento";
             txtAproveitamento.Size = new Size(173, 32);
-            txtAproveitamento.TabIndex = 1;
+            txtAproveitamento.TabIndex = 17;
             txtAproveitamento.TextAlign = HorizontalAlignment.Center;
             // 
             // btnCalcular
@@ -239,7 +245,7 @@
             btnCalcular.Location = new Point(74, 559);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(179, 106);
-            btnCalcular.TabIndex = 4;
+            btnCalcular.TabIndex = 9;
             btnCalcular.Text = "Calcular";
             btnCalcular.TextAlign = ContentAlignment.BottomCenter;
             btnCalcular.UseVisualStyleBackColor = true;
@@ -252,7 +258,7 @@
             btnLimpar.Location = new Point(275, 559);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(161, 106);
-            btnLimpar.TabIndex = 4;
+            btnLimpar.TabIndex = 18;
             btnLimpar.Text = "Limpar";
             btnLimpar.TextAlign = ContentAlignment.BottomCenter;
             btnLimpar.UseVisualStyleBackColor = true;
@@ -261,7 +267,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(518, 221);
+            label8.Location = new Point(381, 357);
             label8.Name = "label8";
             label8.Size = new Size(148, 26);
             label8.TabIndex = 2;
@@ -270,20 +276,62 @@
             // numNotaCorte
             // 
             numNotaCorte.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            numNotaCorte.Location = new Point(517, 251);
+            numNotaCorte.Location = new Point(381, 386);
             numNotaCorte.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
             numNotaCorte.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             numNotaCorte.Name = "numNotaCorte";
-            numNotaCorte.Size = new Size(150, 32);
-            numNotaCorte.TabIndex = 5;
+            numNotaCorte.Size = new Size(148, 32);
+            numNotaCorte.TabIndex = 8;
             numNotaCorte.TextAlign = HorizontalAlignment.Center;
             numNotaCorte.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(lblSituacao);
+            groupBox1.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(573, 250);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(251, 125);
+            groupBox1.TabIndex = 19;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Situação";
+            // 
+            // lblSituacao
+            // 
+            lblSituacao.AutoSize = true;
+            lblSituacao.Location = new Point(59, 62);
+            lblSituacao.Name = "lblSituacao";
+            lblSituacao.Size = new Size(0, 26);
+            lblSituacao.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(txtRecuperacao);
+            groupBox2.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox2.ForeColor = Color.Firebrick;
+            groupBox2.Location = new Point(573, 404);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(251, 125);
+            groupBox2.TabIndex = 20;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Recuperação";
+            // 
+            // txtRecuperacao
+            // 
+            txtRecuperacao.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRecuperacao.Location = new Point(42, 48);
+            txtRecuperacao.Name = "txtRecuperacao";
+            txtRecuperacao.Size = new Size(125, 32);
+            txtRecuperacao.TabIndex = 0;
+            txtRecuperacao.TextAlign = HorizontalAlignment.Center;
             // 
             // frmCalculoMedia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(967, 763);
+            ClientSize = new Size(889, 703);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Controls.Add(numNotaCorte);
             Controls.Add(btnLimpar);
             Controls.Add(btnCalcular);
@@ -314,6 +362,10 @@
             Text = "Cálculo Média";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numNotaCorte).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -342,5 +394,9 @@
         private Button btnLimpar;
         private Label label8;
         private NumericUpDown numNotaCorte;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private TextBox txtRecuperacao;
+        private Label lblSituacao;
     }
 }
