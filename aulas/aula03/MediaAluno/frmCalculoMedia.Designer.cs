@@ -263,6 +263,7 @@
             btnLimpar.Text = "Limpar";
             btnLimpar.TextAlign = ContentAlignment.BottomCenter;
             btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // label8
             // 
