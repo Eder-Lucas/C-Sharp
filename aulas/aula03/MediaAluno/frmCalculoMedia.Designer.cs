@@ -214,6 +214,7 @@
             txtMediaFinal.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMediaFinal.Location = new Point(74, 490);
             txtMediaFinal.Name = "txtMediaFinal";
+            txtMediaFinal.ReadOnly = true;
             txtMediaFinal.Size = new Size(125, 32);
             txtMediaFinal.TabIndex = 16;
             txtMediaFinal.TextAlign = HorizontalAlignment.Center;
@@ -233,6 +234,7 @@
             txtAproveitamento.Font = new Font("MS Reference Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAproveitamento.Location = new Point(254, 490);
             txtAproveitamento.Name = "txtAproveitamento";
+            txtAproveitamento.ReadOnly = true;
             txtAproveitamento.Size = new Size(173, 32);
             txtAproveitamento.TabIndex = 17;
             txtAproveitamento.TextAlign = HorizontalAlignment.Center;
