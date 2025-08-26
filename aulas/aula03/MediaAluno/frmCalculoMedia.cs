@@ -7,62 +7,88 @@ namespace MediaAluno
             InitializeComponent();
         }
 
+        //Quando clicar no botão de calcular
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            double nota1, nota2, notaTrabalho;
+            //definindo as variaveis de peso
             double peso1, peso2, pesoTrabalho;
 
+            //atribuindo e convertendo para double seus respectivos valores
             peso1 = Convert.ToDouble(cboPesoNota1.Text);
             peso2 = Convert.ToDouble(cboPesoNota2.Text);
             pesoTrabalho = Convert.ToDouble(cboPesoTrabalho.Text);
 
+            //definindo as variaveis de nota
+            double nota1, nota2, notaTrabalho;
+
+            //o calculo da média será ponderado
+            //atribuindo valores as variaveis de nota e já multiplicando pelo peso
             nota1 = Convert.ToDouble(txtNota1.Text) * peso1;
             nota2 = double.Parse(txtNota2.Text) * peso2;
             notaTrabalho = Convert.ToDouble(txtTrabalho.Text) * pesoTrabalho;
 
+            //efetuando a última parte do cálculo da média ponderada
             double media = (nota1 + nota2 + notaTrabalho) / (peso1 + peso2 + pesoTrabalho);
+            txtMediaFinal.Text = media.ToString("F2"); //mostra a média no txt com só duas casas decimais
 
-            txtMediaFinal.Text = media.ToString();
-
-            double quantFalta, quantAula;
-
+            //definindo e atribuindo valor as variaveis de quantidade de falta e aula
+            double quantFalta, totalAula;
             quantFalta = Convert.ToDouble(txtQdeFaltas.Text);
-            quantAula = Convert.ToDouble(txtQdeAulas.Text);
+            totalAula = Convert.ToDouble(txtQdeAulas.Text);
 
-            //calcula a porcentagem de falta e logo após subtrai 100 obtendo a porcentagem de presenca
-            double porcentagemFrequencia = 100 - ((quantFalta / quantAula) * 100);
+            /*
+            calcula a porcentagem de falta por uma regra de 3 simplificada e subtrai de 100 para obter a frequência:
 
-            //transforma a media em porcentagem e soma com a presenca
-            //dividi por dois para obter uma media em porcentagem do aproveitamento
+                totalAulas -- 100   e depois 100 - x
+                quantFalta --  x
+
+            mesmo que: 
+                100 - (quantFalta * 100) / totalAulas OU 100 - (quantFalta / totalAula) * 100    
+             */
+            double porcentagemFrequencia = 100 - ((quantFalta / totalAula) * 100);
+
+            //o cálculo de aproveitamento é uma média entre a frequência e a media final do aluno
+            //multiplico a média por 10 para ficar em porcentagem e divido por 2 obtendo a média de aproveitamento
             double porcentagemAproveitamento = ((media * 10) + porcentagemFrequencia) / 2;
 
+            //exibindo o aproveitamento no txt
+            //.ToString("F2") permite apenas duas casas após a vírgula
             txtAproveitamento.Text = porcentagemAproveitamento.ToString("F2") + "%";
 
+            //Se não tiver em recuperação
             if (txtRecuperacao.Text == "")
             {
+                //verifica se a média é maior que a nota de corte e se a frequência é maior que 75%
                 if (media >= Convert.ToDouble(numNotaCorte.Value) && porcentagemFrequencia >= 75)
                 {
-                    lblSituacao.Text = "Aprovado";
+                    lblSituacao.Text = "Aprovado"; //se for verdade o aluno é aprovado
                     lblSituacao.ForeColor = Color.Green;
                 }
+                //se não, verifica se a média é menor que 2.5(25%) e frequência menor que 75%
                 else if (media <= 2.5 || porcentagemFrequencia <= 75)
                 {
-                    lblSituacao.Text = "Reprovado";
+                    lblSituacao.Text = "Reprovado"; //se verdade o aluno é reprovado
                     lblSituacao.ForeColor = Color.Firebrick;
                 }
+                //caso nenhum for verdade o aluno está em recuperação
                 else
                 {
                     lblSituacao.Text = "Recuperação";
                     lblSituacao.ForeColor = Color.Firebrick;
                 }
             }
+            //caso o aluno esteja em recuperação
             else
             {
+                //cálcula sua nova media somando com a nota da recuperação
                 media = (media + Convert.ToDouble(txtRecuperacao.Text)) / 2;
+                txtMediaFinal.Text = media.ToString("F2");
 
+                //seu aproveitamento também é cálculado novamente já que a media foi alterada
                 porcentagemAproveitamento = ((media * 10) + porcentagemFrequencia) / 2;
                 txtAproveitamento.Text = porcentagemAproveitamento.ToString("F2") + "%";
 
+                //verifica sua aprovação
                 if (media >= Convert.ToDouble(numNotaCorte.Value))
                 {
                     lblSituacao.Text = "Aprovado";
@@ -74,30 +100,34 @@ namespace MediaAluno
                     lblSituacao.ForeColor = Color.Firebrick;
                 }
             }
-            txtMediaFinal.Text = media.ToString();
 
         }
 
+        //quando clica no botão de limpar
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            lblSituacao.Text = "";
-            txtRecuperacao.Text = string.Empty;
+            //apagando o caractere desse label em especifico
+            lblSituacao.Text = string.Empty;
 
-            foreach(Control Componente in this.Controls)
+            //usando o foreach para apagar os conteúdos 
+            //Control Componente: é a variável que representa o item atual da coleção a cada iteração.
+            //this.Controls: se refere a todos os componentes do form
+            foreach (Control Componente in this.Controls)
             {
-                if(Componente is TextBox txt)
+                //se o componente que estiver sendo verificado for um TextBox, armazena na variavel 'txt'
+                if(Componente is TextBox txt) 
                 {
-                    txt.Clear();
+                    txt.Clear(); //o conteúdo é apagado
                 }
 
                 else if(Componente is ComboBox cbo)
                 {
-                    cbo.SelectedIndex = -1;
+                    cbo.SelectedIndex = -1; //seleciona nenhum item da lista, deixando ele vazio
                 }
 
                 else if(Componente is NumericUpDown num)
                 {
-                    num.Value = 5;
+                    num.Value = 5; //formata para o valor 5
                 }
             }
         }
