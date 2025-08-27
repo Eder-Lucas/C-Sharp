@@ -5,11 +5,46 @@ namespace MediaAluno
         public frmCalculoMedia()
         {
             InitializeComponent();
+            mouseCursor(); //função que trata do cursor do mouse
+
+            Recuperacao = false; //inicia o app com o aluno fora da recuperação, travando o txt
+        }
+
+        //controlando o estado de recuperação
+        private bool _recuperacao; //é como a "caixinha" onde o valor fica guardado
+        public bool Recuperacao //é a "porta" que usa para colocar ou pegar esse valor
+        {
+            //grava esse valor - true ou false - no campo _recuperacao e atualiza a interface
+            set
+            {
+                _recuperacao = value;
+
+                //se Recuperacao = true, o operador '!' inverte o valor para false
+                //permitindo que o usuário insira uma nota de recuperação
+                txtRecuperacao.ReadOnly = !_recuperacao;
+            }
+            //devolve o valor que está guardado no campo _recuperacao
+            get
+            {
+                return _recuperacao;
+            }
         }
 
         //Quando clicar no botão de calcular
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            if (!Validacao(this))
+            {
+                return;
+            }
+
+            //definindo as variaveis de nota
+            double notaTxt_1, notaTxt_2, notaTrabalho_txt;
+
+            notaTxt_1 = Convert.ToDouble(txtNota1.Text);
+            notaTxt_2 = double.Parse(txtNota2.Text);
+            notaTrabalho_txt = Convert.ToDouble(txtTrabalho.Text);
+
             //definindo as variaveis de peso
             double peso1, peso2, pesoTrabalho;
 
@@ -18,18 +53,17 @@ namespace MediaAluno
             peso2 = Convert.ToDouble(cboPesoNota2.Text);
             pesoTrabalho = Convert.ToDouble(cboPesoTrabalho.Text);
 
-            //definindo as variaveis de nota
-            double nota1, nota2, notaTrabalho;
+
 
             //o calculo da média será ponderado
             //atribuindo valores as variaveis de nota e já multiplicando pelo peso
-            nota1 = Convert.ToDouble(txtNota1.Text) * peso1;
-            nota2 = double.Parse(txtNota2.Text) * peso2;
-            notaTrabalho = Convert.ToDouble(txtTrabalho.Text) * pesoTrabalho;
+            double nota1, nota2, notaTrabalho;
+            nota1 =  notaTxt_1 * peso1;
+            nota2 = notaTxt_2 * peso2;
+            notaTrabalho = notaTrabalho_txt * pesoTrabalho;
 
             //efetuando a última parte do cálculo da média ponderada
             double media = (nota1 + nota2 + notaTrabalho) / (peso1 + peso2 + pesoTrabalho);
-            txtMediaFinal.Text = media.ToString("F2"); //mostra a média no txt com só duas casas decimais
 
             //definindo e atribuindo valor as variaveis de quantidade de falta e aula
             double quantFalta, totalAula;
@@ -51,9 +85,10 @@ namespace MediaAluno
             //multiplico a média por 10 para ficar em porcentagem e divido por 2 obtendo a média de aproveitamento
             double porcentagemAproveitamento = ((media * 10) + porcentagemFrequencia) / 2;
 
-            //exibindo o aproveitamento no txt
+            //exibindo o aproveitamento e media no txt
             //.ToString("F2") permite apenas duas casas após a vírgula
             txtAproveitamento.Text = porcentagemAproveitamento.ToString("F2") + "%";
+            txtMediaFinal.Text = media.ToString("F2");
 
             //Se não tiver em recuperação
             if (txtRecuperacao.Text == "")
@@ -73,6 +108,7 @@ namespace MediaAluno
                 //caso nenhum for verdade o aluno está em recuperação
                 else
                 {
+                    Recuperacao = true; //aluno em recuperação
                     lblSituacao.Text = "Recuperação";
                     lblSituacao.ForeColor = Color.Firebrick;
                 }
@@ -91,11 +127,13 @@ namespace MediaAluno
                 //verifica sua aprovação
                 if (media >= Convert.ToDouble(numNotaCorte.Value))
                 {
+                    Recuperacao = false; //aluno sai a recuperação
                     lblSituacao.Text = "Aprovado";
                     lblSituacao.ForeColor = Color.Green;
                 }
                 else
                 {
+                    Recuperacao = false; //encerra a recuperação, o aluno foi reprovado
                     lblSituacao.Text = "Reprovado";
                     lblSituacao.ForeColor = Color.Firebrick;
                 }
@@ -106,6 +144,10 @@ namespace MediaAluno
         //quando clica no botão de limpar
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+            //reseta o estado de recuperacao
+            Recuperacao = false;
+            txtRecuperacao.Text = "";
+
             //apagando o caractere desse label em especifico
             lblSituacao.Text = string.Empty;
 
@@ -115,21 +157,94 @@ namespace MediaAluno
             foreach (Control Componente in this.Controls)
             {
                 //se o componente que estiver sendo verificado for um TextBox, armazena na variavel 'txt'
-                if(Componente is TextBox txt) 
+                if (Componente is TextBox txt)
                 {
                     txt.Clear(); //o conteúdo é apagado
                 }
 
-                else if(Componente is ComboBox cbo)
+                else if (Componente is ComboBox cbo)
                 {
                     cbo.SelectedIndex = -1; //seleciona nenhum item da lista, deixando ele vazio
                 }
 
-                else if(Componente is NumericUpDown num)
+                else if (Componente is NumericUpDown num)
                 {
                     num.Value = 5; //formata para o valor 5
                 }
             }
+        }
+
+        //função para tratar do cursor
+        private void mouseCursor()
+        {
+            //itera todo os controles do form
+            foreach (Control c in this.Controls)
+            {
+                //se for um botão ou comboBox
+                if (c is Button || c is ComboBox)
+                {
+                    //aplica os evento
+                    c.MouseEnter += (s, e) => Cursor = Cursors.Hand;
+                    c.MouseLeave += (s, e) => Cursor = Cursors.Default;
+                    /*
+                     forma simplificada de:
+                        private void c_MouseEnter(object sender, EventArgs e)
+                        {
+                            Cursor = Cursors.Hand;
+                        }
+                     */
+                }
+            }
+        }
+
+        private bool Validacao(Control parent)
+        {
+
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox txt && !txt.ReadOnly)
+                {
+                    if (string.IsNullOrWhiteSpace(txt.Text))
+                    {
+                        MessageBox.Show($"Impossivel realizar o cálculo pois há campos vazios. '{txt.Name}'",
+                                "Erro ao gerar a média",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                        );
+                        txt.Focus();
+                        return false;
+                    }
+
+                    if (!double.TryParse(txt.Text, out _))
+                    {
+                        MessageBox.Show($"Impossivel realizar o cálculo. Certifique-se de utilizar apenas números. '{txt.Name}'",
+                                "Erro ao gerar a média",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                        );
+                        txt.Focus();
+                        return false;
+                    }
+                }
+                else if (c is ComboBox cbo)
+                {
+                    if (cbo.SelectedIndex == -1)
+                    {
+                        MessageBox.Show($"Impossivel realizar o cálculo, pois os pesos das notas não foram selecionados.",
+                                "Erro ao gerar a média",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                        );
+                        cbo.Focus();
+                        return false;
+                    }
+                }
+                else if (c.HasChildren && !Validacao(c))
+                {
+                    return false;
+                }
+            }
+        return true;
         }
     }
 }
