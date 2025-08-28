@@ -197,54 +197,50 @@ namespace MediaAluno
             }
         }
 
+        private ErrorProvider errorProvider = new ErrorProvider();
         private bool Validacao(Control parent)
         {
-
             foreach (Control c in parent.Controls)
             {
                 if (c is TextBox txt && !txt.ReadOnly)
                 {
                     if (string.IsNullOrWhiteSpace(txt.Text))
                     {
-                        MessageBox.Show($"Impossivel realizar o cálculo pois há campos vazios. '{txt.Name}'",
-                                "Erro ao gerar a média",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                        );
-                        txt.Focus();
+                        ExibirErro(c, "Impossivel realizar o cálculo pois há campos vazios.", "Insira um valor!");
                         return false;
                     }
 
                     if (!double.TryParse(txt.Text, out _))
                     {
-                        MessageBox.Show($"Impossivel realizar o cálculo. Certifique-se de utilizar apenas números. '{txt.Name}'",
-                                "Erro ao gerar a média",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                        );
-                        txt.Focus();
+                        ExibirErro(c, "Impossivel realizar o cálculo. Use apenas números.", "Insira um número!");
                         return false;
                     }
                 }
-                else if (c is ComboBox cbo)
+                else if (c is ComboBox cbo && cbo.SelectedIndex == -1)
                 {
-                    if (cbo.SelectedIndex == -1)
-                    {
-                        MessageBox.Show($"Impossivel realizar o cálculo, pois os pesos das notas não foram selecionados.",
-                                "Erro ao gerar a média",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                        );
-                        cbo.Focus();
+                    ExibirErro(c, "Impossivel realizar o cálculo, informe o valor dos pesos.", "Selecione uma opção!");
                         return false;
-                    }
                 }
                 else if (c.HasChildren && !Validacao(c))
                 {
                     return false;
                 }
+                errorProvider.SetError(c, "");
             }
         return true;
+        }
+
+        private bool ExibirErro(Control c, string mensagem, string erro)
+        {
+            MessageBox.Show(mensagem,
+                                "Erro ao gerar a média",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+            );
+
+            errorProvider.SetError(c, erro);
+            c.Focus();
+            return false;
         }
     }
 }
