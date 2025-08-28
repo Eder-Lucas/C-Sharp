@@ -33,17 +33,13 @@ namespace MediaAluno
         //Quando clicar no botão de calcular
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            //antes dos cálculos é necessário verificar se os campos estão corretos
+            //como essa função sempre retorna false se tiver algum erro
+            //seu valor é invertido tornando ela true se houver erro, entrando no bloco do if
             if (!Validacao(this))
             {
-                return;
+                return; //interrompe o fluxo do código porque algum campo está inválido
             }
-
-            //definindo as variaveis de nota
-            double notaTxt_1, notaTxt_2, notaTrabalho_txt;
-
-            notaTxt_1 = Convert.ToDouble(txtNota1.Text);
-            notaTxt_2 = double.Parse(txtNota2.Text);
-            notaTrabalho_txt = Convert.ToDouble(txtTrabalho.Text);
 
             //definindo as variaveis de peso
             double peso1, peso2, pesoTrabalho;
@@ -53,14 +49,14 @@ namespace MediaAluno
             peso2 = Convert.ToDouble(cboPesoNota2.Text);
             pesoTrabalho = Convert.ToDouble(cboPesoTrabalho.Text);
 
-
+            //definindo as variaveis de nota
+            double nota1, nota2, notaTrabalho;
 
             //o calculo da média será ponderado
             //atribuindo valores as variaveis de nota e já multiplicando pelo peso
-            double nota1, nota2, notaTrabalho;
-            nota1 =  notaTxt_1 * peso1;
-            nota2 = notaTxt_2 * peso2;
-            notaTrabalho = notaTrabalho_txt * pesoTrabalho;
+            nota1 = double.Parse(txtNota1.Text) * peso1;
+            nota2 = double.Parse(txtNota2.Text) * peso2; //outra forma de converter
+            notaTrabalho = double.Parse(txtTrabalho.Text) * pesoTrabalho;
 
             //efetuando a última parte do cálculo da média ponderada
             double media = (nota1 + nota2 + notaTrabalho) / (peso1 + peso2 + pesoTrabalho);
@@ -197,40 +193,57 @@ namespace MediaAluno
             }
         }
 
+        //objeto do tipo do tipo ErrorProvider chamado errorProvider
+        //usado para tratar erros visualmente | errorProvider(name, "mensagem");
         private ErrorProvider errorProvider = new ErrorProvider();
-        private bool Validacao(Control parent)
+
+        //função para validação
+        private bool Validacao(Control parent) //Control parent é qualquer controle pai que vai ser verificado
         {
-            foreach (Control c in parent.Controls)
+            foreach (Control c in parent.Controls) //retorna todos os controles dentro de parent
             {
-                if (c is TextBox txt && !txt.ReadOnly)
+                //se for um textBox
+                //campos verdadeiros para ReadOnly são desconsiderados já que o usuário não utiliza ele
+                if (c is TextBox txt && !txt.ReadOnly) //!txt.ReadOnly => txt.ReadOnly == false
                 {
+                    //verifica se o txt é null ou tem espaços em branco
                     if (string.IsNullOrWhiteSpace(txt.Text))
                     {
+                        //chama essa função para tratar o erro visualmente
                         ExibirErro(c, "Impossivel realizar o cálculo pois há campos vazios.", "Insira um valor!");
-                        return false;
+                        return false; //interrompe o fluxo do código já que há campo inválido
                     }
 
+                    //tentar converter uma string em um número do tipo double. Retornando true se conseguir
+                    //como foi invertido por '!', retornará true se NÃO conseguir converter
+                    //ou seja, o que foi digitado não foi um valor númerico logo não pode ser convertido para double
                     if (!double.TryParse(txt.Text, out _))
                     {
                         ExibirErro(c, "Impossivel realizar o cálculo. Use apenas números.", "Insira um número!");
                         return false;
                     }
                 }
+                //se o comboBox não for selecionado
                 else if (c is ComboBox cbo && cbo.SelectedIndex == -1)
                 {
                     ExibirErro(c, "Impossivel realizar o cálculo, informe o valor dos pesos.", "Selecione uma opção!");
                         return false;
                 }
+                //se o controle tiver dentro de algum grupobox ou panel
+                //ele é retornado para a função onde é verificado
                 else if (c.HasChildren && !Validacao(c))
                 {
                     return false;
                 }
-                errorProvider.SetError(c, "");
+
+                errorProvider.SetError(c, ""); //apaga o erro visual após o foreach
             }
-        return true;
+
+        return true; //caso tudo esteja dentro dos conformes retorna true
         }
 
-        private bool ExibirErro(Control c, string mensagem, string erro)
+        //função que gera o erro visual
+        private bool ExibirErro(Control c, string mensagem, string erro) //paramêtros necessários
         {
             MessageBox.Show(mensagem,
                                 "Erro ao gerar a média",
@@ -240,6 +253,9 @@ namespace MediaAluno
 
             errorProvider.SetError(c, erro);
             c.Focus();
+
+            //toda função tem que retornar algo
+            //nesse caso é false pois lógicamente o item verificado já é inválido
             return false;
         }
     }
