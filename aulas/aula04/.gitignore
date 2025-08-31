@@ -1,0 +1,10 @@
+# Build
+bin/
+obj/
+
+# visual studio
+.vs/
+
+# others
+conversorDeTemperatura.csproj.user
+temp.txt
