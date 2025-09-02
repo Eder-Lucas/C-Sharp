@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace conversorDeTemperatura
 {
@@ -9,59 +11,65 @@ namespace conversorDeTemperatura
             InitializeComponent();
         }
 
+        private ErrorProvider errorProvider = new ErrorProvider();
         private void buttonConverter_Click(object sender, EventArgs e)
         {
-            double valor = Convert.ToDouble(txtValor.Text);
 
-            if (rbCelsius1.Checked == true)
+            if (!double.TryParse(txtValor.Text, out _))
             {
-                if (rbKelvin2.Checked == true)
+                errorProvider.SetError(txtValor, "Adicione um valor");
+                return;
+            }
+
+            errorProvider.SetError(txtValor, "");
+
+            double valor = Convert.ToDouble(txtValor.Text);
+            double resultado = valor;
+            string unidade = "";
+
+            if (rbCelsius1.Checked)
+            {
+                if (rbKelvin2.Checked)
                 {
-                    txtResultado.Text = (valor + 273) + "K";
+                    resultado = (valor + 273);
+                    unidade = "K";
                 }
-                else if (rbFahrenheit2.Checked == true)
+                else if (rbFahrenheit2.Checked)
                 {
-                    txtResultado.Text = (valor * 1.8 + 32) + "ºF";
-                }
-                else
-                {
-                    txtResultado.Text = valor + "ºC";
+                    resultado = (valor * 1.8 + 32);
+                    unidade = "°F";
                 }
             }
-            else if (rbKelvin1.Checked == true)
+
+            else if (rbKelvin1.Checked)
             {
-                if (rbCelsius2.Checked == true)
+                if (rbCelsius2.Checked)
                 {
-                    txtResultado.Text = (valor - 273) + "°C";
+                    resultado = (valor - 273);
+                    unidade = "°C";
                 }
-                else if (rbFahrenheit2.Checked == true)
+                else if (rbFahrenheit2.Checked)
                 {
-                    txtResultado.Text = (valor * 1.8 - 459.67) + "°F";
-                }
-                else
-                {
-                    txtResultado.Text = valor + "K";
+                    resultado = (valor * 1.8 - 459.67);
+                    unidade = "°F";
                 }
             }
-            else if (rbFahrenheit1.Checked == true)
+
+            else if (rbFahrenheit1.Checked)
             {
-                if (rbCelsius2.Checked == true)
+                if (rbCelsius2.Checked)
                 {
-                    txtResultado.Text = ((valor - 32) / 1.8) + "°C";
+                    resultado = ((valor - 32) / 1.8);
+                    unidade = "°C";
                 }
-                else if (rbKelvin2.Checked == true)
+                else if (rbKelvin2.Checked)
                 {
-                    txtResultado.Text = ((valor + 459.67) / 1.8) + "°C";
-                }
-                else
-                {
-                    txtResultado.Text = valor + "°F";
+                    resultado = ((valor + 459.67) / 1.8);
+                    unidade = "K";
                 }
             }
-            else
-            {
-                txtResultado.Text = valor.ToString();
-            }
+
+            txtResultado.Text = resultado.ToString("F2") + unidade; 
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
