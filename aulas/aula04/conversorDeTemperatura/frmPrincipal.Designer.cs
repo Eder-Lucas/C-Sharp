@@ -140,7 +140,7 @@
             btnConverter.Text = "Converter";
             btnConverter.TextAlign = ContentAlignment.BottomCenter;
             btnConverter.UseVisualStyleBackColor = true;
-            btnConverter.Click += button2_Click;
+            btnConverter.Click += buttonConverter_Click;
             // 
             // gbSaida
             // 
