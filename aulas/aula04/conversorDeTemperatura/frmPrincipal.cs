@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace conversorDeTemperatura
 {
     public partial class frmPrincipal : Form
@@ -7,7 +9,7 @@ namespace conversorDeTemperatura
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonConverter_Click(object sender, EventArgs e)
         {
             double valor = Convert.ToDouble(txtValor.Text);
 
@@ -64,23 +66,31 @@ namespace conversorDeTemperatura
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            txtValor.Text = "";
-            txtResultado.Clear();
+            //this representa o próprio formulário, ou seja, o container principal
+            //Então o método vai começar a percorrer todos os controles dentro do formulário
+            limpaControles(this);     
+        }
 
-            foreach (Control Componente in gbEntrada.Controls)
+        private void limpaControles(Control parent) //recebe um controle que pode conter "Filhos"
+        {
+            //percorre cada controle filho do parent armazenando em 'c' a cada loop
+            foreach (Control c in parent.Controls)
             {
-                if (Componente is RadioButton rb)
+                //verificação com switch case para cada tipo de controle
+                switch(c)
                 {
-                    rb.Checked = false;
+                    case TextBox txt:
+                        txt.Clear();
+                        break;
+                    case RadioButton rb:
+                        rb.Checked = false;
+                        break;
                 }
-            }
 
-            foreach (Control Componente in gbSaida.Controls)
-            {
-                if (Componente is RadioButton rb)
-                {
-                    rb.Checked = false;
-                }
+                //se o controle tiver outros controles dentro (Panel, GrupoBox e etc)
+                //chama a função novamente passando esse controle como parâmetro
+                //esse método é chamado de função recursiva
+                if (c.HasChildren) limpaControles(c);
             }
         }
     }
