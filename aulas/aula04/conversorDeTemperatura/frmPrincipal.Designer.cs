@@ -206,6 +206,7 @@
             txtResultado.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtResultado.Location = new Point(141, 260);
             txtResultado.Name = "txtResultado";
+            txtResultado.ReadOnly = true;
             txtResultado.Size = new Size(435, 30);
             txtResultado.TabIndex = 5;
             // 
