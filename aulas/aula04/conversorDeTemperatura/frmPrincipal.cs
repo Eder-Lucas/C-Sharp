@@ -135,7 +135,10 @@ namespace conversorDeTemperatura
         {
             //this representa o próprio formulário, ou seja, o container principal
             //Então o método vai começar a percorrer todos os controles dentro do formulário
-            LimpaControles(this);     
+            LimpaControles(this);
+
+            //reseta a variavel de unidade
+            unidade = "";
         }
 
         //função que limpa todos os controles do formulário
