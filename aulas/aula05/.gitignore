@@ -1,0 +1,10 @@
+# Build
+bin/
+obj/
+
+# visual studio
+.vs/
+
+# others
+ControleFrota.csproj.user
+temp.txt
