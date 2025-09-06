@@ -32,21 +32,21 @@
             btnCaminhao = new Button();
             btnSalvar = new Button();
             panel1 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            txtModelo = new TextBox();
-            txtKm = new TextBox();
+            pbCar = new PictureBox();
+            pbTruck = new PictureBox();
             txtPlaca = new TextBox();
             txtEixo = new TextBox();
-            pbTruck = new PictureBox();
-            pbCar = new PictureBox();
-            txtCarros = new TextBox();
             txtCaminhao = new TextBox();
+            txtCarros = new TextBox();
+            txtKm = new TextBox();
+            txtModelo = new TextBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbTruck).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbCar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbTruck).BeginInit();
             SuspendLayout();
             // 
             // btnCarros
@@ -99,6 +99,7 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // panel1
             // 
@@ -116,62 +117,28 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(12, 74);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1242, 702);
-            panel1.TabIndex = 1;
+            panel1.Size = new Size(1166, 702);
+            panel1.TabIndex = 0;
             // 
-            // label1
+            // pbCar
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(59, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(86, 24);
-            label1.TabIndex = 0;
-            label1.Text = "Modelo:";
+            pbCar.Image = Properties.Resources._3d_car;
+            pbCar.Location = new Point(15, 157);
+            pbCar.Name = "pbCar";
+            pbCar.Size = new Size(130, 117);
+            pbCar.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCar.TabIndex = 2;
+            pbCar.TabStop = false;
             // 
-            // label2
+            // pbTruck
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(77, 60);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 24);
-            label2.TabIndex = 0;
-            label2.Text = "Placa:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(97, 105);
-            label3.Name = "label3";
-            label3.Size = new Size(48, 24);
-            label3.TabIndex = 0;
-            label3.Text = "Km:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(311, 105);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 24);
-            label4.TabIndex = 0;
-            label4.Text = "Eixos:";
-            // 
-            // txtModelo
-            // 
-            txtModelo.Location = new Point(151, 15);
-            txtModelo.Name = "txtModelo";
-            txtModelo.Size = new Size(582, 27);
-            txtModelo.TabIndex = 1;
-            // 
-            // txtKm
-            // 
-            txtKm.Location = new Point(151, 102);
-            txtKm.Name = "txtKm";
-            txtKm.Size = new Size(149, 27);
-            txtKm.TabIndex = 1;
+            pbTruck.Image = Properties.Resources._3d_truck;
+            pbTruck.Location = new Point(602, 157);
+            pbTruck.Name = "pbTruck";
+            pbTruck.Size = new Size(131, 117);
+            pbTruck.SizeMode = PictureBoxSizeMode.Zoom;
+            pbTruck.TabIndex = 2;
+            pbTruck.TabStop = false;
             // 
             // txtPlaca
             // 
@@ -185,35 +152,7 @@
             txtEixo.Location = new Point(386, 102);
             txtEixo.Name = "txtEixo";
             txtEixo.Size = new Size(178, 27);
-            txtEixo.TabIndex = 1;
-            // 
-            // pbTruck
-            // 
-            pbTruck.Image = Properties.Resources._3d_truck;
-            pbTruck.Location = new Point(602, 157);
-            pbTruck.Name = "pbTruck";
-            pbTruck.Size = new Size(131, 117);
-            pbTruck.SizeMode = PictureBoxSizeMode.Zoom;
-            pbTruck.TabIndex = 2;
-            pbTruck.TabStop = false;
-            // 
-            // pbCar
-            // 
-            pbCar.Image = Properties.Resources._3d_car;
-            pbCar.Location = new Point(15, 157);
-            pbCar.Name = "pbCar";
-            pbCar.Size = new Size(130, 117);
-            pbCar.SizeMode = PictureBoxSizeMode.Zoom;
-            pbCar.TabIndex = 2;
-            pbCar.TabStop = false;
-            // 
-            // txtCarros
-            // 
-            txtCarros.Location = new Point(15, 275);
-            txtCarros.Multiline = true;
-            txtCarros.Name = "txtCarros";
-            txtCarros.Size = new Size(549, 406);
-            txtCarros.TabIndex = 1;
+            txtEixo.TabIndex = 3;
             // 
             // txtCaminhao
             // 
@@ -221,13 +160,75 @@
             txtCaminhao.Multiline = true;
             txtCaminhao.Name = "txtCaminhao";
             txtCaminhao.Size = new Size(549, 406);
-            txtCaminhao.TabIndex = 1;
+            txtCaminhao.TabIndex = 5;
+            // 
+            // txtCarros
+            // 
+            txtCarros.Location = new Point(15, 275);
+            txtCarros.Multiline = true;
+            txtCarros.Name = "txtCarros";
+            txtCarros.Size = new Size(549, 406);
+            txtCarros.TabIndex = 4;
+            // 
+            // txtKm
+            // 
+            txtKm.Location = new Point(151, 102);
+            txtKm.Name = "txtKm";
+            txtKm.Size = new Size(149, 27);
+            txtKm.TabIndex = 2;
+            // 
+            // txtModelo
+            // 
+            txtModelo.Location = new Point(151, 15);
+            txtModelo.Name = "txtModelo";
+            txtModelo.Size = new Size(582, 27);
+            txtModelo.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(311, 105);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 24);
+            label4.TabIndex = 0;
+            label4.Text = "Eixos:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(97, 105);
+            label3.Name = "label3";
+            label3.Size = new Size(48, 24);
+            label3.TabIndex = 0;
+            label3.Text = "Km:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(77, 60);
+            label2.Name = "label2";
+            label2.Size = new Size(68, 24);
+            label2.TabIndex = 0;
+            label2.Text = "Placa:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(59, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(86, 24);
+            label1.TabIndex = 0;
+            label1.Text = "Modelo:";
             // 
             // ControleDeFrota
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1266, 788);
+            ClientSize = new Size(1191, 788);
             Controls.Add(panel1);
             Controls.Add(btnSalvar);
             Controls.Add(btnCaminhao);
@@ -239,8 +240,8 @@
             Text = "Controle de frota";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pbTruck).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbCar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbTruck).EndInit();
             ResumeLayout(false);
         }
 
