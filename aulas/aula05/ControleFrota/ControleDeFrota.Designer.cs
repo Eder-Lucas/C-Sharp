@@ -40,7 +40,7 @@
             txtCarros = new TextBox();
             txtKm = new TextBox();
             txtModelo = new TextBox();
-            label4 = new Label();
+            lblEixo = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -82,6 +82,7 @@
             btnCaminhao.Text = "Caminhôes";
             btnCaminhao.TextAlign = ContentAlignment.MiddleRight;
             btnCaminhao.UseVisualStyleBackColor = false;
+            btnCaminhao.Click += btnCaminhao_Click;
             // 
             // btnSalvar
             // 
@@ -111,7 +112,7 @@
             panel1.Controls.Add(txtCarros);
             panel1.Controls.Add(txtKm);
             panel1.Controls.Add(txtModelo);
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblEixo);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
@@ -153,6 +154,7 @@
             txtEixo.Name = "txtEixo";
             txtEixo.Size = new Size(178, 27);
             txtEixo.TabIndex = 3;
+            txtEixo.Visible = false;
             // 
             // txtCaminhao
             // 
@@ -184,15 +186,16 @@
             txtModelo.Size = new Size(582, 27);
             txtModelo.TabIndex = 0;
             // 
-            // label4
+            // lblEixo
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(311, 105);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 24);
-            label4.TabIndex = 0;
-            label4.Text = "Eixos:";
+            lblEixo.AutoSize = true;
+            lblEixo.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEixo.Location = new Point(311, 105);
+            lblEixo.Name = "lblEixo";
+            lblEixo.Size = new Size(69, 24);
+            lblEixo.TabIndex = 0;
+            lblEixo.Text = "Eixos:";
+            lblEixo.Visible = false;
             // 
             // label3
             // 
@@ -254,7 +257,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
+        private Label lblEixo;
         private TextBox txtKm;
         private TextBox txtModelo;
         private TextBox txtPlaca;
