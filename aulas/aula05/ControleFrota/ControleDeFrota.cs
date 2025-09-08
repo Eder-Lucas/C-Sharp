@@ -102,12 +102,13 @@ namespace ControleFrota
             }
             else
             {
-                Caminhao novoCaminhao = new Caminhao();
-
-                novoCaminhao.propriedadeModelo = txtModelo.Text;
-                novoCaminhao.propriedadePlaca = txtPlaca.Text;
-                novoCaminhao.propriedadeKm = txtKm.Text;
-                novoCaminhao.propriedadeEixo = txtEixo.Text;
+                Caminhao novoCaminhao = new Caminhao
+                {
+                    propriedadeModelo = txtModelo.Text,
+                    propriedadePlaca = txtPlaca.Text,
+                    propriedadeKm = txtKm.Text,
+                    propriedadeEixo = txtEixo.Text
+                };
 
                 txtCaminhao.AppendText(novoCaminhao.propriedadeModelo + "\t");
                 txtCaminhao.AppendText(novoCaminhao.propriedadePlaca + "\t");
