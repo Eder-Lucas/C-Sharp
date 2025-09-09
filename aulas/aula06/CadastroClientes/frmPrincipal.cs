@@ -38,6 +38,20 @@ namespace CadastroClientes
 
                 txtPessoaFisica.Text += $"{pF.Nome}\t {pF.Endereco}\t {pF.Cpf}\t {pF.Rg}\r\n";
             }
+            else
+            {
+                PessoaJuridica pJ = new PessoaJuridica
+                {
+                    Nome = txtEnderecoPessoaJuridica.Text,
+                    Endereco = txtEnderecoPessoaJuridica.Text,
+                    Cnpj = txtCNPJ.Text,
+                    Ie = txt_IE.Text
+                };
+
+                txtPessoaJuridica.Text += $"{pJ.Nome}\t {pJ.Endereco}\t {pJ.Cnpj}\t {pJ.Ie}\r\n";
+            }
+
+            Limpar(this);
         }
 
         //classe pessoa
@@ -76,6 +90,21 @@ namespace CadastroClientes
         {
             public string Cnpj { set; get; }
             public string Ie { set; get; }
+        }
+
+        public void Limpar(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox txt && txt.Name != "txtPessoaFisica" && txt.Name != "txtPessoaJuridica")
+                {
+                    txt.Clear();
+                }
+                else if (c.HasChildren)
+                {
+                    Limpar(c);
+                }  
+            }
         }
     }
 }
