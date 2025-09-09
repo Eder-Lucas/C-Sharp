@@ -48,21 +48,25 @@ namespace ControleFrota
 
             //usando propriedades
 
-            private string modelo, placa, km;
+            private string modelo, placa, km; //define os atributos da class
 
-            public string propriedadeModelo
+            //propriedade modelo do veiculo
+            public string PropriedadeModelo
             {
-                set { modelo = value; }
-                get { return modelo; }
+                //forma resumida para salvar e mostrar dados
+                set { modelo = value; } //salva o modelo
+                get { return modelo; } //retorna o valor, fazendo possivel mostrar ele em determinado local
             }
 
-            public string propriedadePlaca
+            //propriedade placa
+            public string PropriedadePlaca
             {
                 set { placa = value; }
                 get { return placa; }
             }
 
-            public string propriedadeKm
+            //propriedade km
+            public string PropriedadeKm
             {
                 set { km = value; }
                 get { return km; }
@@ -73,9 +77,36 @@ namespace ControleFrota
         //herda: Modelo, Placa e Km por ser filha
         public class Caminhao : Veiculo
         {
-            public string propriedadeEixo { set; get; }
+            //propriedade que diferencia um carro de caminhão
+            public string PropriedadeEixo { set; get; } //forma mais resumida para salvar e mostrar os valores
         }
 
+        //quando clicar no botão caminhao
+        private void btnCaminhao_Click(object sender, EventArgs e)
+        {
+            //os campos de eixo ficam visiveis
+            lblEixo.Visible = true;
+            txtEixo.Visible = true;
+        }
+
+        //quando clicar no botão de carros
+        private void btnCarros_Click(object sender, EventArgs e)
+        {
+            //os campos eixos ficam invisiveis
+            lblEixo.Visible = false;
+            txtEixo.Visible = false;
+        }
+
+        //função que limpa os campos
+        private void Limpar()
+        {
+            txtModelo.Clear();
+            txtPlaca.Clear();
+            txtKm.Clear();
+            txtEixo.Clear();
+        }
+
+        //quando clicar no botão salvar
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             /* se usasse atributos
@@ -88,39 +119,46 @@ namespace ControleFrota
             txtCarros.Text += novoCarro.mostraKm() + "\r\n";
             */
 
-            if (txtEixo.Visible == false)
+            //se o campo eixo nao tiver visivel
+            if (!txtEixo.Visible)
             {
+                //cria um novo objeto
                 Veiculo novoCarro = new Veiculo();
 
-                novoCarro.propriedadeModelo = txtModelo.Text;
-                novoCarro.propriedadePlaca = txtPlaca.Text;
-                novoCarro.propriedadeKm = txtKm.Text;
+                //adiciona valores ao seus atributos
+                novoCarro.PropriedadeModelo = txtModelo.Text;
+                novoCarro.PropriedadePlaca = txtPlaca.Text;
+                novoCarro.PropriedadeKm = txtKm.Text;
 
-                txtCarros.AppendText(novoCarro.propriedadeModelo + "\t");
-                txtCarros.AppendText(novoCarro.propriedadePlaca + "\t");
-                txtCarros.AppendText(novoCarro.propriedadeKm + "\r\n");
+                //exibe no txt referente aos carros
+                txtCarros.AppendText(novoCarro.PropriedadeModelo + "\t"); //AppendText é o mesmo que txtCarros.Text +=
+                txtCarros.AppendText(novoCarro.PropriedadePlaca + "\t");
+                txtCarros.AppendText(novoCarro.PropriedadeKm + "\r\n");
             }
+
+            //se o campo eixo estiver visivel
             else
             {
+                //cria um novo objeto, dessa vez para caminhao
                 Caminhao novoCaminhao = new Caminhao
                 {
-                    propriedadeModelo = txtModelo.Text,
-                    propriedadePlaca = txtPlaca.Text,
-                    propriedadeKm = txtKm.Text,
-                    propriedadeEixo = txtEixo.Text
+                    //atribui valores
+                    PropriedadeModelo = txtModelo.Text,
+                    PropriedadePlaca = txtPlaca.Text,
+                    PropriedadeKm = txtKm.Text,
+                    PropriedadeEixo = txtEixo.Text
                 };
 
-                txtCaminhao.AppendText(novoCaminhao.propriedadeModelo + "\t");
-                txtCaminhao.AppendText(novoCaminhao.propriedadePlaca + "\t");
-                txtCaminhao.AppendText(novoCaminhao.propriedadeKm + "\t");
-                txtCaminhao.AppendText(novoCaminhao.propriedadeEixo + "\r\n");
+                //exibe no txt referente aos caminhoes
+                txtCaminhao.AppendText(novoCaminhao.PropriedadeModelo + "\t");
+                txtCaminhao.AppendText(novoCaminhao.PropriedadePlaca + "\t");
+                txtCaminhao.AppendText(novoCaminhao.PropriedadeKm + "\t");
+                txtCaminhao.AppendText(novoCaminhao.PropriedadeEixo + "\r\n");
             }
+
+            //chama a função que limpa os campos após exibir os valores nos textBox
+            Limpar();
         }
 
-        private void btnCaminhao_Click(object sender, EventArgs e)
-        {
-            lblEixo.Visible = true;
-            txtEixo.Visible = true;
-        }
     }
 }
