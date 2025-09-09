@@ -65,6 +65,7 @@
             btnCarros.Text = "Carros";
             btnCarros.TextAlign = ContentAlignment.MiddleRight;
             btnCarros.UseVisualStyleBackColor = false;
+            btnCarros.Click += btnCarros_Click;
             // 
             // btnCaminhao
             // 
