@@ -1,3 +1,6 @@
+using System.Configuration;
+using System.Drawing;
+
 namespace CadastroClientes
 {
     public partial class frmPrincipal : Form
@@ -26,27 +29,45 @@ namespace CadastroClientes
         //quando clicar no botão salvar
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            PessoaFisica pF = new()
+            {
+                Nome = txtNomePessoaFisica.Text,
+                Endereco = txtEnderecoPessoaFisica.Text,
+                Cpf = txtCPF.Text,
+                Rg = txtRG.Text
+            };
+
+            PessoaJuridica pJ = new()
+            {
+                Nome = txtEnderecoPessoaJuridica.Text,
+                Endereco = txtEnderecoPessoaJuridica.Text,
+                Cnpj = txtCNPJ.Text,
+                Ie = txt_IE.Text
+            };
+
             if (painelPessoaFisica.Visible)
             {
-                PessoaFisica pF = new PessoaFisica
+                if (!pF.ValidacaoErro(out string erro))
                 {
-                    Nome = txtNomePessoaFisica.Text,
-                    Endereco = txtEnderecoPessoaFisica.Text,
-                    Cpf = txtCPF.Text,
-                    Rg = txtRG.Text
-                };
+                    MessageBox.Show(erro,
+                        "Erro de validação",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
 
                 txtPessoaFisica.Text += $"{pF.Nome}\t {pF.Endereco}\t {pF.Cpf}\t {pF.Rg}\r\n";
             }
             else
             {
-                PessoaJuridica pJ = new PessoaJuridica
+                if (!pJ.ValidacaoErro(out string erro))
                 {
-                    Nome = txtEnderecoPessoaJuridica.Text,
-                    Endereco = txtEnderecoPessoaJuridica.Text,
-                    Cnpj = txtCNPJ.Text,
-                    Ie = txt_IE.Text
-                };
+                    MessageBox.Show(erro,
+                        "Erro de validação",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
 
                 txtPessoaJuridica.Text += $"{pJ.Nome}\t {pJ.Endereco}\t {pJ.Cnpj}\t {pJ.Ie}\r\n";
             }
@@ -54,8 +75,29 @@ namespace CadastroClientes
             Limpar(this);
         }
 
+        public abstract class Entidade
+        {
+            public virtual bool ValidacaoErro(out string erro)
+            {
+                foreach (var prop in this.GetType().GetProperties())
+                {
+                    var valor = prop.GetValue(this)?.ToString();
+
+                    if (string.IsNullOrWhiteSpace(valor))
+                    {
+                        string nomeCampo = prop.Name;
+                        erro = $"O campo {nomeCampo} está vazio.";
+                        return false;
+                    }
+                }
+
+                erro = "";
+                return true;
+            }
+        }
+
         //classe pessoa
-        public class Pessoa
+        public class Pessoa : Entidade
         {
             //atributos
             private string _nome;
