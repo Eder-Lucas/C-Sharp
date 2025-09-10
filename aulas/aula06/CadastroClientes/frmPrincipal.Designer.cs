@@ -171,6 +171,7 @@
             txtEnderecoPessoaFisica.Name = "txtEnderecoPessoaFisica";
             txtEnderecoPessoaFisica.Size = new Size(591, 27);
             txtEnderecoPessoaFisica.TabIndex = 2;
+            txtEnderecoPessoaFisica.Tag = "";
             // 
             // txtNomePessoaFisica
             // 
@@ -178,13 +179,15 @@
             txtNomePessoaFisica.Name = "txtNomePessoaFisica";
             txtNomePessoaFisica.Size = new Size(591, 27);
             txtNomePessoaFisica.TabIndex = 1;
+            txtNomePessoaFisica.Tag = "";
             // 
             // txtCPF
             // 
             txtCPF.Location = new Point(114, 98);
             txtCPF.Name = "txtCPF";
             txtCPF.Size = new Size(257, 27);
-            txtCPF.TabIndex = 1;
+            txtCPF.TabIndex = 3;
+            txtCPF.Tag = "";
             // 
             // lblCpf
             // 
@@ -221,7 +224,8 @@
             txtRG.Location = new Point(420, 98);
             txtRG.Name = "txtRG";
             txtRG.Size = new Size(285, 27);
-            txtRG.TabIndex = 1;
+            txtRG.TabIndex = 4;
+            txtRG.Tag = "";
             // 
             // txtPessoaFisica
             // 
@@ -250,7 +254,7 @@
             btnPessoaFisica.Location = new Point(63, 22);
             btnPessoaFisica.Name = "btnPessoaFisica";
             btnPessoaFisica.Size = new Size(176, 59);
-            btnPessoaFisica.TabIndex = 1;
+            btnPessoaFisica.TabIndex = 0;
             btnPessoaFisica.Text = "Pessoa Física";
             btnPessoaFisica.TextAlign = ContentAlignment.MiddleRight;
             btnPessoaFisica.UseVisualStyleBackColor = true;
@@ -280,7 +284,7 @@
             btnSalvar.Location = new Point(523, 22);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(111, 59);
-            btnSalvar.TabIndex = 1;
+            btnSalvar.TabIndex = 3;
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = true;
