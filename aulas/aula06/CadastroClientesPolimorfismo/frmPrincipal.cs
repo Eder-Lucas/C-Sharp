@@ -45,7 +45,7 @@ namespace CadastroClientesPolimorfismo
             {
                 pessoa = new PessoaJuridica
                 {
-                    Nome = txtEnderecoPessoaJuridica.Text,
+                    Nome = txtNomePessoaJuridica.Text,
                     Endereco = txtEnderecoPessoaJuridica.Text,
                     Cnpj = txtCNPJ.Text,
                     Ie = txt_IE.Text
@@ -55,7 +55,7 @@ namespace CadastroClientesPolimorfismo
 
             if (pessoa.ValidacaoErro(out string erro))
             {
-                MessageBox.Show(erro, "Erro de valida??o",
+                MessageBox.Show(erro, "Erro de validação",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
@@ -63,7 +63,7 @@ namespace CadastroClientesPolimorfismo
 
             if (pessoa is PessoaFisica)
             {
-                pessoa.MostrarDados(txtEnderecoPessoaFisica);
+                pessoa.MostrarDados(txtPessoaFisica);
             }
             else
             {
