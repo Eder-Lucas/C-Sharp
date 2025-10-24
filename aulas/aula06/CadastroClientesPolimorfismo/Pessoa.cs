@@ -13,6 +13,18 @@ namespace CadastroClientesPolimorfismo
 
         public override bool ValidacaoErro(out string erro)
         {
+            if (double.TryParse(Nome, out double _))
+            {
+                erro = $"'{Nome}' é um valor inválido, o campo Nome precisa conter letras.";
+                return true;
+            }
+            
+            if (double.TryParse(Endereco, out double _))
+            {
+                erro = $"'{Endereco}' é um valor inválido, o campo Endereço precisa conter letras.";
+                return true;
+            }
+
             if (string.IsNullOrWhiteSpace(Nome))
             {
                 erro = "O campo Nome não foi preenchido!";
