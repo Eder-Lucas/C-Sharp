@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientes", "Cadastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroClientesPolimorfismo", "CadastroClientesPolimorfismo\CadastroClientesPolimorfismo.csproj", "{457E6BCF-997D-4433-91C8-FA035AFE0D28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polimorfismo", "polimorfismo\Polimorfismo.csproj", "{30F12CA0-3A57-4F74-9B24-ECB9131589A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{457E6BCF-997D-4433-91C8-FA035AFE0D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{457E6BCF-997D-4433-91C8-FA035AFE0D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{457E6BCF-997D-4433-91C8-FA035AFE0D28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F12CA0-3A57-4F74-9B24-ECB9131589A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F12CA0-3A57-4F74-9B24-ECB9131589A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F12CA0-3A57-4F74-9B24-ECB9131589A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F12CA0-3A57-4F74-9B24-ECB9131589A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
