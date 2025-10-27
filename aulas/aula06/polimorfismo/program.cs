@@ -82,20 +82,14 @@
 
             // 🔹 Class animal
             Animal animal1;
-            animal1 = new Gato
-            {
-                Name = "Minhoso"
-            };
+            animal1 = new Gato { Name = "Minhoso" };
             animal1.Som();
             animal1.Mover();
 
             Console.WriteLine("");
 
             Animal animal2;
-            animal2 = new Peixe
-            {
-                Name = "Nemo"
-            };
+            animal2 = new Peixe { Name = "Nemo" };
             animal2.Som();
             animal2.Mover();
 
