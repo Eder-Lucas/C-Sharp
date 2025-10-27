@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CadastroClientesPolimorfismo
 {
     //filha da class entidade
+    //internal: não pode ser acessada em outros projetos
     internal class Pessoa : Entidade
     {
         //atributos especificos
@@ -15,6 +16,7 @@ namespace CadastroClientesPolimorfismo
         public string Endereco { get; set; }
 
         //metódo de validação por polimorfismo
+        //overrride: substitui completamente o comportamento da classe base 
         public override bool ValidacaoErro(out string erro)
         {
             //verifica se tem campos vazios
