@@ -7,12 +7,13 @@ namespace Polimorfismo
     {
         public string Name { get; set; }
 
+        //é opcional sobrescrever nas classes filhas
         public virtual void Som()
         {
             Console.WriteLine($"O animalzinho {Name} não consegue se comunicar muito bem!");
         }
 
-        //toda class filha tem que ter
+        //toda class filha tem que sobrescrever
         public abstract void Mover();
     }
 

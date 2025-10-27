@@ -81,6 +81,8 @@
             Console.WriteLine("----------------------------------------------");
 
             // 🔹 Class animal
+
+            //primeiro animal
             Animal animal1;
             animal1 = new Gato { Name = "Minhoso" };
             animal1.Som();
@@ -88,6 +90,7 @@
 
             Console.WriteLine("");
 
+            //segundo animal
             Animal animal2;
             animal2 = new Peixe { Name = "Nemo" };
             animal2.Som();
