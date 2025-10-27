@@ -13,7 +13,7 @@ namespace CadastroClientesPolimorfismo
         //usando polimorfismo
         //definindo os metódos que serão adaptados dependendo da classe
 
-        //metódo que vai validar os campos
+        //método que vai validar os campos
         //virtual: significa que a classe filha pode sobrescrever, mas não é obrigada
         public virtual bool ValidacaoErro(out string erro)
         {
@@ -21,7 +21,7 @@ namespace CadastroClientesPolimorfismo
             return false;
         }
 
-        //metódo que mostra os valores
+        //método que mostra os valores
         //abstract: significa que toda classe filha é obrigada a implementar sua própria versão
         public abstract void MostrarDados(TextBox txt);
     }
