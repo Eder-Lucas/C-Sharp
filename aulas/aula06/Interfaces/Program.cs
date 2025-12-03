@@ -37,7 +37,7 @@
                 Console.WriteLine($"{Nome} diz: Au Au!");
             }
 
-            //Comportamento adícional único também
+            //Comportamento adicional único para objetos tipo Cachorro
             public void AbanarRabo()
             {
                 Console.WriteLine($"{Nome} está abanando o rabo");
@@ -51,19 +51,26 @@
             {
                 Console.WriteLine($"{Nome} diz: Miau!");
             }
+
+            //Comportamento adicional único para objetos tipo Gato
+            public void Vidas()
+            {
+                Console.WriteLine($"{Nome} tem 7 vidas!");
+            }
         }
 
         static void Main(string[] args)
         {
             //Gerando um objeto pela classe concreta cachorro
-            Cachorro doguinho = new Cachorro { Nome = "Piper" };
+            Cachorro doguinho = new() { Nome = "Piper" };
             doguinho.Comer(); //herdado de Animal
             doguinho.EmitirSom(); //sobrescrito em Cachorro
             doguinho.AbanarRabo(); //exclusivo do Cachorro
 
-            /* gerando por interface
+            /* 
+             --- gerando por interface ---
                 IAnimal doguinho = new Cachorro();
-                doguinho.AbanarRabo <-- ERRO, interface não define isso
+                doguinho.AbanarRabo(); <-- ERRO, interface não define isso
              */
 
             Console.WriteLine();
@@ -73,6 +80,13 @@
             gato.Comer(); //herdado e permitido pela interface
             gato.EmitirSom(); //sobrescrito para a sua necessidade em Gato
 
+            /*
+             gato.Vidas(); <-- ERRO, não é acessivel pois não pertence ao tipo IAnimal
+             */
+
+            //criando um objeto cat do tipo Gato
+            Gato cat = new() { Nome = "Mimozo" };
+            cat.Vidas(); //permite já que o método é dele
         }
     }
 }
