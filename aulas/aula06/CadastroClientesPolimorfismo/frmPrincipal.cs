@@ -107,7 +107,7 @@ namespace CadastroClientesPolimorfismo
             Limpar(this);
         }
 
-        public void Limpar(Control parent)
+        public static void Limpar(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
