@@ -1,4 +1,4 @@
-﻿namespace Funcionario
+﻿namespace SistemaFuncionario
 {
     partial class frmPrincipal
     {
@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             label1 = new Label();
-            txtSaida = new TextBox();
+            txtFuncionario = new TextBox();
             btnSalvar = new Button();
             label2 = new Label();
             label3 = new Label();
@@ -49,13 +49,14 @@
             label1.TabIndex = 0;
             label1.Text = "Nome:";
             // 
-            // txtSaida
+            // txtFuncionario
             // 
-            txtSaida.Location = new Point(22, 163);
-            txtSaida.Multiline = true;
-            txtSaida.Name = "txtSaida";
-            txtSaida.Size = new Size(640, 275);
-            txtSaida.TabIndex = 1;
+            txtFuncionario.Location = new Point(22, 163);
+            txtFuncionario.Multiline = true;
+            txtFuncionario.Name = "txtFuncionario";
+            txtFuncionario.ReadOnly = true;
+            txtFuncionario.Size = new Size(640, 275);
+            txtFuncionario.TabIndex = 1;
             // 
             // btnSalvar
             // 
@@ -70,6 +71,7 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // label2
             // 
@@ -107,7 +109,9 @@
             // 
             // cboCargo
             // 
+            cboCargo.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCargo.FormattingEnabled = true;
+            cboCargo.Items.AddRange(new object[] { "Assistente Administrativo", "Assistente de Designer" });
             cboCargo.Location = new Point(136, 75);
             cboCargo.Name = "cboCargo";
             cboCargo.Size = new Size(363, 28);
@@ -122,12 +126,15 @@
             Controls.Add(btnSalvar);
             Controls.Add(txtNome);
             Controls.Add(txtSalario);
-            Controls.Add(txtSaida);
+            Controls.Add(txtFuncionario);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Controle de funcionários";
             ResumeLayout(false);
             PerformLayout();
@@ -136,7 +143,7 @@
         #endregion
 
         private Label label1;
-        private TextBox txtSaida;
+        private TextBox txtFuncionario;
         private Button btnSalvar;
         private Label label2;
         private Label label3;

@@ -1,4 +1,4 @@
-namespace Funcionario
+namespace SistemaFuncionario
 {
     internal static class Program
     {
