@@ -56,7 +56,7 @@
             txtFuncionario.Name = "txtFuncionario";
             txtFuncionario.ReadOnly = true;
             txtFuncionario.Size = new Size(640, 275);
-            txtFuncionario.TabIndex = 1;
+            txtFuncionario.TabIndex = 4;
             // 
             // btnSalvar
             // 
@@ -67,7 +67,7 @@
             btnSalvar.Location = new Point(505, 27);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(157, 80);
-            btnSalvar.TabIndex = 2;
+            btnSalvar.TabIndex = 3;
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = false;
@@ -98,14 +98,14 @@
             txtNome.Location = new Point(136, 32);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(363, 27);
-            txtNome.TabIndex = 1;
+            txtNome.TabIndex = 0;
             // 
             // txtSalario
             // 
             txtSalario.Location = new Point(136, 119);
             txtSalario.Name = "txtSalario";
             txtSalario.Size = new Size(139, 27);
-            txtSalario.TabIndex = 1;
+            txtSalario.TabIndex = 2;
             // 
             // cboCargo
             // 
@@ -115,7 +115,7 @@
             cboCargo.Location = new Point(136, 75);
             cboCargo.Name = "cboCargo";
             cboCargo.Size = new Size(363, 28);
-            cboCargo.TabIndex = 3;
+            cboCargo.TabIndex = 1;
             // 
             // frmPrincipal
             // 
