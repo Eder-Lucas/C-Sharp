@@ -31,25 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCalculadora));
             txtHistorico = new TextBox();
             txtVisor = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button10 = new Button();
-            button11 = new Button();
-            button12 = new Button();
-            button13 = new Button();
-            button14 = new Button();
-            button15 = new Button();
-            button16 = new Button();
-            button17 = new Button();
-            button18 = new Button();
-            button19 = new Button();
+            btn7 = new Button();
+            btn8 = new Button();
+            btn9 = new Button();
+            btn4 = new Button();
+            btn5 = new Button();
+            btn6 = new Button();
+            btn1 = new Button();
+            btn2 = new Button();
+            btn3 = new Button();
+            btnLimpar = new Button();
+            btnBackSpace = new Button();
+            btnAdicao = new Button();
+            btnSubtracao = new Button();
+            btnMultiplicacao = new Button();
+            btnDivisao = new Button();
+            btnRaiz = new Button();
+            btnIgual = new Button();
+            btnVirgula = new Button();
+            btn0 = new Button();
             SuspendLayout();
             // 
             // txtHistorico
@@ -74,201 +74,212 @@
             txtVisor.Text = "0";
             txtVisor.TextAlign = HorizontalAlignment.Right;
             // 
-            // button1
+            // btn7
             // 
-            button1.Image = Properties.Resources._7;
-            button1.Location = new Point(23, 168);
-            button1.Name = "button1";
-            button1.Size = new Size(65, 63);
-            button1.TabIndex = 1;
-            button1.UseVisualStyleBackColor = true;
+            btn7.Image = Properties.Resources._7;
+            btn7.Location = new Point(23, 168);
+            btn7.Name = "btn7";
+            btn7.Size = new Size(65, 63);
+            btn7.TabIndex = 1;
+            btn7.UseVisualStyleBackColor = true;
+            btn7.Click += ClicouBotao_Click;
             // 
-            // button2
+            // btn8
             // 
-            button2.Image = Properties.Resources._8;
-            button2.Location = new Point(94, 168);
-            button2.Name = "button2";
-            button2.Size = new Size(65, 63);
-            button2.TabIndex = 1;
-            button2.UseVisualStyleBackColor = true;
+            btn8.Image = Properties.Resources._8;
+            btn8.Location = new Point(94, 168);
+            btn8.Name = "btn8";
+            btn8.Size = new Size(65, 63);
+            btn8.TabIndex = 1;
+            btn8.UseVisualStyleBackColor = true;
+            btn8.Click += ClicouBotao_Click;
             // 
-            // button3
+            // btn9
             // 
-            button3.Image = Properties.Resources._9;
-            button3.Location = new Point(165, 168);
-            button3.Name = "button3";
-            button3.Size = new Size(65, 63);
-            button3.TabIndex = 1;
-            button3.UseVisualStyleBackColor = true;
+            btn9.Image = Properties.Resources._9;
+            btn9.Location = new Point(165, 168);
+            btn9.Name = "btn9";
+            btn9.Size = new Size(65, 63);
+            btn9.TabIndex = 1;
+            btn9.UseVisualStyleBackColor = true;
+            btn9.Click += ClicouBotao_Click;
             // 
-            // button4
+            // btn4
             // 
-            button4.Image = Properties.Resources._4;
-            button4.Location = new Point(23, 237);
-            button4.Name = "button4";
-            button4.Size = new Size(65, 63);
-            button4.TabIndex = 1;
-            button4.UseVisualStyleBackColor = true;
+            btn4.Image = Properties.Resources._4;
+            btn4.Location = new Point(23, 237);
+            btn4.Name = "btn4";
+            btn4.Size = new Size(65, 63);
+            btn4.TabIndex = 1;
+            btn4.UseVisualStyleBackColor = true;
+            btn4.Click += ClicouBotao_Click;
             // 
-            // button5
+            // btn5
             // 
-            button5.Image = Properties.Resources._5;
-            button5.Location = new Point(94, 237);
-            button5.Name = "button5";
-            button5.Size = new Size(65, 63);
-            button5.TabIndex = 1;
-            button5.UseVisualStyleBackColor = true;
+            btn5.Image = Properties.Resources._5;
+            btn5.Location = new Point(94, 237);
+            btn5.Name = "btn5";
+            btn5.Size = new Size(65, 63);
+            btn5.TabIndex = 1;
+            btn5.UseVisualStyleBackColor = true;
+            btn5.Click += ClicouBotao_Click;
             // 
-            // button6
+            // btn6
             // 
-            button6.Image = Properties.Resources._6;
-            button6.Location = new Point(165, 237);
-            button6.Name = "button6";
-            button6.Size = new Size(65, 63);
-            button6.TabIndex = 1;
-            button6.UseVisualStyleBackColor = true;
+            btn6.Image = Properties.Resources._6;
+            btn6.Location = new Point(165, 237);
+            btn6.Name = "btn6";
+            btn6.Size = new Size(65, 63);
+            btn6.TabIndex = 1;
+            btn6.UseVisualStyleBackColor = true;
+            btn6.Click += ClicouBotao_Click;
             // 
-            // button7
+            // btn1
             // 
-            button7.Image = Properties.Resources._1;
-            button7.Location = new Point(23, 306);
-            button7.Name = "button7";
-            button7.Size = new Size(65, 63);
-            button7.TabIndex = 1;
-            button7.UseVisualStyleBackColor = true;
+            btn1.Image = Properties.Resources._1;
+            btn1.Location = new Point(23, 306);
+            btn1.Name = "btn1";
+            btn1.Size = new Size(65, 63);
+            btn1.TabIndex = 1;
+            btn1.UseVisualStyleBackColor = true;
+            btn1.Click += ClicouBotao_Click;
             // 
-            // button8
+            // btn2
             // 
-            button8.Image = Properties.Resources._2;
-            button8.Location = new Point(94, 306);
-            button8.Name = "button8";
-            button8.Size = new Size(65, 63);
-            button8.TabIndex = 1;
-            button8.UseVisualStyleBackColor = true;
+            btn2.Image = Properties.Resources._2;
+            btn2.Location = new Point(94, 306);
+            btn2.Name = "btn2";
+            btn2.Size = new Size(65, 63);
+            btn2.TabIndex = 1;
+            btn2.UseVisualStyleBackColor = true;
+            btn2.Click += ClicouBotao_Click;
             // 
-            // button9
+            // btn3
             // 
-            button9.Image = Properties.Resources._3;
-            button9.Location = new Point(165, 306);
-            button9.Name = "button9";
-            button9.Size = new Size(65, 63);
-            button9.TabIndex = 1;
-            button9.UseVisualStyleBackColor = true;
+            btn3.Image = Properties.Resources._3;
+            btn3.Location = new Point(165, 306);
+            btn3.Name = "btn3";
+            btn3.Size = new Size(65, 63);
+            btn3.TabIndex = 1;
+            btn3.UseVisualStyleBackColor = true;
+            btn3.Click += ClicouBotao_Click;
             // 
-            // button10
+            // btnLimpar
             // 
-            button10.Image = Properties.Resources.limpar_tudo;
-            button10.Location = new Point(270, 168);
-            button10.Name = "button10";
-            button10.Size = new Size(65, 63);
-            button10.TabIndex = 1;
-            button10.UseVisualStyleBackColor = true;
+            btnLimpar.Image = Properties.Resources.limpar_tudo;
+            btnLimpar.Location = new Point(270, 168);
+            btnLimpar.Name = "btnLimpar";
+            btnLimpar.Size = new Size(65, 63);
+            btnLimpar.TabIndex = 1;
+            btnLimpar.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // btnBackSpace
             // 
-            button11.Image = Properties.Resources.apagar;
-            button11.Location = new Point(341, 168);
-            button11.Name = "button11";
-            button11.Size = new Size(65, 63);
-            button11.TabIndex = 1;
-            button11.UseVisualStyleBackColor = true;
+            btnBackSpace.Image = Properties.Resources.apagar;
+            btnBackSpace.Location = new Point(341, 168);
+            btnBackSpace.Name = "btnBackSpace";
+            btnBackSpace.Size = new Size(65, 63);
+            btnBackSpace.TabIndex = 1;
+            btnBackSpace.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // btnAdicao
             // 
-            button12.Image = Properties.Resources.adicao;
-            button12.Location = new Point(270, 237);
-            button12.Name = "button12";
-            button12.Size = new Size(65, 63);
-            button12.TabIndex = 1;
-            button12.UseVisualStyleBackColor = true;
+            btnAdicao.Image = Properties.Resources.adicao;
+            btnAdicao.Location = new Point(270, 237);
+            btnAdicao.Name = "btnAdicao";
+            btnAdicao.Size = new Size(65, 63);
+            btnAdicao.TabIndex = 1;
+            btnAdicao.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnSubtracao
             // 
-            button13.Image = Properties.Resources.subtracao;
-            button13.Location = new Point(341, 237);
-            button13.Name = "button13";
-            button13.Size = new Size(65, 63);
-            button13.TabIndex = 1;
-            button13.UseVisualStyleBackColor = true;
+            btnSubtracao.Image = Properties.Resources.subtracao;
+            btnSubtracao.Location = new Point(341, 237);
+            btnSubtracao.Name = "btnSubtracao";
+            btnSubtracao.Size = new Size(65, 63);
+            btnSubtracao.TabIndex = 1;
+            btnSubtracao.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // btnMultiplicacao
             // 
-            button14.Image = Properties.Resources.multiplicacao;
-            button14.Location = new Point(270, 306);
-            button14.Name = "button14";
-            button14.Size = new Size(65, 63);
-            button14.TabIndex = 1;
-            button14.UseVisualStyleBackColor = true;
+            btnMultiplicacao.Image = Properties.Resources.multiplicacao;
+            btnMultiplicacao.Location = new Point(270, 306);
+            btnMultiplicacao.Name = "btnMultiplicacao";
+            btnMultiplicacao.Size = new Size(65, 63);
+            btnMultiplicacao.TabIndex = 1;
+            btnMultiplicacao.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // btnDivisao
             // 
-            button15.Image = Properties.Resources.divisao;
-            button15.Location = new Point(341, 306);
-            button15.Name = "button15";
-            button15.Size = new Size(65, 63);
-            button15.TabIndex = 1;
-            button15.UseVisualStyleBackColor = true;
+            btnDivisao.Image = Properties.Resources.divisao;
+            btnDivisao.Location = new Point(341, 306);
+            btnDivisao.Name = "btnDivisao";
+            btnDivisao.Size = new Size(65, 63);
+            btnDivisao.TabIndex = 1;
+            btnDivisao.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // btnRaiz
             // 
-            button16.Image = Properties.Resources.raiz_quadrada;
-            button16.Location = new Point(270, 375);
-            button16.Name = "button16";
-            button16.Size = new Size(65, 63);
-            button16.TabIndex = 1;
-            button16.UseVisualStyleBackColor = true;
+            btnRaiz.Image = Properties.Resources.raiz_quadrada;
+            btnRaiz.Location = new Point(270, 375);
+            btnRaiz.Name = "btnRaiz";
+            btnRaiz.Size = new Size(65, 63);
+            btnRaiz.TabIndex = 1;
+            btnRaiz.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // btnIgual
             // 
-            button17.Image = Properties.Resources.igual;
-            button17.Location = new Point(341, 375);
-            button17.Name = "button17";
-            button17.Size = new Size(65, 63);
-            button17.TabIndex = 1;
-            button17.UseVisualStyleBackColor = true;
+            btnIgual.Image = Properties.Resources.igual;
+            btnIgual.Location = new Point(341, 375);
+            btnIgual.Name = "btnIgual";
+            btnIgual.Size = new Size(65, 63);
+            btnIgual.TabIndex = 1;
+            btnIgual.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // btnVirgula
             // 
-            button18.Image = Properties.Resources.virgula;
-            button18.Location = new Point(165, 375);
-            button18.Name = "button18";
-            button18.Size = new Size(65, 63);
-            button18.TabIndex = 1;
-            button18.UseVisualStyleBackColor = true;
+            btnVirgula.Image = Properties.Resources.virgula;
+            btnVirgula.Location = new Point(165, 375);
+            btnVirgula.Name = "btnVirgula";
+            btnVirgula.Size = new Size(65, 63);
+            btnVirgula.TabIndex = 1;
+            btnVirgula.UseVisualStyleBackColor = true;
+            btnVirgula.Click += ClicouBotao_Click;
             // 
-            // button19
+            // btn0
             // 
-            button19.Image = Properties.Resources._0;
-            button19.Location = new Point(23, 375);
-            button19.Name = "button19";
-            button19.Size = new Size(136, 63);
-            button19.TabIndex = 1;
-            button19.UseVisualStyleBackColor = true;
+            btn0.Image = Properties.Resources._0;
+            btn0.Location = new Point(23, 375);
+            btn0.Name = "btn0";
+            btn0.Size = new Size(136, 63);
+            btn0.TabIndex = 1;
+            btn0.UseVisualStyleBackColor = true;
+            btn0.Click += ClicouBotao_Click;
             // 
             // frmCalculadora
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(431, 457);
-            Controls.Add(button17);
-            Controls.Add(button15);
-            Controls.Add(button13);
-            Controls.Add(button19);
-            Controls.Add(button18);
-            Controls.Add(button16);
-            Controls.Add(button11);
-            Controls.Add(button14);
-            Controls.Add(button9);
-            Controls.Add(button12);
-            Controls.Add(button6);
-            Controls.Add(button10);
-            Controls.Add(button3);
-            Controls.Add(button8);
-            Controls.Add(button7);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnIgual);
+            Controls.Add(btnDivisao);
+            Controls.Add(btnSubtracao);
+            Controls.Add(btn0);
+            Controls.Add(btnVirgula);
+            Controls.Add(btnRaiz);
+            Controls.Add(btnBackSpace);
+            Controls.Add(btnMultiplicacao);
+            Controls.Add(btn3);
+            Controls.Add(btnAdicao);
+            Controls.Add(btn6);
+            Controls.Add(btnLimpar);
+            Controls.Add(btn9);
+            Controls.Add(btn2);
+            Controls.Add(btn1);
+            Controls.Add(btn5);
+            Controls.Add(btn4);
+            Controls.Add(btn8);
+            Controls.Add(btn7);
             Controls.Add(txtVisor);
             Controls.Add(txtHistorico);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -285,24 +296,24 @@
 
         private TextBox txtHistorico;
         private TextBox txtVisor;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button10;
-        private Button button11;
-        private Button button12;
-        private Button button13;
-        private Button button14;
-        private Button button15;
-        private Button button16;
-        private Button button17;
-        private Button button18;
-        private Button button19;
+        private Button btn7;
+        private Button btn8;
+        private Button btn9;
+        private Button btn4;
+        private Button btn5;
+        private Button btn6;
+        private Button btn1;
+        private Button btn2;
+        private Button btn3;
+        private Button btnLimpar;
+        private Button btnBackSpace;
+        private Button btnAdicao;
+        private Button btnSubtracao;
+        private Button btnMultiplicacao;
+        private Button btnDivisao;
+        private Button btnRaiz;
+        private Button btnIgual;
+        private Button btnVirgula;
+        private Button btn0;
     }
 }
