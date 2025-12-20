@@ -172,6 +172,7 @@
             btnLimpar.Size = new Size(65, 63);
             btnLimpar.TabIndex = 1;
             btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnBackSpace
             // 
@@ -181,6 +182,7 @@
             btnBackSpace.Size = new Size(65, 63);
             btnBackSpace.TabIndex = 1;
             btnBackSpace.UseVisualStyleBackColor = true;
+            btnBackSpace.Click += btnBackSpace_Click;
             // 
             // btnAdicao
             // 
@@ -190,6 +192,7 @@
             btnAdicao.Size = new Size(65, 63);
             btnAdicao.TabIndex = 1;
             btnAdicao.UseVisualStyleBackColor = true;
+            btnAdicao.Click += btnAdicao_Click;
             // 
             // btnSubtracao
             // 
