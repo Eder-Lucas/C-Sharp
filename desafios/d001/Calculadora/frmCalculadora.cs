@@ -5,6 +5,7 @@ namespace Calculadora
         double valorVisor, valorAnterior;
         string operacao = "";
         bool primeiraOperacao = true, botaoIgual = false;
+        int click = 0;
 
         public frmCalculadora()
         {
@@ -88,6 +89,7 @@ namespace Calculadora
 
             valorAnterior = 0;
             valorVisor = 0;
+            click = 0;
 
             operacao = "";
             primeiraOperacao = true;
@@ -99,7 +101,7 @@ namespace Calculadora
             //txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
             if (txtVisor.Text.Length == 1)
             {
-                txtVisor.Text = "0";              
+                txtVisor.Text = "0";
             }
             else
             {
@@ -109,7 +111,17 @@ namespace Calculadora
 
         private void btnAdicao_Click(object sender, EventArgs e)
         {
-            operacao = " + ";
+            operacao = Efetuacao(" + ");
+        }
+
+        private void btnSubtracao_Click(object sender, EventArgs e)
+        {
+            Efetuacao(" - ");
+        }
+
+        public string Efetuacao(string operacao)
+        {
+            click += 1;
 
             if (primeiraOperacao)
             {
@@ -117,24 +129,82 @@ namespace Calculadora
 
                 if (botaoIgual == false)
                 {
-                    txtHistorico.Text += txtVisor.Text;
+                    txtHistorico.Text += txtVisor.Text + operacao;
                 }
 
                 txtVisor.Clear();
-                
+
                 primeiraOperacao = false;
             }
             else
             {
                 valorVisor = Convert.ToDouble(txtVisor.Text);
+
+                if (click == 2 && botaoIgual == false)
+                {
+                    txtHistorico.Text = txtHistorico.Text[..^3];
+                }
+
                 txtHistorico.Text += operacao + txtVisor.Text;
 
-                txtVisor.Text = Convert.ToString(valorAnterior + valorVisor);
+                txtVisor.Text = Convert.ToString(Calculo(operacao));
 
                 txtHistorico.Text += " = " + txtVisor.Text;
                 valorAnterior = Convert.ToDouble(txtVisor.Text);
                 botaoIgual = true;
             }
+
+            return operacao;
+        }
+
+        public double Calculo(string operacao)
+        {
+            switch (operacao)
+            {
+                case " + ":
+                    valorAnterior += valorVisor;
+                    break;
+
+                case " - ":
+                    valorAnterior -= valorVisor;
+                    break;
+
+                case " x ":
+                    valorAnterior *= valorVisor;
+                    break;
+
+                case " ÷ ":
+                    valorAnterior /= valorVisor;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return valorAnterior;
+        }
+
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            string[] operadores = [ " + ", " - ", " x ", " ÷ " ];
+            
+            if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
+            { 
+                txtHistorico.Text = txtHistorico.Text[..^3]; 
+            }
+
+            valorVisor = Convert.ToDouble(txtVisor.Text);
+
+            txtHistorico.Text += operacao + txtVisor.Text;
+            
+            txtVisor.Text = Convert.ToString(Calculo(operacao));
+
+            txtHistorico.Text += " = " + txtVisor.Text;
+
+            valorAnterior = Convert.ToDouble(txtVisor.Text);
+
+            botaoIgual = true;
+            primeiraOperacao = false;
         }
     }
 }
