@@ -212,6 +212,7 @@
             btnMultiplicacao.Size = new Size(65, 63);
             btnMultiplicacao.TabIndex = 1;
             btnMultiplicacao.UseVisualStyleBackColor = true;
+            btnMultiplicacao.Click += btnMultiplicacao_Click;
             // 
             // btnDivisao
             // 
@@ -221,6 +222,7 @@
             btnDivisao.Size = new Size(65, 63);
             btnDivisao.TabIndex = 1;
             btnDivisao.UseVisualStyleBackColor = true;
+            btnDivisao.Click += btnDivisao_Click;
             // 
             // btnRaiz
             // 
