@@ -202,6 +202,7 @@
             btnSubtracao.Size = new Size(65, 63);
             btnSubtracao.TabIndex = 1;
             btnSubtracao.UseVisualStyleBackColor = true;
+            btnSubtracao.Click += btnSubtracao_Click;
             // 
             // btnMultiplicacao
             // 
@@ -238,6 +239,7 @@
             btnIgual.Size = new Size(65, 63);
             btnIgual.TabIndex = 1;
             btnIgual.UseVisualStyleBackColor = true;
+            btnIgual.Click += btnIgual_Click;
             // 
             // btnVirgula
             // 
