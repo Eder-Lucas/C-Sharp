@@ -2,7 +2,7 @@ namespace Calculadora
 {
     public partial class frmCalculadora : Form
     {
-        double valorVisor, valorAnterior;
+        decimal valorVisor, valorAnterior;
         string operacao = "";
         bool primeiraOperacao = true, botaoIgual = false;
         int click = 0;
@@ -12,6 +12,61 @@ namespace Calculadora
             InitializeComponent();
         }
 
+
+        //ao clicar no botão limpar
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtVisor.Text = "0";
+            txtHistorico.Clear();
+
+            valorAnterior = 0;
+            valorVisor = 0;
+            click = 0;
+
+            operacao = "";
+            primeiraOperacao = true;
+            botaoIgual = false;
+        } 
+
+        //ao clicar no botão de backSpace
+        private void btnBackSpace_Click(object sender, EventArgs e)
+        {
+            //txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
+            if (txtVisor.Text.Length == 1)
+            {
+                txtVisor.Text = "0";
+            }
+            else
+            {
+                txtVisor.Text = txtVisor.Text[..^1];
+            }
+        }
+
+        //ao clicar no botão de igual
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            string[] operadores = [" + ", " - ", " x ", " ÷ "];
+
+            if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
+            {
+                txtHistorico.Text = txtHistorico.Text[..^3];
+            }
+
+            valorVisor = Convert.ToDecimal(txtVisor.Text);
+
+            txtHistorico.Text += operacao + txtVisor.Text;
+
+            txtVisor.Text = Convert.ToString(Calculo(operacao));
+
+            txtHistorico.Text += " = " + txtVisor.Text;
+
+            valorAnterior = Convert.ToDecimal(txtVisor.Text);
+
+            botaoIgual = true;
+            primeiraOperacao = false;
+        }
+
+        //Adiciona valor ao clicar nos botões númericos
         private void ClicouBotao_Click(object sender, EventArgs e)
         {
             //txtVisor.Text += "1";      
@@ -82,82 +137,8 @@ namespace Calculadora
             }
         }
 
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            txtVisor.Text = "0";
-            txtHistorico.Clear();
-
-            valorAnterior = 0;
-            valorVisor = 0;
-            click = 0;
-
-            operacao = "";
-            primeiraOperacao = true;
-            botaoIgual = false;
-        }
-
-        private void btnBackSpace_Click(object sender, EventArgs e)
-        {
-            //txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
-            if (txtVisor.Text.Length == 1)
-            {
-                txtVisor.Text = "0";
-            }
-            else
-            {
-                txtVisor.Text = txtVisor.Text[..^1];
-            }
-        }
-
-        private void btnAdicao_Click(object sender, EventArgs e)
-        {
-            operacao = Efetuacao(" + ");
-        }
-
-        private void btnSubtracao_Click(object sender, EventArgs e)
-        {
-            Efetuacao(" - ");
-        }
-
-        public string Efetuacao(string operacao)
-        {
-            click += 1;
-
-            if (primeiraOperacao)
-            {
-                valorAnterior = Convert.ToDouble(txtVisor.Text);
-
-                if (botaoIgual == false)
-                {
-                    txtHistorico.Text += txtVisor.Text + operacao;
-                }
-
-                txtVisor.Clear();
-
-                primeiraOperacao = false;
-            }
-            else
-            {
-                valorVisor = Convert.ToDouble(txtVisor.Text);
-
-                if (click == 2 && botaoIgual == false)
-                {
-                    txtHistorico.Text = txtHistorico.Text[..^3];
-                }
-
-                txtHistorico.Text += operacao + txtVisor.Text;
-
-                txtVisor.Text = Convert.ToString(Calculo(operacao));
-
-                txtHistorico.Text += " = " + txtVisor.Text;
-                valorAnterior = Convert.ToDouble(txtVisor.Text);
-                botaoIgual = true;
-            }
-
-            return operacao;
-        }
-
-        public double Calculo(string operacao)
+        //efetua os cálculos
+        public decimal Calculo(string operacao)
         {
             switch (operacao)
             {
@@ -181,30 +162,67 @@ namespace Calculadora
                     break;
             }
 
-            return valorAnterior;
+            return Math.Round(valorAnterior, 2);
         }
 
-        private void btnIgual_Click(object sender, EventArgs e)
+        //lógica central da calculadora
+        public string Efetuacao(string operacao)
         {
-            string[] operadores = [ " + ", " - ", " x ", " ÷ " ];
-            
-            if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
-            { 
-                txtHistorico.Text = txtHistorico.Text[..^3]; 
+            click += 1;
+
+            if (primeiraOperacao)
+            {
+                valorAnterior = Convert.ToDecimal(txtVisor.Text);
+
+                if (botaoIgual == false)
+                {
+                    txtHistorico.Text += txtVisor.Text + operacao;
+                }
+
+                txtVisor.Clear();
+
+                primeiraOperacao = false;
+            }
+            else
+            {
+                valorVisor = Convert.ToDecimal(txtVisor.Text);
+
+                if (click == 2 && botaoIgual == false)
+                {
+                    txtHistorico.Text = txtHistorico.Text[..^3];
+                }
+
+                txtHistorico.Text += operacao + txtVisor.Text;
+
+                txtVisor.Text = Convert.ToString(Calculo(operacao));
+
+                txtHistorico.Text += " = " + txtVisor.Text;
+                valorAnterior = Convert.ToDecimal(txtVisor.Text);
+                botaoIgual = true;
             }
 
-            valorVisor = Convert.ToDouble(txtVisor.Text);
+            return operacao;
+        }
 
-            txtHistorico.Text += operacao + txtVisor.Text;
-            
-            txtVisor.Text = Convert.ToString(Calculo(operacao));
+        //ao clicar nos botões de operação
+        private void btnAdicao_Click(object sender, EventArgs e)
+        {
+            operacao = Efetuacao(" + ");
+        }
 
-            txtHistorico.Text += " = " + txtVisor.Text;
+        private void btnSubtracao_Click(object sender, EventArgs e)
+        {
+            operacao = Efetuacao(" - ");
+        }
 
-            valorAnterior = Convert.ToDouble(txtVisor.Text);
+        private void btnMultiplicacao_Click(object sender, EventArgs e)
+        {
+            operacao = Efetuacao(" x ");
+        }
 
-            botaoIgual = true;
-            primeiraOperacao = false;
+        private void btnDivisao_Click(object sender, EventArgs e)
+        {
+            operacao = Efetuacao(" ÷ ");
         }
     }
 }
