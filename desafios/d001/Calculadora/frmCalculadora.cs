@@ -103,7 +103,24 @@ namespace Calculadora
 
             Button botaoClicado = (Button)sender;
 
-            switch (botaoClicado.Name)
+            if (botaoClicado.Tag.ToString() == ",")
+            {
+                if (!txtVisor.Text.Contains(","))
+                {
+                    if (string.IsNullOrEmpty(txtVisor.Text))
+                        txtVisor.Text = "0,";
+                    else
+                        txtVisor.Text += ",";
+                }
+            }
+            else
+            {
+                txtVisor.Text += botaoClicado.Tag.ToString();
+            }
+
+            /* usando switch
+             * 
+             * switch (botaoClicado.Name)
             {
                 case "btn1":
                     txtVisor.Text += "1";
@@ -159,9 +176,12 @@ namespace Calculadora
                 default:
                     break;
             }
+            */
         }
+        
 
-        /* Método Calculo antigo sem usar classe
+        /* Método Cálculo antigo sem usar classe
+         * esse método agora está no arquivo: ObjetoCalculo.cs
         public decimal Calculo(string operacao)
         {
             switch (operacao)
@@ -189,6 +209,7 @@ namespace Calculadora
             return Math.Round(valorAnterior, 2);
         }
         */
+
 
         //lógica central da calculadora
         public string Efetuacao(string operacao)
