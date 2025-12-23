@@ -49,12 +49,7 @@ namespace Calculadora
                 return;
             }
 
-            string[] operadores = [" + ", " - ", " x ", " ÷ "];
-
-            if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
-            {
-                txtHistorico.Text = txtHistorico.Text[..^3];
-            }
+            RemoveUltimoOperador();
 
             valorVisor = Convert.ToDecimal(txtVisor.Text);
 
@@ -79,6 +74,20 @@ namespace Calculadora
             podeApagar = true;
             primeiraOperacao = false;
             operacao = "";
+        }
+
+        private void RemoveUltimoOperador()
+        {
+            string[] operadores = [" + ", " - ", " x ", " ÷ "];
+
+            foreach (string op in operadores)
+            {
+                if (txtHistorico.Text.EndsWith(op))
+                {
+                    txtHistorico.Text = txtHistorico.Text[..^3];
+                    break;
+                }
+            }         
         }
 
         //Adiciona valor ao clicar nos botões númericos
@@ -199,12 +208,7 @@ namespace Calculadora
             }
             else
             {
-                string[] operadores = [" + ", " - ", " x ", " ÷ "];
-
-                if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
-                {
-                    txtHistorico.Text = txtHistorico.Text[..^3];
-                }
+                RemoveUltimoOperador();
 
                 txtHistorico.Text += operacao + txtVisor.Text;
 
