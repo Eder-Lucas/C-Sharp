@@ -4,8 +4,7 @@ namespace Calculadora
     {
         decimal valorVisor, valorAnterior;
         string operacao = "";
-        bool primeiraOperacao = true, botaoIgual = false;
-        int click = 0;
+        bool primeiraOperacao = true, botaoIgual = false, podeApagar = false;
 
         public frmCalculadora()
         {
@@ -21,11 +20,11 @@ namespace Calculadora
 
             valorAnterior = 0;
             valorVisor = 0;
-            click = 0;
 
             operacao = "";
             primeiraOperacao = true;
             botaoIgual = false;
+            podeApagar = false;
         } 
 
         //ao clicar no botão de backSpace
@@ -45,6 +44,11 @@ namespace Calculadora
         //ao clicar no botão de igual
         private void btnIgual_Click(object sender, EventArgs e)
         {
+            if (botaoIgual || string.IsNullOrEmpty(operacao))
+            {
+                return;
+            }
+
             string[] operadores = [" + ", " - ", " x ", " ÷ "];
 
             if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
@@ -56,14 +60,25 @@ namespace Calculadora
 
             txtHistorico.Text += operacao + txtVisor.Text;
 
-            txtVisor.Text = Convert.ToString(Calculo(operacao));
+            //instância a classe criando um novo objeto
+            ObjetoCalculo novoCalculo = new ObjetoCalculo();
+
+            //atribui os valores das variáveis às propriedades do objeto
+            novoCalculo.valorVisor = this.valorVisor;
+            novoCalculo.valorAnterior = this.valorAnterior;
+            novoCalculo.operacao = this.operacao;
+
+            //chama o método Calculo atribuindo seu retorno ao txtVisor
+            txtVisor.Text = Convert.ToString(novoCalculo.Calculo());
 
             txtHistorico.Text += " = " + txtVisor.Text;
 
             valorAnterior = Convert.ToDecimal(txtVisor.Text);
 
             botaoIgual = true;
+            podeApagar = true;
             primeiraOperacao = false;
+            operacao = "";
         }
 
         //Adiciona valor ao clicar nos botões númericos
@@ -71,10 +86,10 @@ namespace Calculadora
         {
             //txtVisor.Text += "1";      
 
-            if (txtVisor.Text == "0" || botaoIgual == true)
+            if (txtVisor.Text == "0" || podeApagar == true)
             {
                 txtVisor.Clear();
-                botaoIgual = false;
+                podeApagar = false;
             }
 
             Button botaoClicado = (Button)sender;
@@ -137,7 +152,7 @@ namespace Calculadora
             }
         }
 
-        //efetua os cálculos
+        /* Método Calculo antigo sem usar classe
         public decimal Calculo(string operacao)
         {
             switch (operacao)
@@ -164,12 +179,11 @@ namespace Calculadora
 
             return Math.Round(valorAnterior, 2);
         }
+        */
 
         //lógica central da calculadora
         public string Efetuacao(string operacao)
         {
-            click += 1;
-
             if (primeiraOperacao)
             {
                 valorAnterior = Convert.ToDecimal(txtVisor.Text);
@@ -185,20 +199,33 @@ namespace Calculadora
             }
             else
             {
-                valorVisor = Convert.ToDecimal(txtVisor.Text);
+                string[] operadores = [" + ", " - ", " x ", " ÷ "];
 
-                if (click == 2 && botaoIgual == false)
+                if (operadores.Any(op => txtHistorico.Text.EndsWith(op)))
                 {
                     txtHistorico.Text = txtHistorico.Text[..^3];
                 }
 
                 txtHistorico.Text += operacao + txtVisor.Text;
 
-                txtVisor.Text = Convert.ToString(Calculo(operacao));
+                valorVisor = Convert.ToDecimal(txtVisor.Text);
+
+                //txtVisor.Text = Convert.ToString(Calculo(operacao)); << sem usar classe
+
+                //instância a classe criando um novo objeto
+                ObjetoCalculo novoCalculo = new ObjetoCalculo();
+
+                //atribui os valores das variáveis às propriedades do objeto
+                novoCalculo.valorVisor = this.valorVisor;
+                novoCalculo.valorAnterior = this.valorAnterior;
+                novoCalculo.operacao = operacao;
+
+                //chama o método Calculo atribuindo seu retorno ao txtVisor
+                txtVisor.Text = Convert.ToString(novoCalculo.Calculo());
 
                 txtHistorico.Text += " = " + txtVisor.Text;
                 valorAnterior = Convert.ToDecimal(txtVisor.Text);
-                botaoIgual = true;
+                podeApagar = true;
             }
 
             return operacao;
