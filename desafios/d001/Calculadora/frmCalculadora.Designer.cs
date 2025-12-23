@@ -81,6 +81,7 @@
             btn7.Name = "btn7";
             btn7.Size = new Size(65, 63);
             btn7.TabIndex = 1;
+            btn7.Tag = "7";
             btn7.UseVisualStyleBackColor = true;
             btn7.Click += ClicouBotao_Click;
             // 
@@ -91,6 +92,7 @@
             btn8.Name = "btn8";
             btn8.Size = new Size(65, 63);
             btn8.TabIndex = 1;
+            btn8.Tag = "8";
             btn8.UseVisualStyleBackColor = true;
             btn8.Click += ClicouBotao_Click;
             // 
@@ -101,6 +103,7 @@
             btn9.Name = "btn9";
             btn9.Size = new Size(65, 63);
             btn9.TabIndex = 1;
+            btn9.Tag = "9";
             btn9.UseVisualStyleBackColor = true;
             btn9.Click += ClicouBotao_Click;
             // 
@@ -111,6 +114,7 @@
             btn4.Name = "btn4";
             btn4.Size = new Size(65, 63);
             btn4.TabIndex = 1;
+            btn4.Tag = "4";
             btn4.UseVisualStyleBackColor = true;
             btn4.Click += ClicouBotao_Click;
             // 
@@ -121,6 +125,7 @@
             btn5.Name = "btn5";
             btn5.Size = new Size(65, 63);
             btn5.TabIndex = 1;
+            btn5.Tag = "5";
             btn5.UseVisualStyleBackColor = true;
             btn5.Click += ClicouBotao_Click;
             // 
@@ -131,6 +136,7 @@
             btn6.Name = "btn6";
             btn6.Size = new Size(65, 63);
             btn6.TabIndex = 1;
+            btn6.Tag = "6";
             btn6.UseVisualStyleBackColor = true;
             btn6.Click += ClicouBotao_Click;
             // 
@@ -141,6 +147,7 @@
             btn1.Name = "btn1";
             btn1.Size = new Size(65, 63);
             btn1.TabIndex = 1;
+            btn1.Tag = "1";
             btn1.UseVisualStyleBackColor = true;
             btn1.Click += ClicouBotao_Click;
             // 
@@ -151,6 +158,7 @@
             btn2.Name = "btn2";
             btn2.Size = new Size(65, 63);
             btn2.TabIndex = 1;
+            btn2.Tag = "2";
             btn2.UseVisualStyleBackColor = true;
             btn2.Click += ClicouBotao_Click;
             // 
@@ -161,6 +169,7 @@
             btn3.Name = "btn3";
             btn3.Size = new Size(65, 63);
             btn3.TabIndex = 1;
+            btn3.Tag = "3";
             btn3.UseVisualStyleBackColor = true;
             btn3.Click += ClicouBotao_Click;
             // 
@@ -250,6 +259,7 @@
             btnVirgula.Name = "btnVirgula";
             btnVirgula.Size = new Size(65, 63);
             btnVirgula.TabIndex = 1;
+            btnVirgula.Tag = ",";
             btnVirgula.UseVisualStyleBackColor = true;
             btnVirgula.Click += ClicouBotao_Click;
             // 
@@ -260,6 +270,7 @@
             btn0.Name = "btn0";
             btn0.Size = new Size(136, 63);
             btn0.TabIndex = 1;
+            btn0.Tag = "0";
             btn0.UseVisualStyleBackColor = true;
             btn0.Click += ClicouBotao_Click;
             // 
