@@ -25,7 +25,7 @@ namespace Calculadora
             primeiraOperacao = true;
             botaoIgual = false;
             podeApagar = false;
-        } 
+        }
 
         //ao clicar no botão de backSpace
         private void btnBackSpace_Click(object sender, EventArgs e)
@@ -46,6 +46,21 @@ namespace Calculadora
         {
             if (botaoIgual || string.IsNullOrEmpty(operacao))
             {
+                return;
+            }
+
+            if (operacao == "\u221A")
+            {
+                decimal resultado = EfetuaRaiz(txtVisor.Text);
+
+                txtHistorico.Text += txtVisor.Text + " = " + resultado;
+                txtVisor.Text = resultado.ToString();
+
+                valorAnterior = resultado;
+                botaoIgual = true;
+                podeApagar = true;
+                primeiraOperacao = false;
+                operacao = "";
                 return;
             }
 
@@ -87,7 +102,7 @@ namespace Calculadora
                     txtHistorico.Text = txtHistorico.Text[..^3];
                     break;
                 }
-            }         
+            }
         }
 
         //Adiciona valor ao clicar nos botões númericos
@@ -178,7 +193,7 @@ namespace Calculadora
             }
             */
         }
-        
+
 
         /* Método Cálculo antigo sem usar classe
          * esse método agora está no arquivo: ObjetoCalculo.cs
@@ -256,6 +271,36 @@ namespace Calculadora
             return operacao;
         }
 
+        private decimal EfetuaRaiz(string texto)
+        {
+            string[] partes = texto.Split("\u221A");
+
+            decimal multiplicador;
+            decimal radical;
+
+            if (partes.Length == 1)
+            {
+                multiplicador = 1;
+                radical = Convert.ToDecimal(partes[0]);
+            }
+            else
+            {
+                multiplicador = string.IsNullOrEmpty(partes[0]) ? 1 : Convert.ToDecimal(partes[0]);
+                radical = Convert.ToDecimal(partes[1]);
+            }
+
+            ObjetoCalculo calculo = new ObjetoCalculo
+            {
+                valorVisor = radical,
+                operacao = "\u221A",
+            };
+
+            decimal raiz = calculo.Calculo();
+
+            return Math.Round(multiplicador * raiz, 2);
+                
+        }
+
         //ao clicar nos botões de operação
         private void btnAdicao_Click(object sender, EventArgs e)
         {
@@ -275,6 +320,23 @@ namespace Calculadora
         private void btnDivisao_Click(object sender, EventArgs e)
         {
             operacao = Efetuacao(" ÷ ");
+        }
+
+        private void btnRaiz_Click(object sender, EventArgs e)
+        {
+            operacao = "\u221A";
+            botaoIgual = false;
+            if (txtVisor.Text == "0" || botaoIgual || podeApagar)
+            {
+                txtVisor.Clear();
+                txtVisor.Text = operacao;
+                botaoIgual = false;
+                podeApagar = false;
+            }
+            else if (!txtVisor.Text.Contains(operacao))
+            {
+                txtVisor.Text += operacao;
+            }
         }
     }
 }
