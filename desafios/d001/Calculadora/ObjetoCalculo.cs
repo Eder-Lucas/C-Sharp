@@ -35,6 +35,10 @@ namespace Calculadora
                     valorResultado = valorAnterior / valorVisor;
                     break;
 
+                case "\u221A":
+                    valorResultado = (decimal)Math.Sqrt((double)valorVisor);
+                    break;
+
                 default:
                     break;
             }
