@@ -241,6 +241,7 @@
             btnRaiz.Size = new Size(65, 63);
             btnRaiz.TabIndex = 1;
             btnRaiz.UseVisualStyleBackColor = true;
+            btnRaiz.Click += btnRaiz_Click;
             // 
             // btnIgual
             // 
