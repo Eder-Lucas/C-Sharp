@@ -220,8 +220,23 @@
             //se o botão for uma vírgula
             if (valorBotao == ",")
             {
-                //e se ainda não existe uma vírgula no txt
-                if (!txtVisor.Text.Contains(","))
+                //divide o texto do visor apartir do separador de raiz quadrada
+                string[] partes = txtVisor.Text.Split('\u221A');
+
+                /* - EXEMPLO DE USO -
+                | txtVisor | partes[0] | partes[1] |
+                |  "3,6"   |   "3,6"   |    ---    |
+                | "√3,6"   |    ""     |   "3,6"   |
+                | "2√3,6"  |    "2"    |   "3,6"   |
+                 */
+
+                //verifica que parte foi digitada
+                //se o length for maior que 1, então há raiz
+                //retornando a segunda parte
+                string parteAtual = partes.Length == 1 ? partes[0] : partes[1];
+
+                //e se ainda não existe uma vírgula na parte atual do txt
+                if (!parteAtual.Contains(","))
                 {
                     if (string.IsNullOrEmpty(txtVisor.Text)) //se o visor tiver vazio adiciona 0 e depois a vírgula
                         txtVisor.Text = "0,";
