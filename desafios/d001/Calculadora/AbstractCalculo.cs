@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Calculadora
 {
+    //classe abstrata
     public abstract class AbstractCalculo
     {
         //propriedades abstratas
@@ -12,7 +13,7 @@ namespace Calculadora
         public abstract decimal valorResultado { set; get; }
         public abstract string operacao { set; get; }
 
-        //Método abstrato do tipo decimal
+        //método abstrato do tipo decimal
         public abstract decimal Calculo();
     }
 }
