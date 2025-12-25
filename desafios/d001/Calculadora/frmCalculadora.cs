@@ -2,6 +2,7 @@ namespace Calculadora
 {
     public partial class frmCalculadora : Form
     {
+        //declarando as variáveis globais
         decimal valorVisor, valorAnterior;
         string operacao = "";
         bool primeiraOperacao = true, botaoIgual = false, podeApagar = false;
@@ -10,7 +11,6 @@ namespace Calculadora
         {
             InitializeComponent();
         }
-
 
         //ao clicar no botão limpar
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -30,13 +30,16 @@ namespace Calculadora
         //ao clicar no botão de backSpace
         private void btnBackSpace_Click(object sender, EventArgs e)
         {
-            //txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
+            //se o visor tiver apenas um caractere
             if (txtVisor.Text.Length == 1)
             {
-                txtVisor.Text = "0";
+                txtVisor.Text = "0"; //deixa o valor como: 0
             }
             else
             {
+                //o mesmo que:
+                //txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
+                //remove o último caractere presente no visor
                 txtVisor.Text = txtVisor.Text[..^1];
             }
         }
@@ -53,7 +56,7 @@ namespace Calculadora
             {
                 decimal resultado = EfetuaRaiz(txtVisor.Text);
 
-                txtHistorico.Text += txtVisor.Text + " = " + resultado;
+                txtHistorico.Text = txtVisor.Text + " = " + resultado;
                 txtVisor.Text = resultado.ToString();
 
                 valorAnterior = resultado;
@@ -302,26 +305,15 @@ namespace Calculadora
         }
 
         //ao clicar nos botões de operação
-        private void btnAdicao_Click(object sender, EventArgs e)
-        {
-            operacao = Efetuacao(" + ");
-        }
+        private void btnAdicao_Click(object sender, EventArgs e) => operacao = Efetuacao(" + ");
 
-        private void btnSubtracao_Click(object sender, EventArgs e)
-        {
-            operacao = Efetuacao(" - ");
-        }
+        private void btnSubtracao_Click(object sender, EventArgs e) => operacao = Efetuacao(" - ");
 
-        private void btnMultiplicacao_Click(object sender, EventArgs e)
-        {
-            operacao = Efetuacao(" x ");
-        }
+        private void btnMultiplicacao_Click(object sender, EventArgs e) => operacao = Efetuacao(" x ");
 
-        private void btnDivisao_Click(object sender, EventArgs e)
-        {
-            operacao = Efetuacao(" ÷ ");
-        }
+        private void btnDivisao_Click(object sender, EventArgs e) => operacao = Efetuacao(" ÷ ");
 
+        //o botão de raiz quadrada necessita de uma lógica adicional
         private void btnRaiz_Click(object sender, EventArgs e)
         {
             operacao = "\u221A";
