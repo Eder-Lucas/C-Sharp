@@ -66,7 +66,7 @@
             // 
             txtVisor.BackColor = SystemColors.ControlLightLight;
             txtVisor.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtVisor.Location = new Point(12, 77);
+            txtVisor.Location = new Point(12, 54);
             txtVisor.Name = "txtVisor";
             txtVisor.ReadOnly = true;
             txtVisor.Size = new Size(407, 51);
@@ -77,7 +77,7 @@
             // btn7
             // 
             btn7.Image = Properties.Resources._7;
-            btn7.Location = new Point(23, 168);
+            btn7.Location = new Point(21, 127);
             btn7.Name = "btn7";
             btn7.Size = new Size(65, 63);
             btn7.TabIndex = 1;
@@ -88,7 +88,7 @@
             // btn8
             // 
             btn8.Image = Properties.Resources._8;
-            btn8.Location = new Point(94, 168);
+            btn8.Location = new Point(92, 127);
             btn8.Name = "btn8";
             btn8.Size = new Size(65, 63);
             btn8.TabIndex = 1;
@@ -99,7 +99,7 @@
             // btn9
             // 
             btn9.Image = Properties.Resources._9;
-            btn9.Location = new Point(165, 168);
+            btn9.Location = new Point(163, 127);
             btn9.Name = "btn9";
             btn9.Size = new Size(65, 63);
             btn9.TabIndex = 1;
@@ -110,7 +110,7 @@
             // btn4
             // 
             btn4.Image = Properties.Resources._4;
-            btn4.Location = new Point(23, 237);
+            btn4.Location = new Point(21, 196);
             btn4.Name = "btn4";
             btn4.Size = new Size(65, 63);
             btn4.TabIndex = 1;
@@ -121,7 +121,7 @@
             // btn5
             // 
             btn5.Image = Properties.Resources._5;
-            btn5.Location = new Point(94, 237);
+            btn5.Location = new Point(92, 196);
             btn5.Name = "btn5";
             btn5.Size = new Size(65, 63);
             btn5.TabIndex = 1;
@@ -132,7 +132,7 @@
             // btn6
             // 
             btn6.Image = Properties.Resources._6;
-            btn6.Location = new Point(165, 237);
+            btn6.Location = new Point(163, 196);
             btn6.Name = "btn6";
             btn6.Size = new Size(65, 63);
             btn6.TabIndex = 1;
@@ -143,7 +143,7 @@
             // btn1
             // 
             btn1.Image = Properties.Resources._1;
-            btn1.Location = new Point(23, 306);
+            btn1.Location = new Point(21, 265);
             btn1.Name = "btn1";
             btn1.Size = new Size(65, 63);
             btn1.TabIndex = 1;
@@ -154,7 +154,7 @@
             // btn2
             // 
             btn2.Image = Properties.Resources._2;
-            btn2.Location = new Point(94, 306);
+            btn2.Location = new Point(92, 265);
             btn2.Name = "btn2";
             btn2.Size = new Size(65, 63);
             btn2.TabIndex = 1;
@@ -165,7 +165,7 @@
             // btn3
             // 
             btn3.Image = Properties.Resources._3;
-            btn3.Location = new Point(165, 306);
+            btn3.Location = new Point(163, 265);
             btn3.Name = "btn3";
             btn3.Size = new Size(65, 63);
             btn3.TabIndex = 1;
@@ -176,7 +176,7 @@
             // btnLimpar
             // 
             btnLimpar.Image = Properties.Resources.limpar_tudo;
-            btnLimpar.Location = new Point(270, 168);
+            btnLimpar.Location = new Point(276, 127);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(65, 63);
             btnLimpar.TabIndex = 1;
@@ -186,7 +186,7 @@
             // btnBackSpace
             // 
             btnBackSpace.Image = Properties.Resources.apagar;
-            btnBackSpace.Location = new Point(341, 168);
+            btnBackSpace.Location = new Point(347, 127);
             btnBackSpace.Name = "btnBackSpace";
             btnBackSpace.Size = new Size(65, 63);
             btnBackSpace.TabIndex = 1;
@@ -196,7 +196,7 @@
             // btnAdicao
             // 
             btnAdicao.Image = Properties.Resources.adicao;
-            btnAdicao.Location = new Point(270, 237);
+            btnAdicao.Location = new Point(276, 196);
             btnAdicao.Name = "btnAdicao";
             btnAdicao.Size = new Size(65, 63);
             btnAdicao.TabIndex = 1;
@@ -206,7 +206,7 @@
             // btnSubtracao
             // 
             btnSubtracao.Image = Properties.Resources.subtracao;
-            btnSubtracao.Location = new Point(341, 237);
+            btnSubtracao.Location = new Point(347, 196);
             btnSubtracao.Name = "btnSubtracao";
             btnSubtracao.Size = new Size(65, 63);
             btnSubtracao.TabIndex = 1;
@@ -216,7 +216,7 @@
             // btnMultiplicacao
             // 
             btnMultiplicacao.Image = Properties.Resources.multiplicacao;
-            btnMultiplicacao.Location = new Point(270, 306);
+            btnMultiplicacao.Location = new Point(276, 265);
             btnMultiplicacao.Name = "btnMultiplicacao";
             btnMultiplicacao.Size = new Size(65, 63);
             btnMultiplicacao.TabIndex = 1;
@@ -226,7 +226,7 @@
             // btnDivisao
             // 
             btnDivisao.Image = Properties.Resources.divisao;
-            btnDivisao.Location = new Point(341, 306);
+            btnDivisao.Location = new Point(347, 265);
             btnDivisao.Name = "btnDivisao";
             btnDivisao.Size = new Size(65, 63);
             btnDivisao.TabIndex = 1;
@@ -236,7 +236,7 @@
             // btnRaiz
             // 
             btnRaiz.Image = Properties.Resources.raiz_quadrada;
-            btnRaiz.Location = new Point(270, 375);
+            btnRaiz.Location = new Point(276, 334);
             btnRaiz.Name = "btnRaiz";
             btnRaiz.Size = new Size(65, 63);
             btnRaiz.TabIndex = 1;
@@ -246,7 +246,7 @@
             // btnIgual
             // 
             btnIgual.Image = Properties.Resources.igual;
-            btnIgual.Location = new Point(341, 375);
+            btnIgual.Location = new Point(347, 334);
             btnIgual.Name = "btnIgual";
             btnIgual.Size = new Size(65, 63);
             btnIgual.TabIndex = 1;
@@ -256,7 +256,7 @@
             // btnVirgula
             // 
             btnVirgula.Image = Properties.Resources.virgula;
-            btnVirgula.Location = new Point(165, 375);
+            btnVirgula.Location = new Point(163, 334);
             btnVirgula.Name = "btnVirgula";
             btnVirgula.Size = new Size(65, 63);
             btnVirgula.TabIndex = 1;
@@ -267,7 +267,7 @@
             // btn0
             // 
             btn0.Image = Properties.Resources._0;
-            btn0.Location = new Point(23, 375);
+            btn0.Location = new Point(21, 334);
             btn0.Name = "btn0";
             btn0.Size = new Size(136, 63);
             btn0.TabIndex = 1;
@@ -279,7 +279,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(431, 457);
+            ClientSize = new Size(431, 415);
             Controls.Add(btnIgual);
             Controls.Add(btnDivisao);
             Controls.Add(btnSubtracao);
@@ -306,6 +306,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmCalculadora";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculadora";
             ResumeLayout(false);
             PerformLayout();
