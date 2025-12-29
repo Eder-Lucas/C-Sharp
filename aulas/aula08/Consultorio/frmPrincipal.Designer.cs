@@ -35,6 +35,8 @@
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label hORARIOLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.consultasDataSet = new Consultorio.ConsultasDataSet();
             this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultasTableAdapter = new Consultorio.ConsultasDataSetTableAdapters.ConsultasTableAdapter();
@@ -57,6 +59,12 @@
             this.nOME_MEDICOTextBox = new System.Windows.Forms.TextBox();
             this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.hORARIODateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.consultasDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_CONSULTALabel = new System.Windows.Forms.Label();
             nOME_PACIENTELabel = new System.Windows.Forms.Label();
             nOME_MEDICOLabel = new System.Windows.Forms.Label();
@@ -66,57 +74,58 @@
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).BeginInit();
             this.consultasBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // iD_CONSULTALabel
             // 
             iD_CONSULTALabel.AutoSize = true;
-            iD_CONSULTALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_CONSULTALabel.Location = new System.Drawing.Point(12, 55);
+            iD_CONSULTALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_CONSULTALabel.Location = new System.Drawing.Point(29, 55);
             iD_CONSULTALabel.Name = "iD_CONSULTALabel";
-            iD_CONSULTALabel.Size = new System.Drawing.Size(153, 25);
+            iD_CONSULTALabel.Size = new System.Drawing.Size(84, 24);
             iD_CONSULTALabel.TabIndex = 1;
-            iD_CONSULTALabel.Text = "ID CONSULTA:";
+            iD_CONSULTALabel.Text = "Código:";
             // 
             // nOME_PACIENTELabel
             // 
             nOME_PACIENTELabel.AutoSize = true;
-            nOME_PACIENTELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nOME_PACIENTELabel.Location = new System.Drawing.Point(12, 100);
+            nOME_PACIENTELabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nOME_PACIENTELabel.Location = new System.Drawing.Point(15, 100);
             nOME_PACIENTELabel.Name = "nOME_PACIENTELabel";
-            nOME_PACIENTELabel.Size = new System.Drawing.Size(183, 25);
+            nOME_PACIENTELabel.Size = new System.Drawing.Size(98, 24);
             nOME_PACIENTELabel.TabIndex = 3;
-            nOME_PACIENTELabel.Text = "NOME PACIENTE:";
+            nOME_PACIENTELabel.Text = "Paciente:";
             // 
             // nOME_MEDICOLabel
             // 
             nOME_MEDICOLabel.AutoSize = true;
-            nOME_MEDICOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nOME_MEDICOLabel.Location = new System.Drawing.Point(12, 144);
+            nOME_MEDICOLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nOME_MEDICOLabel.Location = new System.Drawing.Point(28, 144);
             nOME_MEDICOLabel.Name = "nOME_MEDICOLabel";
-            nOME_MEDICOLabel.Size = new System.Drawing.Size(163, 25);
+            nOME_MEDICOLabel.Size = new System.Drawing.Size(85, 24);
             nOME_MEDICOLabel.TabIndex = 5;
-            nOME_MEDICOLabel.Text = "NOME MEDICO:";
+            nOME_MEDICOLabel.Text = "Médico:";
             // 
             // dATALabel
             // 
             dATALabel.AutoSize = true;
-            dATALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dATALabel.Location = new System.Drawing.Point(12, 191);
+            dATALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dATALabel.Location = new System.Drawing.Point(53, 191);
             dATALabel.Name = "dATALabel";
-            dATALabel.Size = new System.Drawing.Size(73, 25);
+            dATALabel.Size = new System.Drawing.Size(60, 24);
             dATALabel.TabIndex = 7;
-            dATALabel.Text = "DATA:";
+            dATALabel.Text = "Data:";
             // 
             // hORARIOLabel
             // 
             hORARIOLabel.AutoSize = true;
-            hORARIOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            hORARIOLabel.Location = new System.Drawing.Point(12, 237);
+            hORARIOLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            hORARIOLabel.Location = new System.Drawing.Point(26, 237);
             hORARIOLabel.Name = "hORARIOLabel";
-            hORARIOLabel.Size = new System.Drawing.Size(109, 25);
+            hORARIOLabel.Size = new System.Drawing.Size(87, 24);
             hORARIOLabel.TabIndex = 9;
-            hORARIOLabel.Text = "HORARIO:";
+            hORARIOLabel.Text = "Horário:";
             // 
             // consultasDataSet
             // 
@@ -165,7 +174,7 @@
             this.consultasBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.consultasBindingNavigator.Name = "consultasBindingNavigator";
             this.consultasBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.consultasBindingNavigator.Size = new System.Drawing.Size(656, 31);
+            this.consultasBindingNavigator.Size = new System.Drawing.Size(572, 27);
             this.consultasBindingNavigator.TabIndex = 0;
             this.consultasBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -175,13 +184,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 28);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
             // 
@@ -191,7 +200,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorDeleteItem.Text = "Excluir";
             // 
             // bindingNavigatorMoveFirstItem
@@ -200,7 +209,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primeiro";
             // 
             // bindingNavigatorMovePreviousItem
@@ -209,13 +218,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -230,7 +239,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -238,7 +247,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveNextItem.Text = "Mover próximo";
             // 
             // bindingNavigatorMoveLastItem
@@ -247,37 +256,38 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // consultasBindingNavigatorSaveItem
             // 
             this.consultasBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.consultasBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("consultasBindingNavigatorSaveItem.Image")));
             this.consultasBindingNavigatorSaveItem.Name = "consultasBindingNavigatorSaveItem";
-            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
             this.consultasBindingNavigatorSaveItem.Text = "Salvar Dados";
             this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click);
             // 
             // iD_CONSULTATextBox
             // 
             this.iD_CONSULTATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "ID_CONSULTA", true));
-            this.iD_CONSULTATextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iD_CONSULTATextBox.Location = new System.Drawing.Point(210, 55);
+            this.iD_CONSULTATextBox.Enabled = false;
+            this.iD_CONSULTATextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iD_CONSULTATextBox.Location = new System.Drawing.Point(119, 52);
             this.iD_CONSULTATextBox.Name = "iD_CONSULTATextBox";
-            this.iD_CONSULTATextBox.Size = new System.Drawing.Size(422, 30);
+            this.iD_CONSULTATextBox.Size = new System.Drawing.Size(146, 30);
             this.iD_CONSULTATextBox.TabIndex = 2;
             // 
             // nOME_PACIENTETextBox
             // 
             this.nOME_PACIENTETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "NOME_PACIENTE", true));
-            this.nOME_PACIENTETextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nOME_PACIENTETextBox.Location = new System.Drawing.Point(210, 97);
+            this.nOME_PACIENTETextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nOME_PACIENTETextBox.Location = new System.Drawing.Point(119, 97);
             this.nOME_PACIENTETextBox.Name = "nOME_PACIENTETextBox";
             this.nOME_PACIENTETextBox.Size = new System.Drawing.Size(422, 30);
             this.nOME_PACIENTETextBox.TabIndex = 4;
@@ -285,8 +295,8 @@
             // nOME_MEDICOTextBox
             // 
             this.nOME_MEDICOTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "NOME_MEDICO", true));
-            this.nOME_MEDICOTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nOME_MEDICOTextBox.Location = new System.Drawing.Point(210, 144);
+            this.nOME_MEDICOTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nOME_MEDICOTextBox.Location = new System.Drawing.Point(119, 144);
             this.nOME_MEDICOTextBox.Name = "nOME_MEDICOTextBox";
             this.nOME_MEDICOTextBox.Size = new System.Drawing.Size(422, 30);
             this.nOME_MEDICOTextBox.TabIndex = 6;
@@ -294,29 +304,105 @@
             // dATADateTimePicker
             // 
             this.dATADateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.consultasBindingSource, "DATA", true));
-            this.dATADateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dATADateTimePicker.Location = new System.Drawing.Point(210, 191);
+            this.dATADateTimePicker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dATADateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dATADateTimePicker.Location = new System.Drawing.Point(119, 191);
             this.dATADateTimePicker.Name = "dATADateTimePicker";
-            this.dATADateTimePicker.Size = new System.Drawing.Size(422, 30);
+            this.dATADateTimePicker.Size = new System.Drawing.Size(146, 30);
             this.dATADateTimePicker.TabIndex = 8;
             // 
             // hORARIODateTimePicker
             // 
             this.hORARIODateTimePicker.CustomFormat = "HH:mm";
             this.hORARIODateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.consultasBindingSource, "HORARIO", true));
-            this.hORARIODateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hORARIODateTimePicker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hORARIODateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.hORARIODateTimePicker.Location = new System.Drawing.Point(210, 237);
+            this.hORARIODateTimePicker.Location = new System.Drawing.Point(119, 234);
             this.hORARIODateTimePicker.Name = "hORARIODateTimePicker";
             this.hORARIODateTimePicker.ShowUpDown = true;
-            this.hORARIODateTimePicker.Size = new System.Drawing.Size(108, 30);
+            this.hORARIODateTimePicker.Size = new System.Drawing.Size(146, 30);
             this.hORARIODateTimePicker.TabIndex = 10;
+            // 
+            // consultasDataGridView
+            // 
+            this.consultasDataGridView.AllowUserToAddRows = false;
+            this.consultasDataGridView.AllowUserToDeleteRows = false;
+            this.consultasDataGridView.AutoGenerateColumns = false;
+            this.consultasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.consultasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.consultasDataGridView.DataSource = this.consultasBindingSource;
+            this.consultasDataGridView.Location = new System.Drawing.Point(17, 279);
+            this.consultasDataGridView.Name = "consultasDataGridView";
+            this.consultasDataGridView.ReadOnly = true;
+            this.consultasDataGridView.RowHeadersVisible = false;
+            this.consultasDataGridView.RowHeadersWidth = 51;
+            this.consultasDataGridView.RowTemplate.Height = 24;
+            this.consultasDataGridView.Size = new System.Drawing.Size(535, 331);
+            this.consultasDataGridView.TabIndex = 11;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "HORARIO";
+            dataGridViewCellStyle4.Format = "t";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Horário";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "DATA";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NOME_MEDICO";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Médico";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 135;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Paciente";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 135;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_CONSULTA";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID_CONSULTA";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 125;
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 299);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(572, 622);
+            this.Controls.Add(this.consultasDataGridView);
             this.Controls.Add(iD_CONSULTALabel);
             this.Controls.Add(this.iD_CONSULTATextBox);
             this.Controls.Add(nOME_PACIENTELabel);
@@ -339,6 +425,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).EndInit();
             this.consultasBindingNavigator.ResumeLayout(false);
             this.consultasBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,6 +455,12 @@
         private System.Windows.Forms.TextBox nOME_MEDICOTextBox;
         private System.Windows.Forms.DateTimePicker dATADateTimePicker;
         private System.Windows.Forms.DateTimePicker hORARIODateTimePicker;
+        private System.Windows.Forms.DataGridView consultasDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
 
