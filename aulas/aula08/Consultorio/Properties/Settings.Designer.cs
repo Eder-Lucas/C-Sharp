@@ -26,8 +26,7 @@ namespace Consultorio.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-F2N61N5\\SQLEXPRESS;Initial Catalog=Consultas;Integrated Secur" +
-            "ity=True;Pooling=False;Encrypt=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PLACEHOLDER")]
         public string ConsultasConnectionString {
             get {
                 return ((string)(this["ConsultasConnectionString"]));
