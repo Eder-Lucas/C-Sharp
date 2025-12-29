@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             System.Windows.Forms.Label iD_CONSULTALabel;
             System.Windows.Forms.Label nOME_PACIENTELabel;
             System.Windows.Forms.Label nOME_MEDICOLabel;
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label hORARIOLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.consultasDataSet = new Consultorio.ConsultasDataSet();
             this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultasTableAdapter = new Consultorio.ConsultasDataSetTableAdapters.ConsultasTableAdapter();
             this.tableAdapterManager = new Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
             this.consultasBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.consultasBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_CONSULTATextBox = new System.Windows.Forms.TextBox();
             this.nOME_PACIENTETextBox = new System.Windows.Forms.TextBox();
@@ -67,6 +67,56 @@
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).BeginInit();
             this.consultasBindingNavigator.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // iD_CONSULTALabel
+            // 
+            iD_CONSULTALabel.AutoSize = true;
+            iD_CONSULTALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_CONSULTALabel.Location = new System.Drawing.Point(12, 55);
+            iD_CONSULTALabel.Name = "iD_CONSULTALabel";
+            iD_CONSULTALabel.Size = new System.Drawing.Size(153, 25);
+            iD_CONSULTALabel.TabIndex = 1;
+            iD_CONSULTALabel.Text = "ID CONSULTA:";
+            // 
+            // nOME_PACIENTELabel
+            // 
+            nOME_PACIENTELabel.AutoSize = true;
+            nOME_PACIENTELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nOME_PACIENTELabel.Location = new System.Drawing.Point(12, 100);
+            nOME_PACIENTELabel.Name = "nOME_PACIENTELabel";
+            nOME_PACIENTELabel.Size = new System.Drawing.Size(183, 25);
+            nOME_PACIENTELabel.TabIndex = 3;
+            nOME_PACIENTELabel.Text = "NOME PACIENTE:";
+            // 
+            // nOME_MEDICOLabel
+            // 
+            nOME_MEDICOLabel.AutoSize = true;
+            nOME_MEDICOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nOME_MEDICOLabel.Location = new System.Drawing.Point(12, 144);
+            nOME_MEDICOLabel.Name = "nOME_MEDICOLabel";
+            nOME_MEDICOLabel.Size = new System.Drawing.Size(163, 25);
+            nOME_MEDICOLabel.TabIndex = 5;
+            nOME_MEDICOLabel.Text = "NOME MEDICO:";
+            // 
+            // dATALabel
+            // 
+            dATALabel.AutoSize = true;
+            dATALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dATALabel.Location = new System.Drawing.Point(12, 191);
+            dATALabel.Name = "dATALabel";
+            dATALabel.Size = new System.Drawing.Size(73, 25);
+            dATALabel.TabIndex = 7;
+            dATALabel.Text = "DATA:";
+            // 
+            // hORARIOLabel
+            // 
+            hORARIOLabel.AutoSize = true;
+            hORARIOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            hORARIOLabel.Location = new System.Drawing.Point(12, 237);
+            hORARIOLabel.Name = "hORARIOLabel";
+            hORARIOLabel.Size = new System.Drawing.Size(109, 25);
+            hORARIOLabel.TabIndex = 9;
+            hORARIOLabel.Text = "HORARIO:";
             // 
             // consultasDataSet
             // 
@@ -115,9 +165,34 @@
             this.consultasBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.consultasBindingNavigator.Name = "consultasBindingNavigator";
             this.consultasBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.consultasBindingNavigator.Size = new System.Drawing.Size(427, 27);
+            this.consultasBindingNavigator.Size = new System.Drawing.Size(656, 31);
             this.consultasBindingNavigator.TabIndex = 0;
             this.consultasBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Text = "de {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Excluir";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -125,7 +200,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primeiro";
             // 
             // bindingNavigatorMovePreviousItem
@@ -134,13 +209,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -152,17 +227,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posição atual";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 28);
-            this.bindingNavigatorCountItem.Text = "de {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -170,7 +238,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Mover próximo";
             // 
             // bindingNavigatorMoveLastItem
@@ -179,141 +247,76 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
-            this.bindingNavigatorDeleteItem.Text = "Excluir";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // consultasBindingNavigatorSaveItem
             // 
             this.consultasBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.consultasBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("consultasBindingNavigatorSaveItem.Image")));
             this.consultasBindingNavigatorSaveItem.Name = "consultasBindingNavigatorSaveItem";
-            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
+            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.consultasBindingNavigatorSaveItem.Text = "Salvar Dados";
             this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click);
-            // 
-            // iD_CONSULTALabel
-            // 
-            iD_CONSULTALabel.AutoSize = true;
-            iD_CONSULTALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_CONSULTALabel.Location = new System.Drawing.Point(12, 55);
-            iD_CONSULTALabel.Name = "iD_CONSULTALabel";
-            iD_CONSULTALabel.Size = new System.Drawing.Size(153, 25);
-            iD_CONSULTALabel.TabIndex = 1;
-            iD_CONSULTALabel.Text = "ID CONSULTA:";
             // 
             // iD_CONSULTATextBox
             // 
             this.iD_CONSULTATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "ID_CONSULTA", true));
             this.iD_CONSULTATextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iD_CONSULTATextBox.Location = new System.Drawing.Point(171, 55);
+            this.iD_CONSULTATextBox.Location = new System.Drawing.Point(210, 55);
             this.iD_CONSULTATextBox.Name = "iD_CONSULTATextBox";
-            this.iD_CONSULTATextBox.Size = new System.Drawing.Size(230, 30);
+            this.iD_CONSULTATextBox.Size = new System.Drawing.Size(422, 30);
             this.iD_CONSULTATextBox.TabIndex = 2;
-            // 
-            // nOME_PACIENTELabel
-            // 
-            nOME_PACIENTELabel.AutoSize = true;
-            nOME_PACIENTELabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nOME_PACIENTELabel.Location = new System.Drawing.Point(12, 100);
-            nOME_PACIENTELabel.Name = "nOME_PACIENTELabel";
-            nOME_PACIENTELabel.Size = new System.Drawing.Size(183, 25);
-            nOME_PACIENTELabel.TabIndex = 3;
-            nOME_PACIENTELabel.Text = "NOME PACIENTE:";
             // 
             // nOME_PACIENTETextBox
             // 
             this.nOME_PACIENTETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "NOME_PACIENTE", true));
             this.nOME_PACIENTETextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nOME_PACIENTETextBox.Location = new System.Drawing.Point(201, 97);
+            this.nOME_PACIENTETextBox.Location = new System.Drawing.Point(210, 97);
             this.nOME_PACIENTETextBox.Name = "nOME_PACIENTETextBox";
-            this.nOME_PACIENTETextBox.Size = new System.Drawing.Size(200, 30);
+            this.nOME_PACIENTETextBox.Size = new System.Drawing.Size(422, 30);
             this.nOME_PACIENTETextBox.TabIndex = 4;
-            // 
-            // nOME_MEDICOLabel
-            // 
-            nOME_MEDICOLabel.AutoSize = true;
-            nOME_MEDICOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nOME_MEDICOLabel.Location = new System.Drawing.Point(12, 144);
-            nOME_MEDICOLabel.Name = "nOME_MEDICOLabel";
-            nOME_MEDICOLabel.Size = new System.Drawing.Size(163, 25);
-            nOME_MEDICOLabel.TabIndex = 5;
-            nOME_MEDICOLabel.Text = "NOME MEDICO:";
             // 
             // nOME_MEDICOTextBox
             // 
             this.nOME_MEDICOTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.consultasBindingSource, "NOME_MEDICO", true));
             this.nOME_MEDICOTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nOME_MEDICOTextBox.Location = new System.Drawing.Point(181, 144);
+            this.nOME_MEDICOTextBox.Location = new System.Drawing.Point(210, 144);
             this.nOME_MEDICOTextBox.Name = "nOME_MEDICOTextBox";
-            this.nOME_MEDICOTextBox.Size = new System.Drawing.Size(220, 30);
+            this.nOME_MEDICOTextBox.Size = new System.Drawing.Size(422, 30);
             this.nOME_MEDICOTextBox.TabIndex = 6;
-            // 
-            // dATALabel
-            // 
-            dATALabel.AutoSize = true;
-            dATALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dATALabel.Location = new System.Drawing.Point(12, 191);
-            dATALabel.Name = "dATALabel";
-            dATALabel.Size = new System.Drawing.Size(73, 25);
-            dATALabel.TabIndex = 7;
-            dATALabel.Text = "DATA:";
             // 
             // dATADateTimePicker
             // 
             this.dATADateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.consultasBindingSource, "DATA", true));
             this.dATADateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dATADateTimePicker.Location = new System.Drawing.Point(91, 191);
+            this.dATADateTimePicker.Location = new System.Drawing.Point(210, 191);
             this.dATADateTimePicker.Name = "dATADateTimePicker";
-            this.dATADateTimePicker.Size = new System.Drawing.Size(310, 30);
+            this.dATADateTimePicker.Size = new System.Drawing.Size(422, 30);
             this.dATADateTimePicker.TabIndex = 8;
-            // 
-            // hORARIOLabel
-            // 
-            hORARIOLabel.AutoSize = true;
-            hORARIOLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            hORARIOLabel.Location = new System.Drawing.Point(12, 237);
-            hORARIOLabel.Name = "hORARIOLabel";
-            hORARIOLabel.Size = new System.Drawing.Size(109, 25);
-            hORARIOLabel.TabIndex = 9;
-            hORARIOLabel.Text = "HORARIO:";
             // 
             // hORARIODateTimePicker
             // 
+            this.hORARIODateTimePicker.CustomFormat = "HH:mm";
             this.hORARIODateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.consultasBindingSource, "HORARIO", true));
             this.hORARIODateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hORARIODateTimePicker.Location = new System.Drawing.Point(127, 237);
+            this.hORARIODateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.hORARIODateTimePicker.Location = new System.Drawing.Point(210, 237);
             this.hORARIODateTimePicker.Name = "hORARIODateTimePicker";
-            this.hORARIODateTimePicker.Size = new System.Drawing.Size(274, 30);
+            this.hORARIODateTimePicker.ShowUpDown = true;
+            this.hORARIODateTimePicker.Size = new System.Drawing.Size(108, 30);
             this.hORARIODateTimePicker.TabIndex = 10;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 299);
+            this.ClientSize = new System.Drawing.Size(656, 299);
             this.Controls.Add(iD_CONSULTALabel);
             this.Controls.Add(this.iD_CONSULTATextBox);
             this.Controls.Add(nOME_PACIENTELabel);
