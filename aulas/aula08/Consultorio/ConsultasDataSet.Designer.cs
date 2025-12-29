@@ -844,10 +844,8 @@ namespace Consultorio.ConsultasDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HORARIO", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HORARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Consultas] ([NOME_PACIENTE], [NOME_MEDICO], [DATA], [HORARIO])" +
-                " VALUES (@NOME_PACIENTE, @NOME_MEDICO, @DATA, @HORARIO);\r\nSELECT ID_CONSULTA, NO" +
-                "ME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Consultas] ([NOME_PACIENTE], [NOME_MEDICO], [DATA], [HORARIO]) VALUES (@NOME_PACIENTE, @NOME_MEDICO, @DATA, @HORARIO);
+SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = SCOPE_IDENTITY()) ORDER BY DATA DESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -856,7 +854,7 @@ namespace Consultorio.ConsultasDataSetTableAdapters {
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Consultas] SET [NOME_PACIENTE] = @NOME_PACIENTE, [NOME_MEDICO] = @NOME_MEDICO, [DATA] = @DATA, [HORARIO] = @HORARIO WHERE (([ID_CONSULTA] = @Original_ID_CONSULTA) AND ([NOME_PACIENTE] = @Original_NOME_PACIENTE) AND ([NOME_MEDICO] = @Original_NOME_MEDICO) AND ([DATA] = @Original_DATA) AND ([HORARIO] = @Original_HORARIO));
-SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = @ID_CONSULTA)";
+SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHERE (ID_CONSULTA = @ID_CONSULTA) ORDER BY DATA DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_PACIENTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NOME_MEDICO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -883,7 +881,8 @@ SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM Consultas WHE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM dbo.Consultas";
+            this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, NOME_PACIENTE, NOME_MEDICO, DATA, HORARIO FROM dbo.Consultas " +
+                "ORDER BY DATA DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
