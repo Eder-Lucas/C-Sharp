@@ -21,7 +21,10 @@ namespace Consultorio
         {
             this.Validate();
             this.consultasBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.consultasDataSet);
+            this.tableAdapterManager.UpdateAll(this.consultasDataSet);//faz a atualização dos dados no banco de dados
+
+            //atualiza a exibição dos dados na tela
+            this.consultasTableAdapter.Fill(this.consultasDataSet.Consultas);
 
         }
 
