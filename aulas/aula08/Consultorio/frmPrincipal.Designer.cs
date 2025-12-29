@@ -35,12 +35,8 @@
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label hORARIOLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.consultasDataSet = new Consultorio.ConsultasDataSet();
-            this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.consultasTableAdapter = new Consultorio.ConsultasDataSetTableAdapters.ConsultasTableAdapter();
-            this.tableAdapterManager = new Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.consultasBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -60,21 +56,25 @@
             this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.hORARIODateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.consultasDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.consultasDataSet = new Consultorio.ConsultasDataSet();
+            this.consultasTableAdapter = new Consultorio.ConsultasDataSetTableAdapters.ConsultasTableAdapter();
+            this.tableAdapterManager = new Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_CONSULTALabel = new System.Windows.Forms.Label();
             nOME_PACIENTELabel = new System.Windows.Forms.Label();
             nOME_MEDICOLabel = new System.Windows.Forms.Label();
             dATALabel = new System.Windows.Forms.Label();
             hORARIOLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).BeginInit();
             this.consultasBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // iD_CONSULTALabel
@@ -127,26 +127,6 @@
             hORARIOLabel.TabIndex = 9;
             hORARIOLabel.Text = "Horário:";
             // 
-            // consultasDataSet
-            // 
-            this.consultasDataSet.DataSetName = "ConsultasDataSet";
-            this.consultasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // consultasBindingSource
-            // 
-            this.consultasBindingSource.DataMember = "Consultas";
-            this.consultasBindingSource.DataSource = this.consultasDataSet;
-            // 
-            // consultasTableAdapter
-            // 
-            this.consultasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ConsultasTableAdapter = this.consultasTableAdapter;
-            this.tableAdapterManager.UpdateOrder = Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // consultasBindingNavigator
             // 
             this.consultasBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
@@ -174,7 +154,7 @@
             this.consultasBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.consultasBindingNavigator.Name = "consultasBindingNavigator";
             this.consultasBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.consultasBindingNavigator.Size = new System.Drawing.Size(572, 27);
+            this.consultasBindingNavigator.Size = new System.Drawing.Size(572, 31);
             this.consultasBindingNavigator.TabIndex = 0;
             this.consultasBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -184,7 +164,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             // 
             // bindingNavigatorCountItem
@@ -345,47 +325,25 @@
             this.consultasDataGridView.Size = new System.Drawing.Size(535, 331);
             this.consultasDataGridView.TabIndex = 11;
             // 
-            // dataGridViewTextBoxColumn5
+            // consultasBindingSource
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "HORARIO";
-            dataGridViewCellStyle4.Format = "t";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Horário";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 90;
+            this.consultasBindingSource.DataMember = "Consultas";
+            this.consultasBindingSource.DataSource = this.consultasDataSet;
             // 
-            // dataGridViewTextBoxColumn4
+            // consultasDataSet
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DATA";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 65;
+            this.consultasDataSet.DataSetName = "ConsultasDataSet";
+            this.consultasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridViewTextBoxColumn3
+            // consultasTableAdapter
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NOME_MEDICO";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Médico";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 135;
+            this.consultasTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // tableAdapterManager
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Paciente";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 135;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ConsultasTableAdapter = this.consultasTableAdapter;
+            this.tableAdapterManager.UpdateOrder = Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -396,6 +354,48 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Visible = false;
             this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Paciente";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 135;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NOME_MEDICO";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Médico";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 135;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "DATA";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "HORARIO";
+            dataGridViewCellStyle2.Format = "t";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Horário";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 90;
             // 
             // frmPrincipal
             // 
@@ -420,12 +420,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultas";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).EndInit();
             this.consultasBindingNavigator.ResumeLayout(false);
             this.consultasBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
