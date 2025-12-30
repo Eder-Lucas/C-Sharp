@@ -29,34 +29,42 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             System.Windows.Forms.Label iD_CONTALabel;
             System.Windows.Forms.Label dESCRICAOLabel;
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label cATEGORIALabel;
             System.Windows.Forms.Label vALORLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.despesasDataSet = new ControleDeDespesas.DespesasDataSet();
             this.contasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contasTableAdapter = new ControleDeDespesas.DespesasDataSetTableAdapters.ContasTableAdapter();
             this.tableAdapterManager = new ControleDeDespesas.DespesasDataSetTableAdapters.TableAdapterManager();
             this.contasBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.contasBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_CONTATextBox = new System.Windows.Forms.TextBox();
             this.dESCRICAOTextBox = new System.Windows.Forms.TextBox();
             this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.cATEGORIATextBox = new System.Windows.Forms.TextBox();
             this.vALORTextBox = new System.Windows.Forms.TextBox();
+            this.contasDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_CONTALabel = new System.Windows.Forms.Label();
             dESCRICAOLabel = new System.Windows.Forms.Label();
             dATALabel = new System.Windows.Forms.Label();
@@ -66,7 +74,58 @@
             ((System.ComponentModel.ISupportInitialize)(this.contasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contasBindingNavigator)).BeginInit();
             this.contasBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contasDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // iD_CONTALabel
+            // 
+            iD_CONTALabel.AutoSize = true;
+            iD_CONTALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            iD_CONTALabel.Location = new System.Drawing.Point(48, 44);
+            iD_CONTALabel.Name = "iD_CONTALabel";
+            iD_CONTALabel.Size = new System.Drawing.Size(84, 24);
+            iD_CONTALabel.TabIndex = 1;
+            iD_CONTALabel.Text = "Código:";
+            // 
+            // dESCRICAOLabel
+            // 
+            dESCRICAOLabel.AutoSize = true;
+            dESCRICAOLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dESCRICAOLabel.Location = new System.Drawing.Point(475, 41);
+            dESCRICAOLabel.Name = "dESCRICAOLabel";
+            dESCRICAOLabel.Size = new System.Drawing.Size(111, 24);
+            dESCRICAOLabel.TabIndex = 3;
+            dESCRICAOLabel.Text = "Descrição:";
+            // 
+            // dATALabel
+            // 
+            dATALabel.AutoSize = true;
+            dATALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dATALabel.Location = new System.Drawing.Point(254, 130);
+            dATALabel.Name = "dATALabel";
+            dATALabel.Size = new System.Drawing.Size(60, 24);
+            dATALabel.TabIndex = 5;
+            dATALabel.Text = "Data:";
+            // 
+            // cATEGORIALabel
+            // 
+            cATEGORIALabel.AutoSize = true;
+            cATEGORIALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            cATEGORIALabel.Location = new System.Drawing.Point(24, 87);
+            cATEGORIALabel.Name = "cATEGORIALabel";
+            cATEGORIALabel.Size = new System.Drawing.Size(108, 24);
+            cATEGORIALabel.TabIndex = 7;
+            cATEGORIALabel.Text = "Categoria:";
+            // 
+            // vALORLabel
+            // 
+            vALORLabel.AutoSize = true;
+            vALORLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            vALORLabel.Location = new System.Drawing.Point(67, 130);
+            vALORLabel.Name = "vALORLabel";
+            vALORLabel.Size = new System.Drawing.Size(65, 24);
+            vALORLabel.TabIndex = 9;
+            vALORLabel.Text = "Valor:";
             // 
             // despesasDataSet
             // 
@@ -115,9 +174,34 @@
             this.contasBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.contasBindingNavigator.Name = "contasBindingNavigator";
             this.contasBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.contasBindingNavigator.Size = new System.Drawing.Size(531, 27);
+            this.contasBindingNavigator.Size = new System.Drawing.Size(948, 27);
             this.contasBindingNavigator.TabIndex = 0;
             this.contasBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Text = "de {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Excluir";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -152,16 +236,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posição atual";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
-            this.bindingNavigatorCountItem.Text = "de {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -184,26 +261,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Excluir";
             // 
             // contasBindingNavigatorSaveItem
             // 
@@ -214,16 +273,6 @@
             this.contasBindingNavigatorSaveItem.Text = "Salvar Dados";
             this.contasBindingNavigatorSaveItem.Click += new System.EventHandler(this.contasBindingNavigatorSaveItem_Click);
             // 
-            // iD_CONTALabel
-            // 
-            iD_CONTALabel.AutoSize = true;
-            iD_CONTALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            iD_CONTALabel.Location = new System.Drawing.Point(48, 44);
-            iD_CONTALabel.Name = "iD_CONTALabel";
-            iD_CONTALabel.Size = new System.Drawing.Size(84, 24);
-            iD_CONTALabel.TabIndex = 1;
-            iD_CONTALabel.Text = "Código:";
-            // 
             // iD_CONTATextBox
             // 
             this.iD_CONTATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contasBindingSource, "ID_CONTA", true));
@@ -231,38 +280,18 @@
             this.iD_CONTATextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iD_CONTATextBox.Location = new System.Drawing.Point(138, 41);
             this.iD_CONTATextBox.Name = "iD_CONTATextBox";
-            this.iD_CONTATextBox.Size = new System.Drawing.Size(200, 30);
+            this.iD_CONTATextBox.Size = new System.Drawing.Size(84, 30);
             this.iD_CONTATextBox.TabIndex = 2;
-            // 
-            // dESCRICAOLabel
-            // 
-            dESCRICAOLabel.AutoSize = true;
-            dESCRICAOLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dESCRICAOLabel.Location = new System.Drawing.Point(21, 178);
-            dESCRICAOLabel.Name = "dESCRICAOLabel";
-            dESCRICAOLabel.Size = new System.Drawing.Size(111, 24);
-            dESCRICAOLabel.TabIndex = 3;
-            dESCRICAOLabel.Text = "Descrição:";
             // 
             // dESCRICAOTextBox
             // 
             this.dESCRICAOTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contasBindingSource, "DESCRICAO", true));
             this.dESCRICAOTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dESCRICAOTextBox.Location = new System.Drawing.Point(138, 178);
+            this.dESCRICAOTextBox.Location = new System.Drawing.Point(479, 71);
             this.dESCRICAOTextBox.Multiline = true;
             this.dESCRICAOTextBox.Name = "dESCRICAOTextBox";
-            this.dESCRICAOTextBox.Size = new System.Drawing.Size(303, 172);
+            this.dESCRICAOTextBox.Size = new System.Drawing.Size(441, 86);
             this.dESCRICAOTextBox.TabIndex = 4;
-            // 
-            // dATALabel
-            // 
-            dATALabel.AutoSize = true;
-            dATALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dATALabel.Location = new System.Drawing.Point(238, 130);
-            dATALabel.Name = "dATALabel";
-            dATALabel.Size = new System.Drawing.Size(60, 24);
-            dATALabel.TabIndex = 5;
-            dATALabel.Text = "Data:";
             // 
             // dATADateTimePicker
             // 
@@ -270,20 +299,10 @@
             this.dATADateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contasBindingSource, "DATA", true));
             this.dATADateTimePicker.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dATADateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dATADateTimePicker.Location = new System.Drawing.Point(304, 127);
+            this.dATADateTimePicker.Location = new System.Drawing.Point(320, 127);
             this.dATADateTimePicker.Name = "dATADateTimePicker";
             this.dATADateTimePicker.Size = new System.Drawing.Size(137, 30);
             this.dATADateTimePicker.TabIndex = 3;
-            // 
-            // cATEGORIALabel
-            // 
-            cATEGORIALabel.AutoSize = true;
-            cATEGORIALabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            cATEGORIALabel.Location = new System.Drawing.Point(24, 83);
-            cATEGORIALabel.Name = "cATEGORIALabel";
-            cATEGORIALabel.Size = new System.Drawing.Size(108, 24);
-            cATEGORIALabel.TabIndex = 7;
-            cATEGORIALabel.Text = "Categoria:";
             // 
             // cATEGORIATextBox
             // 
@@ -291,18 +310,8 @@
             this.cATEGORIATextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cATEGORIATextBox.Location = new System.Drawing.Point(138, 84);
             this.cATEGORIATextBox.Name = "cATEGORIATextBox";
-            this.cATEGORIATextBox.Size = new System.Drawing.Size(200, 30);
+            this.cATEGORIATextBox.Size = new System.Drawing.Size(319, 30);
             this.cATEGORIATextBox.TabIndex = 1;
-            // 
-            // vALORLabel
-            // 
-            vALORLabel.AutoSize = true;
-            vALORLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            vALORLabel.Location = new System.Drawing.Point(67, 124);
-            vALORLabel.Name = "vALORLabel";
-            vALORLabel.Size = new System.Drawing.Size(65, 24);
-            vALORLabel.TabIndex = 9;
-            vALORLabel.Text = "Valor:";
             // 
             // vALORTextBox
             // 
@@ -310,14 +319,88 @@
             this.vALORTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vALORTextBox.Location = new System.Drawing.Point(138, 127);
             this.vALORTextBox.Name = "vALORTextBox";
-            this.vALORTextBox.Size = new System.Drawing.Size(84, 30);
+            this.vALORTextBox.Size = new System.Drawing.Size(110, 30);
             this.vALORTextBox.TabIndex = 2;
+            // 
+            // contasDataGridView
+            // 
+            this.contasDataGridView.AllowUserToAddRows = false;
+            this.contasDataGridView.AllowUserToDeleteRows = false;
+            this.contasDataGridView.AutoGenerateColumns = false;
+            this.contasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.contasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.contasDataGridView.DataSource = this.contasBindingSource;
+            this.contasDataGridView.Location = new System.Drawing.Point(156, 198);
+            this.contasDataGridView.Name = "contasDataGridView";
+            this.contasDataGridView.ReadOnly = true;
+            this.contasDataGridView.RowHeadersVisible = false;
+            this.contasDataGridView.RowHeadersWidth = 51;
+            this.contasDataGridView.RowTemplate.Height = 24;
+            this.contasDataGridView.Size = new System.Drawing.Size(628, 299);
+            this.contasDataGridView.TabIndex = 11;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_CONTA";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 55;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "DESCRICAO";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Descrição";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "DATA";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 82;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "CATEGORIA";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Categoria";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "VALOR";
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Valor";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 77;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(531, 362);
+            this.ClientSize = new System.Drawing.Size(948, 537);
+            this.Controls.Add(this.contasDataGridView);
             this.Controls.Add(iD_CONTALabel);
             this.Controls.Add(this.iD_CONTATextBox);
             this.Controls.Add(dESCRICAOLabel);
@@ -340,6 +423,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.contasBindingNavigator)).EndInit();
             this.contasBindingNavigator.ResumeLayout(false);
             this.contasBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contasDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,6 +453,12 @@
         private System.Windows.Forms.DateTimePicker dATADateTimePicker;
         private System.Windows.Forms.TextBox cATEGORIATextBox;
         private System.Windows.Forms.TextBox vALORTextBox;
+        private System.Windows.Forms.DataGridView contasDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
 
