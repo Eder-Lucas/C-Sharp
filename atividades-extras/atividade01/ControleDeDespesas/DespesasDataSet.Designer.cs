@@ -879,12 +879,26 @@ SELECT ID_CONTA, DESCRICAO, DATA, CATEGORIA, VALOR FROM Contas WHERE (ID_CONTA =
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID_CONTA, DESCRICAO, DATA, CATEGORIA, VALOR FROM dbo.Contas ORDER BY DATA " +
                 "DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT ID_CONTA, DESCRICAO, DATA, CATEGORIA, VALOR\r\nFROM     Contas\r\nWHERE  (DATA" +
+                " >= @data) AND (CATEGORIA = @categoria)\r\nORDER BY DATA DESC";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@categoria", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "CATEGORIA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT ID_CONTA, DESCRICAO, DATA, CATEGORIA, VALOR\r\nFROM     Contas\r\nWHERE  (DATA" +
+                " >= @data) AND (VALOR = @valor)\r\nORDER BY DATA DESC";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@valor", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 8, 2, "VALOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -906,6 +920,37 @@ SELECT ID_CONTA, DESCRICAO, DATA, CATEGORIA, VALOR FROM Contas WHERE (ID_CONTA =
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual DespesasDataSet.ContasDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            DespesasDataSet.ContasDataTable dataTable = new DespesasDataSet.ContasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DespesasDataSet.ContasDataTable PesquisarCategoria(System.DateTime data, string categoria) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(data));
+            if ((categoria == null)) {
+                throw new global::System.ArgumentNullException("categoria");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(categoria));
+            }
+            DespesasDataSet.ContasDataTable dataTable = new DespesasDataSet.ContasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual DespesasDataSet.ContasDataTable PesquisarValor(System.DateTime data, decimal valor) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(data));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(valor));
             DespesasDataSet.ContasDataTable dataTable = new DespesasDataSet.ContasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

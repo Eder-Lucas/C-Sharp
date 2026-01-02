@@ -80,8 +80,8 @@
     </None>
     <None Include="DespesasDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DespesasDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DespesasDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="DespesasDataSet.xss">
       <DependentUpon>DespesasDataSet.xsd</DependentUpon>
