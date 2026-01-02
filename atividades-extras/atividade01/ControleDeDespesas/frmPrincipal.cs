@@ -30,9 +30,57 @@ namespace ControleDeDespesas
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'despesasDataSet.Contas'. Você pode movê-la ou removê-la conforme necessário.
+            // Carrega dados na tabela 'despesasDataSet.Contas'
             this.contasTableAdapter.Fill(this.despesasDataSet.Contas);
 
+            dtgPesquisa.DataSource = null;
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            Pesquisar();          
+        }
+
+        private void Pesquisar()
+        {
+            string texto = txtPesquisa.Text.Trim();
+            DataTable tabela;
+
+            if (rbCategoria.Checked)
+            {
+                if (decimal.TryParse(texto, out _) || string.IsNullOrWhiteSpace(texto))
+                {
+                    MessageBox.Show("Texto inválido. Por favor, insira uma categoria válida.", "Erro de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    txtPesquisa.Focus();
+                    return;
+                }
+
+                lblInfo.Text = "";
+                tabela = contasTableAdapter.PesquisarCategoria(dtpData.Value.Date, texto);
+            }
+            else
+            {
+                if (!decimal.TryParse(txtPesquisa.Text, out decimal valor))
+                {
+                    MessageBox.Show("Valor inválido. Por favor, insira um número válido.", "Erro de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    txtPesquisa.Focus();
+                    return;
+                }
+
+                lblInfo.Text = "";
+                tabela = contasTableAdapter.PesquisarValor(dtpData.Value.Date, valor);
+            }
+
+
+            dtgPesquisa.DataSource = tabela;
+
+            if (tabela.Rows.Count == 0)
+            {
+                MessageBox.Show("Nenhum registro encontrado com os filtros selecionados.",
+                       "Pesquisa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
