@@ -16,5 +16,20 @@ namespace Escola
         {
             InitializeComponent();
         }
+
+        private void alunosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.alunosBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.escolaDataSet);
+
+        }
+
+        private void frmControleDeAlunos_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'escolaDataSet.Alunos'. Você pode movê-la ou removê-la conforme necessário.
+            this.alunosTableAdapter.Fill(this.escolaDataSet.Alunos);
+
+        }
     }
 }
