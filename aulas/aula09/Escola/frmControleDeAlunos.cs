@@ -31,5 +31,17 @@ namespace Escola
             this.alunosTableAdapter.Fill(this.escolaDataSet.Alunos);
 
         }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            if (rbAluno.Checked)
+            {
+                dtgPesquisa.DataSource = alunosTableAdapter.RetornarAluno(txtPesquisa.Text);
+            }
+            else
+            {
+                dtgPesquisa.DataSource = alunosTableAdapter.RetornarCurso(txtPesquisa.Text);
+            }
+        }
     }
 }
