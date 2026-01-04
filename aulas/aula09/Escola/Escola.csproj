@@ -70,14 +70,15 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="EscolaDataSet.xsc">
       <DependentUpon>EscolaDataSet.xsd</DependentUpon>
     </None>
     <None Include="EscolaDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EscolaDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>EscolaDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="EscolaDataSet.xss">
       <DependentUpon>EscolaDataSet.xsd</DependentUpon>
@@ -94,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
