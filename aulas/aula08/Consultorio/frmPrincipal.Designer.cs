@@ -34,56 +34,59 @@
             System.Windows.Forms.Label nOME_MEDICOLabel;
             System.Windows.Forms.Label dATALabel;
             System.Windows.Forms.Label hORARIOLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.consultasBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.consultasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.consultasDataSet = new Consultorio.ConsultasDataSet();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.consultasBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_CONSULTATextBox = new System.Windows.Forms.TextBox();
             this.nOME_PACIENTETextBox = new System.Windows.Forms.TextBox();
             this.nOME_MEDICOTextBox = new System.Windows.Forms.TextBox();
             this.dATADateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.hORARIODateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.consultasDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dtgPesquisa = new System.Windows.Forms.DataGridView();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PACIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MEDICO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HORARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.rbPaciente = new System.Windows.Forms.RadioButton();
             this.rbMedico = new System.Windows.Forms.RadioButton();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.consultasTableAdapter = new Consultorio.ConsultasDataSetTableAdapters.ConsultasTableAdapter();
             this.tableAdapterManager = new Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.btnPesquisar = new System.Windows.Forms.Button();
-            this.consultasBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PACIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MEDICO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HORARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_CONSULTALabel = new System.Windows.Forms.Label();
             nOME_PACIENTELabel = new System.Windows.Forms.Label();
             nOME_MEDICOLabel = new System.Windows.Forms.Label();
             dATALabel = new System.Windows.Forms.Label();
             hORARIOLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).BeginInit();
+            this.consultasBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).BeginInit();
@@ -150,6 +153,19 @@
             this.consultasBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.consultasBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
             this.consultasBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.consultasBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.consultasBindingNavigatorSaveItem});
             this.consultasBindingNavigator.Location = new System.Drawing.Point(3, 3);
             this.consultasBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.consultasBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -157,9 +173,18 @@
             this.consultasBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.consultasBindingNavigator.Name = "consultasBindingNavigator";
             this.consultasBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.consultasBindingNavigator.Size = new System.Drawing.Size(565, 25);
+            this.consultasBindingNavigator.Size = new System.Drawing.Size(565, 27);
             this.consultasBindingNavigator.TabIndex = 0;
             this.consultasBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             // 
             // consultasBindingSource
             // 
@@ -177,6 +202,51 @@
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de itens";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Excluir";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Text = "Mover primeiro";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Text = "Mover último";
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Text = "Mover próximo";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorPositionItem
             // 
@@ -202,6 +272,15 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // consultasBindingNavigatorSaveItem
+            // 
+            this.consultasBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.consultasBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("consultasBindingNavigatorSaveItem.Image")));
+            this.consultasBindingNavigatorSaveItem.Name = "consultasBindingNavigatorSaveItem";
+            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
+            this.consultasBindingNavigatorSaveItem.Text = "Salvar Dados";
+            this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click);
             // 
             // iD_CONSULTATextBox
             // 
@@ -266,66 +345,14 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.consultasDataGridView.DataSource = this.consultasBindingSource;
-            this.consultasDataGridView.Location = new System.Drawing.Point(20, 282);
+            this.consultasDataGridView.Location = new System.Drawing.Point(0, 282);
             this.consultasDataGridView.Name = "consultasDataGridView";
             this.consultasDataGridView.ReadOnly = true;
             this.consultasDataGridView.RowHeadersVisible = false;
             this.consultasDataGridView.RowHeadersWidth = 51;
             this.consultasDataGridView.RowTemplate.Height = 24;
-            this.consultasDataGridView.Size = new System.Drawing.Size(535, 331);
+            this.consultasDataGridView.Size = new System.Drawing.Size(571, 352);
             this.consultasDataGridView.TabIndex = 11;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_CONSULTA";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID_CONSULTA";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Paciente";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 135;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NOME_MEDICO";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Médico";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 135;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DATA";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Data";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "HORARIO";
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Horário";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 90;
             // 
             // tabControl1
             // 
@@ -386,60 +413,26 @@
             this.MEDICO,
             this.DATA,
             this.HORARIO});
-            this.dtgPesquisa.Location = new System.Drawing.Point(8, 118);
+            this.dtgPesquisa.Location = new System.Drawing.Point(0, 118);
             this.dtgPesquisa.Name = "dtgPesquisa";
             this.dtgPesquisa.ReadOnly = true;
             this.dtgPesquisa.RowHeadersVisible = false;
             this.dtgPesquisa.RowHeadersWidth = 51;
             this.dtgPesquisa.RowTemplate.Height = 24;
-            this.dtgPesquisa.Size = new System.Drawing.Size(555, 508);
+            this.dtgPesquisa.Size = new System.Drawing.Size(571, 516);
             this.dtgPesquisa.TabIndex = 4;
             // 
-            // CODIGO
+            // btnPesquisar
             // 
-            this.CODIGO.DataPropertyName = "ID_CONSULTA";
-            this.CODIGO.HeaderText = "Código";
-            this.CODIGO.MinimumWidth = 6;
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.Visible = false;
-            this.CODIGO.Width = 125;
-            // 
-            // PACIENTE
-            // 
-            this.PACIENTE.DataPropertyName = "NOME_PACIENTE";
-            this.PACIENTE.HeaderText = "Paciente";
-            this.PACIENTE.MinimumWidth = 6;
-            this.PACIENTE.Name = "PACIENTE";
-            this.PACIENTE.ReadOnly = true;
-            this.PACIENTE.Width = 125;
-            // 
-            // MEDICO
-            // 
-            this.MEDICO.DataPropertyName = "NOME_MEDICO";
-            this.MEDICO.HeaderText = "Médico";
-            this.MEDICO.MinimumWidth = 6;
-            this.MEDICO.Name = "MEDICO";
-            this.MEDICO.ReadOnly = true;
-            this.MEDICO.Width = 125;
-            // 
-            // DATA
-            // 
-            this.DATA.DataPropertyName = "DATA";
-            this.DATA.HeaderText = "Data";
-            this.DATA.MinimumWidth = 6;
-            this.DATA.Name = "DATA";
-            this.DATA.ReadOnly = true;
-            this.DATA.Width = 125;
-            // 
-            // HORARIO
-            // 
-            this.HORARIO.DataPropertyName = "HORARIO";
-            this.HORARIO.HeaderText = "Horário";
-            this.HORARIO.MinimumWidth = 6;
-            this.HORARIO.Name = "HORARIO";
-            this.HORARIO.ReadOnly = true;
-            this.HORARIO.Width = 125;
+            this.btnPesquisar.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisar.Image = global::Consultorio.Properties.Resources.search;
+            this.btnPesquisar.Location = new System.Drawing.Point(479, 19);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(84, 61);
+            this.btnPesquisar.TabIndex = 3;
+            this.btnPesquisar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // rbPaciente
             // 
@@ -483,80 +476,109 @@
             this.tableAdapterManager.ConsultasTableAdapter = this.consultasTableAdapter;
             this.tableAdapterManager.UpdateOrder = Consultorio.ConsultasDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // bindingNavigatorAddNewItem
+            // dataGridViewTextBoxColumn1
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_CONSULTA";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID_CONSULTA";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 125;
             // 
-            // bindingNavigatorDeleteItem
+            // dataGridViewTextBoxColumn2
             // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Excluir";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Paciente";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 210;
             // 
-            // bindingNavigatorMoveFirstItem
+            // dataGridViewTextBoxColumn3
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveFirstItem.Text = "Mover primeiro";
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NOME_MEDICO";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Médico";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 200;
             // 
-            // bindingNavigatorMoveLastItem
+            // dataGridViewTextBoxColumn4
             // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveLastItem.Text = "Mover último";
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "DATA";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Data";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 82;
             // 
-            // bindingNavigatorMoveNextItem
+            // dataGridViewTextBoxColumn5
             // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMoveNextItem.Text = "Mover próximo";
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "HORARIO";
+            dataGridViewCellStyle2.Format = "t";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Horário";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 76;
             // 
-            // bindingNavigatorMovePreviousItem
+            // CODIGO
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
+            this.CODIGO.DataPropertyName = "ID_CONSULTA";
+            this.CODIGO.HeaderText = "Código";
+            this.CODIGO.MinimumWidth = 6;
+            this.CODIGO.Name = "CODIGO";
+            this.CODIGO.ReadOnly = true;
+            this.CODIGO.Visible = false;
+            this.CODIGO.Width = 125;
             // 
-            // btnPesquisar
+            // PACIENTE
             // 
-            this.btnPesquisar.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisar.Image = global::Consultorio.Properties.Resources.search;
-            this.btnPesquisar.Location = new System.Drawing.Point(479, 19);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(84, 61);
-            this.btnPesquisar.TabIndex = 3;
-            this.btnPesquisar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPesquisar.UseVisualStyleBackColor = true;
-            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            this.PACIENTE.DataPropertyName = "NOME_PACIENTE";
+            this.PACIENTE.HeaderText = "Paciente";
+            this.PACIENTE.MinimumWidth = 6;
+            this.PACIENTE.Name = "PACIENTE";
+            this.PACIENTE.ReadOnly = true;
+            this.PACIENTE.Width = 210;
             // 
-            // consultasBindingNavigatorSaveItem
+            // MEDICO
             // 
-            this.consultasBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.consultasBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("consultasBindingNavigatorSaveItem.Image")));
-            this.consultasBindingNavigatorSaveItem.Name = "consultasBindingNavigatorSaveItem";
-            this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
-            this.consultasBindingNavigatorSaveItem.Text = "Salvar Dados";
-            this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click);
+            this.MEDICO.DataPropertyName = "NOME_MEDICO";
+            this.MEDICO.HeaderText = "Médico";
+            this.MEDICO.MinimumWidth = 6;
+            this.MEDICO.Name = "MEDICO";
+            this.MEDICO.ReadOnly = true;
+            this.MEDICO.Width = 200;
+            // 
+            // DATA
+            // 
+            this.DATA.DataPropertyName = "DATA";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DATA.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DATA.HeaderText = "Data";
+            this.DATA.MinimumWidth = 6;
+            this.DATA.Name = "DATA";
+            this.DATA.ReadOnly = true;
+            this.DATA.Width = 82;
+            // 
+            // HORARIO
+            // 
+            this.HORARIO.DataPropertyName = "HORARIO";
+            dataGridViewCellStyle4.Format = "t";
+            dataGridViewCellStyle4.NullValue = null;
+            this.HORARIO.DefaultCellStyle = dataGridViewCellStyle4;
+            this.HORARIO.HeaderText = "Horário";
+            this.HORARIO.MinimumWidth = 6;
+            this.HORARIO.Name = "HORARIO";
+            this.HORARIO.ReadOnly = true;
+            this.HORARIO.Width = 76;
             // 
             // frmPrincipal
             // 
@@ -571,6 +593,8 @@
             this.Text = "Consultas";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingNavigator)).EndInit();
+            this.consultasBindingNavigator.ResumeLayout(false);
+            this.consultasBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.consultasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consultasDataGridView)).EndInit();
@@ -609,11 +633,6 @@
         private System.Windows.Forms.DateTimePicker dATADateTimePicker;
         private System.Windows.Forms.DateTimePicker hORARIODateTimePicker;
         private System.Windows.Forms.DataGridView consultasDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -621,12 +640,17 @@
         private System.Windows.Forms.RadioButton rbMedico;
         private System.Windows.Forms.RadioButton rbPaciente;
         private System.Windows.Forms.DataGridView dtgPesquisa;
+        private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn PACIENTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn MEDICO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DATA;
         private System.Windows.Forms.DataGridViewTextBoxColumn HORARIO;
-        private System.Windows.Forms.Button btnPesquisar;
     }
 }
 
