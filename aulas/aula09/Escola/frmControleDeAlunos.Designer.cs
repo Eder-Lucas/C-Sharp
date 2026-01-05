@@ -35,16 +35,14 @@
             System.Windows.Forms.Label eMAILLabel;
             System.Windows.Forms.Label cURSOLabel;
             System.Windows.Forms.Label nASCIMENTOLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmControleDeAlunos));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.alunosDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alunosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.escolaDataSet = new Escola.EscolaDataSet();
             this.alunosBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
@@ -68,18 +66,24 @@
             this.nASCIMENTODateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dtgPesquisa = new System.Windows.Forms.DataGridView();
-            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ALUNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TELEFONE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EMAIL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CURSO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NASCIMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.rbCurso = new System.Windows.Forms.RadioButton();
             this.rbAluno = new System.Windows.Forms.RadioButton();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.alunosTableAdapter = new Escola.EscolaDataSetTableAdapters.AlunosTableAdapter();
             this.tableAdapterManager = new Escola.EscolaDataSetTableAdapters.TableAdapterManager();
+            this.CÓDIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CODIGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ALUNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TELEFONE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EMAIL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CURSO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NASCIMENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_ALUNOLabel = new System.Windows.Forms.Label();
             nOMELabel = new System.Windows.Forms.Label();
             tELEFONELabel = new System.Windows.Forms.Label();
@@ -100,7 +104,7 @@
             // iD_ALUNOLabel
             // 
             iD_ALUNOLabel.AutoSize = true;
-            iD_ALUNOLabel.Location = new System.Drawing.Point(41, 53);
+            iD_ALUNOLabel.Location = new System.Drawing.Point(45, 53);
             iD_ALUNOLabel.Name = "iD_ALUNOLabel";
             iD_ALUNOLabel.Size = new System.Drawing.Size(72, 21);
             iD_ALUNOLabel.TabIndex = 0;
@@ -109,7 +113,7 @@
             // nOMELabel
             // 
             nOMELabel.AutoSize = true;
-            nOMELabel.Location = new System.Drawing.Point(51, 96);
+            nOMELabel.Location = new System.Drawing.Point(55, 96);
             nOMELabel.Name = "nOMELabel";
             nOMELabel.Size = new System.Drawing.Size(62, 21);
             nOMELabel.TabIndex = 2;
@@ -118,7 +122,7 @@
             // tELEFONELabel
             // 
             tELEFONELabel.AutoSize = true;
-            tELEFONELabel.Location = new System.Drawing.Point(32, 139);
+            tELEFONELabel.Location = new System.Drawing.Point(33, 139);
             tELEFONELabel.Name = "tELEFONELabel";
             tELEFONELabel.Size = new System.Drawing.Size(84, 21);
             tELEFONELabel.TabIndex = 4;
@@ -127,7 +131,7 @@
             // eMAILLabel
             // 
             eMAILLabel.AutoSize = true;
-            eMAILLabel.Location = new System.Drawing.Point(56, 182);
+            eMAILLabel.Location = new System.Drawing.Point(58, 182);
             eMAILLabel.Name = "eMAILLabel";
             eMAILLabel.Size = new System.Drawing.Size(59, 21);
             eMAILLabel.TabIndex = 6;
@@ -136,7 +140,7 @@
             // cURSOLabel
             // 
             cURSOLabel.AutoSize = true;
-            cURSOLabel.Location = new System.Drawing.Point(53, 225);
+            cURSOLabel.Location = new System.Drawing.Point(54, 225);
             cURSOLabel.Name = "cURSOLabel";
             cURSOLabel.Size = new System.Drawing.Size(63, 21);
             cURSOLabel.TabIndex = 8;
@@ -159,7 +163,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(495, 747);
+            this.tabControl1.Size = new System.Drawing.Size(649, 747);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -183,7 +187,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(487, 718);
+            this.tabPage1.Size = new System.Drawing.Size(641, 718);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cadastro";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -192,80 +196,37 @@
             // 
             this.alunosDataGridView.AllowUserToAddRows = false;
             this.alunosDataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle61.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alunosDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
             this.alunosDataGridView.AutoGenerateColumns = false;
             this.alunosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.alunosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.CÓDIGO,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.alunosDataGridView.DataSource = this.alunosBindingSource;
+            this.alunosDataGridView.EnableHeadersVisualStyles = false;
             this.alunosDataGridView.Location = new System.Drawing.Point(0, 309);
             this.alunosDataGridView.Name = "alunosDataGridView";
             this.alunosDataGridView.ReadOnly = true;
+            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle63.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle63.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle63.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle63.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle63.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.alunosDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle63;
             this.alunosDataGridView.RowHeadersVisible = false;
             this.alunosDataGridView.RowHeadersWidth = 51;
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alunosDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle64;
             this.alunosDataGridView.RowTemplate.Height = 24;
-            this.alunosDataGridView.Size = new System.Drawing.Size(487, 409);
+            this.alunosDataGridView.Size = new System.Drawing.Size(641, 409);
             this.alunosDataGridView.TabIndex = 13;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_ALUNO";
-            this.dataGridViewTextBoxColumn1.HeaderText = "CÓDIGO";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME";
-            this.dataGridViewTextBoxColumn2.HeaderText = "NOME";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TELEFONE";
-            this.dataGridViewTextBoxColumn3.HeaderText = "TELEFONE";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 140;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "EMAIL";
-            this.dataGridViewTextBoxColumn4.HeaderText = "EMAIL";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "CURSO";
-            this.dataGridViewTextBoxColumn5.HeaderText = "CURSO";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 97;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "NASCIMENTO";
-            this.dataGridViewTextBoxColumn6.HeaderText = "NASCIMENTO";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            this.dataGridViewTextBoxColumn6.Width = 125;
             // 
             // alunosBindingSource
             // 
@@ -304,7 +265,7 @@
             this.alunosBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.alunosBindingNavigator.Name = "alunosBindingNavigator";
             this.alunosBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.alunosBindingNavigator.Size = new System.Drawing.Size(481, 27);
+            this.alunosBindingNavigator.Size = new System.Drawing.Size(635, 31);
             this.alunosBindingNavigator.TabIndex = 1;
             this.alunosBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -314,7 +275,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             // 
             // bindingNavigatorCountItem
@@ -407,7 +368,7 @@
             // 
             this.iD_ALUNOTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alunosBindingSource, "ID_ALUNO", true));
             this.iD_ALUNOTextBox.Enabled = false;
-            this.iD_ALUNOTextBox.Location = new System.Drawing.Point(119, 46);
+            this.iD_ALUNOTextBox.Location = new System.Drawing.Point(123, 46);
             this.iD_ALUNOTextBox.Name = "iD_ALUNOTextBox";
             this.iD_ALUNOTextBox.Size = new System.Drawing.Size(142, 28);
             this.iD_ALUNOTextBox.TabIndex = 1;
@@ -415,15 +376,15 @@
             // nOMETextBox
             // 
             this.nOMETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alunosBindingSource, "NOME", true));
-            this.nOMETextBox.Location = new System.Drawing.Point(119, 89);
+            this.nOMETextBox.Location = new System.Drawing.Point(123, 89);
             this.nOMETextBox.Name = "nOMETextBox";
-            this.nOMETextBox.Size = new System.Drawing.Size(358, 28);
+            this.nOMETextBox.Size = new System.Drawing.Size(378, 28);
             this.nOMETextBox.TabIndex = 3;
             // 
             // tELEFONEMaskedTextBox
             // 
             this.tELEFONEMaskedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alunosBindingSource, "TELEFONE", true));
-            this.tELEFONEMaskedTextBox.Location = new System.Drawing.Point(119, 132);
+            this.tELEFONEMaskedTextBox.Location = new System.Drawing.Point(123, 132);
             this.tELEFONEMaskedTextBox.Name = "tELEFONEMaskedTextBox";
             this.tELEFONEMaskedTextBox.Size = new System.Drawing.Size(205, 28);
             this.tELEFONEMaskedTextBox.TabIndex = 5;
@@ -431,15 +392,15 @@
             // eMAILTextBox
             // 
             this.eMAILTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alunosBindingSource, "EMAIL", true));
-            this.eMAILTextBox.Location = new System.Drawing.Point(119, 175);
+            this.eMAILTextBox.Location = new System.Drawing.Point(123, 175);
             this.eMAILTextBox.Name = "eMAILTextBox";
-            this.eMAILTextBox.Size = new System.Drawing.Size(358, 28);
+            this.eMAILTextBox.Size = new System.Drawing.Size(378, 28);
             this.eMAILTextBox.TabIndex = 7;
             // 
             // cURSOTextBox
             // 
             this.cURSOTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alunosBindingSource, "CURSO", true));
-            this.cURSOTextBox.Location = new System.Drawing.Point(119, 218);
+            this.cURSOTextBox.Location = new System.Drawing.Point(123, 218);
             this.cURSOTextBox.Name = "cURSOTextBox";
             this.cURSOTextBox.Size = new System.Drawing.Size(205, 28);
             this.cURSOTextBox.TabIndex = 9;
@@ -448,7 +409,7 @@
             // 
             this.nASCIMENTODateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.alunosBindingSource, "NASCIMENTO", true));
             this.nASCIMENTODateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.nASCIMENTODateTimePicker.Location = new System.Drawing.Point(119, 261);
+            this.nASCIMENTODateTimePicker.Location = new System.Drawing.Point(123, 261);
             this.nASCIMENTODateTimePicker.Name = "nASCIMENTODateTimePicker";
             this.nASCIMENTODateTimePicker.Size = new System.Drawing.Size(142, 28);
             this.nASCIMENTODateTimePicker.TabIndex = 11;
@@ -463,7 +424,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(487, 718);
+            this.tabPage2.Size = new System.Drawing.Size(641, 718);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pesquisas";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -480,78 +441,27 @@
             this.EMAIL,
             this.CURSO,
             this.NASCIMENTO});
+            this.dtgPesquisa.EnableHeadersVisualStyles = false;
             this.dtgPesquisa.Location = new System.Drawing.Point(0, 121);
             this.dtgPesquisa.Name = "dtgPesquisa";
             this.dtgPesquisa.ReadOnly = true;
             this.dtgPesquisa.RowHeadersVisible = false;
             this.dtgPesquisa.RowHeadersWidth = 51;
             this.dtgPesquisa.RowTemplate.Height = 24;
-            this.dtgPesquisa.Size = new System.Drawing.Size(487, 597);
+            this.dtgPesquisa.Size = new System.Drawing.Size(641, 597);
             this.dtgPesquisa.TabIndex = 3;
-            // 
-            // CODIGO
-            // 
-            this.CODIGO.DataPropertyName = "ID_ALUNO";
-            this.CODIGO.HeaderText = "CÓDIGO";
-            this.CODIGO.MinimumWidth = 6;
-            this.CODIGO.Name = "CODIGO";
-            this.CODIGO.ReadOnly = true;
-            this.CODIGO.Width = 125;
-            // 
-            // ALUNO
-            // 
-            this.ALUNO.DataPropertyName = "NOME";
-            this.ALUNO.HeaderText = "ALUNO";
-            this.ALUNO.MinimumWidth = 6;
-            this.ALUNO.Name = "ALUNO";
-            this.ALUNO.ReadOnly = true;
-            this.ALUNO.Width = 125;
-            // 
-            // TELEFONE
-            // 
-            this.TELEFONE.DataPropertyName = "TELEFONE";
-            this.TELEFONE.HeaderText = "TELEFONE";
-            this.TELEFONE.MinimumWidth = 6;
-            this.TELEFONE.Name = "TELEFONE";
-            this.TELEFONE.ReadOnly = true;
-            this.TELEFONE.Width = 125;
-            // 
-            // EMAIL
-            // 
-            this.EMAIL.DataPropertyName = "EMAIL";
-            this.EMAIL.HeaderText = "E-MAIL";
-            this.EMAIL.MinimumWidth = 6;
-            this.EMAIL.Name = "EMAIL";
-            this.EMAIL.ReadOnly = true;
-            this.EMAIL.Visible = false;
-            this.EMAIL.Width = 125;
-            // 
-            // CURSO
-            // 
-            this.CURSO.DataPropertyName = "CURSO";
-            this.CURSO.HeaderText = "CURSO";
-            this.CURSO.MinimumWidth = 6;
-            this.CURSO.Name = "CURSO";
-            this.CURSO.ReadOnly = true;
-            this.CURSO.Width = 125;
-            // 
-            // NASCIMENTO
-            // 
-            this.NASCIMENTO.DataPropertyName = "NASCIMENTO";
-            this.NASCIMENTO.HeaderText = "NASCIMENTO";
-            this.NASCIMENTO.MinimumWidth = 6;
-            this.NASCIMENTO.Name = "NASCIMENTO";
-            this.NASCIMENTO.ReadOnly = true;
-            this.NASCIMENTO.Visible = false;
-            this.NASCIMENTO.Width = 125;
             // 
             // btnPesquisar
             // 
+            this.btnPesquisar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesquisar.Image = global::Escola.Properties.Resources.search;
-            this.btnPesquisar.Location = new System.Drawing.Point(404, 15);
+            this.btnPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPesquisar.Location = new System.Drawing.Point(490, 15);
             this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(64, 64);
+            this.btnPesquisar.Size = new System.Drawing.Size(131, 64);
             this.btnPesquisar.TabIndex = 2;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPesquisar.UseVisualStyleBackColor = true;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
@@ -584,7 +494,7 @@
             this.txtPesquisa.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisa.Location = new System.Drawing.Point(17, 15);
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(368, 28);
+            this.txtPesquisa.Size = new System.Drawing.Size(449, 28);
             this.txtPesquisa.TabIndex = 0;
             // 
             // alunosTableAdapter
@@ -597,14 +507,129 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.UpdateOrder = Escola.EscolaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // CÓDIGO
+            // 
+            this.CÓDIGO.DataPropertyName = "ID_ALUNO";
+            dataGridViewCellStyle62.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CÓDIGO.DefaultCellStyle = dataGridViewCellStyle62;
+            this.CÓDIGO.HeaderText = "CÓDIGO";
+            this.CÓDIGO.MinimumWidth = 6;
+            this.CÓDIGO.Name = "CÓDIGO";
+            this.CÓDIGO.ReadOnly = true;
+            this.CÓDIGO.Width = 95;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME";
+            this.dataGridViewTextBoxColumn2.HeaderText = "NOME";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 260;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "TELEFONE";
+            this.dataGridViewTextBoxColumn3.HeaderText = "TELEFONE";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 145;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "EMAIL";
+            this.dataGridViewTextBoxColumn4.HeaderText = "EMAIL";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "CURSO";
+            this.dataGridViewTextBoxColumn5.HeaderText = "CURSO";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 138;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "NASCIMENTO";
+            this.dataGridViewTextBoxColumn6.HeaderText = "NASCIMENTO";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // CODIGO
+            // 
+            this.CODIGO.DataPropertyName = "ID_ALUNO";
+            this.CODIGO.HeaderText = "CÓDIGO";
+            this.CODIGO.MinimumWidth = 6;
+            this.CODIGO.Name = "CODIGO";
+            this.CODIGO.ReadOnly = true;
+            this.CODIGO.Width = 67;
+            // 
+            // ALUNO
+            // 
+            this.ALUNO.DataPropertyName = "NOME";
+            this.ALUNO.HeaderText = "ALUNO";
+            this.ALUNO.MinimumWidth = 6;
+            this.ALUNO.Name = "ALUNO";
+            this.ALUNO.ReadOnly = true;
+            this.ALUNO.Width = 320;
+            // 
+            // TELEFONE
+            // 
+            this.TELEFONE.DataPropertyName = "TELEFONE";
+            this.TELEFONE.HeaderText = "TELEFONE";
+            this.TELEFONE.MinimumWidth = 6;
+            this.TELEFONE.Name = "TELEFONE";
+            this.TELEFONE.ReadOnly = true;
+            this.TELEFONE.Width = 110;
+            // 
+            // EMAIL
+            // 
+            this.EMAIL.DataPropertyName = "EMAIL";
+            this.EMAIL.HeaderText = "E-MAIL";
+            this.EMAIL.MinimumWidth = 6;
+            this.EMAIL.Name = "EMAIL";
+            this.EMAIL.ReadOnly = true;
+            this.EMAIL.Visible = false;
+            this.EMAIL.Width = 125;
+            // 
+            // CURSO
+            // 
+            this.CURSO.DataPropertyName = "CURSO";
+            this.CURSO.HeaderText = "CURSO";
+            this.CURSO.MinimumWidth = 6;
+            this.CURSO.Name = "CURSO";
+            this.CURSO.ReadOnly = true;
+            this.CURSO.Width = 141;
+            // 
+            // NASCIMENTO
+            // 
+            this.NASCIMENTO.DataPropertyName = "NASCIMENTO";
+            this.NASCIMENTO.HeaderText = "NASCIMENTO";
+            this.NASCIMENTO.MinimumWidth = 6;
+            this.NASCIMENTO.Name = "NASCIMENTO";
+            this.NASCIMENTO.ReadOnly = true;
+            this.NASCIMENTO.Visible = false;
+            this.NASCIMENTO.Width = 125;
+            // 
             // frmControleDeAlunos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 747);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(649, 747);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "frmControleDeAlunos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Controle de Alunos";
             this.Load += new System.EventHandler(this.frmControleDeAlunos_Load);
             this.tabControl1.ResumeLayout(false);
@@ -652,17 +677,17 @@
         private System.Windows.Forms.TextBox cURSOTextBox;
         private System.Windows.Forms.DateTimePicker nASCIMENTODateTimePicker;
         private System.Windows.Forms.DataGridView alunosDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.RadioButton rbAluno;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.RadioButton rbCurso;
         private System.Windows.Forms.DataGridView dtgPesquisa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CÓDIGO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODIGO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ALUNO;
         private System.Windows.Forms.DataGridViewTextBoxColumn TELEFONE;
