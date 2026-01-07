@@ -16,5 +16,20 @@ namespace ControleConsultorio
         {
             InitializeComponent();
         }
+
+        private void medicoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.medicoBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.consultasDataSet);
+
+        }
+
+        private void frmMedicos_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'consultasDataSet.Medico'. Você pode movê-la ou removê-la conforme necessário.
+            this.medicoTableAdapter.Fill(this.consultasDataSet.Medico);
+
+        }
     }
 }
