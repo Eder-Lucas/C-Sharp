@@ -16,5 +16,12 @@ namespace ControleConsultorio
         {
             InitializeComponent();
         }
+
+        private void btnMedicos_Click(object sender, EventArgs e)
+        {
+            // Instancia o formulário de médicos e depois o exibe
+            frmMedicos novoMedico = new frmMedicos();
+            novoMedico.ShowDialog();
+        }
     }
 }
