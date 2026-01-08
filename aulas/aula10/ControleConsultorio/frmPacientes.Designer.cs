@@ -65,6 +65,16 @@
             this.cEPMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.sEXOComboBox = new System.Windows.Forms.ComboBox();
             this.tELEFONEMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.pacienteDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_PACIENTELabel = new System.Windows.Forms.Label();
             nOME_PACIENTELabel = new System.Windows.Forms.Label();
             rUALabel = new System.Windows.Forms.Label();
@@ -78,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pacienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pacienteBindingNavigator)).BeginInit();
             this.pacienteBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pacienteDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // iD_PACIENTELabel
@@ -219,7 +230,7 @@
             this.pacienteBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.pacienteBindingNavigator.Name = "pacienteBindingNavigator";
             this.pacienteBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.pacienteBindingNavigator.Size = new System.Drawing.Size(692, 27);
+            this.pacienteBindingNavigator.Size = new System.Drawing.Size(700, 27);
             this.pacienteBindingNavigator.TabIndex = 0;
             this.pacienteBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -410,11 +421,126 @@
             this.tELEFONEMaskedTextBox.Size = new System.Drawing.Size(130, 27);
             this.tELEFONEMaskedTextBox.TabIndex = 18;
             // 
+            // pacienteDataGridView
+            // 
+            this.pacienteDataGridView.AllowUserToAddRows = false;
+            this.pacienteDataGridView.AllowUserToDeleteRows = false;
+            this.pacienteDataGridView.AllowUserToResizeColumns = false;
+            this.pacienteDataGridView.AllowUserToResizeRows = false;
+            this.pacienteDataGridView.AutoGenerateColumns = false;
+            this.pacienteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.pacienteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9});
+            this.pacienteDataGridView.DataSource = this.pacienteBindingSource;
+            this.pacienteDataGridView.Location = new System.Drawing.Point(12, 285);
+            this.pacienteDataGridView.Name = "pacienteDataGridView";
+            this.pacienteDataGridView.ReadOnly = true;
+            this.pacienteDataGridView.RowHeadersVisible = false;
+            this.pacienteDataGridView.RowHeadersWidth = 51;
+            this.pacienteDataGridView.RowTemplate.Height = 24;
+            this.pacienteDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.pacienteDataGridView.Size = new System.Drawing.Size(676, 282);
+            this.pacienteDataGridView.TabIndex = 19;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_PACIENTE";
+            this.dataGridViewTextBoxColumn1.HeaderText = "CÓDIGO";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOME_PACIENTE";
+            this.dataGridViewTextBoxColumn2.HeaderText = "NOME";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 403;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "RUA";
+            this.dataGridViewTextBoxColumn3.HeaderText = "RUA";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "NUMERO";
+            this.dataGridViewTextBoxColumn4.HeaderText = "NUMERO";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "BAIRRO";
+            this.dataGridViewTextBoxColumn5.HeaderText = "BAIRRO";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "CIDADE";
+            this.dataGridViewTextBoxColumn6.HeaderText = "CIDADE";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "CEP";
+            this.dataGridViewTextBoxColumn7.HeaderText = "CEP";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SEXO";
+            this.dataGridViewTextBoxColumn8.HeaderText = "SEXO";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "TELEFONE";
+            this.dataGridViewTextBoxColumn9.HeaderText = "TELEFONE";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
             // frmPacientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 539);
+            this.ClientSize = new System.Drawing.Size(700, 579);
+            this.Controls.Add(this.pacienteDataGridView);
             this.Controls.Add(iD_PACIENTELabel);
             this.Controls.Add(this.iD_PACIENTETextBox);
             this.Controls.Add(nOME_PACIENTELabel);
@@ -447,6 +573,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pacienteBindingNavigator)).EndInit();
             this.pacienteBindingNavigator.ResumeLayout(false);
             this.pacienteBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pacienteDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -480,5 +607,15 @@
         private System.Windows.Forms.MaskedTextBox cEPMaskedTextBox;
         private System.Windows.Forms.ComboBox sEXOComboBox;
         private System.Windows.Forms.MaskedTextBox tELEFONEMaskedTextBox;
+        private System.Windows.Forms.DataGridView pacienteDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
     }
 }
