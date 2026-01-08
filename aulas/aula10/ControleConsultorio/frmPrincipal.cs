@@ -24,7 +24,7 @@ namespace ControleConsultorio
             novoMedico.ShowDialog();
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void btnPacientes_Click(object sender, EventArgs e)
         {
             frmPacientes novoPaciente = new frmPacientes();
             novoPaciente.ShowDialog();

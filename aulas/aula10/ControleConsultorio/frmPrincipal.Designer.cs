@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnMedicos = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnPacientes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnConsultas = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
@@ -42,7 +42,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnMedicos,
-            this.toolStripButton1,
+            this.btnPacientes,
             this.toolStripSeparator1,
             this.btnConsultas});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -62,16 +62,16 @@
             this.btnMedicos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMedicos.Click += new System.EventHandler(this.btnMedicos_Click);
             // 
-            // toolStripButton1
+            // btnPacientes
             // 
-            this.toolStripButton1.Image = global::ControleConsultorio.Properties.Resources.paciente;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(74, 56);
-            this.toolStripButton1.Text = "Pacientes";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.btnPacientes.Image = global::ControleConsultorio.Properties.Resources.paciente;
+            this.btnPacientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnPacientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPacientes.Name = "btnPacientes";
+            this.btnPacientes.Size = new System.Drawing.Size(74, 56);
+            this.btnPacientes.Text = "Pacientes";
+            this.btnPacientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPacientes.Click += new System.EventHandler(this.btnPacientes_Click);
             // 
             // toolStripSeparator1
             // 
@@ -115,7 +115,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnMedicos;
         private System.Windows.Forms.ToolStripButton btnConsultas;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnPacientes;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
