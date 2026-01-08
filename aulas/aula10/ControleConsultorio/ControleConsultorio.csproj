@@ -54,11 +54,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsultasDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmConsultas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsultas.Designer.cs">
+      <DependentUpon>frmConsultas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMedicos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMedicos.Designer.cs">
       <DependentUpon>frmMedicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPacientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPacientes.Designer.cs">
+      <DependentUpon>frmPacientes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -68,8 +80,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConsultas.resx">
+      <DependentUpon>frmConsultas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMedicos.resx">
       <DependentUpon>frmMedicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPacientes.resx">
+      <DependentUpon>frmPacientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
