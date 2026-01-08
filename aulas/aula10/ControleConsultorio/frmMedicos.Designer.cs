@@ -160,7 +160,7 @@
             this.medicoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.medicoBindingNavigator.Name = "medicoBindingNavigator";
             this.medicoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.medicoBindingNavigator.Size = new System.Drawing.Size(478, 27);
+            this.medicoBindingNavigator.Size = new System.Drawing.Size(478, 31);
             this.medicoBindingNavigator.TabIndex = 0;
             this.medicoBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -170,7 +170,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             // 
             // bindingNavigatorCountItem
