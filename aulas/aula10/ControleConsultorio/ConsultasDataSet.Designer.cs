@@ -30,6 +30,10 @@ namespace ControleConsultorio {
         
         private PacienteDataTable tablePaciente;
         
+        private global::System.Data.DataRelation relationFK_Medico_Consultas;
+        
+        private global::System.Data.DataRelation relationFK_Paciente_Consultas;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -242,6 +246,8 @@ namespace ControleConsultorio {
                     this.tablePaciente.InitVars();
                 }
             }
+            this.relationFK_Medico_Consultas = this.Relations["FK_Medico_Consultas"];
+            this.relationFK_Paciente_Consultas = this.Relations["FK_Paciente_Consultas"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -258,6 +264,14 @@ namespace ControleConsultorio {
             base.Tables.Add(this.tableMedico);
             this.tablePaciente = new PacienteDataTable();
             base.Tables.Add(this.tablePaciente);
+            this.relationFK_Medico_Consultas = new global::System.Data.DataRelation("FK_Medico_Consultas", new global::System.Data.DataColumn[] {
+                        this.tableMedico.ID_MEDICOColumn}, new global::System.Data.DataColumn[] {
+                        this.tableConsultas.ID_MEDICOColumn}, false);
+            this.Relations.Add(this.relationFK_Medico_Consultas);
+            this.relationFK_Paciente_Consultas = new global::System.Data.DataRelation("FK_Paciente_Consultas", new global::System.Data.DataColumn[] {
+                        this.tablePaciente.ID_PACIENTEColumn}, new global::System.Data.DataColumn[] {
+                        this.tableConsultas.ID_PACIENTEColumn}, false);
+            this.Relations.Add(this.relationFK_Paciente_Consultas);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -479,15 +493,21 @@ namespace ControleConsultorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
-            public ConsultasRow AddConsultasRow(int ID_MEDICO, int ID_PACIENTE, System.DateTime DATA, System.DateTime HORARIO, bool RETORNO) {
+            public ConsultasRow AddConsultasRow(MedicoRow parentMedicoRowByFK_Medico_Consultas, PacienteRow parentPacienteRowByFK_Paciente_Consultas, System.DateTime DATA, System.DateTime HORARIO, bool RETORNO) {
                 ConsultasRow rowConsultasRow = ((ConsultasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        ID_MEDICO,
-                        ID_PACIENTE,
+                        null,
+                        null,
                         DATA,
                         HORARIO,
                         RETORNO};
+                if ((parentMedicoRowByFK_Medico_Consultas != null)) {
+                    columnValuesArray[1] = parentMedicoRowByFK_Medico_Consultas[0];
+                }
+                if ((parentPacienteRowByFK_Paciente_Consultas != null)) {
+                    columnValuesArray[2] = parentPacienteRowByFK_Paciente_Consultas[0];
+                }
                 rowConsultasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsultasRow);
                 return rowConsultasRow;
@@ -1247,7 +1267,7 @@ namespace ControleConsultorio {
                 this.columnCIDADE.AllowDBNull = false;
                 this.columnCIDADE.MaxLength = 50;
                 this.columnCEP.AllowDBNull = false;
-                this.columnCEP.MaxLength = 8;
+                this.columnCEP.MaxLength = 10;
                 this.columnSEXO.AllowDBNull = false;
                 this.columnSEXO.MaxLength = 50;
                 this.columnTELEFONE.AllowDBNull = false;
@@ -1457,6 +1477,28 @@ namespace ControleConsultorio {
                     this[this.tableConsultas.RETORNOColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+            public MedicoRow MedicoRow {
+                get {
+                    return ((MedicoRow)(this.GetParentRow(this.Table.ParentRelations["FK_Medico_Consultas"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Medico_Consultas"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+            public PacienteRow PacienteRow {
+                get {
+                    return ((PacienteRow)(this.GetParentRow(this.Table.ParentRelations["FK_Paciente_Consultas"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Paciente_Consultas"]);
+                }
+            }
         }
         
         /// <summary>
@@ -1514,6 +1556,17 @@ namespace ControleConsultorio {
                 }
                 set {
                     this[this.tableMedico.VALOR_CONSULTAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+            public ConsultasRow[] GetConsultasRows() {
+                if ((this.Table.ChildRelations["FK_Medico_Consultas"] == null)) {
+                    return new ConsultasRow[0];
+                }
+                else {
+                    return ((ConsultasRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Medico_Consultas"])));
                 }
             }
         }
@@ -1628,6 +1681,17 @@ namespace ControleConsultorio {
                 }
                 set {
                     this[this.tablePaciente.TELEFONEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+            public ConsultasRow[] GetConsultasRows() {
+                if ((this.Table.ChildRelations["FK_Paciente_Consultas"] == null)) {
+                    return new ConsultasRow[0];
+                }
+                else {
+                    return ((ConsultasRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Paciente_Consultas"])));
                 }
             }
         }
@@ -3123,15 +3187,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private int UpdateUpdatedRows(ConsultasDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._medicoTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Medico.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -3150,6 +3205,15 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._consultasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._consultasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -3160,14 +3224,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private int UpdateInsertedRows(ConsultasDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._medicoTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Medico.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -3184,6 +3240,14 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._consultasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._consultasTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -3194,6 +3258,14 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private int UpdateDeletedRows(ConsultasDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._consultasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._consultasTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._pacienteTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Paciente.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3207,14 +3279,6 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._medicoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._consultasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Consultas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._consultasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

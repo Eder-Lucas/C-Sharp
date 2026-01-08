@@ -218,97 +218,97 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="ConsultasDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="ConsultasDataSet" msprop:Generator_DataSetName="ConsultasDataSet">
+  <xs:element name="ConsultasDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ConsultasDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ConsultasDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Consultas" msprop:Generator_RowEvHandlerName="ConsultasRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasRowDeleted" msprop:Generator_RowDeletingName="ConsultasRowDeleting" msprop:Generator_RowEvArgName="ConsultasRowChangeEvent" msprop:Generator_TablePropName="Consultas" msprop:Generator_RowChangedName="ConsultasRowChanged" msprop:Generator_RowChangingName="ConsultasRowChanging" msprop:Generator_TableClassName="ConsultasDataTable" msprop:Generator_RowClassName="ConsultasRow" msprop:Generator_TableVarName="tableConsultas" msprop:Generator_UserTableName="Consultas">
+        <xs:element name="Consultas" msprop:Generator_RowEvHandlerName="ConsultasRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasRowDeleted" msprop:Generator_RowDeletingName="ConsultasRowDeleting" msprop:Generator_RowEvArgName="ConsultasRowChangeEvent" msprop:Generator_TablePropName="Consultas" msprop:Generator_RowChangedName="ConsultasRowChanged" msprop:Generator_UserTableName="Consultas" msprop:Generator_RowChangingName="ConsultasRowChanging" msprop:Generator_RowClassName="ConsultasRow" msprop:Generator_TableClassName="ConsultasDataTable" msprop:Generator_TableVarName="tableConsultas">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID_CONSULTA" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID_CONSULTA" msprop:Generator_ColumnPropNameInTable="ID_CONSULTAColumn" msprop:Generator_ColumnVarNameInTable="columnID_CONSULTA" msprop:Generator_UserColumnName="ID_CONSULTA" type="xs:int" />
-              <xs:element name="ID_MEDICO" msprop:Generator_ColumnPropNameInRow="ID_MEDICO" msprop:Generator_ColumnPropNameInTable="ID_MEDICOColumn" msprop:Generator_ColumnVarNameInTable="columnID_MEDICO" msprop:Generator_UserColumnName="ID_MEDICO" type="xs:int" />
-              <xs:element name="ID_PACIENTE" msprop:Generator_ColumnPropNameInRow="ID_PACIENTE" msprop:Generator_ColumnPropNameInTable="ID_PACIENTEColumn" msprop:Generator_ColumnVarNameInTable="columnID_PACIENTE" msprop:Generator_UserColumnName="ID_PACIENTE" type="xs:int" />
-              <xs:element name="DATA" msprop:Generator_ColumnPropNameInRow="DATA" msprop:Generator_ColumnPropNameInTable="DATAColumn" msprop:Generator_ColumnVarNameInTable="columnDATA" msprop:Generator_UserColumnName="DATA" type="xs:dateTime" />
-              <xs:element name="HORARIO" msprop:Generator_ColumnPropNameInRow="HORARIO" msprop:Generator_ColumnPropNameInTable="HORARIOColumn" msprop:Generator_ColumnVarNameInTable="columnHORARIO" msprop:Generator_UserColumnName="HORARIO" type="xs:dateTime" />
-              <xs:element name="RETORNO" msprop:Generator_ColumnPropNameInRow="RETORNO" msprop:Generator_ColumnPropNameInTable="RETORNOColumn" msprop:Generator_ColumnVarNameInTable="columnRETORNO" msprop:Generator_UserColumnName="RETORNO" type="xs:boolean" />
+              <xs:element name="ID_CONSULTA" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="ID_CONSULTAColumn" msprop:Generator_ColumnPropNameInRow="ID_CONSULTA" msprop:Generator_UserColumnName="ID_CONSULTA" msprop:Generator_ColumnVarNameInTable="columnID_CONSULTA" type="xs:int" />
+              <xs:element name="ID_MEDICO" msprop:Generator_ColumnPropNameInTable="ID_MEDICOColumn" msprop:Generator_ColumnPropNameInRow="ID_MEDICO" msprop:Generator_UserColumnName="ID_MEDICO" msprop:Generator_ColumnVarNameInTable="columnID_MEDICO" type="xs:int" />
+              <xs:element name="ID_PACIENTE" msprop:Generator_ColumnPropNameInTable="ID_PACIENTEColumn" msprop:Generator_ColumnPropNameInRow="ID_PACIENTE" msprop:Generator_UserColumnName="ID_PACIENTE" msprop:Generator_ColumnVarNameInTable="columnID_PACIENTE" type="xs:int" />
+              <xs:element name="DATA" msprop:Generator_ColumnPropNameInTable="DATAColumn" msprop:Generator_ColumnPropNameInRow="DATA" msprop:Generator_UserColumnName="DATA" msprop:Generator_ColumnVarNameInTable="columnDATA" type="xs:dateTime" />
+              <xs:element name="HORARIO" msprop:Generator_ColumnPropNameInTable="HORARIOColumn" msprop:Generator_ColumnPropNameInRow="HORARIO" msprop:Generator_UserColumnName="HORARIO" msprop:Generator_ColumnVarNameInTable="columnHORARIO" type="xs:dateTime" />
+              <xs:element name="RETORNO" msprop:Generator_ColumnPropNameInTable="RETORNOColumn" msprop:Generator_ColumnPropNameInRow="RETORNO" msprop:Generator_UserColumnName="RETORNO" msprop:Generator_ColumnVarNameInTable="columnRETORNO" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Medico" msprop:Generator_RowEvHandlerName="MedicoRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicoRowDeleted" msprop:Generator_RowDeletingName="MedicoRowDeleting" msprop:Generator_RowEvArgName="MedicoRowChangeEvent" msprop:Generator_TablePropName="Medico" msprop:Generator_RowChangedName="MedicoRowChanged" msprop:Generator_RowChangingName="MedicoRowChanging" msprop:Generator_TableClassName="MedicoDataTable" msprop:Generator_RowClassName="MedicoRow" msprop:Generator_TableVarName="tableMedico" msprop:Generator_UserTableName="Medico">
+        <xs:element name="Medico" msprop:Generator_RowEvHandlerName="MedicoRowChangeEventHandler" msprop:Generator_RowDeletedName="MedicoRowDeleted" msprop:Generator_RowDeletingName="MedicoRowDeleting" msprop:Generator_RowEvArgName="MedicoRowChangeEvent" msprop:Generator_TablePropName="Medico" msprop:Generator_RowChangedName="MedicoRowChanged" msprop:Generator_UserTableName="Medico" msprop:Generator_RowChangingName="MedicoRowChanging" msprop:Generator_RowClassName="MedicoRow" msprop:Generator_TableClassName="MedicoDataTable" msprop:Generator_TableVarName="tableMedico">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID_MEDICO" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID_MEDICO" msprop:Generator_ColumnPropNameInTable="ID_MEDICOColumn" msprop:Generator_ColumnVarNameInTable="columnID_MEDICO" msprop:Generator_UserColumnName="ID_MEDICO" type="xs:int" />
-              <xs:element name="NOME_MEDICO" msprop:Generator_ColumnPropNameInRow="NOME_MEDICO" msprop:Generator_ColumnPropNameInTable="NOME_MEDICOColumn" msprop:Generator_ColumnVarNameInTable="columnNOME_MEDICO" msprop:Generator_UserColumnName="NOME_MEDICO">
+              <xs:element name="ID_MEDICO" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="ID_MEDICOColumn" msprop:Generator_ColumnPropNameInRow="ID_MEDICO" msprop:Generator_UserColumnName="ID_MEDICO" msprop:Generator_ColumnVarNameInTable="columnID_MEDICO" type="xs:int" />
+              <xs:element name="NOME_MEDICO" msprop:Generator_ColumnPropNameInTable="NOME_MEDICOColumn" msprop:Generator_ColumnPropNameInRow="NOME_MEDICO" msprop:Generator_UserColumnName="NOME_MEDICO" msprop:Generator_ColumnVarNameInTable="columnNOME_MEDICO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TELEFONE_MEDICO" msprop:Generator_ColumnPropNameInRow="TELEFONE_MEDICO" msprop:Generator_ColumnPropNameInTable="TELEFONE_MEDICOColumn" msprop:Generator_ColumnVarNameInTable="columnTELEFONE_MEDICO" msprop:Generator_UserColumnName="TELEFONE_MEDICO">
+              <xs:element name="TELEFONE_MEDICO" msprop:Generator_ColumnPropNameInTable="TELEFONE_MEDICOColumn" msprop:Generator_ColumnPropNameInRow="TELEFONE_MEDICO" msprop:Generator_UserColumnName="TELEFONE_MEDICO" msprop:Generator_ColumnVarNameInTable="columnTELEFONE_MEDICO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="VALOR_CONSULTA" msprop:Generator_ColumnPropNameInRow="VALOR_CONSULTA" msprop:Generator_ColumnPropNameInTable="VALOR_CONSULTAColumn" msprop:Generator_ColumnVarNameInTable="columnVALOR_CONSULTA" msprop:Generator_UserColumnName="VALOR_CONSULTA" type="xs:decimal" />
+              <xs:element name="VALOR_CONSULTA" msprop:Generator_ColumnPropNameInTable="VALOR_CONSULTAColumn" msprop:Generator_ColumnPropNameInRow="VALOR_CONSULTA" msprop:Generator_UserColumnName="VALOR_CONSULTA" msprop:Generator_ColumnVarNameInTable="columnVALOR_CONSULTA" type="xs:decimal" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Paciente" msprop:Generator_RowEvHandlerName="PacienteRowChangeEventHandler" msprop:Generator_RowDeletedName="PacienteRowDeleted" msprop:Generator_RowDeletingName="PacienteRowDeleting" msprop:Generator_RowEvArgName="PacienteRowChangeEvent" msprop:Generator_TablePropName="Paciente" msprop:Generator_RowChangedName="PacienteRowChanged" msprop:Generator_RowChangingName="PacienteRowChanging" msprop:Generator_TableClassName="PacienteDataTable" msprop:Generator_RowClassName="PacienteRow" msprop:Generator_TableVarName="tablePaciente" msprop:Generator_UserTableName="Paciente">
+        <xs:element name="Paciente" msprop:Generator_RowEvHandlerName="PacienteRowChangeEventHandler" msprop:Generator_RowDeletedName="PacienteRowDeleted" msprop:Generator_RowDeletingName="PacienteRowDeleting" msprop:Generator_RowEvArgName="PacienteRowChangeEvent" msprop:Generator_TablePropName="Paciente" msprop:Generator_RowChangedName="PacienteRowChanged" msprop:Generator_UserTableName="Paciente" msprop:Generator_RowChangingName="PacienteRowChanging" msprop:Generator_RowClassName="PacienteRow" msprop:Generator_TableClassName="PacienteDataTable" msprop:Generator_TableVarName="tablePaciente">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID_PACIENTE" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID_PACIENTE" msprop:Generator_ColumnPropNameInTable="ID_PACIENTEColumn" msprop:Generator_ColumnVarNameInTable="columnID_PACIENTE" msprop:Generator_UserColumnName="ID_PACIENTE" type="xs:int" />
-              <xs:element name="NOME_PACIENTE" msprop:Generator_ColumnPropNameInRow="NOME_PACIENTE" msprop:Generator_ColumnPropNameInTable="NOME_PACIENTEColumn" msprop:Generator_ColumnVarNameInTable="columnNOME_PACIENTE" msprop:Generator_UserColumnName="NOME_PACIENTE">
+              <xs:element name="ID_PACIENTE" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="ID_PACIENTEColumn" msprop:Generator_ColumnPropNameInRow="ID_PACIENTE" msprop:Generator_UserColumnName="ID_PACIENTE" msprop:Generator_ColumnVarNameInTable="columnID_PACIENTE" type="xs:int" />
+              <xs:element name="NOME_PACIENTE" msprop:Generator_ColumnPropNameInTable="NOME_PACIENTEColumn" msprop:Generator_ColumnPropNameInRow="NOME_PACIENTE" msprop:Generator_UserColumnName="NOME_PACIENTE" msprop:Generator_ColumnVarNameInTable="columnNOME_PACIENTE">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="RUA" msprop:Generator_ColumnPropNameInRow="RUA" msprop:Generator_ColumnPropNameInTable="RUAColumn" msprop:Generator_ColumnVarNameInTable="columnRUA" msprop:Generator_UserColumnName="RUA">
+              <xs:element name="RUA" msprop:Generator_ColumnPropNameInTable="RUAColumn" msprop:Generator_ColumnPropNameInRow="RUA" msprop:Generator_UserColumnName="RUA" msprop:Generator_ColumnVarNameInTable="columnRUA">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NUMERO" msprop:Generator_ColumnPropNameInRow="NUMERO" msprop:Generator_ColumnPropNameInTable="NUMEROColumn" msprop:Generator_ColumnVarNameInTable="columnNUMERO" msprop:Generator_UserColumnName="NUMERO">
+              <xs:element name="NUMERO" msprop:Generator_ColumnPropNameInTable="NUMEROColumn" msprop:Generator_ColumnPropNameInRow="NUMERO" msprop:Generator_UserColumnName="NUMERO" msprop:Generator_ColumnVarNameInTable="columnNUMERO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="BAIRRO" msprop:Generator_ColumnPropNameInRow="BAIRRO" msprop:Generator_ColumnPropNameInTable="BAIRROColumn" msprop:Generator_ColumnVarNameInTable="columnBAIRRO" msprop:Generator_UserColumnName="BAIRRO">
+              <xs:element name="BAIRRO" msprop:Generator_ColumnPropNameInTable="BAIRROColumn" msprop:Generator_ColumnPropNameInRow="BAIRRO" msprop:Generator_UserColumnName="BAIRRO" msprop:Generator_ColumnVarNameInTable="columnBAIRRO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CIDADE" msprop:Generator_ColumnPropNameInRow="CIDADE" msprop:Generator_ColumnPropNameInTable="CIDADEColumn" msprop:Generator_ColumnVarNameInTable="columnCIDADE" msprop:Generator_UserColumnName="CIDADE">
+              <xs:element name="CIDADE" msprop:Generator_ColumnPropNameInTable="CIDADEColumn" msprop:Generator_ColumnPropNameInRow="CIDADE" msprop:Generator_UserColumnName="CIDADE" msprop:Generator_ColumnVarNameInTable="columnCIDADE">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CEP" msprop:Generator_ColumnPropNameInRow="CEP" msprop:Generator_ColumnPropNameInTable="CEPColumn" msprop:Generator_ColumnVarNameInTable="columnCEP" msprop:Generator_UserColumnName="CEP">
+              <xs:element name="CEP" msprop:Generator_ColumnPropNameInTable="CEPColumn" msprop:Generator_ColumnPropNameInRow="CEP" msprop:Generator_UserColumnName="CEP" msprop:Generator_ColumnVarNameInTable="columnCEP">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="8" />
+                    <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SEXO" msprop:Generator_ColumnPropNameInRow="SEXO" msprop:Generator_ColumnPropNameInTable="SEXOColumn" msprop:Generator_ColumnVarNameInTable="columnSEXO" msprop:Generator_UserColumnName="SEXO">
+              <xs:element name="SEXO" msprop:Generator_ColumnPropNameInTable="SEXOColumn" msprop:Generator_ColumnPropNameInRow="SEXO" msprop:Generator_UserColumnName="SEXO" msprop:Generator_ColumnVarNameInTable="columnSEXO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TELEFONE" msprop:Generator_ColumnPropNameInRow="TELEFONE" msprop:Generator_ColumnPropNameInTable="TELEFONEColumn" msprop:Generator_ColumnVarNameInTable="columnTELEFONE" msprop:Generator_UserColumnName="TELEFONE">
+              <xs:element name="TELEFONE" msprop:Generator_ColumnPropNameInTable="TELEFONEColumn" msprop:Generator_ColumnPropNameInRow="TELEFONE" msprop:Generator_UserColumnName="TELEFONE" msprop:Generator_ColumnVarNameInTable="columnTELEFONE">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -333,4 +333,10 @@ SELECT ID_PACIENTE, NOME_PACIENTE, RUA, NUMERO, BAIRRO, CIDADE, CEP, SEXO, TELEF
       <xs:field xpath="mstns:ID_PACIENTE" />
     </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_Medico_Consultas" msdata:parent="Medico" msdata:child="Consultas" msdata:parentkey="ID_MEDICO" msdata:childkey="ID_MEDICO" msprop:Generator_UserParentTable="Medico" msprop:Generator_UserChildTable="Consultas" msprop:Generator_RelationVarName="relationFK_Medico_Consultas" msprop:Generator_ChildPropName="GetConsultasRows" msprop:Generator_ParentPropName="MedicoRow" msprop:Generator_UserRelationName="FK_Medico_Consultas" />
+      <msdata:Relationship name="FK_Paciente_Consultas" msdata:parent="Paciente" msdata:child="Consultas" msdata:parentkey="ID_PACIENTE" msdata:childkey="ID_PACIENTE" msprop:Generator_UserParentTable="Paciente" msprop:Generator_UserChildTable="Consultas" msprop:Generator_RelationVarName="relationFK_Paciente_Consultas" msprop:Generator_ChildPropName="GetConsultasRows" msprop:Generator_ParentPropName="PacienteRow" msprop:Generator_UserRelationName="FK_Paciente_Consultas" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
