@@ -80,6 +80,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucLogo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLogo.Designer.cs">
+      <DependentUpon>ucLogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPesquisa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPesquisa.Designer.cs">
+      <DependentUpon>ucPesquisa.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmConsultas.resx">
       <DependentUpon>frmConsultas.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +108,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLogo.resx">
+      <DependentUpon>ucLogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucPesquisa.resx">
+      <DependentUpon>ucPesquisa.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="ConsultasDataSet.xsc">
