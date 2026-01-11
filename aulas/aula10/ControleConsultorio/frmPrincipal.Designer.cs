@@ -32,11 +32,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlConteudo = new System.Windows.Forms.Panel();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.btnMedicos = new System.Windows.Forms.ToolStripButton();
             this.btnPacientes = new System.Windows.Forms.ToolStripButton();
-            this.btnFechar = new System.Windows.Forms.ToolStripButton();
             this.btnConsultas = new System.Windows.Forms.ToolStripButton();
             this.btnPesquisas = new System.Windows.Forms.ToolStripButton();
+            this.btnFechar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,8 +48,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnMedicos,
             this.btnPacientes,
-            this.toolStripSeparator1,
+            this.toolStripSeparator2,
             this.btnConsultas,
+            this.toolStripSeparator1,
             this.btnPesquisas,
             this.btnFechar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -69,6 +72,15 @@
             this.pnlConteudo.Name = "pnlConteudo";
             this.pnlConteudo.Size = new System.Drawing.Size(805, 473);
             this.pnlConteudo.TabIndex = 2;
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 59);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(805, 473);
+            this.pnlLogo.TabIndex = 3;
             // 
             // btnMedicos
             // 
@@ -92,18 +104,6 @@
             this.btnPacientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPacientes.Click += new System.EventHandler(this.btnPacientes_Click);
             // 
-            // btnFechar
-            // 
-            this.btnFechar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnFechar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(56, 56);
-            this.btnFechar.Text = "Fechar";
-            this.btnFechar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFechar.Visible = false;
-            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
-            // 
             // btnConsultas
             // 
             this.btnConsultas.Image = global::ControleConsultorio.Properties.Resources.consulta;
@@ -117,6 +117,7 @@
             // 
             // btnPesquisas
             // 
+            this.btnPesquisas.Image = global::ControleConsultorio.Properties.Resources.pesquisa;
             this.btnPesquisas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnPesquisas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPesquisas.Name = "btnPesquisas";
@@ -125,12 +126,31 @@
             this.btnPesquisas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPesquisas.Click += new System.EventHandler(this.btnPesquisas_Click);
             // 
+            // btnFechar
+            // 
+            this.btnFechar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnFechar.Image = global::ControleConsultorio.Properties.Resources.fechar;
+            this.btnFechar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(56, 56);
+            this.btnFechar.Text = "Fechar";
+            this.btnFechar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFechar.Visible = false;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 59);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(805, 532);
+            this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlConteudo);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -157,6 +177,8 @@
         private System.Windows.Forms.Panel pnlConteudo;
         private System.Windows.Forms.ToolStripButton btnConsultas;
         private System.Windows.Forms.ToolStripButton btnPesquisas;
+        private System.Windows.Forms.Panel pnlLogo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
