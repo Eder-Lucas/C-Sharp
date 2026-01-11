@@ -16,5 +16,10 @@ namespace ControleConsultorio
         {
             InitializeComponent();
         }
+
+        private void btnPesquisaUC_Click(object sender, EventArgs e)
+        {
+            dtgConsultas.DataSource = consultasTableAdapter1.retornarConsultas(dtpInicial.Value, dtpFinal.Value);
+        }
     }
 }
