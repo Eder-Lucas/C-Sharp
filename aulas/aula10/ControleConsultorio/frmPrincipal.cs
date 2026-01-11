@@ -38,19 +38,12 @@ namespace ControleConsultorio
             novaConsulta.ShowDialog();
         }
 
-        private void AbrirTela(UserControl tela)
-        {
-            pnlConteudo.Controls.Clear();           
-            tela.Dock = DockStyle.Fill;
-            pnlConteudo.Controls.Add(tela);
-        }
-
         private void btnPesquisas_Click(object sender, EventArgs e)
         {           
             if (pesquisaAberta == false)
             {
-                ucPesquisa telaPesquisa = new ucPesquisa();
-                AbrirTela(telaPesquisa);
+                pnlConteudo.Visible = true;
+                pnlLogo.Visible = false;
 
                 btnFechar.Visible = true;
                 pesquisaAberta = true;
@@ -59,22 +52,21 @@ namespace ControleConsultorio
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            ucLogo telaInicio = new ucLogo();
+            ucLogo telaLogo = new ucLogo();
+            telaLogo.Dock = DockStyle.Fill;
+            pnlLogo.Controls.Add(telaLogo);
+
             ucPesquisa telaPesquisa = new ucPesquisa();
-
-            pnlConteudo.Controls.Add(telaInicio);
+            telaPesquisa.Dock = DockStyle.Fill;
             pnlConteudo.Controls.Add(telaPesquisa);
-
-            telaPesquisa.Visible = false;
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
             if (pesquisaAberta == true)
             {
-                ucPesquisa tela = new ucPesquisa();
-                tela.Visible = false;
-                AbrirTela(new ucLogo());
+                pnlLogo.Visible = true;
+                pnlConteudo.Visible = false;
 
                 btnFechar.Visible = false;
                 pesquisaAberta = false;
