@@ -83,6 +83,16 @@ namespace ControleConsultorio.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fechar {
+            get {
+                object obj = ResourceManager.GetObject("fechar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap medico {
             get {
                 object obj = ResourceManager.GetObject("medico", resourceCulture);
@@ -96,6 +106,16 @@ namespace ControleConsultorio.Properties {
         internal static System.Drawing.Bitmap paciente {
             get {
                 object obj = ResourceManager.GetObject("paciente", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pesquisa {
+            get {
+                object obj = ResourceManager.GetObject("pesquisa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
