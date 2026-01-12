@@ -17,6 +17,31 @@ namespace ControleConsultorio
             InitializeComponent();
         }
 
+        // Ao clicar no botão de excluir do BindingNavigator
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show("Deseja realmente excluir este médico?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                // Remove o item atual do BindingSource (na memória)
+                medicoBindingSource.RemoveCurrent();
+
+                // Valida os campos
+                this.Validate();
+
+                // Salva as mudanças na mémoria
+                this.medicoBindingSource.EndEdit();
+
+                // Atualiza o banco de dados
+                this.tableAdapterManager.UpdateAll(this.consultasDataSet);
+
+                // Mensagem de sucesso
+                MessageBox.Show("Registro excluído com sucesso!");
+            }
+        }
+
+        // Ao clicar no botão de salvar do BindingNavigator
         private void medicoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -25,9 +50,10 @@ namespace ControleConsultorio
 
         }
 
+        // Quando o form for carregado
         private void frmMedicos_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'consultasDataSet.Medico'. Você pode movê-la ou removê-la conforme necessário.
+            // Carrega os dados do banco e carrega na memória
             this.medicoTableAdapter.Fill(this.consultasDataSet.Medico);
 
         }
