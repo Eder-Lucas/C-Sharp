@@ -57,5 +57,29 @@ namespace ControleConsultorio
             this.medicoTableAdapter.Fill(this.consultasDataSet.Medico);
 
         }
+
+        // Ao entrar no campo de telefone
+        private void txtTelefoneMedico_maskedTextBox_Enter(object sender, EventArgs e)
+        {
+            MaskedTextBox mtb = (MaskedTextBox)sender;
+
+            //mtb.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
+            if (mtb.MaskedTextProvider.AssignedEditPositionCount == 0)
+            {
+                mtb.BeginInvoke((MethodInvoker)(() =>
+                {
+                    mtb.SelectionStart = 1;
+                    mtb.SelectionLength = 0;
+                }));
+            }
+            else
+            {
+                mtb.BeginInvoke((MethodInvoker)(() =>
+                {
+                    mtb.SelectAll();
+                }));
+            }
+        }
     }
 }
