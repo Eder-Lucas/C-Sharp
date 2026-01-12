@@ -121,8 +121,8 @@
     </None>
     <None Include="ConsultasDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ConsultasDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>ConsultasDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="ConsultasDataSet.xss">
       <DependentUpon>ConsultasDataSet.xsd</DependentUpon>
