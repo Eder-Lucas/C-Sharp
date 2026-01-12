@@ -53,7 +53,7 @@
             this.medicoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_MEDICOTextBox = new System.Windows.Forms.TextBox();
             this.nOME_MEDICOTextBox = new System.Windows.Forms.TextBox();
-            this.tELEFONE_MEDICOMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelefoneMedico_maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.vALOR_CONSULTATextBox = new System.Windows.Forms.TextBox();
             this.medicoDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,7 +138,7 @@
             this.medicoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
             this.medicoBindingNavigator.BindingSource = this.medicoBindingSource;
             this.medicoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.medicoBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.medicoBindingNavigator.DeleteItem = null;
             this.medicoBindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.medicoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
@@ -188,6 +188,7 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Excluir";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -279,15 +280,16 @@
             this.nOME_MEDICOTextBox.Size = new System.Drawing.Size(359, 27);
             this.nOME_MEDICOTextBox.TabIndex = 4;
             // 
-            // tELEFONE_MEDICOMaskedTextBox
+            // txtTelefoneMedico_maskedTextBox
             // 
-            this.tELEFONE_MEDICOMaskedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.medicoBindingSource, "TELEFONE_MEDICO", true));
-            this.tELEFONE_MEDICOMaskedTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tELEFONE_MEDICOMaskedTextBox.Location = new System.Drawing.Point(107, 124);
-            this.tELEFONE_MEDICOMaskedTextBox.Mask = "(99) 00000-0000";
-            this.tELEFONE_MEDICOMaskedTextBox.Name = "tELEFONE_MEDICOMaskedTextBox";
-            this.tELEFONE_MEDICOMaskedTextBox.Size = new System.Drawing.Size(132, 27);
-            this.tELEFONE_MEDICOMaskedTextBox.TabIndex = 6;
+            this.txtTelefoneMedico_maskedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.medicoBindingSource, "TELEFONE_MEDICO", true));
+            this.txtTelefoneMedico_maskedTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefoneMedico_maskedTextBox.Location = new System.Drawing.Point(107, 124);
+            this.txtTelefoneMedico_maskedTextBox.Mask = "(99) 00000-0000";
+            this.txtTelefoneMedico_maskedTextBox.Name = "txtTelefoneMedico_maskedTextBox";
+            this.txtTelefoneMedico_maskedTextBox.Size = new System.Drawing.Size(132, 27);
+            this.txtTelefoneMedico_maskedTextBox.TabIndex = 6;
+            this.txtTelefoneMedico_maskedTextBox.Enter += new System.EventHandler(this.txtTelefoneMedico_maskedTextBox_Enter);
             // 
             // vALOR_CONSULTATextBox
             // 
@@ -370,7 +372,7 @@
             this.Controls.Add(nOME_MEDICOLabel);
             this.Controls.Add(this.nOME_MEDICOTextBox);
             this.Controls.Add(tELEFONE_MEDICOLabel);
-            this.Controls.Add(this.tELEFONE_MEDICOMaskedTextBox);
+            this.Controls.Add(this.txtTelefoneMedico_maskedTextBox);
             this.Controls.Add(vALOR_CONSULTALabel);
             this.Controls.Add(this.vALOR_CONSULTATextBox);
             this.Controls.Add(this.medicoBindingNavigator);
@@ -414,7 +416,7 @@
         private System.Windows.Forms.ToolStripButton medicoBindingNavigatorSaveItem;
         private System.Windows.Forms.TextBox iD_MEDICOTextBox;
         private System.Windows.Forms.TextBox nOME_MEDICOTextBox;
-        private System.Windows.Forms.MaskedTextBox tELEFONE_MEDICOMaskedTextBox;
+        private System.Windows.Forms.MaskedTextBox txtTelefoneMedico_maskedTextBox;
         private System.Windows.Forms.TextBox vALOR_CONSULTATextBox;
         private System.Windows.Forms.DataGridView medicoDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
