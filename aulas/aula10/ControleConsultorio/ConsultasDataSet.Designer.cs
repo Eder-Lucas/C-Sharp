@@ -1979,7 +1979,7 @@ SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO, RETORNO FROM Consulta
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID_CONSULTA, ID_MEDICO, ID_PACIENTE, DATA, HORARIO, RETORNO FROM dbo.Consu" +
@@ -1996,6 +1996,30 @@ ORDER BY Consultas.DATA";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT Consultas.ID_MEDICO, Consultas.ID_PACIENTE, Consultas.DATA, Consultas.HORARIO, Consultas.RETORNO, Paciente.NOME_PACIENTE, Medico.NOME_MEDICO, Consultas.ID_CONSULTA
+FROM     Consultas INNER JOIN
+                  Medico ON Consultas.ID_MEDICO = Medico.ID_MEDICO INNER JOIN
+                  Paciente ON Consultas.ID_PACIENTE = Paciente.ID_PACIENTE
+WHERE  (Medico.NOME_MEDICO = @nomeMedico) AND (Consultas.DATA >= @dataInicio) AND (Consultas.DATA < DATEADD(DAY, 1, @dataFinal))
+ORDER BY Consultas.DATA";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomeMedico", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_MEDICO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT Consultas.ID_MEDICO, Consultas.ID_PACIENTE, Consultas.ID_CONSULTA, Consultas.DATA, Consultas.HORARIO, Consultas.RETORNO, Paciente.NOME_PACIENTE, Medico.NOME_MEDICO
+FROM     Consultas INNER JOIN
+                  Medico ON Consultas.ID_MEDICO = Medico.ID_MEDICO INNER JOIN
+                  Paciente ON Consultas.ID_PACIENTE = Paciente.ID_PACIENTE
+WHERE  (Paciente.NOME_PACIENTE = @nomePaciente) AND (Consultas.DATA >= @dataInicio) AND (Consultas.DATA < DATEADD(DAY, 1, @dataFinal))
+ORDER BY Consultas.DATA";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomePaciente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_PACIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DATA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2030,6 +2054,44 @@ ORDER BY Consultas.DATA";
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(dataInicio));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(dataFinal));
+            ConsultasDataSet.ConsultasDataTable dataTable = new ConsultasDataSet.ConsultasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ConsultasDataSet.ConsultasDataTable retornarMedico(string nomeMedico, System.DateTime dataInicio, System.DateTime dataFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((nomeMedico == null)) {
+                throw new global::System.ArgumentNullException("nomeMedico");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nomeMedico));
+            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(dataInicio));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dataFinal));
+            ConsultasDataSet.ConsultasDataTable dataTable = new ConsultasDataSet.ConsultasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ConsultasDataSet.ConsultasDataTable retornarPaciente(string nomePaciente, System.DateTime dataInicio, System.DateTime dataFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((nomePaciente == null)) {
+                throw new global::System.ArgumentNullException("nomePaciente");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nomePaciente));
+            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(dataInicio));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dataFinal));
             ConsultasDataSet.ConsultasDataTable dataTable = new ConsultasDataSet.ConsultasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
