@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.pnlConteudo = new System.Windows.Forms.Panel();
-            this.pnlLogo = new System.Windows.Forms.Panel();
             this.btnMedicos = new System.Windows.Forms.ToolStripButton();
             this.btnPacientes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnConsultas = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPesquisas = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.pnlConteudo = new System.Windows.Forms.Panel();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,32 +55,9 @@
             this.btnFechar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(805, 59);
+            this.toolStrip1.Size = new System.Drawing.Size(937, 59);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
-            // 
-            // pnlConteudo
-            // 
-            this.pnlConteudo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(0, 59);
-            this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(805, 473);
-            this.pnlConteudo.TabIndex = 2;
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 59);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(805, 473);
-            this.pnlLogo.TabIndex = 3;
             // 
             // btnMedicos
             // 
@@ -104,6 +81,11 @@
             this.btnPacientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPacientes.Click += new System.EventHandler(this.btnPacientes_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 59);
+            // 
             // btnConsultas
             // 
             this.btnConsultas.Image = global::ControleConsultorio.Properties.Resources.consulta;
@@ -114,6 +96,11 @@
             this.btnConsultas.Text = "Consultas";
             this.btnConsultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
             // 
             // btnPesquisas
             // 
@@ -139,17 +126,30 @@
             this.btnFechar.Visible = false;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // toolStripSeparator2
+            // pnlConteudo
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 59);
+            this.pnlConteudo.BackColor = System.Drawing.Color.Transparent;
+            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlConteudo.Location = new System.Drawing.Point(0, 59);
+            this.pnlConteudo.Name = "pnlConteudo";
+            this.pnlConteudo.Size = new System.Drawing.Size(937, 547);
+            this.pnlConteudo.TabIndex = 2;
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 59);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(937, 547);
+            this.pnlLogo.TabIndex = 3;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(805, 532);
+            this.ClientSize = new System.Drawing.Size(937, 606);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlConteudo);
             this.Controls.Add(this.toolStrip1);
