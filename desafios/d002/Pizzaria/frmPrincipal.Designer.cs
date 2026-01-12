@@ -38,7 +38,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
-            this.Text = "Form1";
+            this.Text = "Sistema de Controle de Pizzaria";
             this.ResumeLayout(false);
 
         }
