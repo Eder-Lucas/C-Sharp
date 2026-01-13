@@ -17,6 +17,7 @@ namespace ControleConsultorio
             InitializeComponent();
         }
 
+        // Ao clicar no botão de salvar do BindingNavigator
         private void pacienteBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -25,11 +26,14 @@ namespace ControleConsultorio
 
         }
 
+        // Quando o form for carregado
         private void frmPacientes_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'consultasDataSet.Paciente'. Você pode movê-la ou removê-la conforme necessário.
+            // Carrega os dados do banco e carrega na memória
             this.pacienteTableAdapter.Fill(this.consultasDataSet.Paciente);
 
+            // Ativa o ajuste do cursor para os MaskedTextBox
+            CursorMaskedTextBox.AjustaCursor(this);
         }
     }
 }
