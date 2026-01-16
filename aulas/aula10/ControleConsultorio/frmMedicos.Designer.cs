@@ -34,10 +34,7 @@
             System.Windows.Forms.Label tELEFONE_MEDICOLabel;
             System.Windows.Forms.Label vALOR_CONSULTALabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMedicos));
-            this.consultasDataSet = new ControleConsultorio.ConsultasDataSet();
             this.medicoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.medicoTableAdapter = new ControleConsultorio.ConsultasDataSetTableAdapters.MedicoTableAdapter();
-            this.tableAdapterManager = new ControleConsultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
             this.medicoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -60,15 +57,18 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consultasDataSet = new ControleConsultorio.ConsultasDataSet();
+            this.medicoTableAdapter = new ControleConsultorio.ConsultasDataSetTableAdapters.MedicoTableAdapter();
+            this.tableAdapterManager = new ControleConsultorio.ConsultasDataSetTableAdapters.TableAdapterManager();
             iD_MEDICOLabel = new System.Windows.Forms.Label();
             nOME_MEDICOLabel = new System.Windows.Forms.Label();
             tELEFONE_MEDICOLabel = new System.Windows.Forms.Label();
             vALOR_CONSULTALabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicoBindingNavigator)).BeginInit();
             this.medicoBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicoDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // iD_MEDICOLabel
@@ -111,27 +111,10 @@
             vALOR_CONSULTALabel.TabIndex = 7;
             vALOR_CONSULTALabel.Text = "Valor:";
             // 
-            // consultasDataSet
-            // 
-            this.consultasDataSet.DataSetName = "ConsultasDataSet";
-            this.consultasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // medicoBindingSource
             // 
             this.medicoBindingSource.DataMember = "Medico";
             this.medicoBindingSource.DataSource = this.consultasDataSet;
-            // 
-            // medicoTableAdapter
-            // 
-            this.medicoTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ConsultasTableAdapter = null;
-            this.tableAdapterManager.MedicoTableAdapter = this.medicoTableAdapter;
-            this.tableAdapterManager.PacienteTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = ControleConsultorio.ConsultasDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // medicoBindingNavigator
             // 
@@ -360,6 +343,23 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 125;
             // 
+            // consultasDataSet
+            // 
+            this.consultasDataSet.DataSetName = "ConsultasDataSet";
+            this.consultasDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // medicoTableAdapter
+            // 
+            this.medicoTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ConsultasTableAdapter = null;
+            this.tableAdapterManager.MedicoTableAdapter = this.medicoTableAdapter;
+            this.tableAdapterManager.PacienteTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ControleConsultorio.ConsultasDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // frmMedicos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -383,12 +383,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Médicos";
             this.Load += new System.EventHandler(this.frmMedicos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicoBindingNavigator)).EndInit();
             this.medicoBindingNavigator.ResumeLayout(false);
             this.medicoBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicoDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consultasDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

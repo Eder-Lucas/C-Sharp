@@ -222,6 +222,7 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Excluir";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -291,7 +292,7 @@
             this.consultasBindingNavigatorSaveItem.Name = "consultasBindingNavigatorSaveItem";
             this.consultasBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.consultasBindingNavigatorSaveItem.Text = "Salvar Dados";
-            this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click_1);
+            this.consultasBindingNavigatorSaveItem.Click += new System.EventHandler(this.consultasBindingNavigatorSaveItem_Click);
             // 
             // iD_CONSULTATextBox
             // 
