@@ -55,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsultasDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExcluirDados.cs" />
     <Compile Include="frmConsultas.cs">
       <SubType>Form</SubType>
     </Compile>
