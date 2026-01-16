@@ -20,25 +20,7 @@ namespace ControleConsultorio
         // Ao clicar no botão de excluir do BindingNavigator
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            var resultado = MessageBox.Show("Deseja realmente excluir este médico?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
-            {
-                // Remove o item atual do BindingSource (na memória)
-                medicoBindingSource.RemoveCurrent();
-
-                // Valida os campos
-                this.Validate();
-
-                // Salva as mudanças na mémoria
-                this.medicoBindingSource.EndEdit();
-
-                // Atualiza o banco de dados
-                this.tableAdapterManager.UpdateAll(this.consultasDataSet);
-
-                // Mensagem de sucesso
-                MessageBox.Show("Registro excluído com sucesso!");
-            }
+            ExcluirDados.Excluir(medicoBindingSource, tableAdapterManager, consultasDataSet, this, "médico");
         }
 
         // Ao clicar no botão de salvar do BindingNavigator
@@ -47,7 +29,6 @@ namespace ControleConsultorio
             this.Validate();
             this.medicoBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.consultasDataSet);
-
         }
 
         // Quando o form for carregado
