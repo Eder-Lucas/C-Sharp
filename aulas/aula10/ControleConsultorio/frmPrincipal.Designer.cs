@@ -37,7 +37,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPesquisas = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
-            this.pnlConteudo = new System.Windows.Forms.Panel();
+            this.pnlPesquisa = new System.Windows.Forms.Panel();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -126,14 +126,14 @@
             this.btnFechar.Visible = false;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
-            // pnlConteudo
+            // pnlPesquisa
             // 
-            this.pnlConteudo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConteudo.Location = new System.Drawing.Point(0, 59);
-            this.pnlConteudo.Name = "pnlConteudo";
-            this.pnlConteudo.Size = new System.Drawing.Size(937, 547);
-            this.pnlConteudo.TabIndex = 2;
+            this.pnlPesquisa.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPesquisa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPesquisa.Location = new System.Drawing.Point(0, 59);
+            this.pnlPesquisa.Name = "pnlPesquisa";
+            this.pnlPesquisa.Size = new System.Drawing.Size(937, 547);
+            this.pnlPesquisa.TabIndex = 2;
             // 
             // pnlLogo
             // 
@@ -151,7 +151,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(937, 606);
             this.Controls.Add(this.pnlLogo);
-            this.Controls.Add(this.pnlConteudo);
+            this.Controls.Add(this.pnlPesquisa);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -174,7 +174,7 @@
         private System.Windows.Forms.ToolStripButton btnFechar;
         private System.Windows.Forms.ToolStripButton btnPacientes;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.Panel pnlConteudo;
+        private System.Windows.Forms.Panel pnlPesquisa;
         private System.Windows.Forms.ToolStripButton btnConsultas;
         private System.Windows.Forms.ToolStripButton btnPesquisas;
         private System.Windows.Forms.Panel pnlLogo;
