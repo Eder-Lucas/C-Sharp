@@ -15,62 +15,66 @@ namespace ControleConsultorio
         public frmPrincipal()
         {
             InitializeComponent();
-        }
+        }      
 
-        private bool pesquisaAberta = false;
-
+        // Instancia os formulários e depois o exibe
         private void btnMedicos_Click(object sender, EventArgs e)
         {
-            // Instancia o formulário de médicos e depois o exibe
-            frmMedicos novoMedico = new frmMedicos();
-            novoMedico.ShowDialog();
+            using (frmMedicos novoMedico = new frmMedicos())
+            {
+                novoMedico.ShowDialog();
+            }            
         }
-
         private void btnPacientes_Click(object sender, EventArgs e)
         {
-            frmPacientes novoPaciente = new frmPacientes();
-            novoPaciente.ShowDialog();
+            using (frmPacientes novoPaciente = new frmPacientes())
+            {
+                novoPaciente.ShowDialog();
+            }
         }
-
         private void btnConsultas_Click(object sender, EventArgs e)
         {
-            frmConsultas novaConsulta = new frmConsultas();
-            novaConsulta.ShowDialog();
-        }
-
-        private void btnPesquisas_Click(object sender, EventArgs e)
-        {           
-            if (pesquisaAberta == false)
+            using (frmConsultas novaConsulta= new frmConsultas())
             {
-                pnlConteudo.Visible = true;
-                pnlLogo.Visible = false;
-
-                btnFechar.Visible = true;
-                pesquisaAberta = true;
-            }         
+                novaConsulta.ShowDialog();
+            }
         }
 
+        // Ao clicar no botão de pesquisas
+        // Exibe o painel de pesquisas
+        private void btnPesquisas_Click(object sender, EventArgs e) => MostrarPainel(pnlPesquisa);
+
+        // Ao clicar no botão de fechar
+        // Exibe o painel de logo
+        private void btnFechar_Click(object sender, EventArgs e) => MostrarPainel(pnlLogo);
+
+        // Método para exibir o painel desejado
+        private void MostrarPainel(Panel pnlDesejado)
+        {
+            // Oculta todos os painéis
+            pnlPesquisa.Visible = false;
+            pnlLogo.Visible = false;
+
+            // Exibe o painel desejado
+            pnlDesejado.Visible = true;
+
+            // Controla a visibilidade do botão Fechar
+            btnFechar.Visible = (pnlDesejado == pnlPesquisa);
+        }
+
+        // Ao carregar o formulário principal
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            // Instancia os UserControls de Logo e Pesquisa
+            // Adiciona os UserControls de Logo e Pesquisa aos seus respectivos painéis
+            // Usa Dock Fill para preencher todo o espaço dos painéis
             ucLogo telaLogo = new ucLogo();
             telaLogo.Dock = DockStyle.Fill;
             pnlLogo.Controls.Add(telaLogo);
 
             ucPesquisa telaPesquisa = new ucPesquisa();
             telaPesquisa.Dock = DockStyle.Fill;
-            pnlConteudo.Controls.Add(telaPesquisa);
-        }
-
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            if (pesquisaAberta == true)
-            {
-                pnlLogo.Visible = true;
-                pnlConteudo.Visible = false;
-
-                btnFechar.Visible = false;
-                pesquisaAberta = false;
-            }
+            pnlPesquisa.Controls.Add(telaPesquisa);
         }
     }
 }
