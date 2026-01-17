@@ -43,30 +43,25 @@ namespace ControleConsultorio
         // Método para exibir o painel desejado
         private void MostrarPainel(Panel pnlDesejado)
         {
-            // Oculta todos os painéis
-            pnlPesquisa.Visible = false;
-            pnlLogo.Visible = false;
-
-            // Exibe o painel desejado
-            pnlDesejado.Visible = true;
-
-            // Controla a visibilidade do botão Fechar
+            // Controla a visibilidade dos painéis e do botão de fechar
+            // Conforme o painel desejado
+            pnlPesquisa.Visible = (pnlDesejado == pnlPesquisa);
+            pnlLogo.Visible = (pnlDesejado == pnlLogo);
             btnFechar.Visible = (pnlDesejado == pnlPesquisa);
         }
 
         // Ao carregar o formulário principal
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            // Instancia os UserControls de Logo e Pesquisa
-            // Usa Dock Fill para preencher todo o espaço dos painéis
-            // Adiciona os UserControls de Logo e Pesquisa aos seus respectivos painéis
+            /* Forma verbosa
             ucLogo telaLogo = new ucLogo();
             telaLogo.Dock = DockStyle.Fill;
             pnlLogo.Controls.Add(telaLogo);
+            */
 
-            ucPesquisa telaPesquisa = new ucPesquisa();
-            telaPesquisa.Dock = DockStyle.Fill;
-            pnlPesquisa.Controls.Add(telaPesquisa);
+            // Adiciona o UserControl ao painel correspondente
+            pnlLogo.Controls.Add(new ucLogo() { Dock = DockStyle.Fill });
+            pnlPesquisa.Controls.Add(new ucPesquisa() { Dock = DockStyle.Fill });
 
             // Aplica o cursor de mão quando o mouse estiver sobre os botões do formulário
             CursorButton.AplicarCursor(toolStrip1);
