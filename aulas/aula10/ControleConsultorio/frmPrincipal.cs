@@ -15,38 +15,29 @@ namespace ControleConsultorio
         public frmPrincipal()
         {
             InitializeComponent();
-        }      
-
-        // Instancia os formulários e depois o exibe
-        private void btnMedicos_Click(object sender, EventArgs e)
-        {
-            using (frmMedicos novoMedico = new frmMedicos())
-            {
-                novoMedico.ShowDialog();
-            }            
-        }
-        private void btnPacientes_Click(object sender, EventArgs e)
-        {
-            using (frmPacientes novoPaciente = new frmPacientes())
-            {
-                novoPaciente.ShowDialog();
-            }
-        }
-        private void btnConsultas_Click(object sender, EventArgs e)
-        {
-            using (frmConsultas novaConsulta= new frmConsultas())
-            {
-                novaConsulta.ShowDialog();
-            }
         }
 
-        // Ao clicar no botão de pesquisas
-        // Exibe o painel de pesquisas
+        // Ao clicar no botão, abre o formulário correspondente
+        private void btnMedicos_Click(object sender, EventArgs e) => AbrirFormulario<frmMedicos>();
+        private void btnPacientes_Click(object sender, EventArgs e) => AbrirFormulario<frmPacientes>();
+        private void btnConsultas_Click(object sender, EventArgs e) => AbrirFormulario<frmConsultas>();
+
+        // Ao clicar no botão, exibe o painel correspondente
         private void btnPesquisas_Click(object sender, EventArgs e) => MostrarPainel(pnlPesquisa);
-
-        // Ao clicar no botão de fechar
-        // Exibe o painel de logo
         private void btnFechar_Click(object sender, EventArgs e) => MostrarPainel(pnlLogo);
+
+        // Método genérico para abrir formulários
+        // Métodos genéricos: não sabe qual tipo vai receber, apenas quando for chamado
+        private void AbrirFormulario<T>() where T : Form, new()
+        {
+            // Garante que o formulário seja fechado após o uso
+            // Reduz o risco de vazamento de memória
+            // RAM melhor utilizada
+            using (T formulario = new T())
+            {
+                formulario.ShowDialog();
+            }
+        }
 
         // Método para exibir o painel desejado
         private void MostrarPainel(Panel pnlDesejado)
