@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ControleConsultorio
 {
@@ -57,8 +58,8 @@ namespace ControleConsultorio
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             // Instancia os UserControls de Logo e Pesquisa
-            // Adiciona os UserControls de Logo e Pesquisa aos seus respectivos painéis
             // Usa Dock Fill para preencher todo o espaço dos painéis
+            // Adiciona os UserControls de Logo e Pesquisa aos seus respectivos painéis
             ucLogo telaLogo = new ucLogo();
             telaLogo.Dock = DockStyle.Fill;
             pnlLogo.Controls.Add(telaLogo);
@@ -66,6 +67,9 @@ namespace ControleConsultorio
             ucPesquisa telaPesquisa = new ucPesquisa();
             telaPesquisa.Dock = DockStyle.Fill;
             pnlPesquisa.Controls.Add(telaPesquisa);
+
+            // Aplica o cursor de mão quando o mouse estiver sobre os botões do formulário
+            CursorButton.AplicarCursor(toolStrip1);
         }
     }
 }
