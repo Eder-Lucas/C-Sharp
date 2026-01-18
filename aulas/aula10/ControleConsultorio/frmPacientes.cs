@@ -57,7 +57,7 @@ namespace ControleConsultorio
             this.pacienteTableAdapter.Fill(this.consultasDataSet.Paciente);
 
             // Ativa o ajuste do cursor para os MaskedTextBox
-            CursorMaskedTextBox.AjustaCursor(this);
+            FormataCursorMtb.AjustaCursor(this);
         }
     }
 }

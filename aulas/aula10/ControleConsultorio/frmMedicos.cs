@@ -38,7 +38,7 @@ namespace ControleConsultorio
             this.medicoTableAdapter.Fill(this.consultasDataSet.Medico);
 
             // Ativa o ajuste do cursor para os MaskedTextBox
-            CursorMaskedTextBox.AjustaCursor(this);
+            FormataCursorMtb.AjustaCursor(this);
         }
     }
 }
