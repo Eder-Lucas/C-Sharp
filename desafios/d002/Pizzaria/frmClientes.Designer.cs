@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientes));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -43,7 +43,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pizzaria.Properties.Resources.group;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 13);
+            this.pictureBox1.Location = new System.Drawing.Point(104, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 128);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -57,8 +57,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 154);
+            this.panel1.Size = new System.Drawing.Size(767, 154);
             this.panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Impact", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(259, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(422, 59);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Cadastro de clientes";
             // 
             // tabControl1
             // 
@@ -68,7 +78,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 160);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 429);
+            this.tabControl1.Size = new System.Drawing.Size(767, 429);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -76,7 +86,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(793, 402);
+            this.tabPage1.Size = new System.Drawing.Size(759, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clientes";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -91,21 +101,11 @@
             this.tabPage2.Text = "Pesquisas";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(259, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(422, 59);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Cadastro de clientes";
-            // 
             // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 589);
+            this.ClientSize = new System.Drawing.Size(767, 589);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
