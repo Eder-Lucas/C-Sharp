@@ -531,7 +531,7 @@
             // nomeClienteToolStripLabel
             // 
             this.nomeClienteToolStripLabel.Name = "nomeClienteToolStripLabel";
-            this.nomeClienteToolStripLabel.Size = new System.Drawing.Size(53, 24);
+            this.nomeClienteToolStripLabel.Size = new System.Drawing.Size(53, 28);
             this.nomeClienteToolStripLabel.Text = "Nome:";
             // 
             // nomeClienteToolStripTextBox
@@ -543,7 +543,7 @@
             // retornarNomeClienteToolStripButton
             // 
             this.retornarNomeClienteToolStripButton.Name = "retornarNomeClienteToolStripButton";
-            this.retornarNomeClienteToolStripButton.Size = new System.Drawing.Size(74, 24);
+            this.retornarNomeClienteToolStripButton.Size = new System.Drawing.Size(74, 28);
             this.retornarNomeClienteToolStripButton.Text = "Pesquisar";
             this.retornarNomeClienteToolStripButton.Click += new System.EventHandler(this.retornarNomeClienteToolStripButton_Click);
             // 
