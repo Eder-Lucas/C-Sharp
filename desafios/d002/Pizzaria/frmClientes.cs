@@ -16,5 +16,33 @@ namespace Pizzaria
         {
             InitializeComponent();
         }
+
+        private void clienteBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.clienteBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.pizzariaDataSet);
+
+        }
+
+        private void frmClientes_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Cliente'. Você pode movê-la ou removê-la conforme necessário.
+            this.clienteTableAdapter.Fill(this.pizzariaDataSet.Cliente);
+
+        }
+
+        private void retornarNomeClienteToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.clienteTableAdapter.RetornarNomeCliente(this.pizzariaDataSet.Cliente, nomeClienteToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }
