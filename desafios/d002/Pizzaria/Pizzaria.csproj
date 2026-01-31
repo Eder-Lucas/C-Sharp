@@ -112,5 +112,17 @@
   <ItemGroup>
     <None Include="images\group.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\pequena-lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\pizza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\pedido.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
