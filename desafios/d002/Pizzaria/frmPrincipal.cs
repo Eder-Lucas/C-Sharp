@@ -16,5 +16,12 @@ namespace Pizzaria
         {
             InitializeComponent();
         }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            frmClientes clientes = new frmClientes();
+
+            clientes.ShowDialog();
+        }
     }
 }
