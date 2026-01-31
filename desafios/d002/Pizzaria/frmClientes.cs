@@ -15,6 +15,9 @@ namespace Pizzaria
         public frmClientes()
         {
             InitializeComponent();
+
+            //Aciona o evento ao método
+            tabControlClientes.SelectedIndexChanged += (s, e) => CarregaAbaAtual();
         }
 
         private void clienteBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -22,27 +25,40 @@ namespace Pizzaria
             this.Validate();
             this.clienteBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.pizzariaDataSet);
-
         }
 
-        private void frmClientes_Load(object sender, EventArgs e)
-        {
-            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Cliente'. Você pode movê-la ou removê-la conforme necessário.
-            this.clienteTableAdapter.Fill(this.pizzariaDataSet.Cliente);
+        //Chama o método ao carregar o formulário
+        private void frmClientes_Load(object sender, EventArgs e) => CarregaAbaAtual();
 
+        //Carrega os dados dependendod da aba selecionada
+        private void CarregaAbaAtual()
+        {
+            //Verifica a aba selecionada
+            switch (tabControlClientes.SelectedTab.Name)
+            {
+                //Na aba clientes, carrega os dados preenchendo o datagrid
+                case "tabPageClientes":
+                    if (this.pizzariaDataSet.Cliente.Count == 0)
+                        this.clienteTableAdapter.Fill(this.pizzariaDataSet.Cliente);
+                    break;
+
+                //Na aba pesquisa, limpa o datagrid
+                case "tabPagePesquisa":
+                    dtgPesquisaCliente.DataSource = null;
+                    break;
+            }
         }
 
-        private void retornarNomeClienteToolStripButton_Click(object sender, EventArgs e)
+        //Executa a pesquisa por nome
+        private void btnPesquisaNome_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.clienteTableAdapter.RetornarNomeCliente(this.pizzariaDataSet.Cliente, nomeClienteToolStripTextBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
+            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
+        }
 
+        //Executa a pesquisa por CPF
+        private void btnPesquisaCpf_Click(object sender, EventArgs e)
+        {
+            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);
         }
     }
 }
