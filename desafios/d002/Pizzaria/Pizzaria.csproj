@@ -55,6 +55,12 @@
     <Compile Include="frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPizzas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPizzas.Designer.cs">
+      <DependentUpon>frmPizzas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPizzas.resx">
+      <DependentUpon>frmPizzas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
@@ -123,6 +132,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\pedido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\lupa-maior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\excluir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\salvar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\adicionar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\mostrar-todos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
