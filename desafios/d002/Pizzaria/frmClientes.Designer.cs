@@ -43,6 +43,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControlClientes = new System.Windows.Forms.TabControl();
             this.tabPageClientes = new System.Windows.Forms.TabPage();
+            this.dtgClientes = new System.Windows.Forms.DataGridView();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pizzariaDataSet = new Pizzaria.PizzariaDataSet();
             this.clienteBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -63,9 +66,9 @@
             this.txtPesquisaNome = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnMostrarTodos = new System.Windows.Forms.Button();
             this.dtgPesquisaCliente = new System.Windows.Forms.DataGridView();
-            this.dtgClientes = new System.Windows.Forms.DataGridView();
+            this.clienteTableAdapter = new Pizzaria.PizzariaDataSetTableAdapters.ClienteTableAdapter();
+            this.tableAdapterManager = new Pizzaria.PizzariaDataSetTableAdapters.TableAdapterManager();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -73,20 +76,10 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.clienteBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.btnMostrarTodos = new System.Windows.Forms.Button();
             this.btnPesquisaCpf = new System.Windows.Forms.Button();
             this.btnPesquisaNome = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pizzariaDataSet = new Pizzaria.PizzariaDataSet();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,8 +89,15 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clienteTableAdapter = new Pizzaria.PizzariaDataSetTableAdapters.ClienteTableAdapter();
-            this.tableAdapterManager = new Pizzaria.PizzariaDataSetTableAdapters.TableAdapterManager();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             iD_CLIENTELabel = new System.Windows.Forms.Label();
             nOME_CLIENTELabel = new System.Windows.Forms.Label();
             cPFLabel = new System.Windows.Forms.Label();
@@ -110,14 +110,14 @@
             this.panel1.SuspendLayout();
             this.tabControlClientes.SuspendLayout();
             this.tabPageClientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingNavigator)).BeginInit();
             this.clienteBindingNavigator.SuspendLayout();
             this.tabPagePesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPesquisaCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // iD_CLIENTELabel
@@ -269,6 +269,42 @@
             this.tabPageClientes.TabIndex = 0;
             this.tabPageClientes.Text = "Clientes";
             this.tabPageClientes.UseVisualStyleBackColor = true;
+            // 
+            // dtgClientes
+            // 
+            this.dtgClientes.AllowUserToAddRows = false;
+            this.dtgClientes.AllowUserToDeleteRows = false;
+            this.dtgClientes.AutoGenerateColumns = false;
+            this.dtgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewTextBoxColumn18});
+            this.dtgClientes.DataSource = this.clienteBindingSource;
+            this.dtgClientes.Location = new System.Drawing.Point(3, 208);
+            this.dtgClientes.Name = "dtgClientes";
+            this.dtgClientes.ReadOnly = true;
+            this.dtgClientes.RowHeadersVisible = false;
+            this.dtgClientes.RowHeadersWidth = 51;
+            this.dtgClientes.RowTemplate.Height = 24;
+            this.dtgClientes.Size = new System.Drawing.Size(753, 279);
+            this.dtgClientes.TabIndex = 18;
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataMember = "Cliente";
+            this.clienteBindingSource.DataSource = this.pizzariaDataSet;
+            // 
+            // pizzariaDataSet
+            // 
+            this.pizzariaDataSet.DataSetName = "PizzariaDataSet";
+            this.pizzariaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // clienteBindingNavigator
             // 
@@ -472,16 +508,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Nome:";
             // 
-            // btnMostrarTodos
-            // 
-            this.btnMostrarTodos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrarTodos.Location = new System.Drawing.Point(542, 36);
-            this.btnMostrarTodos.Name = "btnMostrarTodos";
-            this.btnMostrarTodos.Size = new System.Drawing.Size(171, 55);
-            this.btnMostrarTodos.TabIndex = 1;
-            this.btnMostrarTodos.Text = "Mostrar Todos";
-            this.btnMostrarTodos.UseVisualStyleBackColor = true;
-            // 
             // dtgPesquisaCliente
             // 
             this.dtgPesquisaCliente.AllowUserToAddRows = false;
@@ -508,31 +534,18 @@
             this.dtgPesquisaCliente.Size = new System.Drawing.Size(753, 366);
             this.dtgPesquisaCliente.TabIndex = 0;
             // 
-            // dtgClientes
+            // clienteTableAdapter
             // 
-            this.dtgClientes.AllowUserToAddRows = false;
-            this.dtgClientes.AllowUserToDeleteRows = false;
-            this.dtgClientes.AutoGenerateColumns = false;
-            this.dtgClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn18});
-            this.dtgClientes.DataSource = this.clienteBindingSource;
-            this.dtgClientes.Location = new System.Drawing.Point(3, 208);
-            this.dtgClientes.Name = "dtgClientes";
-            this.dtgClientes.ReadOnly = true;
-            this.dtgClientes.RowHeadersVisible = false;
-            this.dtgClientes.RowHeadersWidth = 51;
-            this.dtgClientes.RowTemplate.Height = 24;
-            this.dtgClientes.Size = new System.Drawing.Size(753, 279);
-            this.dtgClientes.TabIndex = 18;
+            this.clienteTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ClienteTableAdapter = this.clienteTableAdapter;
+            this.tableAdapterManager.PedidoTableAdapter = null;
+            this.tableAdapterManager.SaborTableAdapter = null;
+            this.tableAdapterManager.TamanhoTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = Pizzaria.PizzariaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -597,6 +610,19 @@
             this.clienteBindingNavigatorSaveItem.Text = "Salvar Dados";
             this.clienteBindingNavigatorSaveItem.Click += new System.EventHandler(this.clienteBindingNavigatorSaveItem_Click);
             // 
+            // btnMostrarTodos
+            // 
+            this.btnMostrarTodos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarTodos.Image = global::Pizzaria.Properties.Resources.mostrar_todos;
+            this.btnMostrarTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrarTodos.Location = new System.Drawing.Point(546, 36);
+            this.btnMostrarTodos.Name = "btnMostrarTodos";
+            this.btnMostrarTodos.Size = new System.Drawing.Size(153, 55);
+            this.btnMostrarTodos.TabIndex = 1;
+            this.btnMostrarTodos.Text = "Mostrar Todos";
+            this.btnMostrarTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrarTodos.UseVisualStyleBackColor = true;
+            // 
             // btnPesquisaCpf
             // 
             this.btnPesquisaCpf.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -614,7 +640,7 @@
             // btnPesquisaNome
             // 
             this.btnPesquisaNome.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisaNome.Image = global::Pizzaria.Properties.Resources.pequena_lupa;
+            this.btnPesquisaNome.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaNome.Image")));
             this.btnPesquisaNome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPesquisaNome.Location = new System.Drawing.Point(395, 24);
             this.btnPesquisaNome.Name = "btnPesquisaNome";
@@ -635,101 +661,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "ID_CLIENTE";
-            this.dataGridViewTextBoxColumn10.HeaderText = "CÓDIGO";
-            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 68;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "NOME_CLIENTE";
-            this.dataGridViewTextBoxColumn11.HeaderText = "NOME";
-            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "CPF";
-            this.dataGridViewTextBoxColumn12.HeaderText = "CPF";
-            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "TELEFONE";
-            this.dataGridViewTextBoxColumn13.HeaderText = "TELEFONE";
-            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Visible = false;
-            this.dataGridViewTextBoxColumn13.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "ENDERECO";
-            this.dataGridViewTextBoxColumn14.HeaderText = "ENDERECO";
-            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Visible = false;
-            this.dataGridViewTextBoxColumn14.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "NUMERO";
-            this.dataGridViewTextBoxColumn15.HeaderText = "Nº";
-            this.dataGridViewTextBoxColumn15.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Visible = false;
-            this.dataGridViewTextBoxColumn15.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.DataPropertyName = "BAIRRO";
-            this.dataGridViewTextBoxColumn16.HeaderText = "BAIRRO";
-            this.dataGridViewTextBoxColumn16.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Visible = false;
-            this.dataGridViewTextBoxColumn16.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.DataPropertyName = "CIDADE";
-            this.dataGridViewTextBoxColumn17.HeaderText = "CIDADE";
-            this.dataGridViewTextBoxColumn17.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.ReadOnly = true;
-            this.dataGridViewTextBoxColumn17.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.DataPropertyName = "CEP";
-            this.dataGridViewTextBoxColumn18.HeaderText = "CEP";
-            this.dataGridViewTextBoxColumn18.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.ReadOnly = true;
-            this.dataGridViewTextBoxColumn18.Width = 125;
-            // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataMember = "Cliente";
-            this.clienteBindingSource.DataSource = this.pizzariaDataSet;
-            // 
-            // pizzariaDataSet
-            // 
-            this.pizzariaDataSet.DataSetName = "PizzariaDataSet";
-            this.pizzariaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "ID_CLIENTE";
@@ -746,7 +677,7 @@
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 200;
+            this.dataGridViewTextBoxColumn2.Width = 232;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -804,7 +735,7 @@
             this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 125;
+            this.dataGridViewTextBoxColumn8.Width = 200;
             // 
             // dataGridViewTextBoxColumn9
             // 
@@ -815,18 +746,90 @@
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Width = 125;
             // 
-            // clienteTableAdapter
+            // dataGridViewTextBoxColumn10
             // 
-            this.clienteTableAdapter.ClearBeforeFill = true;
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "ID_CLIENTE";
+            this.dataGridViewTextBoxColumn10.HeaderText = "CÓDIGO";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 68;
             // 
-            // tableAdapterManager
+            // dataGridViewTextBoxColumn11
             // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ClienteTableAdapter = this.clienteTableAdapter;
-            this.tableAdapterManager.PedidoTableAdapter = null;
-            this.tableAdapterManager.SaborTableAdapter = null;
-            this.tableAdapterManager.TamanhoTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = Pizzaria.PizzariaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "NOME_CLIENTE";
+            this.dataGridViewTextBoxColumn11.HeaderText = "NOME";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 232;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "CPF";
+            this.dataGridViewTextBoxColumn12.HeaderText = "CPF";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "TELEFONE";
+            this.dataGridViewTextBoxColumn13.HeaderText = "TELEFONE";
+            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Visible = false;
+            this.dataGridViewTextBoxColumn13.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "ENDERECO";
+            this.dataGridViewTextBoxColumn14.HeaderText = "ENDERECO";
+            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Visible = false;
+            this.dataGridViewTextBoxColumn14.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "NUMERO";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Nº";
+            this.dataGridViewTextBoxColumn15.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Visible = false;
+            this.dataGridViewTextBoxColumn15.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "BAIRRO";
+            this.dataGridViewTextBoxColumn16.HeaderText = "BAIRRO";
+            this.dataGridViewTextBoxColumn16.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.Visible = false;
+            this.dataGridViewTextBoxColumn16.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "CIDADE";
+            this.dataGridViewTextBoxColumn17.HeaderText = "CIDADE";
+            this.dataGridViewTextBoxColumn17.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "CEP";
+            this.dataGridViewTextBoxColumn18.HeaderText = "CEP";
+            this.dataGridViewTextBoxColumn18.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            this.dataGridViewTextBoxColumn18.Width = 125;
             // 
             // frmClientes
             // 
@@ -846,16 +849,16 @@
             this.tabControlClientes.ResumeLayout(false);
             this.tabPageClientes.ResumeLayout(false);
             this.tabPageClientes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingNavigator)).EndInit();
             this.clienteBindingNavigator.ResumeLayout(false);
             this.clienteBindingNavigator.PerformLayout();
             this.tabPagePesquisa.ResumeLayout(false);
             this.tabPagePesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPesquisaCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
