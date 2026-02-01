@@ -38,7 +38,7 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.dtgSabores = new System.Windows.Forms.DataGridView();
-            this.txtIgrediente = new System.Windows.Forms.TextBox();
+            this.txtIngrediente = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@
             this.saborTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.SaborTableAdapter();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Igredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPizzas.SuspendLayout();
             this.tabPageSabores.SuspendLayout();
             this.gbPesquisa.SuspendLayout();
@@ -72,7 +72,7 @@
             this.tabPageSabores.Controls.Add(this.btnExcluir);
             this.tabPageSabores.Controls.Add(this.btnNovo);
             this.tabPageSabores.Controls.Add(this.dtgSabores);
-            this.tabPageSabores.Controls.Add(this.txtIgrediente);
+            this.tabPageSabores.Controls.Add(this.txtIngrediente);
             this.tabPageSabores.Controls.Add(this.txtNome);
             this.tabPageSabores.Controls.Add(this.txtCodigo);
             this.tabPageSabores.Controls.Add(this.label3);
@@ -167,7 +167,7 @@
             this.dtgSabores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
             this.Nome,
-            this.Igredientes});
+            this.Ingredientes});
             this.dtgSabores.Location = new System.Drawing.Point(4, 381);
             this.dtgSabores.Name = "dtgSabores";
             this.dtgSabores.ReadOnly = true;
@@ -177,15 +177,15 @@
             this.dtgSabores.Size = new System.Drawing.Size(534, 214);
             this.dtgSabores.TabIndex = 8;
             // 
-            // txtIgrediente
+            // txtIngrediente
             // 
-            this.txtIgrediente.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIgrediente.Location = new System.Drawing.Point(19, 111);
-            this.txtIgrediente.Multiline = true;
-            this.txtIgrediente.Name = "txtIgrediente";
-            this.txtIgrediente.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtIgrediente.Size = new System.Drawing.Size(382, 164);
-            this.txtIgrediente.TabIndex = 1;
+            this.txtIngrediente.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIngrediente.Location = new System.Drawing.Point(19, 111);
+            this.txtIngrediente.Multiline = true;
+            this.txtIngrediente.Name = "txtIngrediente";
+            this.txtIngrediente.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtIngrediente.Size = new System.Drawing.Size(382, 164);
+            this.txtIngrediente.TabIndex = 1;
             // 
             // txtNome
             // 
@@ -266,14 +266,14 @@
             this.Nome.ReadOnly = true;
             this.Nome.Width = 200;
             // 
-            // Igredientes
+            // Ingredientes
             // 
-            this.Igredientes.DataPropertyName = "INGREDIENTES";
-            this.Igredientes.HeaderText = "INGREDIENTES";
-            this.Igredientes.MinimumWidth = 6;
-            this.Igredientes.Name = "Igredientes";
-            this.Igredientes.ReadOnly = true;
-            this.Igredientes.Width = 263;
+            this.Ingredientes.DataPropertyName = "INGREDIENTES";
+            this.Ingredientes.HeaderText = "INGREDIENTES";
+            this.Ingredientes.MinimumWidth = 6;
+            this.Ingredientes.Name = "Ingredientes";
+            this.Ingredientes.ReadOnly = true;
+            this.Ingredientes.Width = 263;
             // 
             // frmPizzas
             // 
@@ -302,7 +302,7 @@
         private System.Windows.Forms.TabControl tabPizzas;
         private System.Windows.Forms.TabPage tabPageSabores;
         private System.Windows.Forms.TabPage tabPageTamanhos;
-        private System.Windows.Forms.TextBox txtIgrediente;
+        private System.Windows.Forms.TextBox txtIngrediente;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label3;
@@ -318,6 +318,6 @@
         private PizzariaDataSetTableAdapters.SaborTableAdapter saborTableAdapter1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Igredientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ingredientes;
     }
 }
