@@ -23,5 +23,12 @@ namespace Pizzaria
 
             clientes.ShowDialog();
         }
+
+        private void btnPizzas_Click(object sender, EventArgs e)
+        {
+            frmPizzas pizzas = new frmPizzas();
+
+            pizzas.ShowDialog();
+        }
     }
 }

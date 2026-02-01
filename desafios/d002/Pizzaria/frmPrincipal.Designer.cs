@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnClientes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPizzas = new System.Windows.Forms.ToolStripButton();
             this.btnpedidos = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,11 @@
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
+            // 
             // btnPizzas
             // 
             this.btnPizzas.Image = global::Pizzaria.Properties.Resources.pizza;
@@ -71,6 +76,7 @@
             this.btnPizzas.Size = new System.Drawing.Size(53, 56);
             this.btnPizzas.Text = "Pizzas";
             this.btnPizzas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPizzas.Click += new System.EventHandler(this.btnPizzas_Click);
             // 
             // btnpedidos
             // 
@@ -81,11 +87,6 @@
             this.btnpedidos.Size = new System.Drawing.Size(65, 56);
             this.btnpedidos.Text = "Pedidos";
             this.btnpedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
             // 
             // frmPrincipal
             // 
