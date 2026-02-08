@@ -38,6 +38,9 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.dtgSabores = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtIngrediente = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -46,9 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageTamanhos = new System.Windows.Forms.TabPage();
             this.saborTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.SaborTableAdapter();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ingredientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPizzas.SuspendLayout();
             this.tabPageSabores.SuspendLayout();
             this.gbPesquisa.SuspendLayout();
@@ -143,6 +143,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnNovo
             // 
@@ -176,6 +177,34 @@
             this.dtgSabores.RowTemplate.Height = 24;
             this.dtgSabores.Size = new System.Drawing.Size(534, 214);
             this.dtgSabores.TabIndex = 8;
+            this.dtgSabores.DoubleClick += new System.EventHandler(this.dtgSabores_DoubleClick);
+            // 
+            // Codigo
+            // 
+            this.Codigo.DataPropertyName = "ID_SABOR";
+            this.Codigo.HeaderText = "CÓDIGO";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 68;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "NOME_SABOR";
+            this.Nome.HeaderText = "NOME";
+            this.Nome.MinimumWidth = 6;
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            this.Nome.Width = 200;
+            // 
+            // Ingredientes
+            // 
+            this.Ingredientes.DataPropertyName = "INGREDIENTES";
+            this.Ingredientes.HeaderText = "INGREDIENTES";
+            this.Ingredientes.MinimumWidth = 6;
+            this.Ingredientes.Name = "Ingredientes";
+            this.Ingredientes.ReadOnly = true;
+            this.Ingredientes.Width = 263;
             // 
             // txtIngrediente
             // 
@@ -247,33 +276,6 @@
             // saborTableAdapter1
             // 
             this.saborTableAdapter1.ClearBeforeFill = true;
-            // 
-            // Codigo
-            // 
-            this.Codigo.DataPropertyName = "ID_SABOR";
-            this.Codigo.HeaderText = "CÓDIGO";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 68;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "NOME_SABOR";
-            this.Nome.HeaderText = "NOME";
-            this.Nome.MinimumWidth = 6;
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 200;
-            // 
-            // Ingredientes
-            // 
-            this.Ingredientes.DataPropertyName = "INGREDIENTES";
-            this.Ingredientes.HeaderText = "INGREDIENTES";
-            this.Ingredientes.MinimumWidth = 6;
-            this.Ingredientes.Name = "Ingredientes";
-            this.Ingredientes.ReadOnly = true;
-            this.Ingredientes.Width = 263;
             // 
             // frmPizzas
             // 
