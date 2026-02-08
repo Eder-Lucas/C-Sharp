@@ -234,7 +234,7 @@ SELECT ID_SABOR, NOME_SABOR, INGREDIENTES FROM Sabor WHERE (ID_SABOR = @ID_SABOR
               <Mapping SourceColumn="INGREDIENTES" DataSetColumn="INGREDIENTES" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Alterar" Modifier="Public" Name="Alterar" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Alterar">
+              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Alterar" Modifier="Public" Name="Alterar" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Alterar">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE  Sabor
@@ -248,7 +248,7 @@ WHERE  (ID_SABOR = @Original_ID_SABOR); </CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Excluir" Modifier="Public" Name="Excluir" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Excluir">
+              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Excluir" Modifier="Public" Name="Excluir" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Excluir">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM Sabor
@@ -279,7 +279,7 @@ WHERE  (NOME_SABOR = @NomeSabor)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Salvar" Modifier="Public" Name="Salvar" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Salvar">
+              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Salvar" Modifier="Public" Name="Salvar" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Salvar">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO Sabor
@@ -486,9 +486,9 @@ SELECT ID_TAMANHO, NOME_TAMANHO, VALOR FROM Tamanho WHERE (ID_TAMANHO = @ID_TAMA
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Cliente_Pedido" msdata:parent="Cliente" msdata:child="Pedido" msdata:parentkey="ID_CLIENTE" msdata:childkey="ID_CLIENTE" msprop:Generator_UserParentTable="Cliente" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationCliente_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="ClienteRow" msprop:Generator_UserRelationName="Cliente_Pedido" />
-      <msdata:Relationship name="Tamanho_Pedido" msdata:parent="Tamanho" msdata:child="Pedido" msdata:parentkey="ID_TAMANHO" msdata:childkey="ID_TAMANHO" msprop:Generator_UserParentTable="Tamanho" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationTamanho_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Tamanho_Pedido" msprop:Generator_ParentPropName="TamanhoRow" />
-      <msdata:Relationship name="Sabor_Pedido" msdata:parent="Sabor" msdata:child="Pedido" msdata:parentkey="ID_SABOR" msdata:childkey="ID_SABOR" msprop:Generator_UserParentTable="Sabor" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationSabor_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Sabor_Pedido" msprop:Generator_ParentPropName="SaborRow" />
+      <msdata:Relationship name="Cliente_Pedido" msdata:parent="Cliente" msdata:child="Pedido" msdata:parentkey="ID_CLIENTE" msdata:childkey="ID_CLIENTE" msprop:Generator_UserParentTable="Cliente" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationCliente_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Cliente_Pedido" msprop:Generator_ParentPropName="ClienteRow" />
+      <msdata:Relationship name="Tamanho_Pedido" msdata:parent="Tamanho" msdata:child="Pedido" msdata:parentkey="ID_TAMANHO" msdata:childkey="ID_TAMANHO" msprop:Generator_UserParentTable="Tamanho" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationTamanho_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="TamanhoRow" msprop:Generator_UserRelationName="Tamanho_Pedido" />
+      <msdata:Relationship name="Sabor_Pedido" msdata:parent="Sabor" msdata:child="Pedido" msdata:parentkey="ID_SABOR" msdata:childkey="ID_SABOR" msprop:Generator_UserParentTable="Sabor" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationSabor_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="SaborRow" msprop:Generator_UserRelationName="Sabor_Pedido" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
