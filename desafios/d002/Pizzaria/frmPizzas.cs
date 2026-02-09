@@ -24,6 +24,7 @@ namespace Pizzaria
             dtgSabores.DataSource = saborTableAdapter1.RetornarSabores();
         }
 
+        //Método para listar todos os tamanhos
         public void ListarTamanhos()
         {
             dtgTamanhos.DataSource = tamanhoTableAdapter1.RetornarTamanhos();
@@ -46,6 +47,9 @@ namespace Pizzaria
             }
         }
 
+        // ----------ABA SABORES---------- //
+
+        //Ao clicar no botão novo, limpa os campos para cadastrar um novo sabor
         private void btnNovo_Click(object sender, EventArgs e)
         {
             LimparCampos(this);
@@ -129,11 +133,15 @@ namespace Pizzaria
             txtIngrediente.Text = dtgSabores.Rows[dtgSabores.CurrentRow.Index].Cells["INGREDIENTES"].Value.ToString();
         }
 
+        // ----------ABA TAMANHOS---------- //
+
+        //Ao clicar no botão novo, limpa os campos para cadastrar um novo tamanho
         private void btnNovoTamanho_Click(object sender, EventArgs e)
         {
             LimparCampos(this);
         }
 
+        //Ao clicar no botão salvar
         private void btnSalvarTamanho_Click(object sender, EventArgs e)
         {
             //Verifica se o código é igual a zero, se sim salva um novo sabor
@@ -170,6 +178,7 @@ namespace Pizzaria
             }
         }
 
+        //Ao clicar no botão excluir
         private void btnExcluirTamanho_Click(object sender, EventArgs e)
         {
             //Verifica se o código é diferente de zero
@@ -191,14 +200,16 @@ namespace Pizzaria
             }
         }
 
+        //Ao clicar duas vezes em um tamanho no DataGridView
         private void dtgTamanhos_DoubleClick(object sender, EventArgs e)
         {
+            //Preenche os campos com os dados do tamanho selecionado
             txtCodigoTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["CODIGO_TAMANHO"].Value.ToString();
             txtNomeTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["NOME_TAMANHO"].Value.ToString();
             txtValorTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["VALOR"].Value.ToString();
         }
 
-        //Quando o formulário carregar, listar os sabores
+        //Quando o formulário carregar, listar os dados de sabores e tamanhos
         private void frmPizzas_Load(object sender, EventArgs e)
         {
             ListarSabores();
