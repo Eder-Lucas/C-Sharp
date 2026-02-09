@@ -148,5 +148,14 @@
   <ItemGroup>
     <None Include="images\mostrar-todos.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\adicionar-24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\salvar-24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\excluir-24px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

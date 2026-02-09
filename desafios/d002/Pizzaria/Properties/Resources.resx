@@ -124,6 +124,9 @@
   <data name="cliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\cliente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="adicionar-24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\adicionar-24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="adicionar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\adicionar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,8 +136,14 @@
   <data name="lupa-maior" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\lupa-maior.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mostrar-todos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\mostrar-todos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pequena-lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\pequena-lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="salvar-24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\salvar-24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="salvar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\salvar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,7 +154,7 @@
   <data name="excluir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\excluir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mostrar-todos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\mostrar-todos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="excluir-24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\excluir-24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
