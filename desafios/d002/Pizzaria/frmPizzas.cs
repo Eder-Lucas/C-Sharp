@@ -24,17 +24,31 @@ namespace Pizzaria
             dtgSabores.DataSource = saborTableAdapter1.RetornarSabores();
         }
 
-        //Método para limpar os campos
-        public void Limpar()
+        public void ListarTamanhos()
         {
-            txtCodigo.Text = "0";
-            txtNome.Clear();
-            txtIngrediente.Clear();
+            dtgTamanhos.DataSource = tamanhoTableAdapter1.RetornarTamanhos();
+        }
+
+        //Método para limpar os campos
+        public void LimparCampos(Control parent)
+        {
+            foreach (Control ctl in parent.Controls)
+            {
+                if (ctl.Name == "txtPesquisa") continue;
+
+                if (ctl is TextBox txt)
+                {
+                    txt.Text = (txt.Tag?.ToString() == "zero") ? "0" : string.Empty;
+                }
+
+                if (ctl.HasChildren)
+                    LimparCampos(ctl);         
+            }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            Limpar();
+            LimparCampos(this);
         }
 
         //Ao clicar no botão salvar
@@ -54,7 +68,7 @@ namespace Pizzaria
 
                 //Atualiza a lista de sabores e limpa os campos
                 ListarSabores();
-                Limpar(); 
+                LimparCampos(this); 
             }
             //Caso contrário, se for diferente de zero altera o sabor
             else
@@ -70,7 +84,7 @@ namespace Pizzaria
 
                 //Atualiza a lista de sabores e limpa os campos
                 ListarSabores();
-                Limpar();
+                LimparCampos(this);
             }
         }
 
@@ -92,7 +106,7 @@ namespace Pizzaria
 
                 //Atualiza a lista de sabores e limpa os campos
                 ListarSabores();
-                Limpar();
+                LimparCampos(this);
             }
         }
 
@@ -103,7 +117,7 @@ namespace Pizzaria
             dtgSabores.DataSource = saborTableAdapter1.PesquisaNomeSabor(txtPesquisa.Text);
 
             //Limpa os campos
-            Limpar();
+            LimparCampos(this);
         }
 
         //Ao clicar duas vezes em um sabor no DataGridView
@@ -115,10 +129,80 @@ namespace Pizzaria
             txtIngrediente.Text = dtgSabores.Rows[dtgSabores.CurrentRow.Index].Cells["INGREDIENTES"].Value.ToString();
         }
 
+        private void btnNovoTamanho_Click(object sender, EventArgs e)
+        {
+            LimparCampos(this);
+        }
+
+        private void btnSalvarTamanho_Click(object sender, EventArgs e)
+        {
+            //Verifica se o código é igual a zero, se sim salva um novo sabor
+            if (txtCodigoTamanho.Text == "0")
+            {
+                //Executa a query de salvar
+                tamanhoTableAdapter1.SalvarTamanho(txtNomeTamanho.Text, Convert.ToDecimal(txtValorTamanho.Text));
+
+                //Exibe a mensagem de sucesso
+                MessageBox.Show(
+                    "Tamanho salvo com sucesso!", "Salvando sabor",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+                    );
+
+                //Atualiza a lista de sabores e limpa os campos
+                ListarTamanhos();
+                LimparCampos(this);
+            }
+            //Caso contrário, se for diferente de zero altera o sabor
+            else
+            {
+                //Executa a query de alteração
+                tamanhoTableAdapter1.AlterarTamanho(txtNomeTamanho.Text, Convert.ToDecimal(txtValorTamanho.Text), Convert.ToInt32(txtCodigoTamanho.Text));
+
+                //Exibe a mensagem de sucesso
+                MessageBox.Show(
+                    "Tamanho alterado com sucesso!", "Alterando sabor",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+                    );
+
+                //Atualiza a lista de sabores e limpa os campos
+                ListarTamanhos();
+                LimparCampos(this);
+            }
+        }
+
+        private void btnExcluirTamanho_Click(object sender, EventArgs e)
+        {
+            //Verifica se o código é diferente de zero
+            //Se sim, significa que há um sabor selecionado podendo excluí-lo
+            if (txtCodigoTamanho.Text != "0")
+            {
+                //Executa a query de exclusão
+                tamanhoTableAdapter1.ExcluirTamanho(Convert.ToInt32(txtCodigoTamanho.Text));
+
+                //Exibe a mensagem de sucesso
+                MessageBox.Show(
+                    "Tamanho excluído com sucesso!", "Excluindo sabor",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
+                    );
+
+                //Atualiza a lista de sabores e limpa os campos
+                ListarTamanhos();
+                LimparCampos(this);
+            }
+        }
+
+        private void dtgTamanhos_DoubleClick(object sender, EventArgs e)
+        {
+            txtCodigoTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["CODIGO_TAMANHO"].Value.ToString();
+            txtNomeTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["NOME_TAMANHO"].Value.ToString();
+            txtValorTamanho.Text = dtgTamanhos.Rows[dtgTamanhos.CurrentRow.Index].Cells["VALOR"].Value.ToString();
+        }
+
         //Quando o formulário carregar, listar os sabores
         private void frmPizzas_Load(object sender, EventArgs e)
         {
             ListarSabores();
+            ListarTamanhos();
         }
     }
 }
