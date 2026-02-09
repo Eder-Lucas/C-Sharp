@@ -47,12 +47,25 @@ namespace Pizzaria
             }
         }
 
+        //Método que finaliza as consultas no banco
+        private void FinalizaConsulta(string msg, Control tabPage, bool sabor)
+        {
+            MessageBox.Show(msg, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            if (sabor)
+                ListarSabores();
+            else
+                ListarTamanhos();
+
+            LimparCampos(tabPage);
+        }
+
         // ----------ABA SABORES---------- //
 
         //Ao clicar no botão novo, limpa os campos para cadastrar um novo sabor
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            LimparCampos(this);
+            LimparCampos(tabPageSabores);
         }
 
         //Ao clicar no botão salvar
@@ -64,15 +77,8 @@ namespace Pizzaria
                 //Executa a query de salvar
                 saborTableAdapter1.Salvar(txtNome.Text, txtIngrediente.Text);
 
-                //Exibe a mensagem de sucesso
-                MessageBox.Show(
-                    "Sabor salvo com sucesso!", "Salvando sabor",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
-                    );
-
-                //Atualiza a lista de sabores e limpa os campos
-                ListarSabores();
-                LimparCampos(this); 
+                //Finaliza o salvamento
+                FinalizaConsulta("Sabor salvo com sucesso!", tabPageSabores, true); 
             }
             //Caso contrário, se for diferente de zero altera o sabor
             else
@@ -80,15 +86,8 @@ namespace Pizzaria
                 //Executa a query de alteração
                 saborTableAdapter1.Alterar(txtNome.Text, txtIngrediente.Text, Convert.ToInt32(txtCodigo.Text));
 
-                //Exibe a mensagem de sucesso
-                MessageBox.Show(
-                    "Sabor alterado com sucesso!", "Alterando sabor",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
-                    );
-
-                //Atualiza a lista de sabores e limpa os campos
-                ListarSabores();
-                LimparCampos(this);
+                //Finaliza a alteração
+                FinalizaConsulta("Sabor alterado com sucesso!", tabPageSabores, true);
             }
         }
 
@@ -102,15 +101,7 @@ namespace Pizzaria
                 //Executa a query de exclusão
                 saborTableAdapter1.Excluir(Convert.ToInt32(txtCodigo.Text));
 
-                //Exibe a mensagem de sucesso
-                MessageBox.Show(
-                    "Sabor excluído com sucesso!", "Excluindo sabor",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation
-                    );
-
-                //Atualiza a lista de sabores e limpa os campos
-                ListarSabores();
-                LimparCampos(this);
+                FinalizaConsulta("Sabor excluído com sucesso!", tabPageSabores, true);
             }
         }
 
@@ -121,7 +112,7 @@ namespace Pizzaria
             dtgSabores.DataSource = saborTableAdapter1.PesquisaNomeSabor(txtPesquisa.Text);
 
             //Limpa os campos
-            LimparCampos(this);
+            LimparCampos(tabPageSabores);
         }
 
         //Ao clicar duas vezes em um sabor no DataGridView
