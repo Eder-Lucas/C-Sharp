@@ -34,6 +34,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPizzas = new System.Windows.Forms.ToolStripButton();
             this.btnpedidos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             this.btnClientes,
             this.toolStripSeparator1,
             this.btnPizzas,
+            this.toolStripSeparator2,
             this.btnpedidos});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -89,6 +91,11 @@
             this.btnpedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnpedidos.Click += new System.EventHandler(this.btnpedidos_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 59);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -114,6 +121,7 @@
         private System.Windows.Forms.ToolStripButton btnClientes;
         private System.Windows.Forms.ToolStripButton btnPizzas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
