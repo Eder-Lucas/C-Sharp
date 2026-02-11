@@ -2958,10 +2958,9 @@ SELECT ID_CLIENTE, NOME_CLIENTE, CPF, TELEFONE, ENDERECO, NUMERO, BAIRRO, CIDADE
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTAL", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TOTAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Pedido] ([ID_PEDIDO], [ENTREGUE], [ID_CLIENTE], [ID_SABOR], [ID_TAMANHO], [TOTAL]) VALUES (@ID_PEDIDO, @ENTREGUE, @ID_CLIENTE, @ID_SABOR, @ID_TAMANHO, @TOTAL);
-SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido WHERE (ID_PEDIDO = @ID_PEDIDO)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Pedido] ([ENTREGUE], [ID_CLIENTE], [ID_SABOR], [ID_TAMANHO], [TOTAL]) VALUES (@ENTREGUE, @ID_CLIENTE, @ID_SABOR, @ID_TAMANHO, @TOTAL);
+SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido WHERE (ID_PEDIDO = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PEDIDO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PEDIDO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENTREGUE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ENTREGUE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_CLIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_SABOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_SABOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2969,10 +2968,9 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TOTAL", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TOTAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Pedido] SET [ID_PEDIDO] = @ID_PEDIDO, [ENTREGUE] = @ENTREGUE, [ID_CLIENTE] = @ID_CLIENTE, [ID_SABOR] = @ID_SABOR, [ID_TAMANHO] = @ID_TAMANHO, [TOTAL] = @TOTAL WHERE (([ID_PEDIDO] = @Original_ID_PEDIDO) AND ([ENTREGUE] = @Original_ENTREGUE) AND ([ID_CLIENTE] = @Original_ID_CLIENTE) AND ([ID_SABOR] = @Original_ID_SABOR) AND ([ID_TAMANHO] = @Original_ID_TAMANHO) AND ([TOTAL] = @Original_TOTAL));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Pedido] SET [ENTREGUE] = @ENTREGUE, [ID_CLIENTE] = @ID_CLIENTE, [ID_SABOR] = @ID_SABOR, [ID_TAMANHO] = @ID_TAMANHO, [TOTAL] = @TOTAL WHERE (([ID_PEDIDO] = @Original_ID_PEDIDO) AND ([ENTREGUE] = @Original_ENTREGUE) AND ([ID_CLIENTE] = @Original_ID_CLIENTE) AND ([ID_SABOR] = @Original_ID_SABOR) AND ([ID_TAMANHO] = @Original_ID_TAMANHO) AND ([TOTAL] = @Original_TOTAL));
 SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido WHERE (ID_PEDIDO = @ID_PEDIDO)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PEDIDO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PEDIDO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ENTREGUE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ENTREGUE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_CLIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_CLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_SABOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_SABOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2984,6 +2982,7 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_SABOR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_SABOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_TAMANHO", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_TAMANHO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TOTAL", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TOTAL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_PEDIDO", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_PEDIDO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3087,13 +3086,12 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID_PEDIDO, bool ENTREGUE, int ID_CLIENTE, int ID_SABOR, int ID_TAMANHO, decimal TOTAL) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID_PEDIDO));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((bool)(ENTREGUE));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(ID_CLIENTE));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ID_SABOR));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(ID_TAMANHO));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(TOTAL));
+        public virtual int Insert(bool ENTREGUE, int ID_CLIENTE, int ID_SABOR, int ID_TAMANHO, decimal TOTAL) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((bool)(ENTREGUE));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ID_CLIENTE));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(ID_SABOR));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ID_TAMANHO));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(TOTAL));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3114,19 +3112,19 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int ID_PEDIDO, bool ENTREGUE, int ID_CLIENTE, int ID_SABOR, int ID_TAMANHO, decimal TOTAL, int Original_ID_PEDIDO, bool Original_ENTREGUE, int Original_ID_CLIENTE, int Original_ID_SABOR, int Original_ID_TAMANHO, decimal Original_TOTAL) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID_PEDIDO));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((bool)(ENTREGUE));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(ID_CLIENTE));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ID_SABOR));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(ID_TAMANHO));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(TOTAL));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID_PEDIDO));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_ENTREGUE));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_CLIENTE));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ID_SABOR));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ID_TAMANHO));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_TOTAL));
+        public virtual int Update(bool ENTREGUE, int ID_CLIENTE, int ID_SABOR, int ID_TAMANHO, decimal TOTAL, int Original_ID_PEDIDO, bool Original_ENTREGUE, int Original_ID_CLIENTE, int Original_ID_SABOR, int Original_ID_TAMANHO, decimal Original_TOTAL, int ID_PEDIDO) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((bool)(ENTREGUE));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ID_CLIENTE));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(ID_SABOR));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ID_TAMANHO));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(TOTAL));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID_PEDIDO));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Original_ENTREGUE));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID_CLIENTE));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_SABOR));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ID_TAMANHO));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_TOTAL));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(ID_PEDIDO));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3148,7 +3146,7 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(bool ENTREGUE, int ID_CLIENTE, int ID_SABOR, int ID_TAMANHO, decimal TOTAL, int Original_ID_PEDIDO, bool Original_ENTREGUE, int Original_ID_CLIENTE, int Original_ID_SABOR, int Original_ID_TAMANHO, decimal Original_TOTAL) {
-            return this.Update(Original_ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL, Original_ID_PEDIDO, Original_ENTREGUE, Original_ID_CLIENTE, Original_ID_SABOR, Original_ID_TAMANHO, Original_TOTAL);
+            return this.Update(ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL, Original_ID_PEDIDO, Original_ENTREGUE, Original_ID_CLIENTE, Original_ID_SABOR, Original_ID_TAMANHO, Original_TOTAL, Original_ID_PEDIDO);
         }
     }
     
