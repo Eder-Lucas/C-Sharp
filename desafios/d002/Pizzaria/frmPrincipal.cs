@@ -30,5 +30,8 @@ namespace Pizzaria
 
             pizzas.ShowDialog();
         }
+
+        private void btnpedidos_Click(object sender, EventArgs e) => new frmPedido().ShowDialog();
+        
     }
 }

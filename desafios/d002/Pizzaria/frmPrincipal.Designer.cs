@@ -87,6 +87,7 @@
             this.btnpedidos.Size = new System.Drawing.Size(65, 56);
             this.btnpedidos.Text = "Pedidos";
             this.btnpedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnpedidos.Click += new System.EventHandler(this.btnpedidos_Click);
             // 
             // frmPrincipal
             // 
