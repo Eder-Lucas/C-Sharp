@@ -2995,11 +2995,41 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT p.*, c.NOME_CLIENTE, t.NOME_TAMANHO, s.NOME_SABOR
+FROM Pedido p
+INNER JOIN Cliente c ON c.ID_CLIENTE = p.ID_CLIENTE
+INNER JOIN Tamanho t ON t.ID_TAMANHO = p.ID_TAMANHO
+INNER JOIN Sabor s ON s.ID_SABOR = p.ID_SABOR
+WHERE c.NOME_CLIENTE LIKE '%'  + @nomeCliente + '%'";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomeCliente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_CLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT p.*, c.NOME_CLIENTE, t.NOME_TAMANHO, s.NOME_SABOR\r\nFROM Pedido p\r\nINNER JO" +
+                "IN Cliente c ON c.ID_CLIENTE = p.ID_CLIENTE\r\nINNER JOIN Tamanho t ON t.ID_TAMANH" +
+                "O = p.ID_TAMANHO\r\nINNER JOIN Sabor s ON s.ID_SABOR = p.ID_SABOR\r\nWHERE p.ENTREGU" +
+                "E = 1";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT p.*, c.NOME_CLIENTE, t.NOME_TAMANHO, s.NOME_SABOR\r\nFROM Pedido p\r\nINNER JO" +
+                "IN Cliente c ON c.ID_CLIENTE = p.ID_CLIENTE\r\nINNER JOIN Tamanho t ON t.ID_TAMANH" +
+                "O = p.ID_TAMANHO\r\nINNER JOIN Sabor s ON s.ID_SABOR = p.ID_SABOR\r\nWHERE p.ENTREGU" +
+                "E LIKE 0";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT p.*, c.NOME_CLIENTE, t.NOME_TAMANHO, s.NOME_SABOR\r\nFROM Pedido p\r\nINNER JO" +
+                "IN Cliente c ON c.ID_CLIENTE = p.ID_CLIENTE\r\nINNER JOIN Tamanho t ON t.ID_TAMANH" +
+                "O = p.ID_TAMANHO\r\nINNER JOIN Sabor s ON s.ID_SABOR = p.ID_SABOR";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3021,6 +3051,56 @@ SELECT ID_PEDIDO, ENTREGUE, ID_CLIENTE, ID_SABOR, ID_TAMANHO, TOTAL FROM Pedido 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual PizzariaDataSet.PedidoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            PizzariaDataSet.PedidoDataTable dataTable = new PizzariaDataSet.PedidoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PizzariaDataSet.PedidoDataTable RetornarCliente(string nomeCliente) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((nomeCliente == null)) {
+                throw new global::System.ArgumentNullException("nomeCliente");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nomeCliente));
+            }
+            PizzariaDataSet.PedidoDataTable dataTable = new PizzariaDataSet.PedidoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PizzariaDataSet.PedidoDataTable RetornarEntregue() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            PizzariaDataSet.PedidoDataTable dataTable = new PizzariaDataSet.PedidoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PizzariaDataSet.PedidoDataTable RetornarEspera() {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            PizzariaDataSet.PedidoDataTable dataTable = new PizzariaDataSet.PedidoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PizzariaDataSet.PedidoDataTable RetornarPedidos() {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             PizzariaDataSet.PedidoDataTable dataTable = new PizzariaDataSet.PedidoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
