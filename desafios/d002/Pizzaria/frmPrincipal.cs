@@ -36,6 +36,7 @@ namespace Pizzaria
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
+            VerificaPedido();
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -56,6 +57,8 @@ namespace Pizzaria
             {
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
             }
+
+            VerificaPedido();
         }
 
         private void chkEntregue_CheckedChanged(object sender, EventArgs e)
@@ -83,6 +86,30 @@ namespace Pizzaria
             {
                 chkEntregue.Enabled = true;
                 txtNomeCliente.Enabled = true;
+            }
+        }
+
+        private void VerificaPedido()
+        {
+            int linha = dtgPedido.Rows.Count;
+
+            if (linha > 0)
+            {
+                for (int i = 0; i < linha; i++)
+                {
+                    if (Convert.ToBoolean(dtgPedido.Rows[i].Cells["ENTREGUE"].Value))
+                    {
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Value = "Entregue";
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Style.BackColor = Color.ForestGreen;
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Value = "À Espera";
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Style.BackColor = Color.DarkRed;
+                        dtgPedido.Rows[i].Cells["SITUACAO"].Style.ForeColor = Color.White;
+                    }
+                } 
             }
         }
     }
