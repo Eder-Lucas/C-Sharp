@@ -168,7 +168,6 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.vALORTextBox);
             this.panel2.Controls.Add(this.cboTamanho);
             this.panel2.Controls.Add(this.cboSabor);
             this.panel2.Controls.Add(this.cboCliente);
@@ -182,6 +181,7 @@
             this.panel2.Controls.Add(this.tOTALTextBox);
             this.panel2.Controls.Add(eNTREGUELabel);
             this.panel2.Controls.Add(this.chkEntregue);
+            this.panel2.Controls.Add(this.vALORTextBox);
             this.panel2.Location = new System.Drawing.Point(12, 118);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(468, 320);
@@ -218,7 +218,7 @@
             this.cboTamanho.FormattingEnabled = true;
             this.cboTamanho.Location = new System.Drawing.Point(117, 116);
             this.cboTamanho.Name = "cboTamanho";
-            this.cboTamanho.Size = new System.Drawing.Size(186, 27);
+            this.cboTamanho.Size = new System.Drawing.Size(228, 27);
             this.cboTamanho.TabIndex = 12;
             this.cboTamanho.ValueMember = "ID_TAMANHO";
             // 
@@ -237,7 +237,7 @@
             this.cboSabor.FormattingEnabled = true;
             this.cboSabor.Location = new System.Drawing.Point(117, 154);
             this.cboSabor.Name = "cboSabor";
-            this.cboSabor.Size = new System.Drawing.Size(186, 27);
+            this.cboSabor.Size = new System.Drawing.Size(228, 27);
             this.cboSabor.TabIndex = 12;
             this.cboSabor.ValueMember = "ID_SABOR";
             // 
@@ -256,7 +256,7 @@
             this.cboCliente.FormattingEnabled = true;
             this.cboCliente.Location = new System.Drawing.Point(117, 78);
             this.cboCliente.Name = "cboCliente";
-            this.cboCliente.Size = new System.Drawing.Size(291, 27);
+            this.cboCliente.Size = new System.Drawing.Size(330, 27);
             this.cboCliente.TabIndex = 12;
             this.cboCliente.ValueMember = "ID_CLIENTE";
             // 
@@ -292,7 +292,7 @@
             this.pedidoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.pedidoBindingNavigator.Name = "pedidoBindingNavigator";
             this.pedidoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.pedidoBindingNavigator.Size = new System.Drawing.Size(466, 27);
+            this.pedidoBindingNavigator.Size = new System.Drawing.Size(466, 31);
             this.pedidoBindingNavigator.TabIndex = 2;
             this.pedidoBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -302,7 +302,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 

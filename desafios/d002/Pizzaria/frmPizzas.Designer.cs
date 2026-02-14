@@ -52,6 +52,9 @@
             this.btnSalvarTamanho = new System.Windows.Forms.Button();
             this.btnNovoTamanho = new System.Windows.Forms.Button();
             this.dtgTamanhos = new System.Windows.Forms.DataGridView();
+            this.Codigo_tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome_Tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtValorTamanho = new System.Windows.Forms.TextBox();
             this.txtNomeTamanho = new System.Windows.Forms.TextBox();
             this.txtCodigoTamanho = new System.Windows.Forms.TextBox();
@@ -60,9 +63,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.saborTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.SaborTableAdapter();
             this.tamanhoTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.TamanhoTableAdapter();
-            this.Codigo_tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome_Tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPizzas.SuspendLayout();
             this.tabPageSabores.SuspendLayout();
             this.gbPesquisa.SuspendLayout();
@@ -245,6 +245,7 @@
             this.txtCodigo.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(100, 9);
             this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(88, 27);
             this.txtCodigo.TabIndex = 1;
             this.txtCodigo.Tag = "zero";
@@ -359,6 +360,33 @@
             this.dtgTamanhos.TabIndex = 9;
             this.dtgTamanhos.DoubleClick += new System.EventHandler(this.dtgTamanhos_DoubleClick);
             // 
+            // Codigo_tamanho
+            // 
+            this.Codigo_tamanho.DataPropertyName = "ID_TAMANHO";
+            this.Codigo_tamanho.HeaderText = "CÓDIGO";
+            this.Codigo_tamanho.MinimumWidth = 6;
+            this.Codigo_tamanho.Name = "Codigo_tamanho";
+            this.Codigo_tamanho.ReadOnly = true;
+            this.Codigo_tamanho.Width = 68;
+            // 
+            // Nome_Tamanho
+            // 
+            this.Nome_Tamanho.DataPropertyName = "NOME_TAMANHO";
+            this.Nome_Tamanho.HeaderText = "NOME";
+            this.Nome_Tamanho.MinimumWidth = 6;
+            this.Nome_Tamanho.Name = "Nome_Tamanho";
+            this.Nome_Tamanho.ReadOnly = true;
+            this.Nome_Tamanho.Width = 200;
+            // 
+            // Valor
+            // 
+            this.Valor.DataPropertyName = "VALOR";
+            this.Valor.HeaderText = "VALOR";
+            this.Valor.MinimumWidth = 6;
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 263;
+            // 
             // txtValorTamanho
             // 
             this.txtValorTamanho.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -422,33 +450,6 @@
             // tamanhoTableAdapter1
             // 
             this.tamanhoTableAdapter1.ClearBeforeFill = true;
-            // 
-            // Codigo_tamanho
-            // 
-            this.Codigo_tamanho.DataPropertyName = "ID_TAMANHO";
-            this.Codigo_tamanho.HeaderText = "CÓDIGO";
-            this.Codigo_tamanho.MinimumWidth = 6;
-            this.Codigo_tamanho.Name = "Codigo_tamanho";
-            this.Codigo_tamanho.ReadOnly = true;
-            this.Codigo_tamanho.Width = 68;
-            // 
-            // Nome_Tamanho
-            // 
-            this.Nome_Tamanho.DataPropertyName = "NOME_TAMANHO";
-            this.Nome_Tamanho.HeaderText = "NOME";
-            this.Nome_Tamanho.MinimumWidth = 6;
-            this.Nome_Tamanho.Name = "Nome_Tamanho";
-            this.Nome_Tamanho.ReadOnly = true;
-            this.Nome_Tamanho.Width = 200;
-            // 
-            // Valor
-            // 
-            this.Valor.DataPropertyName = "VALOR";
-            this.Valor.HeaderText = "VALOR";
-            this.Valor.MinimumWidth = 6;
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Width = 263;
             // 
             // frmPizzas
             // 

@@ -45,10 +45,11 @@ namespace Pizzaria
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            if (cboCliente.Items.Count > 0) cboCliente.SelectedIndex = 0;
-            if (cboTamanho.Items.Count > 0) cboTamanho.SelectedIndex = 0;
-            if (cboSabor.Items.Count > 0) cboSabor.SelectedIndex = 0;
+            if (cboCliente.Items.Count > 0) cboCliente.SelectedIndex = -1;
+            if (cboTamanho.Items.Count > 0) cboTamanho.SelectedIndex = -1;
+            if (cboSabor.Items.Count > 0) cboSabor.SelectedIndex = -1;
 
+            tOTALTextBox.Text = "0,00";
             chkEntregue.Checked = false;
         }
     }
