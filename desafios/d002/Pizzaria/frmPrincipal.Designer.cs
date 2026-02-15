@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMostrarTodos = new System.Windows.Forms.Button();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.chkEspera = new System.Windows.Forms.CheckBox();
@@ -37,13 +38,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnClientes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnPizzas = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnpedidos = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnClientes = new System.Windows.Forms.ToolStripButton();
+            this.btnPizzas = new System.Windows.Forms.ToolStripButton();
+            this.btnpedidos = new System.Windows.Forms.ToolStripButton();
             this.dtgPedido = new System.Windows.Forms.DataGridView();
+            this.pedidoTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.PedidoTableAdapter();
+            this.ENTREGUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SITUACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_PEDIDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,9 +55,7 @@
             this.NOME_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOME_SABOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOME_TAMANHO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ENTREGUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pedidoTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.PedidoTableAdapter();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPedido)).BeginInit();
@@ -62,6 +63,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnMostrarTodos);
             this.groupBox1.Controls.Add(this.btnPesquisar);
             this.groupBox1.Controls.Add(this.txtNomeCliente);
             this.groupBox1.Controls.Add(this.chkEspera);
@@ -72,19 +74,33 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(785, 154);
+            this.groupBox1.Size = new System.Drawing.Size(840, 154);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesquisa";
+            // 
+            // btnMostrarTodos
+            // 
+            this.btnMostrarTodos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarTodos.Image = global::Pizzaria.Properties.Resources.atualizar_menor;
+            this.btnMostrarTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrarTodos.Location = new System.Drawing.Point(6, 101);
+            this.btnMostrarTodos.Name = "btnMostrarTodos";
+            this.btnMostrarTodos.Size = new System.Drawing.Size(134, 37);
+            this.btnMostrarTodos.TabIndex = 3;
+            this.btnMostrarTodos.Text = "Mostrar todos";
+            this.btnMostrarTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMostrarTodos.UseVisualStyleBackColor = true;
+            this.btnMostrarTodos.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // btnPesquisar
             // 
             this.btnPesquisar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesquisar.Image = global::Pizzaria.Properties.Resources.pequena_lupa;
             this.btnPesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPesquisar.Location = new System.Drawing.Point(307, 101);
+            this.btnPesquisar.Location = new System.Drawing.Point(146, 103);
             this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(111, 37);
+            this.btnPesquisar.Size = new System.Drawing.Size(111, 35);
             this.btnPesquisar.TabIndex = 3;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -94,9 +110,9 @@
             // txtNomeCliente
             // 
             this.txtNomeCliente.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeCliente.Location = new System.Drawing.Point(448, 62);
+            this.txtNomeCliente.Location = new System.Drawing.Point(328, 59);
             this.txtNomeCliente.Name = "txtNomeCliente";
-            this.txtNomeCliente.Size = new System.Drawing.Size(316, 27);
+            this.txtNomeCliente.Size = new System.Drawing.Size(506, 27);
             this.txtNomeCliente.TabIndex = 2;
             this.txtNomeCliente.TextChanged += new System.EventHandler(this.txtNomeCliente_TextChanged);
             // 
@@ -128,7 +144,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(348, 34);
+            this.label3.Location = new System.Drawing.Point(289, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 46);
             this.label3.TabIndex = 0;
@@ -138,7 +154,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(444, 34);
+            this.label2.Location = new System.Drawing.Point(324, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(320, 21);
             this.label2.TabIndex = 0;
@@ -154,48 +170,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Situação do pedido:";
             // 
-            // btnClientes
-            // 
-            this.btnClientes.Image = global::Pizzaria.Properties.Resources.cliente;
-            this.btnClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(65, 56);
-            this.btnClientes.Text = "Clientes";
-            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
             // 
-            // btnPizzas
-            // 
-            this.btnPizzas.Image = global::Pizzaria.Properties.Resources.pizza;
-            this.btnPizzas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnPizzas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPizzas.Name = "btnPizzas";
-            this.btnPizzas.Size = new System.Drawing.Size(53, 56);
-            this.btnPizzas.Text = "Pizzas";
-            this.btnPizzas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPizzas.Click += new System.EventHandler(this.btnPizzas_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 59);
-            // 
-            // btnpedidos
-            // 
-            this.btnpedidos.Image = global::Pizzaria.Properties.Resources.pedido;
-            this.btnpedidos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnpedidos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnpedidos.Name = "btnpedidos";
-            this.btnpedidos.Size = new System.Drawing.Size(65, 56);
-            this.btnpedidos.Text = "Pedidos";
-            this.btnpedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnpedidos.Click += new System.EventHandler(this.btnpedidos_Click);
             // 
             // toolStrip1
             // 
@@ -208,9 +191,42 @@
             this.btnpedidos});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(810, 59);
+            this.toolStrip1.Size = new System.Drawing.Size(864, 59);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.Image = global::Pizzaria.Properties.Resources.cliente;
+            this.btnClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(65, 56);
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
+            // 
+            // btnPizzas
+            // 
+            this.btnPizzas.Image = global::Pizzaria.Properties.Resources.pizza;
+            this.btnPizzas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnPizzas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPizzas.Name = "btnPizzas";
+            this.btnPizzas.Size = new System.Drawing.Size(53, 56);
+            this.btnPizzas.Text = "Pizzas";
+            this.btnPizzas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPizzas.Click += new System.EventHandler(this.btnPizzas_Click);
+            // 
+            // btnpedidos
+            // 
+            this.btnpedidos.Image = global::Pizzaria.Properties.Resources.pedido;
+            this.btnpedidos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnpedidos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnpedidos.Name = "btnpedidos";
+            this.btnpedidos.Size = new System.Drawing.Size(65, 56);
+            this.btnpedidos.Text = "Pedidos";
+            this.btnpedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnpedidos.Click += new System.EventHandler(this.btnpedidos_Click);
             // 
             // dtgPedido
             // 
@@ -220,6 +236,7 @@
             this.dtgPedido.AllowUserToResizeRows = false;
             this.dtgPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ENTREGUE,
             this.SITUACAO,
             this.ID_PEDIDO,
             this.ID_CLIENTE,
@@ -228,7 +245,6 @@
             this.NOME_CLIENTE,
             this.NOME_SABOR,
             this.NOME_TAMANHO,
-            this.ENTREGUE,
             this.TOTAL});
             this.dtgPedido.Location = new System.Drawing.Point(12, 222);
             this.dtgPedido.Name = "dtgPedido";
@@ -237,8 +253,22 @@
             this.dtgPedido.RowHeadersWidth = 51;
             this.dtgPedido.RowTemplate.Height = 24;
             this.dtgPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPedido.Size = new System.Drawing.Size(786, 331);
+            this.dtgPedido.Size = new System.Drawing.Size(840, 331);
             this.dtgPedido.TabIndex = 2;
+            // 
+            // pedidoTableAdapter1
+            // 
+            this.pedidoTableAdapter1.ClearBeforeFill = true;
+            // 
+            // ENTREGUE
+            // 
+            this.ENTREGUE.DataPropertyName = "ENTREGUE";
+            this.ENTREGUE.HeaderText = "ENTREGUE";
+            this.ENTREGUE.MinimumWidth = 6;
+            this.ENTREGUE.Name = "ENTREGUE";
+            this.ENTREGUE.ReadOnly = true;
+            this.ENTREGUE.Visible = false;
+            this.ENTREGUE.Width = 125;
             // 
             // SITUACAO
             // 
@@ -246,7 +276,7 @@
             this.SITUACAO.MinimumWidth = 6;
             this.SITUACAO.Name = "SITUACAO";
             this.SITUACAO.ReadOnly = true;
-            this.SITUACAO.Width = 125;
+            this.SITUACAO.Width = 119;
             // 
             // ID_PEDIDO
             // 
@@ -294,7 +324,7 @@
             this.NOME_CLIENTE.MinimumWidth = 6;
             this.NOME_CLIENTE.Name = "NOME_CLIENTE";
             this.NOME_CLIENTE.ReadOnly = true;
-            this.NOME_CLIENTE.Width = 230;
+            this.NOME_CLIENTE.Width = 284;
             // 
             // NOME_SABOR
             // 
@@ -312,17 +342,7 @@
             this.NOME_TAMANHO.MinimumWidth = 6;
             this.NOME_TAMANHO.Name = "NOME_TAMANHO";
             this.NOME_TAMANHO.ReadOnly = true;
-            this.NOME_TAMANHO.Width = 125;
-            // 
-            // ENTREGUE
-            // 
-            this.ENTREGUE.DataPropertyName = "ENTREGUE";
-            this.ENTREGUE.HeaderText = "ENTREGUE";
-            this.ENTREGUE.MinimumWidth = 6;
-            this.ENTREGUE.Name = "ENTREGUE";
-            this.ENTREGUE.ReadOnly = true;
-            this.ENTREGUE.Visible = false;
-            this.ENTREGUE.Width = 125;
+            this.NOME_TAMANHO.Width = 85;
             // 
             // TOTAL
             // 
@@ -333,15 +353,11 @@
             this.TOTAL.ReadOnly = true;
             this.TOTAL.Width = 59;
             // 
-            // pedidoTableAdapter1
-            // 
-            this.pedidoTableAdapter1.ClearBeforeFill = true;
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 565);
+            this.ClientSize = new System.Drawing.Size(864, 565);
             this.Controls.Add(this.dtgPedido);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -378,6 +394,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dtgPedido;
         private PizzariaDataSetTableAdapters.PedidoTableAdapter pedidoTableAdapter1;
+        private System.Windows.Forms.Button btnMostrarTodos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ENTREGUE;
         private System.Windows.Forms.DataGridViewTextBoxColumn SITUACAO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_PEDIDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_CLIENTE;
@@ -386,7 +404,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NOME_CLIENTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn NOME_SABOR;
         private System.Windows.Forms.DataGridViewTextBoxColumn NOME_TAMANHO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ENTREGUE;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
     }
 }
