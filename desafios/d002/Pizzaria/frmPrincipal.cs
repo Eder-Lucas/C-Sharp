@@ -15,6 +15,7 @@ namespace Pizzaria
         public frmPrincipal()
         {
             InitializeComponent();
+            dtgPedido.AutoGenerateColumns = false;
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
@@ -31,7 +32,12 @@ namespace Pizzaria
             pizzas.ShowDialog();
         }
 
-        private void btnpedidos_Click(object sender, EventArgs e) => new frmPedido().ShowDialog();
+        private void btnpedidos_Click(object sender, EventArgs e)
+        {
+            new frmPedido().ShowDialog();
+
+            btnPesquisar.PerformClick();
+        }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -49,16 +55,19 @@ namespace Pizzaria
             {
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarEspera();
             }
-            else if (String.IsNullOrEmpty(txtNomeCliente.Text))
-            {
-                dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
-            }
-            else
+            else if (!String.IsNullOrEmpty(txtNomeCliente.Text))
             {
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
             }
 
             VerificaPedido();
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
+            VerificaPedido();
+            //fazer método limpar
         }
 
         private void chkEntregue_CheckedChanged(object sender, EventArgs e)
@@ -67,12 +76,16 @@ namespace Pizzaria
             {
                 chkEspera.Enabled= false;
                 txtNomeCliente.Enabled = false;
+
+                dtgPedido.DataSource = pedidoTableAdapter1.RetornarEntregue();
             }
             else
             {
                 chkEspera.Enabled = true;
                 txtNomeCliente.Enabled = true;
             }
+
+            VerificaPedido();
         }
 
         private void chkEspera_CheckedChanged(object sender, EventArgs e)
@@ -81,12 +94,16 @@ namespace Pizzaria
             {
                 chkEntregue.Enabled = false;
                 txtNomeCliente.Enabled = false;
+
+                dtgPedido.DataSource = pedidoTableAdapter1.RetornarEspera();
             }
             else
             {
                 chkEntregue.Enabled = true;
                 txtNomeCliente.Enabled = true;
             }
+
+            VerificaPedido();
         }
 
         private void VerificaPedido()
