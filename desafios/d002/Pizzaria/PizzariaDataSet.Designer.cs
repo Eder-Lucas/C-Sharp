@@ -2424,7 +2424,7 @@ SELECT ID_CLIENTE, NOME_CLIENTE, CPF, TELEFONE, ENDERECO, NUMERO, BAIRRO, CIDADE
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT ID_CLIENTE, NOME_CLIENTE, CPF, TELEFONE, ENDERECO, NUMERO, BAIRRO, CIDADE," +
-                " CEP\r\nFROM     Cliente\r\nWHERE  (NOME_CLIENTE = @nomeCliente)";
+                " CEP\r\nFROM     Cliente\r\nWHERE  NOME_CLIENTE LIKE \'%\' + @nomeCliente + \'%\'";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomeCliente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_CLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -3007,7 +3007,7 @@ FROM Pedido p
 INNER JOIN Cliente c ON c.ID_CLIENTE = p.ID_CLIENTE
 INNER JOIN Tamanho t ON t.ID_TAMANHO = p.ID_TAMANHO
 INNER JOIN Sabor s ON s.ID_SABOR = p.ID_SABOR
-WHERE c.NOME_CLIENTE LIKE '%'  + @nomeCliente + '%'";
+WHERE c.NOME_CLIENTE LIKE @nomeCliente + '%'";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nomeCliente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_CLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -3415,8 +3415,8 @@ SELECT ID_SABOR, NOME_SABOR, INGREDIENTES FROM Sabor WHERE (ID_SABOR = @ID_SABOR
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_SABOR", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_SABOR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT ID_SABOR, NOME_SABOR, INGREDIENTES\r\nFROM     Sabor\r\nWHERE  (NOME_SABOR = @" +
-                "NomeSabor)";
+            this._commandCollection[3].CommandText = "SELECT ID_SABOR, NOME_SABOR, INGREDIENTES\r\nFROM     Sabor\r\nWHERE  NOME_SABOR LIKE" +
+                " @NomeSabor + \'%\'";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NomeSabor", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NOME_SABOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
