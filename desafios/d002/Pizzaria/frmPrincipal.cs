@@ -112,5 +112,12 @@ namespace Pizzaria
                 } 
             }
         }
+
+        private void txtNomeCliente_TextChanged(object sender, EventArgs e)
+        {
+            dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
+
+            VerificaPedido();
+        }
     }
 }

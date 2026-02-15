@@ -34,6 +34,7 @@
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.chkEspera = new System.Windows.Forms.CheckBox();
             this.chkEntregue = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClientes = new System.Windows.Forms.ToolStripButton();
@@ -42,9 +43,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnpedidos = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.label3 = new System.Windows.Forms.Label();
             this.dtgPedido = new System.Windows.Forms.DataGridView();
-            this.pedidoTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.PedidoTableAdapter();
             this.SITUACAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_PEDIDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_CLIENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +54,7 @@
             this.NOME_TAMANHO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ENTREGUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pedidoTableAdapter1 = new Pizzaria.PizzariaDataSetTableAdapters.PedidoTableAdapter();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPedido)).BeginInit();
@@ -98,6 +98,7 @@
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(316, 27);
             this.txtNomeCliente.TabIndex = 2;
+            this.txtNomeCliente.TextChanged += new System.EventHandler(this.txtNomeCliente_TextChanged);
             // 
             // chkEspera
             // 
@@ -122,6 +123,16 @@
             this.chkEntregue.Text = "Entregue";
             this.chkEntregue.UseVisualStyleBackColor = true;
             this.chkEntregue.CheckedChanged += new System.EventHandler(this.chkEntregue_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(348, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 46);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "|";
             // 
             // label2
             // 
@@ -201,16 +212,6 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(348, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 46);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "|";
-            // 
             // dtgPedido
             // 
             this.dtgPedido.AllowUserToAddRows = false;
@@ -238,10 +239,6 @@
             this.dtgPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgPedido.Size = new System.Drawing.Size(786, 331);
             this.dtgPedido.TabIndex = 2;
-            // 
-            // pedidoTableAdapter1
-            // 
-            this.pedidoTableAdapter1.ClearBeforeFill = true;
             // 
             // SITUACAO
             // 
@@ -315,6 +312,7 @@
             this.NOME_TAMANHO.MinimumWidth = 6;
             this.NOME_TAMANHO.Name = "NOME_TAMANHO";
             this.NOME_TAMANHO.ReadOnly = true;
+            this.NOME_TAMANHO.Width = 125;
             // 
             // ENTREGUE
             // 
@@ -334,6 +332,10 @@
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
             this.TOTAL.Width = 59;
+            // 
+            // pedidoTableAdapter1
+            // 
+            this.pedidoTableAdapter1.ClearBeforeFill = true;
             // 
             // frmPrincipal
             // 

@@ -115,6 +115,15 @@ namespace Pizzaria
             LimparCampos(tabPageSabores);
         }
 
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            //Executa a query de pesquisa pelo nome
+            dtgSabores.DataSource = saborTableAdapter1.PesquisaNomeSabor(txtPesquisa.Text);
+
+            //Limpa os campos
+            LimparCampos(tabPageSabores);
+        }
+
         //Ao clicar duas vezes em um sabor no DataGridView
         private void dtgSabores_DoubleClick(object sender, EventArgs e)
         {

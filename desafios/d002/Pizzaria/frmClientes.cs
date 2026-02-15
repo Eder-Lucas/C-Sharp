@@ -60,5 +60,10 @@ namespace Pizzaria
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);
         }
+
+        private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
+        {
+            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
+        }
     }
 }
