@@ -39,11 +39,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.vALORTextBox = new System.Windows.Forms.TextBox();
-            this.tamanhoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tOTALTextBox = new System.Windows.Forms.TextBox();
+            this.pedidoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pizzariaDataSet = new Pizzaria.PizzariaDataSet();
             this.cboTamanho = new System.Windows.Forms.ComboBox();
-            this.pedidoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tamanhoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboSabor = new System.Windows.Forms.ComboBox();
             this.saborBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboCliente = new System.Windows.Forms.ComboBox();
@@ -62,8 +62,8 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pedidoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.iD_PEDIDOTextBox = new System.Windows.Forms.TextBox();
-            this.tOTALTextBox = new System.Windows.Forms.TextBox();
             this.chkEntregue = new System.Windows.Forms.CheckBox();
+            this.vALORTextBox = new System.Windows.Forms.TextBox();
             this.pedidoTableAdapter = new Pizzaria.PizzariaDataSetTableAdapters.PedidoTableAdapter();
             this.tableAdapterManager = new Pizzaria.PizzariaDataSetTableAdapters.TableAdapterManager();
             this.clienteTableAdapter = new Pizzaria.PizzariaDataSetTableAdapters.ClienteTableAdapter();
@@ -77,9 +77,9 @@
             eNTREGUELabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tamanhoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tamanhoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saborBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoBindingNavigator)).BeginInit();
@@ -178,30 +178,28 @@
             this.panel2.Controls.Add(iD_TAMANHOLabel);
             this.panel2.Controls.Add(iD_SABORLabel);
             this.panel2.Controls.Add(tOTALLabel);
-            this.panel2.Controls.Add(this.tOTALTextBox);
             this.panel2.Controls.Add(eNTREGUELabel);
             this.panel2.Controls.Add(this.chkEntregue);
             this.panel2.Controls.Add(this.vALORTextBox);
+            this.panel2.Controls.Add(this.tOTALTextBox);
             this.panel2.Location = new System.Drawing.Point(12, 118);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(468, 320);
             this.panel2.TabIndex = 1;
             // 
-            // vALORTextBox
+            // tOTALTextBox
             // 
-            this.vALORTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tamanhoBindingSource, "VALOR", true));
-            this.vALORTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vALORTextBox.Location = new System.Drawing.Point(117, 192);
-            this.vALORTextBox.Name = "vALORTextBox";
-            this.vALORTextBox.ReadOnly = true;
-            this.vALORTextBox.Size = new System.Drawing.Size(104, 27);
-            this.vALORTextBox.TabIndex = 14;
-            this.vALORTextBox.TextChanged += new System.EventHandler(this.vALORTextBox_TextChanged);
+            this.tOTALTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pedidoBindingSource, "TOTAL", true));
+            this.tOTALTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tOTALTextBox.Location = new System.Drawing.Point(117, 192);
+            this.tOTALTextBox.Name = "tOTALTextBox";
+            this.tOTALTextBox.Size = new System.Drawing.Size(104, 27);
+            this.tOTALTextBox.TabIndex = 9;
             // 
-            // tamanhoBindingSource
+            // pedidoBindingSource
             // 
-            this.tamanhoBindingSource.DataMember = "Tamanho";
-            this.tamanhoBindingSource.DataSource = this.pizzariaDataSet;
+            this.pedidoBindingSource.DataMember = "Pedido";
+            this.pedidoBindingSource.DataSource = this.pizzariaDataSet;
             // 
             // pizzariaDataSet
             // 
@@ -222,10 +220,10 @@
             this.cboTamanho.TabIndex = 12;
             this.cboTamanho.ValueMember = "ID_TAMANHO";
             // 
-            // pedidoBindingSource
+            // tamanhoBindingSource
             // 
-            this.pedidoBindingSource.DataMember = "Pedido";
-            this.pedidoBindingSource.DataSource = this.pizzariaDataSet;
+            this.tamanhoBindingSource.DataMember = "Tamanho";
+            this.tamanhoBindingSource.DataSource = this.pizzariaDataSet;
             // 
             // cboSabor
             // 
@@ -402,15 +400,6 @@
             this.iD_PEDIDOTextBox.Size = new System.Drawing.Size(104, 27);
             this.iD_PEDIDOTextBox.TabIndex = 1;
             // 
-            // tOTALTextBox
-            // 
-            this.tOTALTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pedidoBindingSource, "TOTAL", true));
-            this.tOTALTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tOTALTextBox.Location = new System.Drawing.Point(117, 192);
-            this.tOTALTextBox.Name = "tOTALTextBox";
-            this.tOTALTextBox.Size = new System.Drawing.Size(104, 27);
-            this.tOTALTextBox.TabIndex = 9;
-            // 
             // chkEntregue
             // 
             this.chkEntregue.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.pedidoBindingSource, "ENTREGUE", true));
@@ -422,6 +411,17 @@
             this.chkEntregue.Text = "Entregue";
             this.chkEntregue.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.chkEntregue.UseVisualStyleBackColor = true;
+            // 
+            // vALORTextBox
+            // 
+            this.vALORTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tamanhoBindingSource, "VALOR", true));
+            this.vALORTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vALORTextBox.Location = new System.Drawing.Point(117, 192);
+            this.vALORTextBox.Name = "vALORTextBox";
+            this.vALORTextBox.ReadOnly = true;
+            this.vALORTextBox.Size = new System.Drawing.Size(104, 27);
+            this.vALORTextBox.TabIndex = 14;
+            this.vALORTextBox.TextChanged += new System.EventHandler(this.vALORTextBox_TextChanged);
             // 
             // pedidoTableAdapter
             // 
@@ -465,9 +465,9 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tamanhoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pizzariaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tamanhoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saborBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoBindingNavigator)).EndInit();
