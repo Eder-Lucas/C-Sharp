@@ -166,5 +166,8 @@
   <ItemGroup>
     <None Include="images\excluir-24px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\atualizar-menor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
