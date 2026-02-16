@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataGridViewUtils.cs" />
+    <Compile Include="FormataCursorMtb.cs" />
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
