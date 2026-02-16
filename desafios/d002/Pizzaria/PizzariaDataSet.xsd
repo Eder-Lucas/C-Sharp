@@ -88,6 +88,14 @@ SELECT ID_CLIENTE, NOME_CLIENTE, CPF, TELEFONE, ENDERECO, NUMERO, BAIRRO, CIDADE
               <Mapping SourceColumn="CEP" DataSetColumn="CEP" />
             </Mappings>
             <Sources>
+              <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="Pizzaria.dbo.Cliente" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="RetornarClientes" GetMethodModifier="Public" GetMethodName="RetornarClientes" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="RetornarClientes" UserSourceName="RetornarClientes">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID_CLIENTE, NOME_CLIENTE, CPF, TELEFONE, ENDERECO, NUMERO, BAIRRO, CIDADE, CEP FROM dbo.Cliente</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="PizzariaConnectionString (Settings)" DbObjectName="Pizzaria.dbo.Cliente" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="RetornarCpfCliente" GetMethodModifier="Public" GetMethodName="RetornarCpfCliente" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="RetornarCpfCliente" UserSourceName="RetornarCpfCliente">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -587,9 +595,9 @@ SELECT ID_TAMANHO, NOME_TAMANHO, VALOR FROM Tamanho WHERE (ID_TAMANHO = SCOPE_ID
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Cliente_Pedido" msdata:parent="Cliente" msdata:child="Pedido" msdata:parentkey="ID_CLIENTE" msdata:childkey="ID_CLIENTE" msprop:Generator_UserParentTable="Cliente" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationCliente_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="ClienteRow" msprop:Generator_UserRelationName="Cliente_Pedido" />
-      <msdata:Relationship name="Tamanho_Pedido" msdata:parent="Tamanho" msdata:child="Pedido" msdata:parentkey="ID_TAMANHO" msdata:childkey="ID_TAMANHO" msprop:Generator_UserParentTable="Tamanho" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationTamanho_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Tamanho_Pedido" msprop:Generator_ParentPropName="TamanhoRow" />
-      <msdata:Relationship name="Sabor_Pedido" msdata:parent="Sabor" msdata:child="Pedido" msdata:parentkey="ID_SABOR" msdata:childkey="ID_SABOR" msprop:Generator_UserParentTable="Sabor" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationSabor_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Sabor_Pedido" msprop:Generator_ParentPropName="SaborRow" />
+      <msdata:Relationship name="Cliente_Pedido" msdata:parent="Cliente" msdata:child="Pedido" msdata:parentkey="ID_CLIENTE" msdata:childkey="ID_CLIENTE" msprop:Generator_UserParentTable="Cliente" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationCliente_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_UserRelationName="Cliente_Pedido" msprop:Generator_ParentPropName="ClienteRow" />
+      <msdata:Relationship name="Tamanho_Pedido" msdata:parent="Tamanho" msdata:child="Pedido" msdata:parentkey="ID_TAMANHO" msdata:childkey="ID_TAMANHO" msprop:Generator_UserParentTable="Tamanho" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationTamanho_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="TamanhoRow" msprop:Generator_UserRelationName="Tamanho_Pedido" />
+      <msdata:Relationship name="Sabor_Pedido" msdata:parent="Sabor" msdata:child="Pedido" msdata:parentkey="ID_SABOR" msdata:childkey="ID_SABOR" msprop:Generator_UserParentTable="Sabor" msprop:Generator_UserChildTable="Pedido" msprop:Generator_RelationVarName="relationSabor_Pedido" msprop:Generator_ChildPropName="GetPedidoRows" msprop:Generator_ParentPropName="SaborRow" msprop:Generator_UserRelationName="Sabor_Pedido" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
