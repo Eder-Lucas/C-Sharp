@@ -351,7 +351,7 @@
             this.TOTAL.MinimumWidth = 6;
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.ReadOnly = true;
-            this.TOTAL.Width = 59;
+            this.TOTAL.Width = 80;
             // 
             // frmPrincipal
             // 
