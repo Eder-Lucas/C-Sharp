@@ -16,10 +16,11 @@ namespace Pizzaria
         {
             InitializeComponent();
 
-            //Aciona o evento ao método
-            tabControlClientes.SelectedIndexChanged += (s, e) => CarregaAbaAtual();
+            //Aciona o evento ao método AtualizarDadosDaAba toda vez que a aba for trocada
+            tabControlClientes.SelectedIndexChanged += (s, e) => AtualizarDadosDaAba();
         }
 
+        // Evento de clique do botão salvar na barra de navegação
         private void clienteBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -27,15 +28,19 @@ namespace Pizzaria
             this.tableAdapterManager.UpdateAll(this.pizzariaDataSet);
         }
 
-        //Chama o método ao carregar o formulário
+        // Evento de load do formulário
         private void frmClientes_Load(object sender, EventArgs e)
         {
-            CarregaAbaAtual();
+            // Carrega os dados da aba selecionada
+            AtualizarDadosDaAba();
+
+            // Usando as classes, ajusta a barra vertical dos datagridviews e formata o cursor dos maskedtextbox
             DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
+            FormataCursorMtb.AjustaCursor(this);
         }
 
-        //Carrega os dados dependendod da aba selecionada
-        private void CarregaAbaAtual()
+        //Carrega os dados dependendo da aba selecionada
+        private void AtualizarDadosDaAba()
         {
             //Verifica a aba selecionada
             switch (tabControlClientes.SelectedTab.Name)
@@ -65,14 +70,16 @@ namespace Pizzaria
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);
         }
 
-        private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
-        {
-            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
-        }
-
+        // Executa a query que retorna todos os clientes
         private void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarClientes();
+        }
+
+        //Executa a pesquisa por nome enquanto o usuário digita
+        private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
+        {
+            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
         }
     }
 }
