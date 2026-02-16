@@ -34,9 +34,11 @@ namespace Pizzaria
             // Carrega os dados da aba selecionada
             AtualizarDadosDaAba();
 
-            // Usando as classes, ajusta a barra vertical dos datagridviews e formata o cursor dos maskedtextbox
+            // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
             FormataCursorMtb.AjustaCursor(this);
+            CursorButton.HandToolStrip(clienteBindingNavigator);
+            CursorButton.HandButton(this);
         }
 
         //Carrega os dados dependendo da aba selecionada

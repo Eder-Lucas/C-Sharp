@@ -36,6 +36,10 @@ namespace Pizzaria
             // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Pedido'. Você pode movê-la ou removê-la conforme necessário.
             this.pedidoTableAdapter.Fill(this.pizzariaDataSet.Pedido);
 
+            // Aplicando ajustes visuais utilizando as classes
+            FormataCursorMtb.AjustaCursor(this);
+            CursorButton.HandToolStrip(pedidoBindingNavigator);
+            CursorButton.HandButton(this);
         }
 
         private void vALORTextBox_TextChanged(object sender, EventArgs e)
