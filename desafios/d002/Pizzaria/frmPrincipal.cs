@@ -43,6 +43,8 @@ namespace Pizzaria
         {
             dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
             VerificaPedido();
+
+           DataGridViewUtils.AjustaBarraVertical(dtgPedido);
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)

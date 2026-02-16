@@ -214,6 +214,8 @@ namespace Pizzaria
         {
             ListarSabores();
             ListarTamanhos();
+
+            DataGridViewUtils.AjustaBarraVertical(dtgSabores, dtgTamanhos);
         }
     }
 }

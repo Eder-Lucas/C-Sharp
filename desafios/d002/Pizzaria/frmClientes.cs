@@ -28,7 +28,11 @@ namespace Pizzaria
         }
 
         //Chama o método ao carregar o formulário
-        private void frmClientes_Load(object sender, EventArgs e) => CarregaAbaAtual();
+        private void frmClientes_Load(object sender, EventArgs e)
+        {
+            CarregaAbaAtual();
+            DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
+        }
 
         //Carrega os dados dependendod da aba selecionada
         private void CarregaAbaAtual()
