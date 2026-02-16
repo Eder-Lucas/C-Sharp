@@ -680,6 +680,7 @@
             this.btnMostrarTodos.Text = "Mostrar Todos";
             this.btnMostrarTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMostrarTodos.UseVisualStyleBackColor = true;
+            this.btnMostrarTodos.Click += new System.EventHandler(this.btnMostrarTodos_Click);
             // 
             // dtgPesquisaCliente
             // 
