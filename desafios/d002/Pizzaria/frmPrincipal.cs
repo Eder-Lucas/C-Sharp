@@ -44,6 +44,7 @@ namespace Pizzaria
             dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
             VerificaPedido();
 
+            // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgPedido);
             CursorButton.HandToolStrip(toolStrip1);
             CursorButton.HandButton(this);
