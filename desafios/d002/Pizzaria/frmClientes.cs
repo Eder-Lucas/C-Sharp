@@ -63,13 +63,16 @@ namespace Pizzaria
         //Executa a pesquisa por nome
         private void btnPesquisaNome_Click(object sender, EventArgs e)
         {
-            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
+            if (!String.IsNullOrWhiteSpace(txtPesquisaNome.Text))
+            {
+                dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
+            }
         }
 
         //Executa a pesquisa por CPF
         private void btnPesquisaCpf_Click(object sender, EventArgs e)
         {
-            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);
+            dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);            
         }
 
         // Executa a query que retorna todos os clientes
