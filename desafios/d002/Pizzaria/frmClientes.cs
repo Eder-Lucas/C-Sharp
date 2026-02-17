@@ -86,5 +86,65 @@ namespace Pizzaria
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
         }
+
+        private bool formatandoCpf = false;
+
+        private void txtPesquisaCpf_TextChanged(object sender, EventArgs e)
+        {
+            if (formatandoCpf) return;
+
+            formatandoCpf = true;
+
+            string numeros = new string(txtPesquisaCpf.Text.Where(char.IsDigit).ToArray());
+
+            string formatado = FormataCpf(numeros);
+
+            txtPesquisaCpf.Text = formatado;
+            txtPesquisaCpf.SelectionStart = formatado.Length;
+
+            formatandoCpf = false;
+        }
+
+        private string FormataCpf(string numeros)
+        {
+            string modelo = "###.###.###-##";
+            int j = 0;
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < modelo.Length; i++)
+            {
+                if (j >= numeros.Length)
+                    break;
+
+                if (modelo[i] == '#')
+                {
+                    sb.Append(numeros[j]);
+                    j++;
+                }
+                else
+                {
+                    // só coloca . e - quando já tiver números pra continuar
+                    sb.Append(modelo[i]);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /* usando outro método
+         * private string Formatando(string cpf)
+        {
+            if (cpf.Length <= 3)
+                return cpf;
+
+            if (cpf.Length <= 6)
+                return $"{cpf.Substring(0,3)}.{cpf.Substring(3)}";
+
+            if (cpf.Length <= 9)
+                return $"{cpf.Substring(0, 3)}.{cpf.Substring(3, 3)}.{cpf.Substring(6)}";
+
+            return $"{cpf.Substring(0, 3)}.{cpf.Substring(3, 3)}.{cpf.Substring(6, 3)}-{cpf.Substring(9)}";
+        }
+        */
     }
 }
