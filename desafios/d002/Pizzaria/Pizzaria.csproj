@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CursorButtonUtils.cs" />
+    <Compile Include="CursorUtils.cs" />
     <Compile Include="DataGridViewUtils.cs" />
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
