@@ -37,9 +37,9 @@ namespace Pizzaria
             this.pedidoTableAdapter.Fill(this.pizzariaDataSet.Pedido);
 
             // Aplicando ajustes visuais utilizando as classes
-            CursorButtonUtils.AjustaCursorMaskedTextBox(this);
-            CursorButtonUtils.HandToolStripButton(pedidoBindingNavigator);
-            CursorButtonUtils.HandButton(this);
+            CursorUtils.AjustaCursorMaskedTextBox(this);
+            CursorUtils.HandToolStripButton(pedidoBindingNavigator);
+            CursorUtils.HandButton(this);
         }
 
         private void vALORTextBox_TextChanged(object sender, EventArgs e)
