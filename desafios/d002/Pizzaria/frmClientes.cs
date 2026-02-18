@@ -16,8 +16,9 @@ namespace Pizzaria
         {
             InitializeComponent();
 
-            //Aciona o evento ao método AtualizarDadosDaAba toda vez que a aba for trocada
-            tabControlClientes.SelectedIndexChanged += (s, e) => AtualizarDadosDaAba();
+            // Aciona o evento ao método AtualizarDadosDaAba toda vez que o frmClientes for criado
+            // Selected: ativa sempre quando uma aba for selecionada
+            tabControlClientes.Selected += (s, e) => CarregaDadosDaAba(e.TabPage);
         }
 
         // Evento de clique do botão salvar na barra de navegação
@@ -32,7 +33,7 @@ namespace Pizzaria
         private void frmClientes_Load(object sender, EventArgs e)
         {
             // Carrega os dados da aba selecionada
-            AtualizarDadosDaAba();
+            CarregaDadosDaAba(tabControlClientes.SelectedTab);
 
             // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
@@ -42,18 +43,18 @@ namespace Pizzaria
         }
 
         //Carrega os dados dependendo da aba selecionada
-        private void AtualizarDadosDaAba()
+        private void CarregaDadosDaAba(TabPage tabPage)
         {
-            //Verifica a aba selecionada
-            switch (tabControlClientes.SelectedTab.Name)
+            //Verifica a aba selecionada pelo nome
+            switch (tabPage.Name)
             {
-                //Na aba clientes, carrega os dados preenchendo o datagrid
+                //Na aba clientes, carrega os dados preenchendo o DataGridView
                 case "tabPageClientes":
                     if (this.pizzariaDataSet.Cliente.Count == 0)
                         this.clienteTableAdapter.Fill(this.pizzariaDataSet.Cliente);
                     break;
 
-                //Na aba pesquisa, limpa o datagrid
+                //Na aba pesquisa, limpa o DataGridView
                 case "tabPagePesquisa":
                     dtgPesquisaCliente.DataSource = null;
                     break;
