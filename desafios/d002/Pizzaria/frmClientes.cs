@@ -36,9 +36,9 @@ namespace Pizzaria
 
             // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
-            FormataCursorMtb.AjustaCursor(this);
-            CursorButton.HandToolStrip(clienteBindingNavigator);
-            CursorButton.HandButton(this);
+            CursorButtonUtils.AjustaCursorMaskedTextBox(this);
+            CursorButtonUtils.HandToolStripButton(clienteBindingNavigator);
+            CursorButtonUtils.HandButton(this);
         }
 
         //Carrega os dados dependendo da aba selecionada

@@ -46,8 +46,8 @@ namespace Pizzaria
 
             // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgPedido);
-            CursorButton.HandToolStrip(toolStrip1);
-            CursorButton.HandButton(this);
+            CursorButtonUtils.HandToolStripButton(toolStrip1);
+            CursorButtonUtils.HandButton(this);
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)

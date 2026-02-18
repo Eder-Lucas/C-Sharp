@@ -217,7 +217,7 @@ namespace Pizzaria
 
             // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgSabores, dtgTamanhos);
-            CursorButton.HandButton(this);
+            CursorButtonUtils.HandButton(this);
         }
     }
 }
