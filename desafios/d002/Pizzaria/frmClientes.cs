@@ -37,6 +37,7 @@ namespace Pizzaria
 
             // Aplicando ajustes visuais utilizando as classes
             DataGridViewUtils.AjustaBarraVertical(dtgClientes, dtgPesquisaCliente);
+
             CursorUtils.AjustaCursorMaskedTextBox(this);
             CursorUtils.HandToolStripButton(clienteBindingNavigator);
             CursorUtils.HandButton(this);
@@ -61,74 +62,106 @@ namespace Pizzaria
             }
         }
 
-        //Executa a pesquisa por nome
+        // Ao clicar no botão de pesquisar por nome
         private void btnPesquisaNome_Click(object sender, EventArgs e)
         {
+            // Se o campo tiver caracteres, executa a query que retorna os clientes filtrados por nome
             if (!String.IsNullOrWhiteSpace(txtPesquisaNome.Text))
-            {
-                dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
-            }
+                dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);         
         }
 
-        //Executa a pesquisa por CPF
+        // Ao clicar no botão de pesquisar por cpf, executa a query que retorna os clientes filtrados por cpf
         private void btnPesquisaCpf_Click(object sender, EventArgs e)
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarCpfCliente(txtPesquisaCpf.Text);            
         }
 
-        // Executa a query que retorna todos os clientes
+        // Ao clicar no botão de mostrar todos, executa a query que retorna todos os clientes
         private void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarClientes();
         }
 
-        //Executa a pesquisa por nome enquanto o usuário digita
+        // Executa a pesquisa por nome enquanto o usuário digita
         private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
         {
             dtgPesquisaCliente.DataSource = clienteTableAdapter.RetornarNomeCliente(txtPesquisaNome.Text);
         }
 
-        private bool formatandoCpf = false;
-
+        // Toda vez que o txtPesquisaCpf for alterado, formata o texto para o formato de cpf
         private void txtPesquisaCpf_TextChanged(object sender, EventArgs e)
         {
-            if (formatandoCpf) return;
+            // Espera o windows processar o evento
+            txtPesquisaCpf.BeginInvoke((MethodInvoker)(() =>
+            {
+                // Cria uma string com apenas os números do campo txtPesquisaCpf
+                // Where: filtra os caracteres, deixando apenas os dígitos
+                // ToArray: converte o resultado do Where em um array de caracteres
+                // new string: cria uma nova string a partir do array de caracteres
+                string numeros = new string(txtPesquisaCpf.Text.Where(char.IsDigit).ToArray());
 
-            formatandoCpf = true;
+                // Chama o método que formata a string
+                string formatado = FormataCpf(numeros);
 
-            string numeros = new string(txtPesquisaCpf.Text.Where(char.IsDigit).ToArray());
+                // Se o texto formatado for diferente do texto atual, atualiza o campo
+                // Isso evita várias requisições de formatação enquanto o texto for o mesmo
+                /* -------------------------- EXEMPLO -------------------------
+                    
+                   |      TEXTBOX     |     FORMATAÇÃO   |      RESULTADO     |
+                   | "1"              | "1"              |  if NÃO executa    |
+                   |                  |                  |                    |
+                   | "11"             | "11"             |  if NÃO executa    |
+                   |                  |                  |                    |
+                   | "111"            | "111"            |  if NÃO executa    |
+                   |                  |                  |                    |
+                   | "1111"           | "111.1"          |  if EXECUTA        |
 
-            string formatado = FormataCpf(numeros);
-
-            txtPesquisaCpf.Text = formatado;
-            txtPesquisaCpf.SelectionStart = formatado.Length;
-
-            formatandoCpf = false;
+                   ------------------------------------------------------------
+                 */
+                if (txtPesquisaCpf.Text != formatado)
+                {
+                    // Atribui a formatação ao campo e ajusta o cursor para o final do texto
+                    txtPesquisaCpf.Text = formatado;
+                    txtPesquisaCpf.SelectionStart = formatado.Length;
+                }
+            }));         
         }
 
+        // Método que formata uma string para o formato de cpf, utilizando um modelo pré-definido
         private string FormataCpf(string numeros)
         {
+            // Define o modelo de formatação do cpf, onde # representa os dígitos
             string modelo = "###.###.###-##";
-            int j = 0;
+
+            // Variável para percorrer a posição dos digitos
+            int n = 0;
+
+            // StringBuilder: serve para montar ou manipular strings de forma eficiente, evitando a criação de várias instâncias
             var sb = new StringBuilder();
 
+            // Loop que vai percorrer todo o modelo, substituindo os # pelos digitos da string numeros
             for (int i = 0; i < modelo.Length; i++)
             {
-                if (j >= numeros.Length)
+                // Se já tiver percorrido todos os digitos, sai do loop
+                if (n >= numeros.Length)
                     break;
 
+                // Se o caractere atual for # 
                 if (modelo[i] == '#')
                 {
-                    sb.Append(numeros[j]);
-                    j++;
+                    // Substitui pelo digito correspondente e avança para o próximo dígito
+                    sb.Append(numeros[n]);
+                    n++;
                 }
+                // Caso contrário, ou seja, se for um caractere de formatação como . ou -
                 else
-                {
-                    // só coloca . e - quando já tiver números pra continuar
+                {   
+                    // Adiciona . ou - quando já tiver números para continuar
                     sb.Append(modelo[i]);
                 }
             }
 
+            // Retorna o texto formatado em string
             return sb.ToString();
         }
 
