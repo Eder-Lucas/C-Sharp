@@ -7,7 +7,8 @@ using System.Windows.Forms;
 
 namespace Pizzaria
 {
-    internal static class CursorButtonUtils
+    // Classe utilitária para ajustes visuais relacionados a cursores
+    internal static class CursorUtils
     {
         // Método para aplicar o cursor de mão em botões de ToolStrip
         public static void HandToolStripButton(ToolStrip ts)
@@ -44,7 +45,7 @@ namespace Pizzaria
             }
 
             // Verifica se o controle possui filhos, aplicando o evento mesmo em controles aninhados
-            // Como: GroupBox, Panel, TabPage, etc.
+            // Como: GroupBox, Panel, TabPage, etc
             foreach (Control ctl in parent.Controls)
                 if (ctl.HasChildren) HandButton(ctl);
         }
