@@ -49,9 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CursorButton.cs" />
+    <Compile Include="CursorButtonUtils.cs" />
     <Compile Include="DataGridViewUtils.cs" />
-    <Compile Include="FormataCursorMtb.cs" />
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
