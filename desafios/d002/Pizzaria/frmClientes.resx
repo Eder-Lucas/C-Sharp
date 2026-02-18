@@ -144,33 +144,8 @@
   <metadata name="cEPLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="clienteBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>782, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnPesquisaNome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHbSURBVDhPlZJL
-        LwNRGIYldiT8ADurrprQLtjQGU2FuHRjJRLxA7DyJ2yYVqMIEQtSCUFiRVRTt7i0c6rVuiYSIappK4oZ
-        Zo7vm5zJtHRRb/LmJOec5/2+cynT1ek9qeBcZIR3kTMYc+As2G8TSH+Pz1fOthWX3UNqOTeJA6wOrtyG
-        PEdPfvTA4tUFhFDwtt17Us22F0qrDHDHVCwVfMiFQy8STWRkevP6RUlKUjevs0H7RETmXeIGQwoF6di2
-        uv/wLiKMzkoKRcmKqoUtx9J+7IQXIg6GGcIzY9s6jA6DL7My/fxWqQQWX6SPdm8sAyGzDDMEk7np4+RO
-        foDuOzgGKp6WKRaxucg+wwxBQGZs73G3WICYkmjyQ8G70AJg7y7DDOFk70LiBgDld0Cecw5P9J1zi+MM
-        M4TvDCF0NZEOFAE1CwdPeIlKkxCuY5gh/CScQLZaJiJfvmjaD4Csg2fJzzf8D/hKDUPzSwz5qzbhqsrm
-        jqxjJ86Z2PPw2t0punXy/A0rI2wyNSsmk23UYunizGZHJUMLhe/Mu8kcfKw9uPEAnllvG+H6+s57q7Wb
-        WizOy8bGjhoNKlUA8wjr/ncIto1Qfgj4iC2XJqz4KyTFlkoXhgB4iLDV6uz7Aeuzprh+7m+ZAAAAAElF
-        TkSuQmCC
-</value>
-  </data>
   <metadata name="clienteBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>182, 17</value>
-  </metadata>
-  <metadata name="clienteBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>182, 17</value>
-  </metadata>
-  <metadata name="pizzariaDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
   </metadata>
   <metadata name="pizzariaDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -178,6 +153,7 @@
   <metadata name="clienteBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>782, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bindingNavigatorAddNewItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
@@ -247,6 +223,21 @@
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
         cQAAEnEB89x6jgAAAExJREFUOE9joAr49u3bf1IxVCsEgAWC58Dxh/cf4RhZDETHTNiHaQgpBoAwzBCo
         dtINAGGiDUDGyGpoawAxeNSAQWkAORiqnRLAwAAA9EMMU8Daa3MAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnPesquisaNome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHbSURBVDhPlZJL
+        LwNRGIYldiT8ADurrprQLtjQGU2FuHRjJRLxA7DyJ2yYVqMIEQtSCUFiRVRTt7i0c6rVuiYSIappK4oZ
+        Zo7vm5zJtHRRb/LmJOec5/2+cynT1ek9qeBcZIR3kTMYc+As2G8TSH+Pz1fOthWX3UNqOTeJA6wOrtyG
+        PEdPfvTA4tUFhFDwtt17Us22F0qrDHDHVCwVfMiFQy8STWRkevP6RUlKUjevs0H7RETmXeIGQwoF6di2
+        uv/wLiKMzkoKRcmKqoUtx9J+7IQXIg6GGcIzY9s6jA6DL7My/fxWqQQWX6SPdm8sAyGzDDMEk7np4+RO
+        foDuOzgGKp6WKRaxucg+wwxBQGZs73G3WICYkmjyQ8G70AJg7y7DDOFk70LiBgDld0Cecw5P9J1zi+MM
+        M4TvDCF0NZEOFAE1CwdPeIlKkxCuY5gh/CScQLZaJiJfvmjaD4Csg2fJzzf8D/hKDUPzSwz5qzbhqsrm
+        jqxjJ86Z2PPw2t0punXy/A0rI2wyNSsmk23UYunizGZHJUMLhe/Mu8kcfKw9uPEAnllvG+H6+s57q7Wb
+        WizOy8bGjhoNKlUA8wjr/ncIto1Qfgj4iC2XJqz4KyTFlkoXhgB4iLDV6uz7Aeuzprh+7m+ZAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <metadata name="clienteTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
