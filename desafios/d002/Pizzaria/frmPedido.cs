@@ -18,6 +18,7 @@ namespace Pizzaria
             InitializeComponent();
         }
 
+        // Ao clicar em salvar
         private void pedidoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -27,13 +28,10 @@ namespace Pizzaria
 
         private void frmPedido_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Sabor'. Você pode movê-la ou removê-la conforme necessário.
+            // Carregando os dados nas tabelas
             this.saborTableAdapter.Fill(this.pizzariaDataSet.Sabor);
-            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Tamanho'. Você pode movê-la ou removê-la conforme necessário.
             this.tamanhoTableAdapter.Fill(this.pizzariaDataSet.Tamanho);
-            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Cliente'. Você pode movê-la ou removê-la conforme necessário.
             this.clienteTableAdapter.Fill(this.pizzariaDataSet.Cliente);
-            // TODO: esta linha de código carrega dados na tabela 'pizzariaDataSet.Pedido'. Você pode movê-la ou removê-la conforme necessário.
             this.pedidoTableAdapter.Fill(this.pizzariaDataSet.Pedido);
 
             // Aplicando ajustes visuais utilizando as classes
@@ -42,16 +40,20 @@ namespace Pizzaria
             CursorUtils.HandButton(this);
         }
 
+        // Atribui o valor da pizza ao campo total
         private void vALORTextBox_TextChanged(object sender, EventArgs e)
         {
             tOTALTextBox.Text = vALORTextBox.Text;
         }
 
+        // Ao clicar em adicionar novo pedido
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
+            // Define os valores como padrão
             if (cboTamanho.Items.Count > 0) cboTamanho.SelectedIndex = 1;
             if (cboSabor.Items.Count > 0) cboSabor.SelectedIndex = 1;
 
+            // Força o checkBox a iniciar como desmarcado
             chkEntregue.Checked = false;
         }
     }
