@@ -26,6 +26,7 @@ namespace Pizzaria
             this.tableAdapterManager.UpdateAll(this.pizzariaDataSet);
         }
 
+        // Evento de load do formulário
         private void frmPedido_Load(object sender, EventArgs e)
         {
             // Carregando os dados nas tabelas
