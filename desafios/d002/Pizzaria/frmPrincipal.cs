@@ -15,23 +15,14 @@ namespace Pizzaria
         public frmPrincipal()
         {
             InitializeComponent();
+
             dtgPedido.AutoGenerateColumns = false;
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
-        {
-            frmClientes clientes = new frmClientes();
-
-            clientes.ShowDialog();
-        }
-
-        private void btnPizzas_Click(object sender, EventArgs e)
-        {
-            frmPizzas pizzas = new frmPizzas();
-
-            pizzas.ShowDialog();
-        }
-
+        // Eventos de clique dos botões para abrir os formulários correspondentes
+        private void btnClientes_Click(object sender, EventArgs e) => new frmClientes().ShowDialog();
+        private void btnPizzas_Click(object sender, EventArgs e) => new frmPizzas().ShowDialog();
+        
         private void btnpedidos_Click(object sender, EventArgs e)
         {
             new frmPedido().ShowDialog();
@@ -39,8 +30,10 @@ namespace Pizzaria
             btnPesquisar.PerformClick();
         }
 
+        // Quando o formulário principal for carregado
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            // Carregar os pedidos no DataGridView e verifica a situação de cada um
             dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
             VerificaPedido();
 
@@ -50,8 +43,17 @@ namespace Pizzaria
             CursorUtils.HandButton(this);
         }
 
+        // Ao clicar no botão de Atualizar, recarrega os pedidos e verifica a situação de cada um
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
+            VerificaPedido();
+        }
+
+        // Ao clicar no botão de pesquisar
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            // Verifica qual filtro está selecionado e realiza a consulta correspondente
             if (chkEntregue.Checked)
             {
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarEntregue();
@@ -65,66 +67,62 @@ namespace Pizzaria
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
             }
 
+            // No fim, verifica a situação de cada pedido
             VerificaPedido();
         }
 
-        private void btnAtualizar_Click(object sender, EventArgs e)
+        // Realiza a query enquanto o usuário digita no campo de pesquisa
+        private void txtNomeCliente_TextChanged(object sender, EventArgs e)
         {
-            dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
+            dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
             VerificaPedido();
-            //fazer método limpar
         }
 
-        private void chkEntregue_CheckedChanged(object sender, EventArgs e)
+        // Eventos de clique dos checkbox para atualizar o filtro
+        private void chkEntregue_CheckedChanged(object sender, EventArgs e) => AtualizaFiltro();
+        private void chkEspera_CheckedChanged(object sender, EventArgs e) => AtualizaFiltro();
+
+        // Método que atualiza o filtro dos pedidos dinamicamente
+        private void AtualizaFiltro()
         {
+            // Habilita ou desabilita os checkbox e o campo de pesquisa
+            chkEspera.Enabled = !chkEntregue.Checked; // Se marcar entregue, desmarca e desabilita o checkbox de espera
+            chkEntregue.Enabled = !chkEspera.Checked; // Se marcar espera, desmarca e desabilita o checkbox de entregue
+            txtNomeCliente.Enabled = !chkEntregue.Checked && !chkEspera.Checked; // Só habilita se nenhum tiver marcado
+
+            // Aplica a consulta correspondente ao filtro selecionado
+            // Se nenhum filtro estiver selecionado, retorna todos os pedidos
             if (chkEntregue.Checked)
-            {
-                chkEspera.Enabled= false;
-                txtNomeCliente.Enabled = false;
-
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarEntregue();
-            }
-            else
-            {
-                chkEspera.Enabled = true;
-                txtNomeCliente.Enabled = true;
-            }
-
-            VerificaPedido();
-        }
-
-        private void chkEspera_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkEspera.Checked)
-            {
-                chkEntregue.Enabled = false;
-                txtNomeCliente.Enabled = false;
-
+            else if (chkEspera.Checked)
                 dtgPedido.DataSource = pedidoTableAdapter1.RetornarEspera();
-            }
             else
-            {
-                chkEntregue.Enabled = true;
-                txtNomeCliente.Enabled = true;
-            }
+                dtgPedido.DataSource = pedidoTableAdapter1.RetornarPedidos();
 
+            // Ao final verifica a situação de cada pedido
             VerificaPedido();
         }
 
+        // Método que verifica a situação de cada pedido e ajusta a célula de situação
         private void VerificaPedido()
         {
+            // Armazena a quantidade de linhas do DataGridView Pedido
             int linha = dtgPedido.Rows.Count;
 
+            // Se houver linhas
             if (linha > 0)
             {
+                // Percorre cada uma, enquanto i for menor que a quantidade de linhas
                 for (int i = 0; i < linha; i++)
-                {
+                {   
+                    // Se o valor da célula 'ENTREGUE' for verdadeiro, o pedido foi entregue
                     if (Convert.ToBoolean(dtgPedido.Rows[i].Cells["ENTREGUE"].Value))
                     {
                         dtgPedido.Rows[i].Cells["SITUACAO"].Value = "Entregue";
                         dtgPedido.Rows[i].Cells["SITUACAO"].Style.BackColor = Color.ForestGreen;
                         dtgPedido.Rows[i].Cells["SITUACAO"].Style.ForeColor = Color.White;
                     }
+                    // Caso contrário, o pedido está em à espera
                     else
                     {
                         dtgPedido.Rows[i].Cells["SITUACAO"].Value = "À Espera";
@@ -133,13 +131,6 @@ namespace Pizzaria
                     }
                 } 
             }
-        }
-
-        private void txtNomeCliente_TextChanged(object sender, EventArgs e)
-        {
-            dtgPedido.DataSource = pedidoTableAdapter1.RetornarCliente(txtNomeCliente.Text);
-
-            VerificaPedido();
         }
     }
 }
