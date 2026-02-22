@@ -15,18 +15,21 @@ namespace Academia
             // Estabelece a conexão com o banco de dados através da classe Conexao e seu método StringConexao
             using SqlConnection novaConexao = new(Conexao.StringConexao);
 
+            // Tenta abrir a conexão com o banco de dados
             try
             {
                 novaConexao.Open(); // Abre a conexão com o banco
                 MessageBox.Show("Conexão com o banco de dados realizada!"); // Mensagem de sucesso caso a conexão seja estabelecida
             }
-            catch (Exception)
+            // Se falhar captura o erro e exibe uma mensagem de falha
+            catch (Exception) 
             {
                 MessageBox.Show("Erro ao tentar se conectar ao banco de dados!"); // Mensagem de erro caso a conexão falhe
             }
+            // Executa sempre, independentemente do sucesso ou falha da conexão
             finally
             {
-                MessageBox.Show("Bem Vindo ao sistema de academia!");
+                MessageBox.Show("Bem Vindo ao sistema de academia!"); // Exibe independente do resultado da conexão
             }
         }
     }
