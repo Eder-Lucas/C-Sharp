@@ -27,9 +27,9 @@ namespace Academia
                 using SqlConnection conexao = new(Conexao.StringConexao);
 				conexao.Open();
 
-				sql.Append("INSERT INTO Professor (NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR,");
-				sql.Append("CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO_PROFESSOR, TELEFONE_PROFESSOR, OBSERVACAO_PROFESSOR)");
-				sql.Append("VALUES (@nome, @endereco, @bairro, @cidade, @cep, @cpf, @salario, @telefone, @observacao)");
+				sql.Append("INSERT INTO Professor (NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR, ");
+				sql.Append("CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO)");
+				sql.Append("VALUES (@nome, @endereco, @numero, @bairro, @cidade, @cep, @cpf, @salario, @telefone, @observacao)");
 
 				comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
                 comandoSql.Parameters.Add(new SqlParameter("@endereco", endereco));
@@ -46,9 +46,9 @@ namespace Academia
 				comandoSql.Connection = conexao;
 				comandoSql.ExecuteNonQuery();
             }
-			catch (Exception)
+			catch (Exception ex)
 			{
-				throw new Exception("Ocorreu um erro ao salvar. Caso o erro persista, entre em contato com o Administrador do sistema");
+				throw new Exception(ex.Message, ex);
 			}
         }
     }
