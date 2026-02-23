@@ -22,7 +22,7 @@ namespace Academia
                 MessageBox.Show("Conexão com o banco de dados realizada!"); // Mensagem de sucesso caso a conexão seja estabelecida
             }
             // Se falhar captura o erro e exibe uma mensagem de falha
-            catch (Exception) 
+            catch (Exception)
             {
                 MessageBox.Show("Erro ao tentar se conectar ao banco de dados!"); // Mensagem de erro caso a conexão falhe
             }
@@ -32,5 +32,8 @@ namespace Academia
                 MessageBox.Show("Bem Vindo ao sistema de academia!"); // Exibe independente do resultado da conexão
             }
         }
+
+        private void toolStripButton5_Click(object sender, EventArgs e) => new frmProfessores().ShowDialog();
+        
     }
 }

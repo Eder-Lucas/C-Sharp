@@ -61,6 +61,7 @@
             toolStripButton5.Size = new Size(88, 56);
             toolStripButton5.Text = "Professores";
             toolStripButton5.TextImageRelation = TextImageRelation.ImageAboveText;
+            toolStripButton5.Click += toolStripButton5_Click;
             // 
             // btnAlunos
             // 
