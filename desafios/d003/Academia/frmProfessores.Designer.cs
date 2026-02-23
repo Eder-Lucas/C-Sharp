@@ -55,6 +55,8 @@
             mtbCep = new MaskedTextBox();
             txtCod = new TextBox();
             mtbFone = new MaskedTextBox();
+            label11 = new Label();
+            txtNum = new TextBox();
             toolStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -65,7 +67,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnSalvar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(942, 39);
+            toolStrip1.Size = new Size(945, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -86,6 +88,7 @@
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(85, 36);
             btnSalvar.Text = "Salvar";
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // label1
             // 
@@ -254,7 +257,7 @@
             txtBairro.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBairro.Location = new Point(122, 164);
             txtBairro.Name = "txtBairro";
-            txtBairro.Size = new Size(343, 27);
+            txtBairro.Size = new Size(169, 27);
             txtBairro.TabIndex = 2;
             // 
             // txtCidade
@@ -314,16 +317,34 @@
             // 
             mtbFone.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             mtbFone.Location = new Point(122, 236);
-            mtbFone.Mask = "(99) 9 9999-9999";
+            mtbFone.Mask = "(99) 99999-9999";
             mtbFone.Name = "mtbFone";
             mtbFone.Size = new Size(122, 27);
             mtbFone.TabIndex = 6;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(297, 167);
+            label11.Name = "label11";
+            label11.Size = new Size(87, 21);
+            label11.TabIndex = 1;
+            label11.Text = "Número:";
+            // 
+            // txtNum
+            // 
+            txtNum.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNum.Location = new Point(390, 164);
+            txtNum.Name = "txtNum";
+            txtNum.Size = new Size(75, 27);
+            txtNum.TabIndex = 2;
             // 
             // frmProfessores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 450);
+            ClientSize = new Size(945, 450);
             Controls.Add(mtbCep);
             Controls.Add(mtbFone);
             Controls.Add(mtbCpf);
@@ -331,6 +352,7 @@
             Controls.Add(txtObservacao);
             Controls.Add(txtSalario);
             Controls.Add(txtCidade);
+            Controls.Add(txtNum);
             Controls.Add(txtBairro);
             Controls.Add(txtEndereco);
             Controls.Add(txtCod);
@@ -341,6 +363,7 @@
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
+            Controls.Add(label11);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -389,5 +412,7 @@
         private MaskedTextBox mtbCep;
         private TextBox txtCod;
         private MaskedTextBox mtbFone;
+        private Label label11;
+        private TextBox txtNum;
     }
 }
