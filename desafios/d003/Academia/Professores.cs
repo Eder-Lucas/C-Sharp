@@ -10,6 +10,7 @@ namespace Academia
     internal class Professores
     {
         // Método para salvar as informações de um professor no banco de dados
+        // Recebe todos os dados pelo parâmetro
         public void Salvar(string nome, string endereco, string numero, string bairro, string cidade,
             string cep, string cpf, decimal salario, string telefone, string observacao)
         {
