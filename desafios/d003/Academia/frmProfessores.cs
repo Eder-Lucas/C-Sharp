@@ -15,22 +15,20 @@ namespace Academia
             InitializeComponent();
         }
 
+        private readonly Professores novoProfessor = new();
+
+        private void frmProfessores_Load(object sender, EventArgs e)
+        {
+            ListarProfessores();
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                Professores novoProfessor = new();
                 novoProfessor.Salvar(
-                    txtNome.Text, 
-                    txtEndereco.Text, 
-                    txtNum.Text, 
-                    txtBairro.Text, 
-                    txtCidade.Text, 
-                    mtbCep.Text, 
-                    mtbCpf.Text, 
-                    Convert.ToDecimal(txtSalario.Text), 
-                    mtbFone.Text, 
-                    txtObservacao.Text
+                    txtNome.Text, txtEndereco.Text, txtNum.Text, txtBairro.Text, txtCidade.Text,
+                    mtbCep.Text, mtbCpf.Text, Convert.ToDecimal(txtSalario.Text), mtbFone.Text, txtObs.Text
                 );
 
                 MessageBox.Show("Professor salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -39,6 +37,25 @@ namespace Academia
             {
                 MessageBox.Show($"Erro ao salvar professor: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ListarProfessores()
+        {
+            try
+            {
+                dtgProfessores.DataSource = novoProfessor.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao listar os dados dos professores: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimparCampos()
+        {
+            foreach (var txt in this.Controls.OfType<TextBox>())
+                txt.Text = (txt.Tag?.ToString() == "cod") ? "0" : string.Empty;
         }
     }
 }
