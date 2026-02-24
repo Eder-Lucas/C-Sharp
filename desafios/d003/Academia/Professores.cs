@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Academia
 {
+    // Classe que gerencia operações relacionadas aos professores, como salvar e listar informações
     internal class Professores
     {
+        // Método para salvar as informações de um professor no banco de dados
         public void Salvar(string nome, string endereco, string numero, string bairro, string cidade,
             string cep, string cpf, decimal salario, string telefone, string observacao)
         {
@@ -44,6 +46,7 @@ namespace Academia
             }
         }
 
+        // Método que lista as informações dos professores e retorna os dados em um DataTable
         public DataTable Listar()
         {
             try
