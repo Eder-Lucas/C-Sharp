@@ -58,6 +58,19 @@
             label11 = new Label();
             txtNum = new TextBox();
             dtgProfessores = new DataGridView();
+            ID_PROFESSOR = new DataGridViewTextBoxColumn();
+            NOME_PROFESSOR = new DataGridViewTextBoxColumn();
+            ENDERECO_PROFESSOR = new DataGridViewTextBoxColumn();
+            NUMERO_PROFESSOR = new DataGridViewTextBoxColumn();
+            BAIRRO_PROFESSOR = new DataGridViewTextBoxColumn();
+            CIDADE_PROFESSOR = new DataGridViewTextBoxColumn();
+            CEP_PROFESSOR = new DataGridViewTextBoxColumn();
+            CPF_PROFESSOR = new DataGridViewTextBoxColumn();
+            SALARIO = new DataGridViewTextBoxColumn();
+            TELEFONE_PROFESSOR = new DataGridViewTextBoxColumn();
+            OBSERVACAO = new DataGridViewTextBoxColumn();
+            btnEditar = new DataGridViewImageColumn();
+            btnExcluir = new DataGridViewImageColumn();
             toolStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgProfessores).BeginInit();
@@ -345,12 +358,139 @@
             // 
             // dtgProfessores
             // 
+            dtgProfessores.AllowUserToAddRows = false;
+            dtgProfessores.AllowUserToDeleteRows = false;
             dtgProfessores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgProfessores.Columns.AddRange(new DataGridViewColumn[] { ID_PROFESSOR, NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR, CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO, btnEditar, btnExcluir });
             dtgProfessores.Location = new Point(14, 281);
             dtgProfessores.Name = "dtgProfessores";
+            dtgProfessores.ReadOnly = true;
+            dtgProfessores.RowHeadersVisible = false;
             dtgProfessores.RowHeadersWidth = 51;
             dtgProfessores.Size = new Size(919, 260);
             dtgProfessores.TabIndex = 7;
+            // 
+            // ID_PROFESSOR
+            // 
+            ID_PROFESSOR.DataPropertyName = "ID_PROFESSOR";
+            ID_PROFESSOR.HeaderText = "CÓDIGO";
+            ID_PROFESSOR.MinimumWidth = 6;
+            ID_PROFESSOR.Name = "ID_PROFESSOR";
+            ID_PROFESSOR.ReadOnly = true;
+            ID_PROFESSOR.Width = 125;
+            // 
+            // NOME_PROFESSOR
+            // 
+            NOME_PROFESSOR.DataPropertyName = "NOME_PROFESSOR";
+            NOME_PROFESSOR.HeaderText = "NOME";
+            NOME_PROFESSOR.MinimumWidth = 6;
+            NOME_PROFESSOR.Name = "NOME_PROFESSOR";
+            NOME_PROFESSOR.ReadOnly = true;
+            NOME_PROFESSOR.Width = 125;
+            // 
+            // ENDERECO_PROFESSOR
+            // 
+            ENDERECO_PROFESSOR.DataPropertyName = "ENDERECO_PROFESSOR";
+            ENDERECO_PROFESSOR.HeaderText = "ENDEREÇO";
+            ENDERECO_PROFESSOR.MinimumWidth = 6;
+            ENDERECO_PROFESSOR.Name = "ENDERECO_PROFESSOR";
+            ENDERECO_PROFESSOR.ReadOnly = true;
+            ENDERECO_PROFESSOR.Width = 125;
+            // 
+            // NUMERO_PROFESSOR
+            // 
+            NUMERO_PROFESSOR.DataPropertyName = "NUMERO_PROFESSOR";
+            NUMERO_PROFESSOR.HeaderText = "NÚMERO";
+            NUMERO_PROFESSOR.MinimumWidth = 6;
+            NUMERO_PROFESSOR.Name = "NUMERO_PROFESSOR";
+            NUMERO_PROFESSOR.ReadOnly = true;
+            NUMERO_PROFESSOR.Width = 125;
+            // 
+            // BAIRRO_PROFESSOR
+            // 
+            BAIRRO_PROFESSOR.DataPropertyName = "BAIRRO_PROFESSOR";
+            BAIRRO_PROFESSOR.HeaderText = "BAIRRO";
+            BAIRRO_PROFESSOR.MinimumWidth = 6;
+            BAIRRO_PROFESSOR.Name = "BAIRRO_PROFESSOR";
+            BAIRRO_PROFESSOR.ReadOnly = true;
+            BAIRRO_PROFESSOR.Visible = false;
+            BAIRRO_PROFESSOR.Width = 125;
+            // 
+            // CIDADE_PROFESSOR
+            // 
+            CIDADE_PROFESSOR.DataPropertyName = "CIDADE_PROFESSOR";
+            CIDADE_PROFESSOR.HeaderText = "CIDADE";
+            CIDADE_PROFESSOR.MinimumWidth = 6;
+            CIDADE_PROFESSOR.Name = "CIDADE_PROFESSOR";
+            CIDADE_PROFESSOR.ReadOnly = true;
+            CIDADE_PROFESSOR.Visible = false;
+            CIDADE_PROFESSOR.Width = 125;
+            // 
+            // CEP_PROFESSOR
+            // 
+            CEP_PROFESSOR.DataPropertyName = "CEP_PROFESSOR";
+            CEP_PROFESSOR.HeaderText = "CEP";
+            CEP_PROFESSOR.MinimumWidth = 6;
+            CEP_PROFESSOR.Name = "CEP_PROFESSOR";
+            CEP_PROFESSOR.ReadOnly = true;
+            CEP_PROFESSOR.Visible = false;
+            CEP_PROFESSOR.Width = 125;
+            // 
+            // CPF_PROFESSOR
+            // 
+            CPF_PROFESSOR.DataPropertyName = "CPF_PROFESSOR";
+            CPF_PROFESSOR.HeaderText = "CPF";
+            CPF_PROFESSOR.MinimumWidth = 6;
+            CPF_PROFESSOR.Name = "CPF_PROFESSOR";
+            CPF_PROFESSOR.ReadOnly = true;
+            CPF_PROFESSOR.Width = 125;
+            // 
+            // SALARIO
+            // 
+            SALARIO.DataPropertyName = "SALARIO";
+            SALARIO.HeaderText = "SALÁRIO";
+            SALARIO.MinimumWidth = 6;
+            SALARIO.Name = "SALARIO";
+            SALARIO.ReadOnly = true;
+            SALARIO.Visible = false;
+            SALARIO.Width = 125;
+            // 
+            // TELEFONE_PROFESSOR
+            // 
+            TELEFONE_PROFESSOR.DataPropertyName = "TELEFONE_PROFESSOR";
+            TELEFONE_PROFESSOR.HeaderText = "FONE";
+            TELEFONE_PROFESSOR.MinimumWidth = 6;
+            TELEFONE_PROFESSOR.Name = "TELEFONE_PROFESSOR";
+            TELEFONE_PROFESSOR.ReadOnly = true;
+            TELEFONE_PROFESSOR.Width = 125;
+            // 
+            // OBSERVACAO
+            // 
+            OBSERVACAO.DataPropertyName = "OBSERVACAO";
+            OBSERVACAO.HeaderText = "OBSERVAÇÃO";
+            OBSERVACAO.MinimumWidth = 6;
+            OBSERVACAO.Name = "OBSERVACAO";
+            OBSERVACAO.ReadOnly = true;
+            OBSERVACAO.Visible = false;
+            OBSERVACAO.Width = 125;
+            // 
+            // btnEditar
+            // 
+            btnEditar.HeaderText = "";
+            btnEditar.Image = Properties.Resources.dtgEditar;
+            btnEditar.MinimumWidth = 6;
+            btnEditar.Name = "btnEditar";
+            btnEditar.ReadOnly = true;
+            btnEditar.Width = 36;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.HeaderText = "";
+            btnExcluir.Image = Properties.Resources.dtgExcluir;
+            btnExcluir.MinimumWidth = 6;
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.ReadOnly = true;
+            btnExcluir.Width = 36;
             // 
             // frmProfessores
             // 
@@ -430,5 +570,18 @@
         private Label label11;
         private TextBox txtNum;
         private DataGridView dtgProfessores;
+        private DataGridViewTextBoxColumn ID_PROFESSOR;
+        private DataGridViewTextBoxColumn NOME_PROFESSOR;
+        private DataGridViewTextBoxColumn ENDERECO_PROFESSOR;
+        private DataGridViewTextBoxColumn NUMERO_PROFESSOR;
+        private DataGridViewTextBoxColumn BAIRRO_PROFESSOR;
+        private DataGridViewTextBoxColumn CIDADE_PROFESSOR;
+        private DataGridViewTextBoxColumn CEP_PROFESSOR;
+        private DataGridViewTextBoxColumn CPF_PROFESSOR;
+        private DataGridViewTextBoxColumn SALARIO;
+        private DataGridViewTextBoxColumn TELEFONE_PROFESSOR;
+        private DataGridViewTextBoxColumn OBSERVACAO;
+        private DataGridViewImageColumn btnEditar;
+        private DataGridViewImageColumn btnExcluir;
     }
 }
