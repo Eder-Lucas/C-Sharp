@@ -50,15 +50,17 @@
             txtBairro = new TextBox();
             txtCidade = new TextBox();
             txtSalario = new TextBox();
-            txtObservacao = new TextBox();
+            txtObs = new TextBox();
             mtbCpf = new MaskedTextBox();
             mtbCep = new MaskedTextBox();
             txtCod = new TextBox();
             mtbFone = new MaskedTextBox();
             label11 = new Label();
             txtNum = new TextBox();
+            dtgProfessores = new DataGridView();
             toolStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgProfessores).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -121,7 +123,7 @@
             groupBox1.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(622, 161);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(304, 102);
+            groupBox1.Size = new Size(311, 102);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Pesquisa";
@@ -276,14 +278,14 @@
             txtSalario.Size = new Size(96, 27);
             txtSalario.TabIndex = 2;
             // 
-            // txtObservacao
+            // txtObs
             // 
-            txtObservacao.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtObservacao.Location = new Point(622, 96);
-            txtObservacao.Multiline = true;
-            txtObservacao.Name = "txtObservacao";
-            txtObservacao.Size = new Size(304, 59);
-            txtObservacao.TabIndex = 2;
+            txtObs.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtObs.Location = new Point(622, 96);
+            txtObs.Multiline = true;
+            txtObs.Name = "txtObs";
+            txtObs.Size = new Size(311, 59);
+            txtObs.TabIndex = 2;
             // 
             // mtbCpf
             // 
@@ -311,6 +313,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(85, 27);
             txtCod.TabIndex = 2;
+            txtCod.Tag = "cod";
             txtCod.Text = "0";
             // 
             // mtbFone
@@ -340,16 +343,26 @@
             txtNum.Size = new Size(75, 27);
             txtNum.TabIndex = 2;
             // 
+            // dtgProfessores
+            // 
+            dtgProfessores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgProfessores.Location = new Point(14, 281);
+            dtgProfessores.Name = "dtgProfessores";
+            dtgProfessores.RowHeadersWidth = 51;
+            dtgProfessores.Size = new Size(919, 260);
+            dtgProfessores.TabIndex = 7;
+            // 
             // frmProfessores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 450);
+            ClientSize = new Size(945, 553);
+            Controls.Add(dtgProfessores);
             Controls.Add(mtbCep);
             Controls.Add(mtbFone);
             Controls.Add(mtbCpf);
             Controls.Add(groupBox1);
-            Controls.Add(txtObservacao);
+            Controls.Add(txtObs);
             Controls.Add(txtSalario);
             Controls.Add(txtCidade);
             Controls.Add(txtNum);
@@ -375,10 +388,12 @@
             Name = "frmProfessores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Controle de Professores";
+            Load += frmProfessores_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgProfessores).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -407,12 +422,13 @@
         private TextBox txtCidade;
         private TextBox txtSalario;
         private TextBox txtPesquisa;
-        private TextBox txtObservacao;
+        private TextBox txtObs;
         private MaskedTextBox mtbCpf;
         private MaskedTextBox mtbCep;
         private TextBox txtCod;
         private MaskedTextBox mtbFone;
         private Label label11;
         private TextBox txtNum;
+        private DataGridView dtgProfessores;
     }
 }
