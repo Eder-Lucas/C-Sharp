@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Linq;
+using System.Globalization;
 
 namespace Academia
 {
@@ -29,6 +30,11 @@ namespace Academia
         {
             try
             {
+                // Formata o nome para primeira Letra maiusculo
+                // As preposições ficam maiusculas ainda, por enquanto
+                TextInfo ti =new CultureInfo("pt-BR", false).TextInfo;
+                txtNome.Text = ti.ToTitleCase(txtNome.Text.ToLower());
+
                 if (txtCod.Text == "0")
                 {
                     novoProfessor.Salvar(
