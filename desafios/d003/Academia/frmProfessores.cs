@@ -21,23 +21,45 @@ namespace Academia
         private void frmProfessores_Load(object sender, EventArgs e)
         {
             ListarProfessores();
+            txtNome.Focus();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                novoProfessor.Salvar(
-                    txtNome.Text, txtEndereco.Text, txtNum.Text, txtBairro.Text, txtCidade.Text,
-                    mtbCep.Text, mtbCpf.Text, Convert.ToDecimal(txtSalario.Text), mtbFone.Text, txtObs.Text
-                );
+                if (txtCod.Text == "0")
+                {
+                    novoProfessor.Salvar(
+                        txtNome.Text, txtEndereco.Text, txtNum.Text, txtBairro.Text, txtCidade.Text,
+                        mtbCep.Text, mtbCpf.Text, Convert.ToDecimal(txtSalario.Text), mtbFone.Text, txtObs.Text
+                    );
 
-                MessageBox.Show("Professor salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Professor salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    novoProfessor.Alterar(
+                        Convert.ToInt32(txtCod.Text), txtNome.Text, txtEndereco.Text, txtNum.Text, txtBairro.Text,
+                        txtCidade.Text, mtbCep.Text, mtbCpf.Text, Convert.ToDecimal(txtSalario.Text), mtbFone.Text, txtObs.Text
+                    );
+
+                    MessageBox.Show("Professor alterado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                LimparCampos();
+                ListarProfessores();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao salvar professor: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+            txtNome.Focus();
         }
 
         private void ListarProfessores()
@@ -57,6 +79,9 @@ namespace Academia
         {
             foreach (var txt in this.Controls.OfType<TextBox>())
                 txt.Text = (txt.Tag?.ToString() == "ID_PROFESSOR") ? "0" : string.Empty;
+
+            foreach (var mtb in this.Controls.OfType<MaskedTextBox>())
+                mtb.Text = string.Empty;
         }
 
         // Ao clicar em uma célula do DataGridView
@@ -70,7 +95,7 @@ namespace Academia
                 // row?.DataBoundItem: pega o objeto de dados bruto
                 // is not DataRowView: checa se esse objeto realmente existe
                 // Se a linha for válida, já cria a variável drv do tipo DataRowView
-                if (row?.DataBoundItem is not DataRowView drv) return; 
+                if (row?.DataBoundItem is not DataRowView drv) return;
 
                 // Verifica cada controle do form
                 foreach (Control c in this.Controls)
@@ -91,7 +116,7 @@ namespace Academia
                         /* Sem essa lógica, o código ficaria assim para todos os campos:
                             txtCod.Text = dtgProfessores.Rows[e?.RowIndex].Cells["CODIGO"].Value.ToString(); */
                     }
-                }                
+                }
             }
         }
     }
