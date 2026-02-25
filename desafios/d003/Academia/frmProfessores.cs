@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Academia
 {
@@ -55,7 +56,43 @@ namespace Academia
         private void LimparCampos()
         {
             foreach (var txt in this.Controls.OfType<TextBox>())
-                txt.Text = (txt.Tag?.ToString() == "cod") ? "0" : string.Empty;
+                txt.Text = (txt.Tag?.ToString() == "ID_PROFESSOR") ? "0" : string.Empty;
+        }
+
+        // Ao clicar em uma célula do DataGridView
+        private void dtgProfessores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Se a coluna clicada for a de edição (btnEditar)
+            if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnEditar")
+            {
+                var row = dtgProfessores.Rows[e.RowIndex]; // Pega a linha clicada
+
+                // row?.DataBoundItem: pega o objeto de dados bruto
+                // is not DataRowView: checa se esse objeto realmente existe
+                // Se a linha for válida, já cria a variável drv do tipo DataRowView
+                if (row?.DataBoundItem is not DataRowView drv) return; 
+
+                // Verifica cada controle do form
+                foreach (Control c in this.Controls)
+                {
+                    // Ignora controles onde Tag é nulo
+                    // Caso seja válido, já cria a variável 'tag' do tipo string
+                    if (c.Tag is not string tag) continue;
+
+                    // Ignora se a coluna do DataView não contém a tag do controle
+                    if (drv.DataView?.Table?.Columns.Contains(tag) != true) continue;
+
+                    // Se for TextBox ou MaskedTextBox
+                    // Preenche o campo com o valor correspondente do DataRowView
+                    if (c is TextBox || c is MaskedTextBox)
+                    {
+                        c.Text = drv[tag].ToString();
+
+                        /* Sem essa lógica, o código ficaria assim para todos os campos:
+                            txtCod.Text = dtgProfessores.Rows[e?.RowIndex].Cells["CODIGO"].Value.ToString(); */
+                    }
+                }                
+            }
         }
     }
 }
