@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             toolStrip1 = new ToolStrip();
             btnAdicionar = new ToolStripButton();
             btnSalvar = new ToolStripButton();
@@ -125,7 +128,6 @@
             rbNome.Name = "rbNome";
             rbNome.Size = new Size(68, 21);
             rbNome.TabIndex = 0;
-            rbNome.TabStop = false;
             rbNome.Text = "Nome";
             rbNome.UseVisualStyleBackColor = true;
             // 
@@ -371,11 +373,31 @@
             // 
             dtgProfessores.AllowUserToAddRows = false;
             dtgProfessores.AllowUserToDeleteRows = false;
+            dtgProfessores.AllowUserToResizeColumns = false;
+            dtgProfessores.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dtgProfessores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dtgProfessores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProfessores.Columns.AddRange(new DataGridViewColumn[] { ID_PROFESSOR, NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR, CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO, btnEditar, btnExcluir });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtgProfessores.DefaultCellStyle = dataGridViewCellStyle2;
             dtgProfessores.Location = new Point(14, 281);
             dtgProfessores.Name = "dtgProfessores";
             dtgProfessores.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dtgProfessores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtgProfessores.RowHeadersVisible = false;
             dtgProfessores.RowHeadersWidth = 51;
             dtgProfessores.Size = new Size(919, 260);
@@ -390,7 +412,8 @@
             ID_PROFESSOR.MinimumWidth = 6;
             ID_PROFESSOR.Name = "ID_PROFESSOR";
             ID_PROFESSOR.ReadOnly = true;
-            ID_PROFESSOR.Width = 125;
+            ID_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ID_PROFESSOR.Width = 75;
             // 
             // NOME_PROFESSOR
             // 
@@ -399,7 +422,8 @@
             NOME_PROFESSOR.MinimumWidth = 6;
             NOME_PROFESSOR.Name = "NOME_PROFESSOR";
             NOME_PROFESSOR.ReadOnly = true;
-            NOME_PROFESSOR.Width = 125;
+            NOME_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            NOME_PROFESSOR.Width = 300;
             // 
             // ENDERECO_PROFESSOR
             // 
@@ -408,7 +432,8 @@
             ENDERECO_PROFESSOR.MinimumWidth = 6;
             ENDERECO_PROFESSOR.Name = "ENDERECO_PROFESSOR";
             ENDERECO_PROFESSOR.ReadOnly = true;
-            ENDERECO_PROFESSOR.Width = 125;
+            ENDERECO_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ENDERECO_PROFESSOR.Width = 161;
             // 
             // NUMERO_PROFESSOR
             // 
@@ -417,7 +442,8 @@
             NUMERO_PROFESSOR.MinimumWidth = 6;
             NUMERO_PROFESSOR.Name = "NUMERO_PROFESSOR";
             NUMERO_PROFESSOR.ReadOnly = true;
-            NUMERO_PROFESSOR.Width = 125;
+            NUMERO_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            NUMERO_PROFESSOR.Width = 80;
             // 
             // BAIRRO_PROFESSOR
             // 
@@ -456,7 +482,8 @@
             CPF_PROFESSOR.MinimumWidth = 6;
             CPF_PROFESSOR.Name = "CPF_PROFESSOR";
             CPF_PROFESSOR.ReadOnly = true;
-            CPF_PROFESSOR.Width = 125;
+            CPF_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            CPF_PROFESSOR.Width = 110;
             // 
             // SALARIO
             // 
@@ -475,7 +502,8 @@
             TELEFONE_PROFESSOR.MinimumWidth = 6;
             TELEFONE_PROFESSOR.Name = "TELEFONE_PROFESSOR";
             TELEFONE_PROFESSOR.ReadOnly = true;
-            TELEFONE_PROFESSOR.Width = 125;
+            TELEFONE_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            TELEFONE_PROFESSOR.Width = 118;
             // 
             // OBSERVACAO
             // 
