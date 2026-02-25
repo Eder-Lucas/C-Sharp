@@ -258,6 +258,7 @@
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(495, 27);
             txtEndereco.TabIndex = 2;
+            txtEndereco.Tag = "ENDERECO_PROFESSOR";
             // 
             // txtNome
             // 
@@ -266,6 +267,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(495, 27);
             txtNome.TabIndex = 2;
+            txtNome.Tag = "NOME_PROFESSOR";
             // 
             // txtBairro
             // 
@@ -274,6 +276,7 @@
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(169, 27);
             txtBairro.TabIndex = 2;
+            txtBairro.Tag = "BAIRRO_PROFESSOR";
             // 
             // txtCidade
             // 
@@ -282,6 +285,7 @@
             txtCidade.Name = "txtCidade";
             txtCidade.Size = new Size(495, 27);
             txtCidade.TabIndex = 2;
+            txtCidade.Tag = "CIDADE_PROFESSOR";
             // 
             // txtSalario
             // 
@@ -290,6 +294,7 @@
             txtSalario.Name = "txtSalario";
             txtSalario.Size = new Size(96, 27);
             txtSalario.TabIndex = 2;
+            txtSalario.Tag = "SALARIO";
             // 
             // txtObs
             // 
@@ -299,6 +304,7 @@
             txtObs.Name = "txtObs";
             txtObs.Size = new Size(311, 59);
             txtObs.TabIndex = 2;
+            txtObs.Tag = "OBSERVACAO";
             // 
             // mtbCpf
             // 
@@ -308,6 +314,7 @@
             mtbCpf.Name = "mtbCpf";
             mtbCpf.Size = new Size(122, 27);
             mtbCpf.TabIndex = 6;
+            mtbCpf.Tag = "CPF_PROFESSOR";
             // 
             // mtbCep
             // 
@@ -317,6 +324,7 @@
             mtbCep.Name = "mtbCep";
             mtbCep.Size = new Size(85, 27);
             mtbCep.TabIndex = 6;
+            mtbCep.Tag = "CEP_PROFESSOR";
             // 
             // txtCod
             // 
@@ -326,7 +334,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(85, 27);
             txtCod.TabIndex = 2;
-            txtCod.Tag = "cod";
+            txtCod.Tag = "ID_PROFESSOR";
             txtCod.Text = "0";
             // 
             // mtbFone
@@ -337,6 +345,7 @@
             mtbFone.Name = "mtbFone";
             mtbFone.Size = new Size(122, 27);
             mtbFone.TabIndex = 6;
+            mtbFone.Tag = "TELEFONE_PROFESSOR";
             // 
             // label11
             // 
@@ -355,6 +364,7 @@
             txtNum.Name = "txtNum";
             txtNum.Size = new Size(75, 27);
             txtNum.TabIndex = 2;
+            txtNum.Tag = "NUMERO_PROFESSOR";
             // 
             // dtgProfessores
             // 
@@ -369,6 +379,7 @@
             dtgProfessores.RowHeadersWidth = 51;
             dtgProfessores.Size = new Size(919, 260);
             dtgProfessores.TabIndex = 7;
+            dtgProfessores.CellContentClick += dtgProfessores_CellContentClick;
             // 
             // ID_PROFESSOR
             // 
