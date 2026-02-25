@@ -47,6 +47,54 @@ namespace Academia
             }
         }
 
+        public void Alterar(int idProfessor, string nome, string endereco, string numero, string bairro,
+            string cidade, string cep, string cpf, decimal salario, string telefone, string observacao)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = @"
+                    UPDATE Professor
+                    SET NOME_PROFESSOR = @nome,
+                        ENDERECO_PROFESSOR = @endereco,
+                        NUMERO_PROFESSOR = @numero,
+                        BAIRRO_PROFESSOR = @bairro,
+                        CIDADE_PROFESSOR = @cidade,
+                        CEP_PROFESSOR = @cep,
+                        CPF_PROFESSOR = @cpf,
+                        SALARIO = @salario,
+                        TELEFONE_PROFESSOR = @telefone,
+                        OBSERVACAO = @observacao
+                    WHERE ID_PROFESSOR = @idProfessor
+                ";
+
+                using SqlCommand comandoSql = new();
+
+                comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
+                comandoSql.Parameters.Add(new SqlParameter("@endereco", endereco));
+                comandoSql.Parameters.Add(new SqlParameter("@numero", numero));
+                comandoSql.Parameters.Add(new SqlParameter("@bairro", bairro));
+                comandoSql.Parameters.Add(new SqlParameter("@cidade", cidade));
+                comandoSql.Parameters.Add(new SqlParameter("@cep", cep));
+                comandoSql.Parameters.Add(new SqlParameter("@cpf", cpf));
+                comandoSql.Parameters.Add(new SqlParameter("@salario", salario));
+                comandoSql.Parameters.Add(new SqlParameter("@telefone", telefone));
+                comandoSql.Parameters.Add(new SqlParameter("@observacao", observacao));
+                comandoSql.Parameters.Add(new SqlParameter("@idProfessor", idProfessor));
+
+                comandoSql.CommandText = sql;
+                comandoSql.Connection = conexao;
+                comandoSql.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
         // Método que lista as informações dos professores e retorna os dados em um DataTable
         public DataTable Listar()
         {
