@@ -94,6 +94,7 @@
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(109, 36);
             btnAdicionar.Text = "Adicionar";
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnSalvar
             // 
@@ -112,7 +113,7 @@
             label1.Location = new Point(36, 59);
             label1.Name = "label1";
             label1.Size = new Size(79, 21);
-            label1.TabIndex = 1;
+            label1.TabIndex = 0;
             label1.Text = "Código:";
             // 
             // rbNome
@@ -123,8 +124,8 @@
             rbNome.Location = new Point(15, 67);
             rbNome.Name = "rbNome";
             rbNome.Size = new Size(68, 21);
-            rbNome.TabIndex = 3;
-            rbNome.TabStop = true;
+            rbNome.TabIndex = 0;
+            rbNome.TabStop = false;
             rbNome.Text = "Nome";
             rbNome.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +138,7 @@
             groupBox1.Location = new Point(622, 161);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(311, 102);
-            groupBox1.TabIndex = 5;
+            groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Pesquisa";
             // 
@@ -147,7 +148,7 @@
             txtPesquisa.Location = new Point(6, 27);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(292, 27);
-            txtPesquisa.TabIndex = 2;
+            txtPesquisa.TabIndex = 1;
             // 
             // rbCpf
             // 
@@ -156,8 +157,7 @@
             rbCpf.Location = new Point(89, 67);
             rbCpf.Name = "rbCpf";
             rbCpf.Size = new Size(59, 21);
-            rbCpf.TabIndex = 3;
-            rbCpf.TabStop = true;
+            rbCpf.TabIndex = 0;
             rbCpf.Text = "CPF";
             rbCpf.UseVisualStyleBackColor = true;
             // 
@@ -266,7 +266,7 @@
             txtNome.Location = new Point(121, 92);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(495, 27);
-            txtNome.TabIndex = 2;
+            txtNome.TabIndex = 1;
             txtNome.Tag = "NOME_PROFESSOR";
             // 
             // txtBairro
@@ -275,7 +275,7 @@
             txtBairro.Location = new Point(122, 164);
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(169, 27);
-            txtBairro.TabIndex = 2;
+            txtBairro.TabIndex = 3;
             txtBairro.Tag = "BAIRRO_PROFESSOR";
             // 
             // txtCidade
@@ -284,7 +284,7 @@
             txtCidade.Location = new Point(121, 200);
             txtCidade.Name = "txtCidade";
             txtCidade.Size = new Size(495, 27);
-            txtCidade.TabIndex = 2;
+            txtCidade.TabIndex = 6;
             txtCidade.Tag = "CIDADE_PROFESSOR";
             // 
             // txtSalario
@@ -293,7 +293,7 @@
             txtSalario.Location = new Point(520, 236);
             txtSalario.Name = "txtSalario";
             txtSalario.Size = new Size(96, 27);
-            txtSalario.TabIndex = 2;
+            txtSalario.TabIndex = 9;
             txtSalario.Tag = "SALARIO";
             // 
             // txtObs
@@ -303,7 +303,7 @@
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
             txtObs.Size = new Size(311, 59);
-            txtObs.TabIndex = 2;
+            txtObs.TabIndex = 10;
             txtObs.Tag = "OBSERVACAO";
             // 
             // mtbCpf
@@ -313,7 +313,7 @@
             mtbCpf.Mask = "999,999,999-99";
             mtbCpf.Name = "mtbCpf";
             mtbCpf.Size = new Size(122, 27);
-            mtbCpf.TabIndex = 6;
+            mtbCpf.TabIndex = 8;
             mtbCpf.Tag = "CPF_PROFESSOR";
             // 
             // mtbCep
@@ -323,7 +323,7 @@
             mtbCep.Mask = "99999-000";
             mtbCep.Name = "mtbCep";
             mtbCep.Size = new Size(85, 27);
-            mtbCep.TabIndex = 6;
+            mtbCep.TabIndex = 5;
             mtbCep.Tag = "CEP_PROFESSOR";
             // 
             // txtCod
@@ -333,7 +333,8 @@
             txtCod.Name = "txtCod";
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(85, 27);
-            txtCod.TabIndex = 2;
+            txtCod.TabIndex = 0;
+            txtCod.TabStop = false;
             txtCod.Tag = "ID_PROFESSOR";
             txtCod.Text = "0";
             // 
@@ -344,7 +345,7 @@
             mtbFone.Mask = "(99) 99999-9999";
             mtbFone.Name = "mtbFone";
             mtbFone.Size = new Size(122, 27);
-            mtbFone.TabIndex = 6;
+            mtbFone.TabIndex = 7;
             mtbFone.Tag = "TELEFONE_PROFESSOR";
             // 
             // label11
@@ -363,7 +364,7 @@
             txtNum.Location = new Point(390, 164);
             txtNum.Name = "txtNum";
             txtNum.Size = new Size(75, 27);
-            txtNum.TabIndex = 2;
+            txtNum.TabIndex = 4;
             txtNum.Tag = "NUMERO_PROFESSOR";
             // 
             // dtgProfessores
@@ -378,7 +379,8 @@
             dtgProfessores.RowHeadersVisible = false;
             dtgProfessores.RowHeadersWidth = 51;
             dtgProfessores.Size = new Size(919, 260);
-            dtgProfessores.TabIndex = 7;
+            dtgProfessores.TabIndex = 0;
+            dtgProfessores.TabStop = false;
             dtgProfessores.CellContentClick += dtgProfessores_CellContentClick;
             // 
             // ID_PROFESSOR
