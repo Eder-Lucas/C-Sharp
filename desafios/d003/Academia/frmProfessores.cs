@@ -22,6 +22,7 @@ namespace Academia
         {
             ListarProfessores();
             txtNome.Focus();
+            rbNome.TabStop = false;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
