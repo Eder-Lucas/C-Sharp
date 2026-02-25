@@ -30,10 +30,7 @@ namespace Academia
         {
             try
             {
-                // Formata o nome para primeira Letra maiusculo
-                // As preposições ficam maiusculas ainda, por enquanto
-                TextInfo ti =new CultureInfo("pt-BR", false).TextInfo;
-                txtNome.Text = ti.ToTitleCase(txtNome.Text.ToLower());
+                FormataNomes(txtNome, txtEndereco, txtBairro, txtCidade);
 
                 if (txtCod.Text == "0")
                 {
@@ -125,6 +122,31 @@ namespace Academia
                     }
                 }
             }
+        }
+
+        private void FormataNomes(params TextBox[] campos)
+        {
+            string[] preposicoes = { "de", "do", "da", "dos", "das", "e" };
+
+            TextInfo ti = new CultureInfo("pt-BR", false).TextInfo;
+
+            foreach (TextBox txt in campos)
+            {
+                var palavras = txt.Text
+                .Trim()
+                .ToLower()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select((palavras, index) =>
+                {
+                    if (index > 0 && preposicoes.Contains(palavras))
+                        return palavras;
+
+                    return ti.ToTitleCase(palavras);
+
+                });
+
+                txt.Text = string.Join(' ', palavras);
+            }           
         }
     }
 }
