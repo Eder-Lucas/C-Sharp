@@ -25,8 +25,9 @@ namespace Pizzaria
         
         private void btnpedidos_Click(object sender, EventArgs e)
         {
-            new frmPedido().ShowDialog();
+            new frmPedido().ShowDialog(); // Abre o formulário de pedido
 
+            // Após fechar o form Pedido simula um clique no botão de pesquisar para atualizar a lista de pedidos
             btnPesquisar.PerformClick();
         }
 
