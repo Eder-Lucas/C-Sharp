@@ -122,8 +122,29 @@ namespace Academia
                     }
                 }
             }
+            // Se a coluna clicada for a de exclusão (btnExcluir)
+            else if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnExcluir" &&
+                     MessageBox.Show("Deseja realmente excluir este professor?", "Exclusão de professor,",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    novoProfessor.Excluir(Convert.ToInt32(dtgProfessores.Rows[e.RowIndex].Cells["ID_PROFESSOR"].Value));
+
+                    MessageBox.Show("Professor excluido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ListarProfessores();
+                    LimparCampos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao excluir os dados do professor: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                }
+            }
         }
 
+        // Método que formata os campos de texto
         private void FormataNomes(params TextBox[] campos)
         {
             string[] preposicoes = { "de", "do", "da", "dos", "das", "e" };
