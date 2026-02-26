@@ -139,8 +139,29 @@ namespace Academia
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao excluir os dados do professor: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        // Método de pesquisa acionado quando o campo é alterado
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbNome.Checked)
+                {
+                    dtgProfessores.DataSource = novoProfessor.PesquisaNome(txtPesquisa.Text);
+                }
+                else
+                {
+                    dtgProfessores.DataSource = novoProfessor.PesquisaCpf(txtPesquisa.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao pesquisar dados: {ex.Message}", "Erro",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -167,7 +188,7 @@ namespace Academia
                 });
 
                 txt.Text = string.Join(' ', palavras);
-            }           
+            }
         }
     }
 }
