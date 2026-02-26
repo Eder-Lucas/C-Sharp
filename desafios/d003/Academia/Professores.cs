@@ -107,12 +107,10 @@ namespace Academia
 
                 string sql = "DELETE FROM Professor WHERE (ID_PROFESSOR = @idProfessor)";
 
-                using SqlCommand comandoSql = new();
+                using SqlCommand comandoSql = new(sql, conexao);
 
                 comandoSql.Parameters.Add(new SqlParameter("@idProfessor", idProfessor));
 
-                comandoSql.CommandText = sql;
-                comandoSql.Connection = conexao;
                 comandoSql.ExecuteNonQuery();
             }
             catch (Exception)
@@ -136,8 +134,7 @@ namespace Academia
 
                 using SqlCommand comandoSql = new(sql, conexao);
 
-                using SqlDataReader leitor = comandoSql.ExecuteReader();
-                
+                using SqlDataReader leitor = comandoSql.ExecuteReader();              
                 dadosTabela.Load(leitor);
 
                 return dadosTabela;
@@ -161,15 +158,11 @@ namespace Academia
                     WHERE (NOME_PROFESSOR LIKE @nome + '%')
                     ORDER BY ID_PROFESSOR DESC";
 
-                using SqlCommand comandoSql = new();
+                using SqlCommand comandoSql = new(sql, conexao);
 
                 comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
 
-                comandoSql.CommandText = sql;
-                comandoSql.Connection = conexao;
-
                 DataTable dadosTabela = new();
-
                 dadosTabela.Load(comandoSql.ExecuteReader());
 
                 return dadosTabela;
@@ -190,18 +183,14 @@ namespace Academia
 
                 string sql = @"
                     SELECT * FROM Professor
-                    WHERE (CPF_PROFESSOR LIKE '%' + @cpf)
+                    WHERE (CPF_PROFESSOR LIKE @cpf + '%')
                     ORDER BY ID_PROFESSOR DESC";
 
-                using SqlCommand comandoSql = new();
+                using SqlCommand comandoSql = new(sql, conexao);
 
                 comandoSql.Parameters.Add(new SqlParameter("@cpf", cpf));
 
-                comandoSql.CommandText = sql;
-                comandoSql.Connection = conexao;
-
                 DataTable dadosTabela = new();
-
                 dadosTabela.Load(comandoSql.ExecuteReader());
 
                 return dadosTabela;
