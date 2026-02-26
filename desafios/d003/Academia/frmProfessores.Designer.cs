@@ -128,6 +128,7 @@
             rbNome.Name = "rbNome";
             rbNome.Size = new Size(68, 21);
             rbNome.TabIndex = 0;
+            rbNome.TabStop = true;
             rbNome.Text = "Nome";
             rbNome.UseVisualStyleBackColor = true;
             // 
@@ -151,6 +152,7 @@
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(292, 27);
             txtPesquisa.TabIndex = 1;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // rbCpf
             // 
