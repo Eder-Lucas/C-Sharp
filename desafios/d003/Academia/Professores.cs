@@ -16,15 +16,18 @@ namespace Academia
         {
             try
             {
-                SqlCommand comandoSql = new();
-                StringBuilder sql = new();
-
                 using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
-                sql.Append("INSERT INTO Professor (NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR, ");
-                sql.Append("CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO)");
-                sql.Append("VALUES (@nome, @endereco, @numero, @bairro, @cidade, @cep, @cpf, @salario, @telefone, @observacao)");
+                string sql = """
+                    INSERT INTO Professor (
+                    NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR,
+                    CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO
+                    )  
+                    VALUES (@nome, @endereco, @numero, @bairro, @cidade, @cep, @cpf, @salario, @telefone, @observacao)
+                """;
+
+                using SqlCommand comandoSql = new();
 
                 comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
                 comandoSql.Parameters.Add(new SqlParameter("@endereco", endereco));
@@ -37,7 +40,7 @@ namespace Academia
                 comandoSql.Parameters.Add(new SqlParameter("@telefone", telefone));
                 comandoSql.Parameters.Add(new SqlParameter("@observacao", observacao));
 
-                comandoSql.CommandText = sql.ToString();
+                comandoSql.CommandText = sql;
                 comandoSql.Connection = conexao;
                 comandoSql.ExecuteNonQuery();
             }
@@ -131,7 +134,7 @@ namespace Academia
 
                 string sql = "SELECT * FROM Professor ORDER BY ID_PROFESSOR DESC";
 
-                SqlCommand comandoSql = new(sql, conexao);
+                using SqlCommand comandoSql = new(sql, conexao);
 
                 using SqlDataReader leitor = comandoSql.ExecuteReader();
                 
@@ -158,7 +161,7 @@ namespace Academia
                     WHERE (NOME_PROFESSOR LIKE @nome + '%')
                     ORDER BY ID_PROFESSOR DESC";
 
-                SqlCommand comandoSql = new();
+                using SqlCommand comandoSql = new();
 
                 comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
 
@@ -190,7 +193,7 @@ namespace Academia
                     WHERE (CPF_PROFESSOR LIKE '%' + @cpf)
                     ORDER BY ID_PROFESSOR DESC";
 
-                SqlCommand comandoSql = new();
+                using SqlCommand comandoSql = new();
 
                 comandoSql.Parameters.Add(new SqlParameter("@cpf", cpf));
 
