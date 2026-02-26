@@ -95,6 +95,30 @@ namespace Academia
             }
         }
 
+        public void Excluir(int idProfessor)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = "DELETE FROM Professor WHERE (ID_PROFESSOR = @idProfessor)";
+
+                using SqlCommand comandoSql = new();
+
+                comandoSql.Parameters.Add(new SqlParameter("@idProfessor", idProfessor));
+
+                comandoSql.CommandText = sql;
+                comandoSql.Connection = conexao;
+                comandoSql.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         // Método que lista as informações dos professores e retorna os dados em um DataTable
         public DataTable Listar()
         {
@@ -112,6 +136,70 @@ namespace Academia
                 using SqlDataReader leitor = comandoSql.ExecuteReader();
                 
                 dadosTabela.Load(leitor);
+
+                return dadosTabela;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        // Método que pesquisa os professores pelo nome e retorna os dados em um DataTable
+        public DataTable PesquisaNome(string nome)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = @"
+                    SELECT * FROM Professor
+                    WHERE (NOME_PROFESSOR LIKE '%' + @nome)
+                    ORDER BY ID_PROFESSOR DESC";
+
+                SqlCommand comandoSql = new();
+
+                comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
+
+                comandoSql.CommandText = sql;
+                comandoSql.Connection = conexao;
+
+                DataTable dadosTabela = new();
+
+                dadosTabela.Load(comandoSql.ExecuteReader());
+
+                return dadosTabela;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        // Método que pesquisa os professores pelo CPF e retorna os dados em um DataTable
+        public DataTable PesquisaCpf(string cpf)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = @"
+                    SELECT * FROM Professor
+                    WHERE (CPF_PROFESSOR LIKE '%' + @cpf)
+                    ORDER BY ID_PROFESSOR DESC";
+
+                SqlCommand comandoSql = new();
+
+                comandoSql.Parameters.Add(new SqlParameter("@cpf", cpf));
+
+                comandoSql.CommandText = sql;
+                comandoSql.Connection = conexao;
+
+                DataTable dadosTabela = new();
+
+                dadosTabela.Load(comandoSql.ExecuteReader());
 
                 return dadosTabela;
             }
