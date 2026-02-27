@@ -44,6 +44,13 @@
             txtNome = new TextBox();
             txtMensalidade = new TextBox();
             dtgModalidades = new DataGridView();
+            ID_MODALIDADE = new DataGridViewTextBoxColumn();
+            NOME_MODALIDADE = new DataGridViewTextBoxColumn();
+            NOME_PROFESSOR = new DataGridViewTextBoxColumn();
+            MENSALIDADE = new DataGridViewTextBoxColumn();
+            ID_PROFESSOR = new DataGridViewTextBoxColumn();
+            btnEditar = new DataGridViewImageColumn();
+            btnExcluir = new DataGridViewImageColumn();
             toolStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgModalidades).BeginInit();
@@ -55,7 +62,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2, toolStripButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(559, 39);
+            toolStrip1.Size = new Size(613, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -104,7 +111,7 @@
             cboProfessor.FormattingEnabled = true;
             cboProfessor.Location = new Point(118, 127);
             cboProfessor.Name = "cboProfessor";
-            cboProfessor.Size = new Size(431, 27);
+            cboProfessor.Size = new Size(483, 27);
             cboProfessor.TabIndex = 3;
             // 
             // label2
@@ -131,7 +138,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(297, 62);
+            label4.Location = new Point(349, 62);
             label4.Name = "label4";
             label4.Size = new Size(127, 21);
             label4.TabIndex = 1;
@@ -145,7 +152,7 @@
             groupBox1.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(10, 171);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(539, 110);
+            groupBox1.Size = new Size(591, 110);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Pesquisa";
@@ -187,31 +194,106 @@
             txtNome.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNome.Location = new Point(118, 93);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(431, 27);
+            txtNome.Size = new Size(483, 27);
             txtNome.TabIndex = 2;
             // 
             // txtMensalidade
             // 
             txtMensalidade.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMensalidade.Location = new Point(430, 59);
+            txtMensalidade.Location = new Point(482, 59);
             txtMensalidade.Name = "txtMensalidade";
             txtMensalidade.Size = new Size(119, 27);
             txtMensalidade.TabIndex = 2;
             // 
             // dtgModalidades
             // 
+            dtgModalidades.AllowUserToAddRows = false;
+            dtgModalidades.AllowUserToDeleteRows = false;
+            dtgModalidades.AllowUserToResizeColumns = false;
+            dtgModalidades.AllowUserToResizeRows = false;
             dtgModalidades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgModalidades.Columns.AddRange(new DataGridViewColumn[] { ID_MODALIDADE, NOME_MODALIDADE, NOME_PROFESSOR, MENSALIDADE, ID_PROFESSOR, btnEditar, btnExcluir });
             dtgModalidades.Location = new Point(10, 287);
             dtgModalidades.Name = "dtgModalidades";
+            dtgModalidades.ReadOnly = true;
+            dtgModalidades.RowHeadersVisible = false;
             dtgModalidades.RowHeadersWidth = 51;
-            dtgModalidades.Size = new Size(539, 316);
+            dtgModalidades.Size = new Size(593, 316);
             dtgModalidades.TabIndex = 5;
+            // 
+            // ID_MODALIDADE
+            // 
+            ID_MODALIDADE.DataPropertyName = "ID_MODALIDADE";
+            ID_MODALIDADE.HeaderText = "CÓDIGO";
+            ID_MODALIDADE.MinimumWidth = 6;
+            ID_MODALIDADE.Name = "ID_MODALIDADE";
+            ID_MODALIDADE.ReadOnly = true;
+            ID_MODALIDADE.Visible = false;
+            ID_MODALIDADE.Width = 75;
+            // 
+            // NOME_MODALIDADE
+            // 
+            NOME_MODALIDADE.DataPropertyName = "NOME_MODALIDADE";
+            NOME_MODALIDADE.HeaderText = "NOME";
+            NOME_MODALIDADE.MinimumWidth = 6;
+            NOME_MODALIDADE.Name = "NOME_MODALIDADE";
+            NOME_MODALIDADE.ReadOnly = true;
+            NOME_MODALIDADE.Width = 200;
+            // 
+            // NOME_PROFESSOR
+            // 
+            NOME_PROFESSOR.DataPropertyName = "NOME_PROFESSOR";
+            NOME_PROFESSOR.HeaderText = "PROFESSOR";
+            NOME_PROFESSOR.MinimumWidth = 6;
+            NOME_PROFESSOR.Name = "NOME_PROFESSOR";
+            NOME_PROFESSOR.ReadOnly = true;
+            NOME_PROFESSOR.Width = 200;
+            // 
+            // MENSALIDADE
+            // 
+            MENSALIDADE.DataPropertyName = "ID_PROFESSOR";
+            MENSALIDADE.HeaderText = "MENSALIDADE";
+            MENSALIDADE.MinimumWidth = 6;
+            MENSALIDADE.Name = "MENSALIDADE";
+            MENSALIDADE.ReadOnly = true;
+            MENSALIDADE.Width = 118;
+            // 
+            // ID_PROFESSOR
+            // 
+            ID_PROFESSOR.HeaderText = "CÓDIGO_PROFESSOR";
+            ID_PROFESSOR.MinimumWidth = 6;
+            ID_PROFESSOR.Name = "ID_PROFESSOR";
+            ID_PROFESSOR.ReadOnly = true;
+            ID_PROFESSOR.Visible = false;
+            ID_PROFESSOR.Width = 125;
+            // 
+            // btnEditar
+            // 
+            btnEditar.HeaderText = "";
+            btnEditar.Image = Properties.Resources.dtgEditar;
+            btnEditar.MinimumWidth = 6;
+            btnEditar.Name = "btnEditar";
+            btnEditar.ReadOnly = true;
+            btnEditar.Resizable = DataGridViewTriState.True;
+            btnEditar.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnEditar.Width = 36;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.HeaderText = "";
+            btnExcluir.Image = Properties.Resources.dtgExcluir;
+            btnExcluir.MinimumWidth = 6;
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.ReadOnly = true;
+            btnExcluir.Resizable = DataGridViewTriState.True;
+            btnExcluir.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnExcluir.Width = 36;
             // 
             // frmModalidades
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(559, 613);
+            ClientSize = new Size(613, 613);
             Controls.Add(dtgModalidades);
             Controls.Add(groupBox1);
             Controls.Add(cboProfessor);
@@ -257,5 +339,12 @@
         private TextBox txtNome;
         private TextBox txtMensalidade;
         private DataGridView dtgModalidades;
+        private DataGridViewTextBoxColumn ID_MODALIDADE;
+        private DataGridViewTextBoxColumn NOME_MODALIDADE;
+        private DataGridViewTextBoxColumn NOME_PROFESSOR;
+        private DataGridViewTextBoxColumn MENSALIDADE;
+        private DataGridViewTextBoxColumn ID_PROFESSOR;
+        private DataGridViewImageColumn btnEditar;
+        private DataGridViewImageColumn btnExcluir;
     }
 }
