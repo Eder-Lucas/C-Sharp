@@ -379,6 +379,7 @@
             dtgProfessores.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             dtgProfessores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgProfessores.BackgroundColor = Color.FromArgb(224, 224, 224);
             dtgProfessores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgProfessores.Columns.AddRange(new DataGridViewColumn[] { ID_PROFESSOR, NOME_PROFESSOR, ENDERECO_PROFESSOR, NUMERO_PROFESSOR, BAIRRO_PROFESSOR, CIDADE_PROFESSOR, CEP_PROFESSOR, CPF_PROFESSOR, SALARIO, TELEFONE_PROFESSOR, OBSERVACAO, btnEditar, btnExcluir });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
