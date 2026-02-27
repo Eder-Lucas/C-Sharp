@@ -33,7 +33,8 @@ namespace Academia
             }
         }
 
-        private void toolStripButton5_Click(object sender, EventArgs e) => new frmProfessores().ShowDialog();
-        
+        private void btnProfessor_Click(object sender, EventArgs e) => new frmProfessores().ShowDialog();
+
+        private void btnModalidades_Click(object sender, EventArgs e) => new frmModalidades().ShowDialog();
     }
 }

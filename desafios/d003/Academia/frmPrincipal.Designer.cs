@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             toolStrip1 = new ToolStrip();
-            toolStripButton5 = new ToolStripButton();
+            btnProfessor = new ToolStripButton();
             btnAlunos = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnModalidades = new ToolStripButton();
@@ -45,23 +45,23 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton5, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, btnRelatorioCaixa, toolStripSeparator3 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, btnRelatorioCaixa, toolStripSeparator3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 59);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton5
+            // btnProfessor
             // 
-            toolStripButton5.Image = Properties.Resources.icon_professores;
-            toolStripButton5.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripButton5.ImageTransparentColor = Color.Magenta;
-            toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new Size(88, 56);
-            toolStripButton5.Text = "Professores";
-            toolStripButton5.TextImageRelation = TextImageRelation.ImageAboveText;
-            toolStripButton5.Click += toolStripButton5_Click;
+            btnProfessor.Image = Properties.Resources.icon_professores;
+            btnProfessor.ImageScaling = ToolStripItemImageScaling.None;
+            btnProfessor.ImageTransparentColor = Color.Magenta;
+            btnProfessor.Name = "btnProfessor";
+            btnProfessor.Size = new Size(88, 56);
+            btnProfessor.Text = "Professores";
+            btnProfessor.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnProfessor.Click += btnProfessor_Click;
             // 
             // btnAlunos
             // 
@@ -87,6 +87,7 @@
             btnModalidades.Size = new Size(100, 56);
             btnModalidades.Text = "Modalidades";
             btnModalidades.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnModalidades.Click += btnModalidades_Click;
             // 
             // btnTurmas
             // 
@@ -151,7 +152,7 @@
 
         private ToolStrip toolStrip1;
         private ToolStripButton btnRelatorioCaixa;
-        private ToolStripButton toolStripButton5;
+        private ToolStripButton btnProfessor;
         private ToolStripButton btnAlunos;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnModalidades;
