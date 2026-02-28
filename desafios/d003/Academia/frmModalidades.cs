@@ -13,7 +13,11 @@ namespace Academia
         public frmModalidades()
         {
             InitializeComponent();
+
+            dtgModalidades.AutoGenerateColumns = false;
         }
+
+        private readonly Modalidades novaModalidade = new();
 
         public void CarregarProfessores()
         {
@@ -33,9 +37,38 @@ namespace Academia
             }
         }
 
+        private void ListarModalidades()
+        {
+            try
+            {
+                dtgModalidades.DataSource = novaModalidade.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar as modalidades: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void frmModalidades_Load(object sender, EventArgs e)
         {
             CarregarProfessores();
+            ListarModalidades();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                novaModalidade.Salvar(txtNome.Text, Convert.ToDecimal(txtMensalidade.Text), Convert.ToInt32(cboProfessor.SelectedValue));
+
+                MessageBox.Show("Modalidade salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ListarModalidades();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar a Modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
