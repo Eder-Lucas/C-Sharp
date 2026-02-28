@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             toolStrip1 = new ToolStrip();
-            toolStripButton2 = new ToolStripButton();
-            toolStripButton1 = new ToolStripButton();
+            btnAdicionar = new ToolStripButton();
+            btnSalvar = new ToolStripButton();
             label1 = new Label();
             txtCod = new TextBox();
             cboProfessor = new ComboBox();
@@ -59,30 +59,31 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2, toolStripButton1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnSalvar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(613, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton2
+            // btnAdicionar
             // 
-            toolStripButton2.Image = Properties.Resources.adicionar;
-            toolStripButton2.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(109, 36);
-            toolStripButton2.Text = "Adicionar";
+            btnAdicionar.Image = Properties.Resources.adicionar;
+            btnAdicionar.ImageScaling = ToolStripItemImageScaling.None;
+            btnAdicionar.ImageTransparentColor = Color.Magenta;
+            btnAdicionar.Name = "btnAdicionar";
+            btnAdicionar.Size = new Size(109, 36);
+            btnAdicionar.Text = "Adicionar";
             // 
-            // toolStripButton1
+            // btnSalvar
             // 
-            toolStripButton1.Image = Properties.Resources.salvar;
-            toolStripButton1.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(85, 36);
-            toolStripButton1.Text = "Salvar";
+            btnSalvar.Image = Properties.Resources.salvar;
+            btnSalvar.ImageScaling = ToolStripItemImageScaling.None;
+            btnSalvar.ImageTransparentColor = Color.Magenta;
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(85, 36);
+            btnSalvar.Text = "Salvar";
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // label1
             // 
@@ -251,7 +252,7 @@
             // 
             // MENSALIDADE
             // 
-            MENSALIDADE.DataPropertyName = "ID_PROFESSOR";
+            MENSALIDADE.DataPropertyName = "MENSALIDADE";
             MENSALIDADE.HeaderText = "MENSALIDADE";
             MENSALIDADE.MinimumWidth = 6;
             MENSALIDADE.Name = "MENSALIDADE";
@@ -260,7 +261,8 @@
             // 
             // ID_PROFESSOR
             // 
-            ID_PROFESSOR.HeaderText = "CÓDIGO_PROFESSOR";
+            ID_PROFESSOR.DataPropertyName = "ID_PROFESSOR";
+            ID_PROFESSOR.HeaderText = "ID_PROFESSOR";
             ID_PROFESSOR.MinimumWidth = 6;
             ID_PROFESSOR.Name = "ID_PROFESSOR";
             ID_PROFESSOR.ReadOnly = true;
@@ -324,8 +326,6 @@
         #endregion
 
         private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton1;
         private Label label1;
         private TextBox txtCod;
         private ComboBox cboProfessor;
@@ -339,6 +339,8 @@
         private TextBox txtNome;
         private TextBox txtMensalidade;
         private DataGridView dtgModalidades;
+        private ToolStripButton btnSalvar;
+        private ToolStripButton btnAdicionar;
         private DataGridViewTextBoxColumn ID_MODALIDADE;
         private DataGridViewTextBoxColumn NOME_MODALIDADE;
         private DataGridViewTextBoxColumn NOME_PROFESSOR;
