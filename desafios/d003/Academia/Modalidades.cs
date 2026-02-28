@@ -16,7 +16,7 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					INSERT INTO Modalidades (NOME_MODALIDADE, MENSALIDADE, ID_PROFESSOR)
+					INSERT INTO Modalidade (NOME_MODALIDADE, MENSALIDADE, ID_PROFESSOR)
 					VALUES (@nome, @mensalidade, @idProfessor)
 				""";
 
@@ -73,6 +73,34 @@ namespace Academia
 			{
 				throw new Exception(ex.Message, ex);
             }
+		}
+
+		public DataTable Listar()
+		{
+			try
+			{
+				using SqlConnection conexao = new(Conexao.StringConexao);
+				conexao.Open();
+
+				string sql = """
+					SELECT m.*, p.NOME_PROFESSOR
+					FROM Modalidade m
+					INNER JOIN Professor p ON m.ID_PROFESSOR = p.ID_PROFESSOR
+					ORDER BY m.ID_MODALIDADE DESC
+				""";
+
+				using SqlCommand cmd = new(sql, conexao);
+
+				DataTable tabela = new();
+				tabela.Load(cmd.ExecuteReader());
+
+				return tabela; 
+            }
+			catch (Exception ex)
+			{
+
+				throw new Exception(ex.Message, ex);
+			}
 		}
     }
 }
