@@ -22,6 +22,13 @@ namespace Academia
         private void frmProfessores_Load(object sender, EventArgs e)
         {
             ListarProfessores();
+
+            CursorUtils.HandButton(this);
+            CursorUtils.AjustaCursorMaskedTextBox(this);
+            CursorUtils.HandToolStripButton(toolStrip1);
+
+            DataGridViewUtils.HandButton(dtgProfessores, "btnEditar", "btnExcluir");
+
             txtNome.Focus();
             rbNome.TabStop = false;
         }
