@@ -36,8 +36,31 @@ namespace Academia
 
             foreach (var cbo in parent.Controls.OfType<ComboBox>())
             {
-                cbo.MouseEnter += (s, e) => parent.Cursor = Cursors.Hand;
-                cbo.MouseLeave += (s, e) => parent.Cursor = Cursors.Default;
+                if (cbo.DropDownStyle == ComboBoxStyle.DropDownList)
+                {
+                    cbo.MouseEnter += (s, e) => parent.Cursor = Cursors.Hand;
+                    cbo.MouseLeave += (s, e) => parent.Cursor = Cursors.Default;
+                }
+                else
+                {
+                    cbo.MouseMove += (s, e) =>
+                    {
+                        ComboBox combo = (ComboBox)s;
+
+                        int larguraSeta = SystemInformation.VerticalScrollBarWidth;
+
+                        // Se o mouse estiver na área da seta (lado direito)
+                        if (e.X >= combo.Width - larguraSeta)
+                            combo.Cursor = Cursors.Hand;
+                        else
+                            combo.Cursor = Cursors.IBeam; // cursor de digitação
+                    };
+
+                    cbo.MouseLeave += (s, e) =>
+                    {
+                        ((ComboBox)s).Cursor = Cursors.Default;
+                    };
+                }
             }
 
             foreach (var rdb in parent.Controls.OfType<RadioButton>())
