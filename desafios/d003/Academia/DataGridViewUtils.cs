@@ -45,5 +45,17 @@ namespace Academia
             dtg.CellMouseEnter += Dtg_MouseCellEnter;
             dtg.CellMouseLeave += Dtg_MouseCellLeave;
         }
+
+        public static void AjustaBarraVertical(params DataGridView[] dtgs)
+        {
+            foreach (var dtg in dtgs)
+            {
+                if (dtg == null) continue;
+                if (dtg.Rows.Count == 0) continue;
+
+                dtg.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dtg.Columns["NOME_PROFESSOR"]?.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
+            }
+        }
     }
 }
