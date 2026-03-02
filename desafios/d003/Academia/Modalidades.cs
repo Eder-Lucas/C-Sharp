@@ -102,5 +102,30 @@ namespace Academia
 				throw new Exception(ex.Message, ex);
 			}
 		}
+
+		public void Excluir(int idModalidade)
+		{
+			try
+			{
+				using SqlConnection conexao = new(Conexao.StringConexao);
+				conexao.Open();
+
+				string sql = """
+					DELETE FROM Modalidade
+					WHERE ID_MODALIDADE = @idModalidade
+				""";
+
+				using SqlCommand cmd = new(sql, conexao);
+
+                cmd.Parameters.Add("@idModalidade", SqlDbType.Int).Value = idModalidade;
+
+				cmd.ExecuteNonQuery();
+            }
+			catch (Exception ex)
+			{
+
+				throw new Exception(ex.Message, ex);
+			}
+		}
     }
 }
