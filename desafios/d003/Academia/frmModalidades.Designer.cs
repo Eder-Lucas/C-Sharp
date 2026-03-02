@@ -103,6 +103,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(90, 27);
             txtCod.TabIndex = 2;
+            txtCod.Tag = "ID_MODALIDADE";
             txtCod.Text = "0";
             // 
             // cboProfessor
@@ -113,6 +114,7 @@
             cboProfessor.Name = "cboProfessor";
             cboProfessor.Size = new Size(483, 27);
             cboProfessor.TabIndex = 3;
+            cboProfessor.Tag = "NOME_PROFESSOR";
             // 
             // label2
             // 
@@ -196,6 +198,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(483, 27);
             txtNome.TabIndex = 2;
+            txtNome.Tag = "NOME_MODALIDADE";
             // 
             // txtMensalidade
             // 
@@ -204,6 +207,7 @@
             txtMensalidade.Name = "txtMensalidade";
             txtMensalidade.Size = new Size(119, 27);
             txtMensalidade.TabIndex = 2;
+            txtMensalidade.Tag = "MENSALIDADE";
             // 
             // dtgModalidades
             // 
@@ -220,6 +224,7 @@
             dtgModalidades.RowHeadersWidth = 51;
             dtgModalidades.Size = new Size(593, 316);
             dtgModalidades.TabIndex = 5;
+            dtgModalidades.CellContentClick += dtgModalidades_CellContentClick;
             // 
             // ID_MODALIDADE
             // 
