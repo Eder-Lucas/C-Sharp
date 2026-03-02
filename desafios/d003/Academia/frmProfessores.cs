@@ -28,6 +28,7 @@ namespace Academia
             CursorUtils.HandToolStripButton(toolStrip1);
 
             DataGridViewUtils.HandButton(dtgProfessores, "btnEditar", "btnExcluir");
+            DataGridViewUtils.AjustaBarraVertical(dtgProfessores);
 
             txtNome.Focus();
             rbNome.TabStop = false;
