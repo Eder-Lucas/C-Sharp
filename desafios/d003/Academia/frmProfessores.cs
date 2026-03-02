@@ -162,6 +162,17 @@ namespace Academia
                 }
                 else
                 {
+                    txtPesquisa.BeginInvoke((MethodInvoker)(() =>
+                    {
+                        string formatado = Formatador.Cpf(txtPesquisa.Text);
+
+                        if (formatado != txtPesquisa.Text)
+                        {
+                            txtPesquisa.Text = formatado;
+                            txtPesquisa.SelectionStart = txtPesquisa.Text.Length;
+                        }
+                    }));
+
                     dtgProfessores.DataSource = novoProfessor.PesquisaCpf(txtPesquisa.Text);
                 }
             }
@@ -175,7 +186,7 @@ namespace Academia
         // Método que formata os campos de texto
         private void FormataNomes(params TextBox[] campos)
         {
-            string[] preposicoes = { "de", "do", "da", "dos", "das", "e" };
+            string[] preposicoes = ["de", "do", "da", "dos", "das", "e"];
 
             TextInfo ti = new CultureInfo("pt-BR", false).TextInfo;
 
