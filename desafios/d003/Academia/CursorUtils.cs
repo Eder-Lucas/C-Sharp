@@ -38,8 +38,8 @@ namespace Academia
             {
                 if (cbo.DropDownStyle == ComboBoxStyle.DropDownList)
                 {
-                    cbo.MouseEnter += (s, e) => parent.Cursor = Cursors.Hand;
-                    cbo.MouseLeave += (s, e) => parent.Cursor = Cursors.Default;
+                    cbo.MouseEnter += (s, e) => cbo.Cursor = Cursors.Hand;
+                    cbo.MouseLeave += (s, e) => cbo.Cursor = Cursors.Default;
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace Academia
             mtb.BeginInvoke((MethodInvoker)(() =>
             {
                 // Verifica se o MaskedTextBox está vazio, desconsiderando os caracteres da máscara
-                if (mtb.MaskedTextProvider.AssignedEditPositionCount == 0)
+                if (mtb.MaskedTextProvider?.AssignedEditPositionCount == 0)
                 {
                     // Encontra a primeira posição editável do campo
                     int pos = mtb.MaskedTextProvider.FindEditPositionFrom(0, true);
