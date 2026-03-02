@@ -107,7 +107,6 @@
             // 
             // cboProfessor
             // 
-            cboProfessor.DropDownStyle = ComboBoxStyle.DropDownList;
             cboProfessor.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboProfessor.FormattingEnabled = true;
             cboProfessor.Location = new Point(118, 127);
