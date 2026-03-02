@@ -81,15 +81,56 @@ namespace Academia
         {
             try
             {
-                novaModalidade.Salvar(txtNome.Text, Convert.ToDecimal(txtMensalidade.Text), Convert.ToInt32(cboProfessor.SelectedValue));
+                if (txtCod.Text == "0")
+                {
+                    novaModalidade.Salvar(txtNome.Text, Convert.ToDecimal(txtMensalidade.Text), Convert.ToInt32(cboProfessor.SelectedValue));
 
-                MessageBox.Show("Modalidade salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("Modalidade salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    novaModalidade.Alterar(Convert.ToInt32(txtCod.Text), txtNome.Text, Convert.ToDecimal(txtMensalidade.Text), Convert.ToInt32(cboProfessor.SelectedValue));
+                    MessageBox.Show("Modalidade alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
                 ListarModalidades();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao salvar a Modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtgModalidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnEditar")
+                {
+                    var row = dtgModalidades.Rows[e.RowIndex];
+
+                    if (row?.DataBoundItem is not DataRowView drv) return;
+
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c.Tag is not string tag) continue;
+                        if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
+
+                        if (c is TextBox || c is ComboBox)
+                        {
+                            c.Text = drv[tag].ToString();
+                        }
+                    }
+                }
+                else if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnExcluir")
+                {
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
