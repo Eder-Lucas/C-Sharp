@@ -30,6 +30,23 @@ namespace Academia
                 cboProfessor.ValueMember = "ID_PROFESSOR";
 
                 cboProfessor.SelectedIndex = -1;
+
+                int total = cboProfessor.Items.Count;
+
+                if (total >= 10)
+                {
+                    cboProfessor.DropDownStyle = ComboBoxStyle.DropDown;
+
+                    cboProfessor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cboProfessor.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+                else
+                {
+                    cboProfessor.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    cboProfessor.AutoCompleteMode = AutoCompleteMode.None;
+                    cboProfessor.AutoCompleteSource = AutoCompleteSource.None;
+                }
             }
             catch (Exception ex)
             {
