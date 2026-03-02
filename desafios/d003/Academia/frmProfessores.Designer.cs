@@ -85,7 +85,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnSalvar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(945, 39);
+            toolStrip1.Size = new Size(1014, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -138,9 +138,9 @@
             groupBox1.Controls.Add(rbCpf);
             groupBox1.Controls.Add(rbNome);
             groupBox1.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(622, 161);
+            groupBox1.Location = new Point(622, 164);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(311, 102);
+            groupBox1.Size = new Size(380, 102);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Pesquisa";
@@ -150,7 +150,7 @@
             txtPesquisa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPesquisa.Location = new Point(6, 27);
             txtPesquisa.Name = "txtPesquisa";
-            txtPesquisa.Size = new Size(292, 27);
+            txtPesquisa.Size = new Size(368, 27);
             txtPesquisa.TabIndex = 1;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
@@ -249,7 +249,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(622, 72);
+            label10.Location = new Point(622, 69);
             label10.Name = "label10";
             label10.Size = new Size(133, 21);
             label10.TabIndex = 1;
@@ -303,10 +303,10 @@
             // txtObs
             // 
             txtObs.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtObs.Location = new Point(622, 96);
+            txtObs.Location = new Point(622, 93);
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
-            txtObs.Size = new Size(311, 59);
+            txtObs.Size = new Size(380, 59);
             txtObs.TabIndex = 10;
             txtObs.Tag = "OBSERVACAO";
             // 
@@ -403,7 +403,7 @@
             dtgProfessores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dtgProfessores.RowHeadersVisible = false;
             dtgProfessores.RowHeadersWidth = 51;
-            dtgProfessores.Size = new Size(919, 260);
+            dtgProfessores.Size = new Size(988, 260);
             dtgProfessores.TabIndex = 0;
             dtgProfessores.TabStop = false;
             dtgProfessores.CellContentClick += dtgProfessores_CellContentClick;
@@ -416,6 +416,7 @@
             ID_PROFESSOR.Name = "ID_PROFESSOR";
             ID_PROFESSOR.ReadOnly = true;
             ID_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
+            ID_PROFESSOR.Visible = false;
             ID_PROFESSOR.Width = 75;
             // 
             // NOME_PROFESSOR
@@ -426,7 +427,7 @@
             NOME_PROFESSOR.Name = "NOME_PROFESSOR";
             NOME_PROFESSOR.ReadOnly = true;
             NOME_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
-            NOME_PROFESSOR.Width = 300;
+            NOME_PROFESSOR.Width = 400;
             // 
             // ENDERECO_PROFESSOR
             // 
@@ -436,7 +437,7 @@
             ENDERECO_PROFESSOR.Name = "ENDERECO_PROFESSOR";
             ENDERECO_PROFESSOR.ReadOnly = true;
             ENDERECO_PROFESSOR.SortMode = DataGridViewColumnSortMode.NotSortable;
-            ENDERECO_PROFESSOR.Width = 161;
+            ENDERECO_PROFESSOR.Width = 205;
             // 
             // NUMERO_PROFESSOR
             // 
@@ -540,7 +541,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 553);
+            ClientSize = new Size(1014, 553);
             Controls.Add(dtgProfessores);
             Controls.Add(mtbCep);
             Controls.Add(mtbFone);
