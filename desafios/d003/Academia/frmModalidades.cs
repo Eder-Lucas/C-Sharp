@@ -176,5 +176,21 @@ namespace Academia
                     cboProfessor.DroppedDown = true;
             }));
         }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbModalidade.Checked)
+                    dtgModalidades.DataSource = Modalidades.PesquisaModalidade(txtPesquisa.Text);
+                else 
+                    dtgModalidades.DataSource = Modalidades.PesquisaProfessor(txtPesquisa.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao pesquisar dados: {ex.Message}", "Erro",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
