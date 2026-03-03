@@ -155,7 +155,7 @@ namespace Academia
 
                 string sql = @"
                     SELECT * FROM Professor
-                    WHERE (NOME_PROFESSOR LIKE @nome + '%')
+                    WHERE (NOME_PROFESSOR COLLATE Latin1_General_CI_AI LIKE @nome + '%')
                     ORDER BY ID_PROFESSOR DESC";
 
                 using SqlCommand comandoSql = new(sql, conexao);
