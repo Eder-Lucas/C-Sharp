@@ -97,7 +97,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao salvar a Modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao salvar modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,15 +122,19 @@ namespace Academia
                         }
                     }
                 }
-                else if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnExcluir")
+                else if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnExcluir" && 
+                    MessageBox.Show("Deseja realmente excluir essa modalidade?", "Exclusão de modalidade",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    novaModalidade.Excluir(Convert.ToInt32(dtgModalidades.Rows[e.RowIndex].Cells["ID_MODALIDADE"].Value));
+                    MessageBox.Show("Modalidade excluída com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    ListarModalidades();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show($"Erro ao excluir modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
