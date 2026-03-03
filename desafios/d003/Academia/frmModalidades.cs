@@ -33,7 +33,7 @@ namespace Academia
 
                 int total = cboProfessor.Items.Count;
 
-                if (total >= 10)
+                if (total >= 5)
                 {
                     cboProfessor.DropDownStyle = ComboBoxStyle.DropDown;
 
@@ -75,6 +75,9 @@ namespace Academia
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);
+
+            txtNome.Focus();
+            rbModalidade.TabStop = false;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -92,8 +95,9 @@ namespace Academia
                     novaModalidade.Alterar(Convert.ToInt32(txtCod.Text), txtNome.Text, Convert.ToDecimal(txtMensalidade.Text), Convert.ToInt32(cboProfessor.SelectedValue));
                     MessageBox.Show("Modalidade alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
+
                 ListarModalidades();
+                Limpar(this);
             }
             catch (Exception ex)
             {
@@ -122,7 +126,7 @@ namespace Academia
                         }
                     }
                 }
-                else if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnExcluir" && 
+                else if (dtgModalidades.Columns[e.ColumnIndex].Name == "btnExcluir" &&
                     MessageBox.Show("Deseja realmente excluir essa modalidade?", "Exclusão de modalidade",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -130,12 +134,47 @@ namespace Academia
                     MessageBox.Show("Modalidade excluída com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ListarModalidades();
+                    Limpar(this);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao excluir modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Limpar(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox txt)
+                    txt.Text = string.Empty;
+
+                if (c is ComboBox cbo)
+                    cbo.SelectedIndex = -1;
+
+                if (c.HasChildren)
+                    Limpar(c);
+            }
+
+            txtCod.Text = "0";
+            txtNome.Focus();
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            txtNome.Focus();
+
+            Limpar(this);
+        }
+
+        private void cboProfessor_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((MethodInvoker)(() =>
+            {
+                if (cboProfessor.DropDownStyle == ComboBoxStyle.DropDownList)
+                    cboProfessor.DroppedDown = true;
+            }));
         }
     }
 }
