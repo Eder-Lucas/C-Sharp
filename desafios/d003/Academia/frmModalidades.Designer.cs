@@ -74,6 +74,7 @@
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(109, 36);
             btnAdicionar.Text = "Adicionar";
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnSalvar
             // 
@@ -103,6 +104,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(90, 27);
             txtCod.TabIndex = 2;
+            txtCod.TabStop = false;
             txtCod.Tag = "ID_MODALIDADE";
             txtCod.Text = "0";
             // 
@@ -113,8 +115,9 @@
             cboProfessor.Location = new Point(118, 127);
             cboProfessor.Name = "cboProfessor";
             cboProfessor.Size = new Size(483, 27);
-            cboProfessor.TabIndex = 3;
+            cboProfessor.TabIndex = 1;
             cboProfessor.Tag = "NOME_PROFESSOR";
+            cboProfessor.Enter += cboProfessor_Enter;
             // 
             // label2
             // 
@@ -197,7 +200,7 @@
             txtNome.Location = new Point(118, 93);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(483, 27);
-            txtNome.TabIndex = 2;
+            txtNome.TabIndex = 0;
             txtNome.Tag = "NOME_MODALIDADE";
             // 
             // txtMensalidade
@@ -224,6 +227,7 @@
             dtgModalidades.RowHeadersWidth = 51;
             dtgModalidades.Size = new Size(593, 316);
             dtgModalidades.TabIndex = 5;
+            dtgModalidades.TabStop = false;
             dtgModalidades.CellContentClick += dtgModalidades_CellContentClick;
             // 
             // ID_MODALIDADE
