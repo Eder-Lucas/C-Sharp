@@ -47,9 +47,8 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					UPADATE Modalidade
-					SET ID_MODALIDADE = @idModalidade,
-						NOME_MODALIDADE = @nome,
+					UPDATE Modalidade
+					SET	NOME_MODALIDADE = @nome,
 						MENSALIDADE = @mensalidade,
 						ID_PROFESSOR = @idProfessor
 					WHERE ID_MODALIDADE = @idModalidade
@@ -69,9 +68,9 @@ namespace Academia
 
 				cmd.ExecuteNonQuery();
             }
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw new Exception(ex.Message, ex);
+				throw;
             }
 		}
 
