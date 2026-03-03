@@ -193,6 +193,7 @@
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(517, 27);
             txtPesquisa.TabIndex = 2;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // txtNome
             // 
