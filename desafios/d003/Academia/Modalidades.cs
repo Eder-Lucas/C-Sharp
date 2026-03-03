@@ -126,5 +126,65 @@ namespace Academia
 				throw new Exception(ex.Message, ex);
 			}
 		}
+
+		public static DataTable PesquisaModalidade(string nome)
+		{
+			try
+			{
+				using SqlConnection conexao = new(Conexao.StringConexao);
+				conexao.Open();
+
+				string sql = """
+					SELECT m.*, p.NOME_PROFESSOR
+					FROM Modalidade m
+					INNER JOIN Professor p ON m.ID_PROFESSOR = p.ID_PROFESSOR
+					WHERE m.NOME_MODALIDADE COLLATE Latin1_General_CI_AI LIKE @nome + '%'
+					ORDER BY m.ID_MODALIDADE DESC
+				""";
+
+				using SqlCommand cmd = new(sql, conexao);
+
+				cmd.Parameters.Add("@nome", SqlDbType.NVarChar, 50).Value = nome;
+
+				DataTable dadosTabela = new();
+				dadosTabela.Load(cmd.ExecuteReader());
+
+				return dadosTabela;	
+            }
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		public static DataTable PesquisaProfessor(string nome)
+		{
+			try
+			{
+				using SqlConnection conexao = new(Conexao.StringConexao);
+				conexao.Open();
+
+				string sql = """
+					SELECT m.*, p.NOME_PROFESSOR
+					FROM Modalidade m
+					INNER JOIN Professor p ON m.ID_PROFESSOR = p.ID_PROFESSOR
+					WHERE p.NOME_PROFESSOR COLLATE Latin1_General_CI_AI LIKE @nome + '%'
+					ORDER BY m.ID_MODALIDADE DESC
+				""";
+
+				using SqlCommand cmd = new(sql, conexao);
+
+				cmd.Parameters.Add("@nome", SqlDbType.NVarChar, 50).Value = nome;
+
+				DataTable dadosTabela = new();
+				dadosTabela.Load(cmd.ExecuteReader());
+
+				return dadosTabela;	
+            }
+			catch (Exception)
+			{
+				throw;
+			}
+		}
     }
 }
