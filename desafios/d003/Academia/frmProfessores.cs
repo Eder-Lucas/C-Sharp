@@ -132,7 +132,7 @@ namespace Academia
             }
             // Se a coluna clicada for a de exclusão (btnExcluir)
             else if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnExcluir" &&
-                     MessageBox.Show("Deseja realmente excluir este professor?", "Exclusão de professor,",
+                     MessageBox.Show("Deseja realmente excluir este professor?", "Exclusão de professor",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
