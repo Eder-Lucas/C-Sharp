@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Academia
 {
+    // Classe que gerencia operações relacionadas as turmas, como salvar e listar informações
     internal class Turmas
     {
+        // Método para salvar as informações de uma turma no banco de dados
         public void Salvar(int idModalidade, int maxAlunos, int numTurma)
         {
             try
@@ -28,12 +31,13 @@ namespace Academia
 
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
 
+        // Método para alterar as informações de uma turma existente no banco de dados
         public void Alterar(int idTurma, int idModalidade, int maxAlunos, int numTurma)
         {
             try
@@ -64,6 +68,7 @@ namespace Academia
             }
         }
 
+        // Método para excluir uma turma do banco de dados
         public void Excluir(int idTurma)
         {
             try
@@ -88,6 +93,8 @@ namespace Academia
             }
         }
 
+        // Método para listar as turmas cadastradas no banco de dados
+        // Retorna um DataTable com as informações
         public DataTable Listar()
         {
             try
@@ -109,9 +116,9 @@ namespace Academia
 
                 return tabela;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
     }

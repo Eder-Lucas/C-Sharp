@@ -91,10 +91,9 @@ namespace Academia
                 comandoSql.Connection = conexao;
                 comandoSql.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
 
@@ -115,7 +114,6 @@ namespace Academia
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -139,9 +137,9 @@ namespace Academia
 
                 return dadosTabela;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
 
@@ -167,9 +165,9 @@ namespace Academia
 
                 return dadosTabela;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
 
@@ -195,9 +193,9 @@ namespace Academia
 
                 return dadosTabela;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message, ex);
+                throw;
             }
         }
     }

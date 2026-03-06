@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Academia
 {
+    // Classe que gerencia operações relacionadas as modalidades, como salvar e listar informações
     internal class Modalidades
     {
+        // Método para salvar as informações de uma modalidade no banco de dados
         public void Salvar(string nome, decimal mensalidade, int idProfessor)
         {
 			try
@@ -33,13 +36,14 @@ namespace Academia
 
 				cmd.ExecuteNonQuery();
             }
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw new Exception(ex.Message, ex);
+				throw;
 			}
         }
 
-		public void Alterar(int idModalidade, string nome, decimal mensalidade, int idProfessor)
+        // Método para alterar as informações de uma modalidade existente no banco de dados
+        public void Alterar(int idModalidade, string nome, decimal mensalidade, int idProfessor)
 		{
 			try
 			{
@@ -74,7 +78,34 @@ namespace Academia
             }
 		}
 
-		public DataTable Listar()
+        // Método para excluir uma modalidade do banco de dados
+        public void Excluir(int idModalidade)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+					DELETE FROM Modalidade
+					WHERE ID_MODALIDADE = @idModalidade
+				""";
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                cmd.Parameters.Add("@idModalidade", SqlDbType.Int).Value = idModalidade;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        // Método para listar as modalidades cadastradas no banco de dados
+        // Retorna um DataTable com as informações
+        public DataTable Listar()
 		{
 			try
 			{
@@ -95,38 +126,13 @@ namespace Academia
 
 				return tabela; 
             }
-			catch (Exception ex)
+			catch (Exception)
 			{
-
-				throw new Exception(ex.Message, ex);
+				throw;
 			}
 		}
 
-		public void Excluir(int idModalidade)
-		{
-			try
-			{
-				using SqlConnection conexao = new(Conexao.StringConexao);
-				conexao.Open();
-
-				string sql = """
-					DELETE FROM Modalidade
-					WHERE ID_MODALIDADE = @idModalidade
-				""";
-
-				using SqlCommand cmd = new(sql, conexao);
-
-                cmd.Parameters.Add("@idModalidade", SqlDbType.Int).Value = idModalidade;
-
-				cmd.ExecuteNonQuery();
-            }
-			catch (Exception ex)
-			{
-
-				throw new Exception(ex.Message, ex);
-			}
-		}
-
+		//Método para pesquisar modalidades pelo nome
 		public static DataTable PesquisaModalidade(string nome)
 		{
 			try
@@ -157,7 +163,8 @@ namespace Academia
 			}
 		}
 
-		public static DataTable PesquisaProfessor(string nome)
+        //Método para pesquisar modalidades pelo nome do professor
+        public static DataTable PesquisaProfessor(string nome)
 		{
 			try
 			{
