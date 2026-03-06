@@ -98,6 +98,7 @@
             btnTurmas.Size = new Size(61, 56);
             btnTurmas.Text = "Turmas";
             btnTurmas.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnTurmas.Click += btnTurmas_Click;
             // 
             // toolStripSeparator2
             // 
