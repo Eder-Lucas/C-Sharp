@@ -45,20 +45,20 @@ namespace Academia
                 {
                     cbo.MouseMove += (s, e) =>
                     {
-                        ComboBox combo = (ComboBox)s;
+                        ComboBox? combo = s as ComboBox;
 
                         int larguraSeta = SystemInformation.VerticalScrollBarWidth;
 
                         // Se o mouse estiver na área da seta (lado direito)
-                        if (e.X >= combo.Width - larguraSeta)
-                            combo.Cursor = Cursors.Hand;
+                        if (e.X >= combo?.Width - larguraSeta)
+                            combo?.Cursor = Cursors.Hand;
                         else
-                            combo.Cursor = Cursors.IBeam; // cursor de digitação
+                            combo?.Cursor = Cursors.IBeam; // cursor de digitação
                     };
 
                     cbo.MouseLeave += (s, e) =>
                     {
-                        ((ComboBox)s).Cursor = Cursors.Default;
+                        (s as ComboBox).Cursor = Cursors.Default;
                     };
                 }
             }
