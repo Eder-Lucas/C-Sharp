@@ -116,6 +116,7 @@
             cboModalidade.Name = "cboModalidade";
             cboModalidade.Size = new Size(237, 27);
             cboModalidade.TabIndex = 4;
+            cboModalidade.Tag = "NOME_MODALIDADE";
             // 
             // txtAluno
             // 
@@ -123,6 +124,7 @@
             txtAluno.Name = "txtAluno";
             txtAluno.Size = new Size(91, 27);
             txtAluno.TabIndex = 3;
+            txtAluno.Tag = "MAXIMO_ALUNOS";
             // 
             // txtTurma
             // 
@@ -130,6 +132,7 @@
             txtTurma.Name = "txtTurma";
             txtTurma.Size = new Size(94, 27);
             txtTurma.TabIndex = 3;
+            txtTurma.Tag = "NUMERO_TURMA";
             // 
             // txtCod
             // 
@@ -137,6 +140,7 @@
             txtCod.Name = "txtCod";
             txtCod.Size = new Size(75, 27);
             txtCod.TabIndex = 3;
+            txtCod.Tag = "ID_TURMA";
             txtCod.Text = "0";
             // 
             // groupBox1
@@ -257,6 +261,7 @@
             dtgTurmas.Size = new Size(802, 351);
             dtgTurmas.TabIndex = 6;
             dtgTurmas.TabStop = false;
+            dtgTurmas.CellContentClick += dtgTurmas_CellContentClick;
             // 
             // ID_TURMA
             // 
