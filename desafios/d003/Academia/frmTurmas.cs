@@ -21,6 +21,11 @@ namespace Academia
         {
             CarregarModalidades();
             ListarTurmas();
+
+            DataGridViewUtils.HandButton(dtgTurmas, "btnEditar", "btnExcluir", "btnHora");
+
+            CursorUtils.HandButton(this);
+            CursorUtils.HandToolStripButton(toolStrip1);
         }
 
         private readonly Turmas novaTurma = new();
@@ -39,7 +44,7 @@ namespace Academia
 
                 int total = cboModalidade.Items.Count;
 
-                if (total >= 5)
+                if (total >= 4)
                 {
                     cboModalidade.DropDownStyle = ComboBoxStyle.DropDown;
 
@@ -72,24 +77,83 @@ namespace Academia
             }
         }
 
+        private void Limpar(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox || c is ComboBox)
+                    c.Text = string.Empty;
+
+                if (c.HasChildren)
+                    Limpar(c);
+
+                txtCod.Text = "0";
+            }
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                novaTurma.Salvar(Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
-                MessageBox.Show("Turma salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (txtCod.Text == "0")
+                {
+                    novaTurma.Salvar(Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
 
+                    MessageBox.Show("Turma salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    novaTurma.Alterar(Convert.ToInt32(txtCod.Text), Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
+
+                    MessageBox.Show("Turma alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
                 ListarTurmas();
+                Limpar(panel1);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao listar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                MessageBox.Show($"Erro ao listar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             txtTurma.Focus();
+        }
+
+        private void dtgTurmas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dtgTurmas.Columns[e.ColumnIndex].Name == "btnEditar")
+                {
+                    var row = dtgTurmas.Rows[e.RowIndex];
+
+                    if (row?.DataBoundItem is not DataRowView drv) return;
+
+                    foreach (Control c in panel1.Controls)
+                    {
+                        if (c.Tag is not string tag) continue;
+                        if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
+
+                        if (c is TextBox || c is ComboBox)
+                            c.Text = drv[tag].ToString();
+                    }
+                }
+                else if (dtgTurmas.Columns[e.ColumnIndex].Name == "btnExcluir" && MessageBox.Show("Deseja realmente excluir essa modalidade?", "Exclusão de modalidade", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    novaTurma.Excluir(Convert.ToInt32(dtgTurmas.Rows[e.RowIndex].Cells["ID_TURMA"].Value));
+                    MessageBox.Show("Modalidade excluída com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ListarTurmas();
+                    Limpar(panel1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
