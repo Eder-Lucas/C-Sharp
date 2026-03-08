@@ -126,12 +126,16 @@ namespace Academia
         {
             try
             {
-                if (dtgTurmas.Columns[e.ColumnIndex].Name == "btnEditar")
+                if (e.RowIndex < 0) return;
+
+                var coluna = dtgTurmas.Columns[e.ColumnIndex].Name;
+                var linha = dtgTurmas.Rows[e.RowIndex];
+
+                if (linha?.DataBoundItem is not DataRowView drv) return;
+
+                // ============== BOTÃO EDITAR ==============
+                if (coluna == "btnEditar")
                 {
-                    var row = dtgTurmas.Rows[e.RowIndex];
-
-                    if (row?.DataBoundItem is not DataRowView drv) return;
-
                     foreach (Control c in panel1.Controls)
                     {
                         if (c.Tag is not string tag) continue;
@@ -141,13 +145,46 @@ namespace Academia
                             c.Text = drv[tag].ToString();
                     }
                 }
-                else if (dtgTurmas.Columns[e.ColumnIndex].Name == "btnExcluir" && MessageBox.Show("Deseja realmente excluir essa modalidade?", "Exclusão de modalidade", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+                // ============== BOTÃO EXCLUIR ==============
+                else if (coluna == "btnExcluir")
                 {
-                    novaTurma.Excluir(Convert.ToInt32(dtgTurmas.Rows[e.RowIndex].Cells["ID_TURMA"].Value));
-                    MessageBox.Show("Modalidade excluída com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (MessageBox.Show(
+                        "Deseja realmente excluir essa modalidade?",
+                        "Exclusão de modalidade",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) != DialogResult.Yes)
+                        return;
+
+                    novaTurma.Excluir(Convert.ToInt32(drv["ID_TURMA"]));
+
+                    MessageBox.Show(
+                        "Modalidade excluída com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
 
                     ListarTurmas();
                     Limpar(panel1);
+                }
+
+                // ============== BOTÃO HORÁRIOS ==============
+                else if (coluna == "btnHora")
+                {
+                    if (MessageBox.Show(
+                        "Deseja cadastrar horários para esta turma?",
+                        "Cadastrar Horários",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes)
+                        return;
+
+                    using frmHorarios frm = new frmHorarios(
+                        Convert.ToInt32(drv["ID_TURMA"]),
+                        Convert.ToString(drv["NOME_MODALIDADE"])!,
+                        Convert.ToString(drv["NUMERO_TURMA"])!
+                    );
+
+                    frm.ShowDialog();
                 }
             }
             catch (Exception ex)
