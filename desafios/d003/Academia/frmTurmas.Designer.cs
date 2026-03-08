@@ -49,9 +49,9 @@
             dtgTurmas = new DataGridView();
             ID_TURMA = new DataGridViewTextBoxColumn();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
+            NUMERO_TURMA = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE = new DataGridViewTextBoxColumn();
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
-            NUMERO_TURMA = new DataGridViewTextBoxColumn();
             btnEditar = new DataGridViewImageColumn();
             btnExcluir = new DataGridViewImageColumn();
             btnHora = new DataGridViewImageColumn();
@@ -252,7 +252,7 @@
             dtgTurmas.AllowUserToResizeColumns = false;
             dtgTurmas.AllowUserToResizeRows = false;
             dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { ID_TURMA, ID_MODALIDADE, NOME_MODALIDADE, MAXIMO_ALUNOS, NUMERO_TURMA, btnEditar, btnExcluir, btnHora });
+            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { ID_TURMA, ID_MODALIDADE, NUMERO_TURMA, NOME_MODALIDADE, MAXIMO_ALUNOS, btnEditar, btnExcluir, btnHora });
             dtgTurmas.Location = new Point(12, 317);
             dtgTurmas.Name = "dtgTurmas";
             dtgTurmas.ReadOnly = true;
@@ -281,6 +281,15 @@
             ID_MODALIDADE.Visible = false;
             ID_MODALIDADE.Width = 125;
             // 
+            // NUMERO_TURMA
+            // 
+            NUMERO_TURMA.DataPropertyName = "NUMERO_TURMA";
+            NUMERO_TURMA.HeaderText = "TURMA";
+            NUMERO_TURMA.MinimumWidth = 6;
+            NUMERO_TURMA.Name = "NUMERO_TURMA";
+            NUMERO_TURMA.ReadOnly = true;
+            NUMERO_TURMA.Width = 125;
+            // 
             // NOME_MODALIDADE
             // 
             NOME_MODALIDADE.DataPropertyName = "NOME_MODALIDADE";
@@ -298,15 +307,6 @@
             MAXIMO_ALUNOS.Name = "MAXIMO_ALUNOS";
             MAXIMO_ALUNOS.ReadOnly = true;
             MAXIMO_ALUNOS.Width = 200;
-            // 
-            // NUMERO_TURMA
-            // 
-            NUMERO_TURMA.DataPropertyName = "NUMERO_TURMA";
-            NUMERO_TURMA.HeaderText = "TURMA";
-            NUMERO_TURMA.MinimumWidth = 6;
-            NUMERO_TURMA.Name = "NUMERO_TURMA";
-            NUMERO_TURMA.ReadOnly = true;
-            NUMERO_TURMA.Width = 125;
             // 
             // btnEditar
             // 
@@ -388,9 +388,9 @@
         private DataGridView dtgTurmas;
         private DataGridViewTextBoxColumn ID_TURMA;
         private DataGridViewTextBoxColumn ID_MODALIDADE;
+        private DataGridViewTextBoxColumn NUMERO_TURMA;
         private DataGridViewTextBoxColumn NOME_MODALIDADE;
         private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
-        private DataGridViewTextBoxColumn NUMERO_TURMA;
         private DataGridViewImageColumn btnEditar;
         private DataGridViewImageColumn btnExcluir;
         private DataGridViewImageColumn btnHora;
