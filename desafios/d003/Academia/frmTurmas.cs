@@ -175,7 +175,7 @@ namespace Academia
                         "Deseja cadastrar horários para esta turma?",
                         "Cadastrar Horários",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
+                        MessageBoxIcon.Question) != DialogResult.Yes)
                         return;
 
                     using frmHorarios frm = new frmHorarios(
