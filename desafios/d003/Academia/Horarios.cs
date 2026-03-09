@@ -8,7 +8,21 @@ namespace Academia
 {
     internal class Horarios
     {
-        public void Salvar(int idTurma, int diaSemana, TimeSpan inicio, TimeSpan fim)
+        public void Salvar(int idHorario, int idTurma, int diaSemana, TimeSpan inicio, TimeSpan fim)
+        {
+            if (inicio >= fim)
+                throw new Exception("O horário de início deve ser menor que o horário término.");
+
+            if (ExisteHorarioIgual(idHorario, idTurma, diaSemana, inicio, fim))
+                throw new Exception("Já existe um horário cadastrado para esta turma");
+
+            if (idHorario == 0)
+                Inserir(idTurma, diaSemana, inicio, fim);
+            else
+                Atualizar(idHorario, idTurma, diaSemana, inicio, fim);
+        }
+
+        public void Inserir(int idTurma, int diaSemana, TimeSpan inicio, TimeSpan fim)
         {
 			try
 			{
@@ -35,7 +49,7 @@ namespace Academia
 			}
         }
 
-        public void Alterar(int idHorario, int idTurma, int diaSemana, TimeSpan inicio,TimeSpan fim)
+        public void Atualizar(int idHorario, int idTurma, int diaSemana, TimeSpan inicio,TimeSpan fim)
         {
             try
             {
@@ -91,7 +105,7 @@ namespace Academia
             }
         }
 
-        public DataTable Listar()
+        public DataTable Listar(int idTurma)
         {
             try
             {
@@ -102,10 +116,12 @@ namespace Academia
                     SELECT h.*, t.ID_TURMA
                     FROM Horario h
                     INNER JOIN Turma t ON h.ID_TURMA = t.ID_TURMA
+                    WHERE h.ID_TURMA = @idTurma
                     ORDER BY h.ID_TURMA DESC
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
 
                 DataTable tabela = new();
                 tabela.Load(cmd.ExecuteReader());
@@ -114,6 +130,42 @@ namespace Academia
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public bool ExisteHorarioIgual(int idHorario, int idTurma, int diaSemana, TimeSpan inicio, TimeSpan fim)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 1 FROM Horario
+                    WHERE ID_TURMA = @idTurma
+                    AND DIA_SEMANA = @diaSemana
+                    AND @inicio < FIM
+                    AND @fim > INICIO
+                """;
+
+                if (idHorario > 0)
+                    sql += " AND ID_HORARIO <> @idHorario";
+                
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
+                cmd.Parameters.Add("@diaSemana", SqlDbType.Int).Value = diaSemana;
+                cmd.Parameters.Add("@inicio", SqlDbType.Time).Value = inicio;
+                cmd.Parameters.Add("@fim", SqlDbType.Time).Value = fim;
+                if (idHorario > 0)
+                    cmd.Parameters.Add("@idHorario", SqlDbType.Int).Value = idHorario;
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                return leitor.HasRows;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
