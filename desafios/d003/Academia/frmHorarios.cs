@@ -33,6 +33,8 @@ namespace Academia
 
                 cboSemana.SelectedIndex = 0;
 
+                dtgHorarios.AutoGenerateColumns = false;
+
                 ListarHorarios();
             }
             catch (Exception ex)
@@ -45,7 +47,7 @@ namespace Academia
         {
             try
             {
-                dtgHorarios.DataSource = novoHorario.Listar();
+                dtgHorarios.DataSource = novoHorario.Listar(idTurma);
 
                 dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
                 dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
@@ -66,9 +68,10 @@ namespace Academia
                     cbo.SelectedIndex = -1;
                 else if (c is DateTimePicker dtp)
                     dtp.Value = DateTime.Now;
-
-                idHorario = 0;
             }
+
+            idHorario = 0;
+            cboSemana.SelectedIndex = 0;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -83,31 +86,92 @@ namespace Academia
                 TimeSpan inicio = dtpInicio.Value.TimeOfDay;
                 TimeSpan fim = dtpFim.Value.TimeOfDay;
 
-                if (idHorario == 0)
+                bool novo = idHorario == 0;
+
+                if (cboSemana.SelectedIndex <= 0)
                 {
-                    novoHorario.Salvar(idTurma, cboSemana.SelectedIndex, inicio, fim);
                     MessageBox.Show(
-                        "Modalidade salva com sucesso!",
-                        "Sucesso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    "Selecione um horário para editar",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    return;
                 }
+
+                novoHorario.Salvar(idHorario, idTurma, cboSemana.SelectedIndex, inicio, fim);
+
+                if (novo)
+                    MessageBox.Show(
+                    "Horário salvo com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 else
-                {
-                    novoHorario.Alterar(idHorario, idTurma, cboSemana.SelectedIndex, inicio, fim);
                     MessageBox.Show(
-                        "Modalidade alterada com sucesso!",
-                        "Sucesso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
+                    "Horário alterado com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 ListarHorarios();
                 Limpar(this);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.Message, "Erro ao salvar informações", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dtgHorarios.CurrentRow == null)
+            {
+                MessageBox.Show(
+                "Selecione um horário para editar",
+                "",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+                return;
+            }
+
+            if (dtgHorarios.CurrentRow.DataBoundItem is not DataRowView drv) return;
+
+            idHorario = Convert.ToInt32(drv["ID_HORARIO"]);
+            idTurma = Convert.ToInt32(drv["ID_TURMA"]);
+            cboSemana.SelectedIndex = Convert.ToInt32(drv["DIA_SEMANA"]);
+            dtpInicio.Value = DateTime.Today.Add((TimeSpan)drv["INICIO"]);
+            dtpFim.Value = DateTime.Today.Add((TimeSpan)drv["FIM"]);
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtgHorarios.CurrentRow == null)
+                {
+                    MessageBox.Show(
+                    "Selecione um horário para excluir",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (MessageBox.Show(
+                    "Deseja realmente excluir essa modalidade?",
+                    "Exclusão de modalidade",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+
+                idHorario = Convert.ToInt32(dtgHorarios.CurrentRow.Cells["ID_HORARIO"].Value);
+                novoHorario.Excluir(idHorario);
+
+                ListarHorarios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao excluir horário", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
