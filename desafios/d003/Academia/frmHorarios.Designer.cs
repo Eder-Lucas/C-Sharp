@@ -199,6 +199,7 @@
             btnExcluir.Size = new Size(68, 54);
             btnExcluir.TabIndex = 3;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnEditar
             // 
@@ -208,6 +209,7 @@
             btnEditar.Size = new Size(68, 54);
             btnEditar.TabIndex = 3;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // frmHorarios
             // 
@@ -242,13 +244,13 @@
         private Label label2;
         private Label label3;
         private DateTimePicker dtpFim;
+        private Button btnSalvar;
+        private Button btnExcluir;
+        private Button btnEditar;
         private DataGridViewTextBoxColumn ID_HORARIO;
         private DataGridViewTextBoxColumn ID_TURMA;
         private DataGridViewTextBoxColumn DIA_SEMANA;
         private DataGridViewTextBoxColumn INICIO;
         private DataGridViewTextBoxColumn FIM;
-        private Button btnSalvar;
-        private Button btnExcluir;
-        private Button btnEditar;
     }
 }
