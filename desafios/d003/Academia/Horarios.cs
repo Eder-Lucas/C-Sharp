@@ -117,7 +117,7 @@ namespace Academia
                     FROM Horario h
                     INNER JOIN Turma t ON h.ID_TURMA = t.ID_TURMA
                     WHERE h.ID_TURMA = @idTurma
-                    ORDER BY h.ID_TURMA DESC
+                    ORDER BY h.ID_HORARIO DESC
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
