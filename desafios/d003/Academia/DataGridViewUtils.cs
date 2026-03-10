@@ -46,7 +46,7 @@ namespace Academia
             dtg.CellMouseLeave += Dtg_MouseCellLeave;
         }
 
-        public static void AjustaBarraVertical(params DataGridView[] dtgs)
+        public static void AjustaBarraVertical(string campo, params DataGridView[] dtgs)
         {
             foreach (var dtg in dtgs)
             {
@@ -54,7 +54,25 @@ namespace Academia
                 if (dtg.Rows.Count == 0) continue;
 
                 dtg.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                dtg.Columns["NOME_PROFESSOR"]?.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
+                dtg.Columns[campo]?.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
+            }
+        }
+
+        // OBS: usar depois de carregar os dados no DataGrid
+        public static void RemoveOrdenacao(params DataGridView[] dtgs)
+        {
+            if (dtgs == null) return;
+
+            // Para cada DataGridView fornecido
+            foreach (var dtg in dtgs)
+            {
+                if (dtg == null) continue;
+
+                // Para cada coluna desse DataGridView fornecido, desabilita a ordenação
+                foreach (DataGridViewColumn coluna in dtg.Columns)
+                {
+                    coluna.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
             }
         }
     }
