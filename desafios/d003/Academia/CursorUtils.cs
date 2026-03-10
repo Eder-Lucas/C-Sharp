@@ -38,8 +38,7 @@ namespace Academia
             {
                 if (cbo.DropDownStyle == ComboBoxStyle.DropDownList)
                 {
-                    cbo.MouseEnter += (s, e) => cbo.Cursor = Cursors.Hand;
-                    cbo.MouseLeave += (s, e) => cbo.Cursor = Cursors.Default;
+                    cbo.Cursor = Cursors.Hand;
                 }
                 else
                 {
@@ -74,7 +73,6 @@ namespace Academia
             foreach (Control ctl in parent.Controls)
                 if (ctl.HasChildren) HandButton(ctl);
         }
-
 
         // Método público que ajusta o cursor em todos os MaskedTextBox
         public static void AjustaCursorMaskedTextBox(Control parent)
