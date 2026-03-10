@@ -37,7 +37,7 @@ namespace Academia
 
                 dtgHorarios.AutoGenerateColumns = false;
                 dtgHorarios.EnableHeadersVisualStyles = false;
-               
+
                 ListarHorarios();
 
                 DataGridViewUtils.AjustaBarraVertical("SEMANA_NOME", dtgHorarios);
@@ -87,12 +87,10 @@ namespace Academia
 
         private void Limpar(Control parent)
         {
-            foreach(Control c in parent.Controls)
+            foreach (Control c in parent.Controls)
             {
                 if (c is TextBox txt)
                     txt.Clear();
-                else if (c is ComboBox cbo)
-                    cbo.SelectedIndex = -1;
                 else if (c is DateTimePicker dtp)
                     dtp.Value = DateTime.Today;
 
@@ -106,7 +104,7 @@ namespace Academia
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Limpar(this);      
+            Limpar(this);          
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
