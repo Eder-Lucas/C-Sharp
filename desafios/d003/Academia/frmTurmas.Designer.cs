@@ -138,6 +138,7 @@
             // 
             txtCod.Location = new Point(98, 9);
             txtCod.Name = "txtCod";
+            txtCod.ReadOnly = true;
             txtCod.Size = new Size(75, 27);
             txtCod.TabIndex = 3;
             txtCod.Tag = "ID_TURMA";
@@ -350,7 +351,9 @@
             Controls.Add(dtgHorarios);
             Controls.Add(panel1);
             Controls.Add(toolStrip1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "frmTurmas";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Controle de Turmas";
             Load += frmTurmas_Load;
             toolStrip1.ResumeLayout(false);
