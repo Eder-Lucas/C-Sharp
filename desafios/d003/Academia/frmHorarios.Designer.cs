@@ -124,7 +124,8 @@
             dtgHorarios.RowHeadersWidth = 51;
             dtgHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgHorarios.Size = new Size(370, 234);
-            dtgHorarios.TabIndex = 4;
+            dtgHorarios.TabIndex = 0;
+            dtgHorarios.TabStop = false;
             // 
             // ID_HORARIO
             // 

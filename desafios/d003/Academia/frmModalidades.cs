@@ -174,7 +174,7 @@ namespace Academia
             BeginInvoke((MethodInvoker)(() =>
             {
                 if (cboProfessor.DropDownStyle == ComboBoxStyle.DropDownList)
-                    cboProfessor.DroppedDown = true;
+                    cboProfessor.DroppedDown = true;                  
             }));
         }
 
