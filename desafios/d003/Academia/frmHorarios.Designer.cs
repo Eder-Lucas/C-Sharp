@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             cboSemana = new ComboBox();
             dtpInicio = new DateTimePicker();
@@ -36,6 +38,7 @@
             ID_HORARIO = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
             DIA_SEMANA = new DataGridViewTextBoxColumn();
+            SEMANA_NOME = new DataGridViewTextBoxColumn();
             INICIO = new DataGridViewTextBoxColumn();
             FIM = new DataGridViewTextBoxColumn();
             label2 = new Label();
@@ -62,7 +65,7 @@
             cboSemana.DropDownStyle = ComboBoxStyle.DropDownList;
             cboSemana.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboSemana.FormattingEnabled = true;
-            cboSemana.Items.AddRange(new object[] { "- Selecione um dia -", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo" });
+            cboSemana.Items.AddRange(new object[] { "- Selecione um dia -", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado" });
             cboSemana.Location = new Point(12, 33);
             cboSemana.Name = "cboSemana";
             cboSemana.Size = new Size(174, 27);
@@ -93,13 +96,33 @@
             // 
             dtgHorarios.AllowUserToAddRows = false;
             dtgHorarios.AllowUserToDeleteRows = false;
+            dtgHorarios.AllowUserToResizeColumns = false;
+            dtgHorarios.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgHorarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dtgHorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgHorarios.Columns.AddRange(new DataGridViewColumn[] { ID_HORARIO, ID_TURMA, DIA_SEMANA, INICIO, FIM });
+            dtgHorarios.Columns.AddRange(new DataGridViewColumn[] { ID_HORARIO, ID_TURMA, DIA_SEMANA, SEMANA_NOME, INICIO, FIM });
             dtgHorarios.Location = new Point(12, 75);
+            dtgHorarios.MultiSelect = false;
             dtgHorarios.Name = "dtgHorarios";
             dtgHorarios.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtgHorarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dtgHorarios.RowHeadersVisible = false;
             dtgHorarios.RowHeadersWidth = 51;
+            dtgHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgHorarios.Size = new Size(370, 234);
             dtgHorarios.TabIndex = 4;
             // 
@@ -126,29 +149,41 @@
             // DIA_SEMANA
             // 
             DIA_SEMANA.DataPropertyName = "DIA_SEMANA";
-            DIA_SEMANA.HeaderText = "DIA DA SEMANA";
+            DIA_SEMANA.HeaderText = "DIA_SEMANA";
             DIA_SEMANA.MinimumWidth = 6;
             DIA_SEMANA.Name = "DIA_SEMANA";
             DIA_SEMANA.ReadOnly = true;
+            DIA_SEMANA.Visible = false;
             DIA_SEMANA.Width = 150;
+            // 
+            // SEMANA_NOME
+            // 
+            SEMANA_NOME.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SEMANA_NOME.DataPropertyName = "SEMANA_NOME";
+            SEMANA_NOME.HeaderText = "DIA DA SEMANA";
+            SEMANA_NOME.MinimumWidth = 6;
+            SEMANA_NOME.Name = "SEMANA_NOME";
+            SEMANA_NOME.ReadOnly = true;
             // 
             // INICIO
             // 
+            INICIO.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             INICIO.DataPropertyName = "INICIO";
             INICIO.HeaderText = "INÍCIO";
             INICIO.MinimumWidth = 6;
             INICIO.Name = "INICIO";
             INICIO.ReadOnly = true;
-            INICIO.Width = 125;
+            INICIO.Width = 60;
             // 
             // FIM
             // 
+            FIM.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             FIM.DataPropertyName = "FIM";
             FIM.HeaderText = "FIM";
             FIM.MinimumWidth = 6;
             FIM.Name = "FIM";
             FIM.ReadOnly = true;
-            FIM.Width = 125;
+            FIM.Width = 60;
             // 
             // label2
             // 
@@ -227,7 +262,11 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmHorarios";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += frmHorarios_Load;
             ((System.ComponentModel.ISupportInitialize)dtgHorarios).EndInit();
             ResumeLayout(false);
@@ -250,6 +289,7 @@
         private DataGridViewTextBoxColumn ID_HORARIO;
         private DataGridViewTextBoxColumn ID_TURMA;
         private DataGridViewTextBoxColumn DIA_SEMANA;
+        private DataGridViewTextBoxColumn SEMANA_NOME;
         private DataGridViewTextBoxColumn INICIO;
         private DataGridViewTextBoxColumn FIM;
     }
