@@ -33,9 +33,15 @@ namespace Academia
 
                 cboSemana.SelectedIndex = 0;
 
-                dtgHorarios.AutoGenerateColumns = false;
+                CursorUtils.HandButton(this);
 
+                dtgHorarios.AutoGenerateColumns = false;
+                dtgHorarios.EnableHeadersVisualStyles = false;
+               
                 ListarHorarios();
+
+                DataGridViewUtils.AjustaBarraVertical("SEMANA_NOME", dtgHorarios);
+                DataGridViewUtils.RemoveOrdenacao(dtgHorarios);
             }
             catch (Exception ex)
             {
@@ -47,7 +53,17 @@ namespace Academia
         {
             try
             {
-                dtgHorarios.DataSource = novoHorario.Listar(idTurma);
+                DataTable tabela = novoHorario.Listar(idTurma);
+
+                tabela.Columns.Add("SEMANA_NOME", typeof(string));
+
+                foreach (DataRow linha in tabela.Rows)
+                {
+                    int dia = Convert.ToInt32(linha["DIA_SEMANA"]);
+                    linha["SEMANA_NOME"] = ((NomeSemana)dia).ToString();
+                }
+
+                dtgHorarios.DataSource = tabela;
 
                 dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
                 dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
@@ -56,6 +72,17 @@ namespace Academia
             {
                 throw;
             }
+        }
+
+        private enum NomeSemana
+        {
+            Domingo = 1,
+            Segunda = 2,
+            Terça = 3,
+            Quarta = 4,
+            Quinta = 5,
+            Sexta = 6,
+            Sábado = 7
         }
 
         private void Limpar(Control parent)
@@ -67,7 +94,10 @@ namespace Academia
                 else if (c is ComboBox cbo)
                     cbo.SelectedIndex = -1;
                 else if (c is DateTimePicker dtp)
-                    dtp.Value = DateTime.Now;
+                    dtp.Value = DateTime.Today;
+
+                if (c.HasChildren)
+                    Limpar(c);
             }
 
             idHorario = 0;
@@ -76,7 +106,7 @@ namespace Academia
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Limpar(this);
+            Limpar(this);      
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
