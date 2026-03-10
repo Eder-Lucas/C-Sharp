@@ -72,6 +72,7 @@ namespace Academia
             ListarModalidades();
 
             DataGridViewUtils.HandButton(dtgModalidades, "btnEditar", "btnExcluir");
+            DataGridViewUtils.AjustaBarraVertical("NOME_MODALIDADE", dtgModalidades);
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);

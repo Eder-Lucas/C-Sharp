@@ -23,6 +23,7 @@ namespace Academia
             ListarTurmas();
 
             DataGridViewUtils.HandButton(dtgTurmas, "btnEditar", "btnExcluir", "btnHora");
+            DataGridViewUtils.AjustaBarraVertical("ID_TURMA", dtgTurmas);
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);
