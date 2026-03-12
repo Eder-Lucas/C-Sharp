@@ -13,17 +13,22 @@ namespace Academia
         public frmTurmas()
         {
             InitializeComponent();
-
-            dtgTurmas.AutoGenerateColumns = false;
         }
 
         private void frmTurmas_Load(object sender, EventArgs e)
         {
+            dtgTurmas.AutoGenerateColumns = false;
+            dtgHorarios.AutoGenerateColumns = false;
+
+            dtgTurmas.EnableHeadersVisualStyles = false;
+            dtgHorarios.EnableHeadersVisualStyles = false;
+
             CarregarModalidades();
             ListarTurmas();
 
             DataGridViewUtils.HandButton(dtgTurmas, "btnEditar", "btnExcluir", "btnHora");
             DataGridViewUtils.AjustaBarraVertical("ID_TURMA", dtgTurmas);
+            DataGridViewUtils.RemoveOrdenacao(dtgTurmas, dtgHorarios);
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);
@@ -78,6 +83,43 @@ namespace Academia
             }
         }
 
+        private void ListarHorarios(int idTurma)
+        {
+            try
+            {
+                Horarios novoHorario = new();
+                DataTable tabela = novoHorario.Listar(idTurma);
+
+                tabela.Columns.Add("SEMANA_NOME", typeof(string));
+
+                foreach (DataRow linha in tabela.Rows)
+                {
+                    int dia = Convert.ToInt32(linha["DIA_SEMANA"]);
+                    linha["SEMANA_NOME"] = ((NomeSemana)dia).ToString();
+                }
+
+                dtgHorarios.DataSource = tabela;
+
+                dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
+                dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private enum NomeSemana
+        {
+            Domingo = 1,
+            Segunda = 2,
+            Terça = 3,
+            Quarta = 4,
+            Quinta = 5,
+            Sexta = 6,
+            Sábado = 7
+        }
+
         private void Limpar(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -108,7 +150,7 @@ namespace Academia
 
                     MessageBox.Show("Turma alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
+
                 ListarTurmas();
                 Limpar(panel1);
             }
@@ -192,6 +234,46 @@ namespace Academia
             {
                 MessageBox.Show($"Erro ao excluir modalidade: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dtgTurmas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                
+
+                if (e.RowIndex < 0) return;
+                
+                var coluna = dtgTurmas.Columns[e.ColumnIndex].Name;
+                var linha = dtgTurmas.Rows[e.RowIndex];
+
+                if (linha?.DataBoundItem is not DataRowView drv) return;
+
+                if (coluna == "NUMERO_TURMA")
+                {
+                    int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
+                    ListarHorarios(idTurma);
+                }
+
+                AtualizarMensagem(dtgHorarios, "", "Essa turma ainda não possui horários cadastrados.");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void AtualizarMensagem(DataGridView e, string msgPositiva = "", string msgNegativa = "")
+        {
+            bool semDados = e.Rows.Count == 0;
+
+            lblMensagem.Visible = semDados;
+            lblTitulo.Visible = semDados;
+
+            if (semDados)
+                lblMensagem.Text = msgNegativa;
+            else
+                lblMensagem.Text = msgPositiva;
         }
     }
 }
