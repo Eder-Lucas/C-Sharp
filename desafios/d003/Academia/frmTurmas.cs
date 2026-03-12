@@ -102,6 +102,8 @@ namespace Academia
 
                 dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
                 dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
+
+                Estilo();
             }
             catch (Exception)
             {
@@ -274,6 +276,16 @@ namespace Academia
                 lblMensagem.Text = msgNegativa;
             else
                 lblMensagem.Text = msgPositiva;
+        }
+
+        private void Estilo()
+        {
+            int linhas = dtgHorarios.Rows.Count;
+
+            for (int i = 0; i < linhas; i++)
+            {
+                dtgHorarios.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
+            }
         }
     }
 }
