@@ -325,8 +325,10 @@
             dtgTurmas.AllowUserToDeleteRows = false;
             dtgTurmas.AllowUserToResizeColumns = false;
             dtgTurmas.AllowUserToResizeRows = false;
-            dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgTurmas.ColumnHeadersHeight = 29;
+            dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { ID_TURMA, ID_MODALIDADE, NUMERO_TURMA, NOME_MODALIDADE, MAXIMO_ALUNOS, btnEditar, btnExcluir, btnHora });
+            dtgTurmas.EnableHeadersVisualStyles = false;
             dtgTurmas.Location = new Point(12, 317);
             dtgTurmas.Name = "dtgTurmas";
             dtgTurmas.ReadOnly = true;
@@ -340,6 +342,7 @@
             // 
             // ID_TURMA
             // 
+            ID_TURMA.DataPropertyName = "ID_TURMA";
             ID_TURMA.HeaderText = "ID_TURMA";
             ID_TURMA.MinimumWidth = 6;
             ID_TURMA.Name = "ID_TURMA";
@@ -349,6 +352,7 @@
             // 
             // ID_MODALIDADE
             // 
+            ID_MODALIDADE.DataPropertyName = "ID_MODALIDADE";
             ID_MODALIDADE.HeaderText = "ID_MODALIDADE";
             ID_MODALIDADE.MinimumWidth = 6;
             ID_MODALIDADE.Name = "ID_MODALIDADE";
@@ -367,12 +371,12 @@
             // 
             // NOME_MODALIDADE
             // 
+            NOME_MODALIDADE.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             NOME_MODALIDADE.DataPropertyName = "NOME_MODALIDADE";
             NOME_MODALIDADE.HeaderText = "MODALIDADE";
             NOME_MODALIDADE.MinimumWidth = 6;
             NOME_MODALIDADE.Name = "NOME_MODALIDADE";
             NOME_MODALIDADE.ReadOnly = true;
-            NOME_MODALIDADE.Width = 200;
             // 
             // MAXIMO_ALUNOS
             // 
@@ -464,6 +468,12 @@
         private TextBox txtTurma;
         private TextBox txtCod;
         private DataGridView dtgTurmas;
+        private DataGridViewTextBoxColumn ID_HORARIO;
+        private DataGridViewTextBoxColumn ID_TURMA1;
+        private DataGridViewTextBoxColumn DIA_SEMANA;
+        private DataGridViewTextBoxColumn SEMANA_NOME;
+        private DataGridViewTextBoxColumn INICIO;
+        private DataGridViewTextBoxColumn FIM;
         private DataGridViewTextBoxColumn ID_TURMA;
         private DataGridViewTextBoxColumn ID_MODALIDADE;
         private DataGridViewTextBoxColumn NUMERO_TURMA;
@@ -472,11 +482,5 @@
         private DataGridViewImageColumn btnEditar;
         private DataGridViewImageColumn btnExcluir;
         private DataGridViewImageColumn btnHora;
-        private DataGridViewTextBoxColumn ID_HORARIO;
-        private DataGridViewTextBoxColumn ID_TURMA1;
-        private DataGridViewTextBoxColumn DIA_SEMANA;
-        private DataGridViewTextBoxColumn SEMANA_NOME;
-        private DataGridViewTextBoxColumn INICIO;
-        private DataGridViewTextBoxColumn FIM;
     }
 }
