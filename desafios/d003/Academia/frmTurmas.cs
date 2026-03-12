@@ -76,6 +76,13 @@ namespace Academia
             try
             {
                 dtgTurmas.DataSource = novaTurma.Listar();
+
+                // não permite redimensionar as colunas
+                foreach (DataGridViewColumn col in dtgTurmas.Columns)
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    col.Resizable = DataGridViewTriState.False;
+                }
             }
             catch (Exception ex)
             {
@@ -241,9 +248,7 @@ namespace Academia
         private void dtgTurmas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
-                
-
+            {               
                 if (e.RowIndex < 0) return;
                 
                 var coluna = dtgTurmas.Columns[e.ColumnIndex].Name;
