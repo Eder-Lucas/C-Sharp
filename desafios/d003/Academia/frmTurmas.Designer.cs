@@ -44,8 +44,14 @@
             label2 = new Label();
             label1 = new Label();
             dtgHorarios = new DataGridView();
-            label6 = new Label();
-            label7 = new Label();
+            ID_HORARIO = new DataGridViewTextBoxColumn();
+            ID_TURMA1 = new DataGridViewTextBoxColumn();
+            DIA_SEMANA = new DataGridViewTextBoxColumn();
+            SEMANA_NOME = new DataGridViewTextBoxColumn();
+            INICIO = new DataGridViewTextBoxColumn();
+            FIM = new DataGridViewTextBoxColumn();
+            lblTitulo = new Label();
+            lblMensagem = new Label();
             dtgTurmas = new DataGridView();
             ID_TURMA = new DataGridViewTextBoxColumn();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
@@ -215,36 +221,103 @@
             // 
             // dtgHorarios
             // 
+            dtgHorarios.AllowUserToAddRows = false;
+            dtgHorarios.AllowUserToDeleteRows = false;
+            dtgHorarios.AllowUserToResizeColumns = false;
+            dtgHorarios.AllowUserToResizeRows = false;
             dtgHorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgHorarios.Columns.AddRange(new DataGridViewColumn[] { ID_HORARIO, ID_TURMA1, DIA_SEMANA, SEMANA_NOME, INICIO, FIM });
+            dtgHorarios.EnableHeadersVisualStyles = false;
             dtgHorarios.Location = new Point(411, 53);
             dtgHorarios.Name = "dtgHorarios";
+            dtgHorarios.ReadOnly = true;
+            dtgHorarios.RowHeadersVisible = false;
             dtgHorarios.RowHeadersWidth = 51;
+            dtgHorarios.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dtgHorarios.Size = new Size(403, 243);
             dtgHorarios.TabIndex = 2;
+            dtgHorarios.TabStop = false;
             // 
-            // label6
+            // ID_HORARIO
             // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.ControlDark;
-            label6.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.FromArgb(192, 0, 0);
-            label6.Location = new Point(567, 162);
-            label6.Name = "label6";
-            label6.Size = new Size(91, 24);
-            label6.TabIndex = 2;
-            label6.Text = "Horários";
+            ID_HORARIO.DataPropertyName = "ID_HORARIO";
+            ID_HORARIO.HeaderText = "ID_HORARIO";
+            ID_HORARIO.MinimumWidth = 6;
+            ID_HORARIO.Name = "ID_HORARIO";
+            ID_HORARIO.ReadOnly = true;
+            ID_HORARIO.Visible = false;
+            ID_HORARIO.Width = 125;
             // 
-            // label7
+            // ID_TURMA1
             // 
-            label7.BackColor = SystemColors.ControlDark;
-            label7.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.FromArgb(192, 0, 0);
-            label7.Location = new Point(485, 181);
-            label7.Name = "label7";
-            label7.Size = new Size(254, 47);
-            label7.TabIndex = 2;
-            label7.Text = "Para exibir os horários dê um duplo clique na turma desejada";
-            label7.TextAlign = ContentAlignment.MiddleCenter;
+            ID_TURMA1.DataPropertyName = "ID_TURMA";
+            ID_TURMA1.HeaderText = "ID_TURMA1";
+            ID_TURMA1.MinimumWidth = 6;
+            ID_TURMA1.Name = "ID_TURMA1";
+            ID_TURMA1.ReadOnly = true;
+            ID_TURMA1.Visible = false;
+            ID_TURMA1.Width = 125;
+            // 
+            // DIA_SEMANA
+            // 
+            DIA_SEMANA.DataPropertyName = "DIA_SEMANA";
+            DIA_SEMANA.HeaderText = "DIA_SEMANA";
+            DIA_SEMANA.MinimumWidth = 6;
+            DIA_SEMANA.Name = "DIA_SEMANA";
+            DIA_SEMANA.ReadOnly = true;
+            DIA_SEMANA.Visible = false;
+            DIA_SEMANA.Width = 125;
+            // 
+            // SEMANA_NOME
+            // 
+            SEMANA_NOME.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SEMANA_NOME.DataPropertyName = "SEMANA_NOME";
+            SEMANA_NOME.HeaderText = "DIA DA SEMANA";
+            SEMANA_NOME.MinimumWidth = 6;
+            SEMANA_NOME.Name = "SEMANA_NOME";
+            SEMANA_NOME.ReadOnly = true;
+            // 
+            // INICIO
+            // 
+            INICIO.DataPropertyName = "INICIO";
+            INICIO.HeaderText = "INICIO";
+            INICIO.MinimumWidth = 6;
+            INICIO.Name = "INICIO";
+            INICIO.ReadOnly = true;
+            INICIO.Width = 120;
+            // 
+            // FIM
+            // 
+            FIM.DataPropertyName = "FIM";
+            FIM.HeaderText = "FIM";
+            FIM.MinimumWidth = 6;
+            FIM.Name = "FIM";
+            FIM.ReadOnly = true;
+            FIM.Width = 120;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.BackColor = SystemColors.ControlDark;
+            lblTitulo.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.FromArgb(192, 0, 0);
+            lblTitulo.Location = new Point(567, 162);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(91, 24);
+            lblTitulo.TabIndex = 2;
+            lblTitulo.Text = "Horários";
+            // 
+            // lblMensagem
+            // 
+            lblMensagem.BackColor = SystemColors.ControlDark;
+            lblMensagem.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMensagem.ForeColor = Color.FromArgb(192, 0, 0);
+            lblMensagem.Location = new Point(417, 181);
+            lblMensagem.Name = "lblMensagem";
+            lblMensagem.Size = new Size(390, 47);
+            lblMensagem.TabIndex = 2;
+            lblMensagem.Text = "Para exibir os horários dê um duplo clique na turma desejada";
+            lblMensagem.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dtgTurmas
             // 
@@ -263,6 +336,7 @@
             dtgTurmas.TabIndex = 6;
             dtgTurmas.TabStop = false;
             dtgTurmas.CellContentClick += dtgTurmas_CellContentClick;
+            dtgTurmas.CellDoubleClick += dtgTurmas_CellDoubleClick;
             // 
             // ID_TURMA
             // 
@@ -346,8 +420,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(826, 680);
             Controls.Add(dtgTurmas);
-            Controls.Add(label7);
-            Controls.Add(label6);
+            Controls.Add(lblMensagem);
+            Controls.Add(lblTitulo);
             Controls.Add(dtgHorarios);
             Controls.Add(panel1);
             Controls.Add(toolStrip1);
@@ -384,7 +458,8 @@
         private ComboBox cboModalidade;
         private DataGridView dtgHorarios;
         private Label label6;
-        private Label label7;
+        private Label lblMensagem;
+        private Label lblTitulo;
         private TextBox txtAluno;
         private TextBox txtTurma;
         private TextBox txtCod;
@@ -397,5 +472,11 @@
         private DataGridViewImageColumn btnEditar;
         private DataGridViewImageColumn btnExcluir;
         private DataGridViewImageColumn btnHora;
+        private DataGridViewTextBoxColumn ID_HORARIO;
+        private DataGridViewTextBoxColumn ID_TURMA1;
+        private DataGridViewTextBoxColumn DIA_SEMANA;
+        private DataGridViewTextBoxColumn SEMANA_NOME;
+        private DataGridViewTextBoxColumn INICIO;
+        private DataGridViewTextBoxColumn FIM;
     }
 }
