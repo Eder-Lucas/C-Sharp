@@ -72,6 +72,7 @@
             btnAlunos.Size = new Size(58, 56);
             btnAlunos.Text = "Alunos";
             btnAlunos.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnAlunos.Click += btnAlunos_Click;
             // 
             // toolStripSeparator1
             // 
