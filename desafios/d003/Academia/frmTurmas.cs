@@ -76,11 +76,10 @@ namespace Academia
             try
             {
                 dtgTurmas.DataSource = novaTurma.Listar();
-
-                // não permite redimensionar as colunas
+    
+                // Não permite redimensionar as colunas individualmente
                 foreach (DataGridViewColumn col in dtgTurmas.Columns)
                 {
-                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                     col.Resizable = DataGridViewTriState.False;
                 }
             }
