@@ -80,6 +80,12 @@
             dtgTurmasCadastradas = new DataGridView();
             cboVencimento = new ComboBox();
             chkSituacao = new CheckBox();
+            ID_MODALIDADE = new DataGridViewTextBoxColumn();
+            ID_TURMA = new DataGridViewTextBoxColumn();
+            NOME_MODALIDADE = new DataGridViewTextBoxColumn();
+            NUMERO_TURMA = new DataGridViewTextBoxColumn();
+            MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
+            btnHora = new DataGridViewImageColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -611,9 +617,14 @@
             // 
             // dtgTurmasCadastradas
             // 
+            dtgTurmasCadastradas.AllowUserToAddRows = false;
+            dtgTurmasCadastradas.AllowUserToDeleteRows = false;
             dtgTurmasCadastradas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgTurmasCadastradas.Columns.AddRange(new DataGridViewColumn[] { ID_MODALIDADE, ID_TURMA, NOME_MODALIDADE, NUMERO_TURMA, MAXIMO_ALUNOS, btnHora });
             dtgTurmasCadastradas.Location = new Point(8, 318);
             dtgTurmasCadastradas.Name = "dtgTurmasCadastradas";
+            dtgTurmasCadastradas.ReadOnly = true;
+            dtgTurmasCadastradas.RowHeadersVisible = false;
             dtgTurmasCadastradas.RowHeadersWidth = 51;
             dtgTurmasCadastradas.Size = new Size(432, 263);
             dtgTurmasCadastradas.TabIndex = 5;
@@ -636,6 +647,62 @@
             chkSituacao.TabIndex = 3;
             chkSituacao.Text = "Ativa";
             chkSituacao.UseVisualStyleBackColor = true;
+            // 
+            // ID_MODALIDADE
+            // 
+            ID_MODALIDADE.DataPropertyName = "ID_MODALIDADE";
+            ID_MODALIDADE.HeaderText = "ID_MODALIDADE";
+            ID_MODALIDADE.MinimumWidth = 6;
+            ID_MODALIDADE.Name = "ID_MODALIDADE";
+            ID_MODALIDADE.ReadOnly = true;
+            ID_MODALIDADE.Visible = false;
+            ID_MODALIDADE.Width = 125;
+            // 
+            // ID_TURMA
+            // 
+            ID_TURMA.DataPropertyName = "ID_TURMA";
+            ID_TURMA.HeaderText = "ID_TURMA";
+            ID_TURMA.MinimumWidth = 6;
+            ID_TURMA.Name = "ID_TURMA";
+            ID_TURMA.ReadOnly = true;
+            ID_TURMA.Visible = false;
+            ID_TURMA.Width = 125;
+            // 
+            // NOME_MODALIDADE
+            // 
+            NOME_MODALIDADE.DataPropertyName = "NOME_MODALIDADE";
+            NOME_MODALIDADE.HeaderText = "MODALIDADE";
+            NOME_MODALIDADE.MinimumWidth = 6;
+            NOME_MODALIDADE.Name = "NOME_MODALIDADE";
+            NOME_MODALIDADE.ReadOnly = true;
+            NOME_MODALIDADE.Width = 125;
+            // 
+            // NUMERO_TURMA
+            // 
+            NUMERO_TURMA.DataPropertyName = "NUMERO_TURMA";
+            NUMERO_TURMA.HeaderText = "TURMA";
+            NUMERO_TURMA.MinimumWidth = 6;
+            NUMERO_TURMA.Name = "NUMERO_TURMA";
+            NUMERO_TURMA.ReadOnly = true;
+            NUMERO_TURMA.Width = 125;
+            // 
+            // MAXIMO_ALUNOS
+            // 
+            MAXIMO_ALUNOS.DataPropertyName = "MAXIMO_ALUNOS";
+            MAXIMO_ALUNOS.HeaderText = "VAGAS";
+            MAXIMO_ALUNOS.MinimumWidth = 6;
+            MAXIMO_ALUNOS.Name = "MAXIMO_ALUNOS";
+            MAXIMO_ALUNOS.ReadOnly = true;
+            MAXIMO_ALUNOS.Width = 125;
+            // 
+            // btnHora
+            // 
+            btnHora.HeaderText = "";
+            btnHora.Image = Properties.Resources.dtgHora;
+            btnHora.MinimumWidth = 6;
+            btnHora.Name = "btnHora";
+            btnHora.ReadOnly = true;
+            btnHora.Width = 36;
             // 
             // frmControleAlunos
             // 
@@ -718,5 +785,11 @@
         private Button btnSalvarMatricula;
         private Button btnExcluirMatricula;
         private Button btnAdicionarTurma;
+        private DataGridViewTextBoxColumn ID_MODALIDADE;
+        private DataGridViewTextBoxColumn ID_TURMA;
+        private DataGridViewTextBoxColumn NOME_MODALIDADE;
+        private DataGridViewTextBoxColumn NUMERO_TURMA;
+        private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
+        private DataGridViewImageColumn btnHora;
     }
 }
