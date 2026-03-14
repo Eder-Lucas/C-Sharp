@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabAlunos = new TabControl();
+            tcAluno = new TabControl();
             tabPageCadastro = new TabPage();
             dtgTurmas = new DataGridView();
             cboSexo = new ComboBox();
@@ -63,7 +63,7 @@
             btnSalvar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             tabPageMatricula = new TabPage();
-            tabAlunos.SuspendLayout();
+            tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -71,16 +71,16 @@
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // tabAlunos
+            // tcAluno
             // 
-            tabAlunos.Controls.Add(tabPageCadastro);
-            tabAlunos.Controls.Add(tabPageMatricula);
-            tabAlunos.Dock = DockStyle.Fill;
-            tabAlunos.Location = new Point(0, 0);
-            tabAlunos.Name = "tabAlunos";
-            tabAlunos.SelectedIndex = 0;
-            tabAlunos.Size = new Size(950, 622);
-            tabAlunos.TabIndex = 0;
+            tcAluno.Controls.Add(tabPageCadastro);
+            tcAluno.Controls.Add(tabPageMatricula);
+            tcAluno.Dock = DockStyle.Fill;
+            tcAluno.Location = new Point(0, 0);
+            tcAluno.Name = "tcAluno";
+            tcAluno.SelectedIndex = 0;
+            tcAluno.Size = new Size(950, 622);
+            tcAluno.TabIndex = 0;
             // 
             // tabPageCadastro
             // 
@@ -440,10 +440,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(950, 622);
-            Controls.Add(tabAlunos);
+            Controls.Add(tcAluno);
             Name = "frmControleAlunos";
             Text = "SCA - Controle de Alunos";
-            tabAlunos.ResumeLayout(false);
+            tcAluno.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
             tabPageCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).EndInit();
@@ -456,7 +456,7 @@
 
         #endregion
 
-        private TabControl tabAlunos;
+        private TabControl tcAluno;
         private TabPage tabPageCadastro;
         private TabPage tabPageMatricula;
         private ToolStrip toolStrip1;
