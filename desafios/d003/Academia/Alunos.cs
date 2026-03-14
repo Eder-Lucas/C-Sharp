@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Academia
@@ -17,9 +18,9 @@ namespace Academia
                 else
                     Atualizar(idAluno, nome, endereco, bairro, num, cidade, cep, cpf, tel, sexo, obs);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message, ex); 
             }
         }
 
@@ -54,9 +55,9 @@ namespace Academia
 
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -126,6 +127,33 @@ namespace Academia
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public DataTable Listar()
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT * FROM Aluno
+                    ORDER BY ID_ALUNO DESC
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                DataTable tabela = new();
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                tabela.Load(leitor);
+
+                return tabela;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
             }
         }
     }
