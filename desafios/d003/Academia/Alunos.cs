@@ -156,5 +156,59 @@ namespace Academia
                 throw new Exception(ex.Message, ex);
             }
         }
+
+        public DataTable PesquisaNome(string nome)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = @"
+                    SELECT * FROM Aluno
+                    WHERE (NOME_ALUNO COLLATE Latin1_General_CI_AI LIKE @nome + '%')
+                    ORDER BY ID_ALUNO DESC";
+
+                using SqlCommand comandoSql = new(sql, conexao);
+
+                comandoSql.Parameters.Add(new SqlParameter("@nome", nome));
+
+                DataTable dadosTabela = new();
+                dadosTabela.Load(comandoSql.ExecuteReader());
+
+                return dadosTabela;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataTable PesquisaCpf(string cpf)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = @"
+                    SELECT * FROM Aluno
+                    WHERE (CPF_ALUNO LIKE @cpf + '%')
+                    ORDER BY ID_ALUNO DESC";
+
+                using SqlCommand comandoSql = new(sql, conexao);
+
+                comandoSql.Parameters.Add(new SqlParameter("@cpf", cpf));
+
+                DataTable dadosTabela = new();
+                dadosTabela.Load(comandoSql.ExecuteReader());
+
+                return dadosTabela;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
