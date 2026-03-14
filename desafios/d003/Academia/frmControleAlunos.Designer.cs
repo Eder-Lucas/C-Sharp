@@ -30,10 +30,13 @@
         {
             tabAlunos = new TabControl();
             tabPageCadastro = new TabPage();
+            dtgTurmas = new DataGridView();
             cboSexo = new ComboBox();
             mtbCep = new MaskedTextBox();
             mtbCpf = new MaskedTextBox();
-            mtbCelular = new MaskedTextBox();
+            mtbTel = new MaskedTextBox();
+            txtObs = new TextBox();
+            txtNumero = new TextBox();
             txtCidade = new TextBox();
             txtBairro = new TextBox();
             txtEndereco = new TextBox();
@@ -42,6 +45,7 @@
             label11 = new Label();
             label10 = new Label();
             label7 = new Label();
+            label13 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -49,24 +53,22 @@
             label9 = new Label();
             label8 = new Label();
             label3 = new Label();
+            label14 = new Label();
+            label12 = new Label();
             label1 = new Label();
+            pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             toolStrip1 = new ToolStrip();
             btnAdicionar = new ToolStripButton();
             btnSalvar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             tabPageMatricula = new TabPage();
-            txtObs = new TextBox();
-            pictureBox2 = new PictureBox();
-            dtgTurmas = new DataGridView();
-            label12 = new Label();
-            label14 = new Label();
             tabAlunos.SuspendLayout();
             tabPageCadastro.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
             SuspendLayout();
             // 
             // tabAlunos
@@ -86,8 +88,9 @@
             tabPageCadastro.Controls.Add(cboSexo);
             tabPageCadastro.Controls.Add(mtbCep);
             tabPageCadastro.Controls.Add(mtbCpf);
-            tabPageCadastro.Controls.Add(mtbCelular);
+            tabPageCadastro.Controls.Add(mtbTel);
             tabPageCadastro.Controls.Add(txtObs);
+            tabPageCadastro.Controls.Add(txtNumero);
             tabPageCadastro.Controls.Add(txtCidade);
             tabPageCadastro.Controls.Add(txtBairro);
             tabPageCadastro.Controls.Add(txtEndereco);
@@ -96,6 +99,7 @@
             tabPageCadastro.Controls.Add(label11);
             tabPageCadastro.Controls.Add(label10);
             tabPageCadastro.Controls.Add(label7);
+            tabPageCadastro.Controls.Add(label13);
             tabPageCadastro.Controls.Add(label6);
             tabPageCadastro.Controls.Add(label5);
             tabPageCadastro.Controls.Add(label4);
@@ -116,6 +120,15 @@
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
+            // 
+            // dtgTurmas
+            // 
+            dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgTurmas.Location = new Point(8, 327);
+            dtgTurmas.Name = "dtgTurmas";
+            dtgTurmas.RowHeadersWidth = 51;
+            dtgTurmas.Size = new Size(588, 254);
+            dtgTurmas.TabIndex = 6;
             // 
             // cboSexo
             // 
@@ -146,21 +159,38 @@
             mtbCpf.Size = new Size(126, 27);
             mtbCpf.TabIndex = 4;
             // 
-            // mtbCelular
+            // mtbTel
             // 
-            mtbCelular.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mtbCelular.Location = new Point(112, 276);
-            mtbCelular.Mask = "(99) 99999-9999";
-            mtbCelular.Name = "mtbCelular";
-            mtbCelular.Size = new Size(135, 27);
-            mtbCelular.TabIndex = 4;
+            mtbTel.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mtbTel.Location = new Point(112, 276);
+            mtbTel.Mask = "(99) 99999-9999";
+            mtbTel.Name = "mtbTel";
+            mtbTel.Size = new Size(135, 27);
+            mtbTel.TabIndex = 4;
+            // 
+            // txtObs
+            // 
+            txtObs.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtObs.Location = new Point(622, 177);
+            txtObs.Multiline = true;
+            txtObs.Name = "txtObs";
+            txtObs.Size = new Size(312, 126);
+            txtObs.TabIndex = 3;
+            // 
+            // txtNumero
+            // 
+            txtNumero.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNumero.Location = new Point(112, 243);
+            txtNumero.Name = "txtNumero";
+            txtNumero.Size = new Size(77, 27);
+            txtNumero.TabIndex = 3;
             // 
             // txtCidade
             // 
             txtCidade.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCidade.Location = new Point(112, 243);
+            txtCidade.Location = new Point(279, 243);
             txtCidade.Name = "txtCidade";
-            txtCidade.Size = new Size(349, 27);
+            txtCidade.Size = new Size(182, 27);
             txtCidade.TabIndex = 3;
             // 
             // txtBairro
@@ -195,6 +225,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(93, 27);
             txtCod.TabIndex = 3;
+            txtCod.Text = "0";
             // 
             // label11
             // 
@@ -226,11 +257,21 @@
             label7.TabIndex = 2;
             label7.Text = "Celular:";
             // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.Location = new Point(72, 246);
+            label13.Name = "label13";
+            label13.Size = new Size(37, 21);
+            label13.TabIndex = 2;
+            label13.Text = "Nº:";
+            // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(31, 246);
+            label6.Location = new Point(195, 246);
             label6.Name = "label6";
             label6.Size = new Size(78, 21);
             label6.TabIndex = 2;
@@ -296,6 +337,26 @@
             label3.TabIndex = 2;
             label3.Text = "Código:";
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.Location = new Point(668, 374);
+            label14.Name = "label14";
+            label14.Size = new Size(242, 19);
+            label14.TabIndex = 2;
+            label14.Text = "- Onde o aluno está matrículado";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Location = new Point(668, 347);
+            label12.Name = "label12";
+            label12.Size = new Size(94, 27);
+            label12.TabIndex = 2;
+            label12.Text = "Turmas";
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -305,6 +366,16 @@
             label1.Size = new Size(228, 27);
             label1.TabIndex = 2;
             label1.Text = "Controle de Alunos";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.turmas_maior;
+            pictureBox2.Location = new Point(602, 327);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(64, 66);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -343,6 +414,7 @@
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(85, 36);
             btnSalvar.Text = "Salvar";
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnExcluir
             // 
@@ -358,58 +430,10 @@
             tabPageMatricula.Location = new Point(4, 29);
             tabPageMatricula.Name = "tabPageMatricula";
             tabPageMatricula.Padding = new Padding(3);
-            tabPageMatricula.Size = new Size(879, 656);
+            tabPageMatricula.Size = new Size(942, 589);
             tabPageMatricula.TabIndex = 1;
             tabPageMatricula.Text = "Matrícula";
             tabPageMatricula.UseVisualStyleBackColor = true;
-            // 
-            // txtObs
-            // 
-            txtObs.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtObs.Location = new Point(622, 177);
-            txtObs.Multiline = true;
-            txtObs.Name = "txtObs";
-            txtObs.Size = new Size(312, 126);
-            txtObs.TabIndex = 3;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.turmas_maior;
-            pictureBox2.Location = new Point(602, 327);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(64, 66);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
-            // dtgTurmas
-            // 
-            dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgTurmas.Location = new Point(8, 327);
-            dtgTurmas.Name = "dtgTurmas";
-            dtgTurmas.RowHeadersWidth = 51;
-            dtgTurmas.Size = new Size(588, 254);
-            dtgTurmas.TabIndex = 6;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(668, 347);
-            label12.Name = "label12";
-            label12.Size = new Size(94, 27);
-            label12.TabIndex = 2;
-            label12.Text = "Turmas";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(668, 374);
-            label14.Name = "label14";
-            label14.Size = new Size(242, 19);
-            label14.TabIndex = 2;
-            label14.Text = "- Onde o aluno está matrículado";
             // 
             // frmControleAlunos
             // 
@@ -422,11 +446,11 @@
             tabAlunos.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
             tabPageCadastro.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgTurmas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dtgTurmas).EndInit();
             ResumeLayout(false);
         }
 
@@ -457,7 +481,7 @@
         private TextBox txtCidade;
         private TextBox txtBairro;
         private MaskedTextBox mtbCpf;
-        private MaskedTextBox mtbCelular;
+        private MaskedTextBox mtbTel;
         private MaskedTextBox mtbCep;
         private ComboBox cboSexo;
         private TextBox txtObs;
@@ -465,5 +489,7 @@
         private DataGridView dtgTurmas;
         private Label label14;
         private Label label12;
+        private TextBox txtNumero;
+        private Label label13;
     }
 }
