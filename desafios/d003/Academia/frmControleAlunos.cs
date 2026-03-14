@@ -13,10 +13,13 @@ namespace Academia
         public frmControleAlunos()
         {
             InitializeComponent();
+
+            ListaTurmas();
         }
 
         private int idAluno = 0;
         private readonly Alunos novoAluno = new();
+        private readonly Turmas novaTurma = new();
 
         private void Limpar(Control parent)
         {
@@ -122,6 +125,18 @@ namespace Academia
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro ao listar aluno", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListaTurmas()
+        {
+            try
+            {
+                dtgTurmasCadastradas.DataSource = novaTurma.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao listar turmas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
