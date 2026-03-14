@@ -63,12 +63,34 @@
             btnSalvar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             tabPageMatricula = new TabPage();
+            btnSalvarMatricula = new Button();
+            btnAdicionarTurma = new Button();
+            btnExcluirMatricula = new Button();
+            pictureBox3 = new PictureBox();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label15 = new Label();
+            groupBox1 = new GroupBox();
+            txtNomeAluno = new TextBox();
+            txtCodAluno = new TextBox();
+            dtgMatricula = new DataGridView();
+            dtgTurmasCadastradas = new DataGridView();
+            cboVencimento = new ComboBox();
+            chkSituacao = new CheckBox();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             toolStrip1.SuspendLayout();
+            tabPageMatricula.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgMatricula).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgTurmasCadastradas).BeginInit();
             SuspendLayout();
             // 
             // tcAluno
@@ -427,6 +449,21 @@
             // 
             // tabPageMatricula
             // 
+            tabPageMatricula.Controls.Add(btnSalvarMatricula);
+            tabPageMatricula.Controls.Add(btnAdicionarTurma);
+            tabPageMatricula.Controls.Add(btnExcluirMatricula);
+            tabPageMatricula.Controls.Add(pictureBox3);
+            tabPageMatricula.Controls.Add(label18);
+            tabPageMatricula.Controls.Add(label17);
+            tabPageMatricula.Controls.Add(label16);
+            tabPageMatricula.Controls.Add(label20);
+            tabPageMatricula.Controls.Add(label19);
+            tabPageMatricula.Controls.Add(label15);
+            tabPageMatricula.Controls.Add(groupBox1);
+            tabPageMatricula.Controls.Add(dtgMatricula);
+            tabPageMatricula.Controls.Add(dtgTurmasCadastradas);
+            tabPageMatricula.Controls.Add(cboVencimento);
+            tabPageMatricula.Controls.Add(chkSituacao);
             tabPageMatricula.Location = new Point(4, 29);
             tabPageMatricula.Name = "tabPageMatricula";
             tabPageMatricula.Padding = new Padding(3);
@@ -434,6 +471,171 @@
             tabPageMatricula.TabIndex = 1;
             tabPageMatricula.Text = "Matrícula";
             tabPageMatricula.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvarMatricula
+            // 
+            btnSalvarMatricula.Image = Properties.Resources.salvar;
+            btnSalvarMatricula.Location = new Point(277, 124);
+            btnSalvarMatricula.Name = "btnSalvarMatricula";
+            btnSalvarMatricula.Size = new Size(94, 55);
+            btnSalvarMatricula.TabIndex = 9;
+            btnSalvarMatricula.UseVisualStyleBackColor = true;
+            // 
+            // btnAdicionarTurma
+            // 
+            btnAdicionarTurma.Image = Properties.Resources.sinal_mais;
+            btnAdicionarTurma.Location = new Point(446, 318);
+            btnAdicionarTurma.Name = "btnAdicionarTurma";
+            btnAdicionarTurma.Size = new Size(69, 63);
+            btnAdicionarTurma.TabIndex = 9;
+            btnAdicionarTurma.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluirMatricula
+            // 
+            btnExcluirMatricula.Image = Properties.Resources.excluir;
+            btnExcluirMatricula.Location = new Point(277, 185);
+            btnExcluirMatricula.Name = "btnExcluirMatricula";
+            btnExcluirMatricula.Size = new Size(94, 55);
+            btnExcluirMatricula.TabIndex = 9;
+            btnExcluirMatricula.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.registrar_matriculas;
+            pictureBox3.Location = new Point(8, 6);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(65, 62);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label18.Location = new Point(498, 100);
+            label18.Name = "label18";
+            label18.Size = new Size(79, 21);
+            label18.TabIndex = 7;
+            label18.Text = "do aluno";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.Location = new Point(94, 290);
+            label17.Name = "label17";
+            label17.Size = new Size(108, 21);
+            label17.TabIndex = 7;
+            label17.Text = "cadastradas";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.Location = new Point(8, 285);
+            label16.Name = "label16";
+            label16.Size = new Size(94, 27);
+            label16.TabIndex = 7;
+            label16.Text = "Turmas";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label20.Location = new Point(36, 155);
+            label20.Name = "label20";
+            label20.Size = new Size(99, 24);
+            label20.TabIndex = 7;
+            label20.Text = "Situação:";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.Location = new Point(8, 124);
+            label19.Name = "label19";
+            label19.Size = new Size(127, 24);
+            label19.TabIndex = 7;
+            label19.Text = "Vencimento:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(377, 94);
+            label15.Name = "label15";
+            label15.Size = new Size(128, 27);
+            label15.TabIndex = 7;
+            label15.Text = "Matrículas";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(txtNomeAluno);
+            groupBox1.Controls.Add(txtCodAluno);
+            groupBox1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(79, 6);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(855, 72);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Dados do aluno";
+            // 
+            // txtNomeAluno
+            // 
+            txtNomeAluno.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomeAluno.Location = new Point(79, 33);
+            txtNomeAluno.Name = "txtNomeAluno";
+            txtNomeAluno.PlaceholderText = "Nome do aluno";
+            txtNomeAluno.Size = new Size(766, 27);
+            txtNomeAluno.TabIndex = 1;
+            // 
+            // txtCodAluno
+            // 
+            txtCodAluno.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCodAluno.Location = new Point(6, 33);
+            txtCodAluno.Name = "txtCodAluno";
+            txtCodAluno.ReadOnly = true;
+            txtCodAluno.Size = new Size(67, 27);
+            txtCodAluno.TabIndex = 1;
+            txtCodAluno.Text = "0";
+            // 
+            // dtgMatricula
+            // 
+            dtgMatricula.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgMatricula.Location = new Point(377, 124);
+            dtgMatricula.Name = "dtgMatricula";
+            dtgMatricula.RowHeadersWidth = 51;
+            dtgMatricula.Size = new Size(557, 188);
+            dtgMatricula.TabIndex = 5;
+            // 
+            // dtgTurmasCadastradas
+            // 
+            dtgTurmasCadastradas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgTurmasCadastradas.Location = new Point(8, 318);
+            dtgTurmasCadastradas.Name = "dtgTurmasCadastradas";
+            dtgTurmasCadastradas.RowHeadersWidth = 51;
+            dtgTurmasCadastradas.Size = new Size(432, 263);
+            dtgTurmasCadastradas.TabIndex = 5;
+            // 
+            // cboVencimento
+            // 
+            cboVencimento.FormattingEnabled = true;
+            cboVencimento.Location = new Point(141, 124);
+            cboVencimento.Name = "cboVencimento";
+            cboVencimento.Size = new Size(120, 28);
+            cboVencimento.TabIndex = 4;
+            // 
+            // chkSituacao
+            // 
+            chkSituacao.AutoSize = true;
+            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkSituacao.Location = new Point(141, 159);
+            chkSituacao.Name = "chkSituacao";
+            chkSituacao.Size = new Size(61, 21);
+            chkSituacao.TabIndex = 3;
+            chkSituacao.Text = "Ativa";
+            chkSituacao.UseVisualStyleBackColor = true;
             // 
             // frmControleAlunos
             // 
@@ -451,6 +653,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            tabPageMatricula.ResumeLayout(false);
+            tabPageMatricula.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgMatricula).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgTurmasCadastradas).EndInit();
             ResumeLayout(false);
         }
 
@@ -491,5 +700,23 @@
         private Label label12;
         private TextBox txtNumero;
         private Label label13;
+        private GroupBox groupBox1;
+        private DataGridView dataGridView1;
+        private ComboBox cboVencimento;
+        private CheckBox chkSituacao;
+        private TextBox txtCodAluno;
+        private TextBox txtNomeAluno;
+        private Label label15;
+        private DataGridView dtgMatricula;
+        private DataGridView dtgTurmasCadastradas;
+        private PictureBox pictureBox3;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label19;
+        private Label label20;
+        private Button btnSalvarMatricula;
+        private Button btnExcluirMatricula;
+        private Button btnAdicionarTurma;
     }
 }
