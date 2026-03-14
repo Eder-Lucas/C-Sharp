@@ -37,6 +37,17 @@
             rbCpf = new RadioButton();
             label3 = new Label();
             dtgAlunos = new DataGridView();
+            ID_ALUNO = new DataGridViewTextBoxColumn();
+            NOME_ALUNO = new DataGridViewTextBoxColumn();
+            ENDERECO_ALUNO = new DataGridViewTextBoxColumn();
+            BAIRRO_ALUNO = new DataGridViewTextBoxColumn();
+            NUMERO_ALUNO = new DataGridViewTextBoxColumn();
+            CIDADE_ALUNO = new DataGridViewTextBoxColumn();
+            CEP_ALUNO = new DataGridViewTextBoxColumn();
+            CPF_ALUNO = new DataGridViewTextBoxColumn();
+            TELEFONE_ALUNO = new DataGridViewTextBoxColumn();
+            SEXO = new DataGridViewTextBoxColumn();
+            OBSERVACAO = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgAlunos).BeginInit();
             SuspendLayout();
@@ -126,12 +137,123 @@
             // 
             // dtgAlunos
             // 
+            dtgAlunos.AllowUserToAddRows = false;
+            dtgAlunos.AllowUserToDeleteRows = false;
             dtgAlunos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgAlunos.Columns.AddRange(new DataGridViewColumn[] { ID_ALUNO, NOME_ALUNO, ENDERECO_ALUNO, BAIRRO_ALUNO, NUMERO_ALUNO, CIDADE_ALUNO, CEP_ALUNO, CPF_ALUNO, TELEFONE_ALUNO, SEXO, OBSERVACAO });
             dtgAlunos.Location = new Point(12, 173);
             dtgAlunos.Name = "dtgAlunos";
+            dtgAlunos.ReadOnly = true;
+            dtgAlunos.RowHeadersVisible = false;
             dtgAlunos.RowHeadersWidth = 51;
             dtgAlunos.Size = new Size(776, 343);
             dtgAlunos.TabIndex = 6;
+            // 
+            // ID_ALUNO
+            // 
+            ID_ALUNO.DataPropertyName = "ID_ALUNO";
+            ID_ALUNO.HeaderText = "ID_ALUNO";
+            ID_ALUNO.MinimumWidth = 6;
+            ID_ALUNO.Name = "ID_ALUNO";
+            ID_ALUNO.ReadOnly = true;
+            ID_ALUNO.Visible = false;
+            ID_ALUNO.Width = 125;
+            // 
+            // NOME_ALUNO
+            // 
+            NOME_ALUNO.DataPropertyName = "NOME_ALUNO";
+            NOME_ALUNO.HeaderText = "NOME";
+            NOME_ALUNO.MinimumWidth = 6;
+            NOME_ALUNO.Name = "NOME_ALUNO";
+            NOME_ALUNO.ReadOnly = true;
+            NOME_ALUNO.Width = 125;
+            // 
+            // ENDERECO_ALUNO
+            // 
+            ENDERECO_ALUNO.DataPropertyName = "NOME_ALUNO";
+            ENDERECO_ALUNO.HeaderText = "ENDEREÇO";
+            ENDERECO_ALUNO.MinimumWidth = 6;
+            ENDERECO_ALUNO.Name = "ENDERECO_ALUNO";
+            ENDERECO_ALUNO.ReadOnly = true;
+            ENDERECO_ALUNO.Width = 125;
+            // 
+            // BAIRRO_ALUNO
+            // 
+            BAIRRO_ALUNO.DataPropertyName = "BAIRRO_ALUNO";
+            BAIRRO_ALUNO.HeaderText = "BAIRRO";
+            BAIRRO_ALUNO.MinimumWidth = 6;
+            BAIRRO_ALUNO.Name = "BAIRRO_ALUNO";
+            BAIRRO_ALUNO.ReadOnly = true;
+            BAIRRO_ALUNO.Visible = false;
+            BAIRRO_ALUNO.Width = 125;
+            // 
+            // NUMERO_ALUNO
+            // 
+            NUMERO_ALUNO.DataPropertyName = "NUMERO_ALUNO";
+            NUMERO_ALUNO.HeaderText = "Nº";
+            NUMERO_ALUNO.MinimumWidth = 6;
+            NUMERO_ALUNO.Name = "NUMERO_ALUNO";
+            NUMERO_ALUNO.ReadOnly = true;
+            NUMERO_ALUNO.Visible = false;
+            NUMERO_ALUNO.Width = 125;
+            // 
+            // CIDADE_ALUNO
+            // 
+            CIDADE_ALUNO.DataPropertyName = "CIDADE_ALUNO";
+            CIDADE_ALUNO.HeaderText = "CIDADE";
+            CIDADE_ALUNO.MinimumWidth = 6;
+            CIDADE_ALUNO.Name = "CIDADE_ALUNO";
+            CIDADE_ALUNO.ReadOnly = true;
+            CIDADE_ALUNO.Visible = false;
+            CIDADE_ALUNO.Width = 125;
+            // 
+            // CEP_ALUNO
+            // 
+            CEP_ALUNO.DataPropertyName = "CEP_ALUNO";
+            CEP_ALUNO.HeaderText = "CEP";
+            CEP_ALUNO.MinimumWidth = 6;
+            CEP_ALUNO.Name = "CEP_ALUNO";
+            CEP_ALUNO.ReadOnly = true;
+            CEP_ALUNO.Visible = false;
+            CEP_ALUNO.Width = 125;
+            // 
+            // CPF_ALUNO
+            // 
+            CPF_ALUNO.DataPropertyName = "CPF_ALUNO";
+            CPF_ALUNO.HeaderText = "CPF";
+            CPF_ALUNO.MinimumWidth = 6;
+            CPF_ALUNO.Name = "CPF_ALUNO";
+            CPF_ALUNO.ReadOnly = true;
+            CPF_ALUNO.Width = 125;
+            // 
+            // TELEFONE_ALUNO
+            // 
+            TELEFONE_ALUNO.DataPropertyName = "TELEFONE_ALUNO";
+            TELEFONE_ALUNO.HeaderText = "TELEFONE";
+            TELEFONE_ALUNO.MinimumWidth = 6;
+            TELEFONE_ALUNO.Name = "TELEFONE_ALUNO";
+            TELEFONE_ALUNO.ReadOnly = true;
+            TELEFONE_ALUNO.Width = 125;
+            // 
+            // SEXO
+            // 
+            SEXO.DataPropertyName = "SEXO";
+            SEXO.HeaderText = "SEXO";
+            SEXO.MinimumWidth = 6;
+            SEXO.Name = "SEXO";
+            SEXO.ReadOnly = true;
+            SEXO.Visible = false;
+            SEXO.Width = 125;
+            // 
+            // OBSERVACAO
+            // 
+            OBSERVACAO.DataPropertyName = "OBSERVACAO";
+            OBSERVACAO.HeaderText = "OBSERVAÇÃO";
+            OBSERVACAO.MinimumWidth = 6;
+            OBSERVACAO.Name = "OBSERVACAO";
+            OBSERVACAO.ReadOnly = true;
+            OBSERVACAO.Visible = false;
+            OBSERVACAO.Width = 125;
             // 
             // frmAlunos
             // 
@@ -167,5 +289,16 @@
         private RadioButton rbCpf;
         private Label label3;
         private DataGridView dtgAlunos;
+        private DataGridViewTextBoxColumn ID_ALUNO;
+        private DataGridViewTextBoxColumn NOME_ALUNO;
+        private DataGridViewTextBoxColumn ENDERECO_ALUNO;
+        private DataGridViewTextBoxColumn BAIRRO_ALUNO;
+        private DataGridViewTextBoxColumn NUMERO_ALUNO;
+        private DataGridViewTextBoxColumn CIDADE_ALUNO;
+        private DataGridViewTextBoxColumn CEP_ALUNO;
+        private DataGridViewTextBoxColumn CPF_ALUNO;
+        private DataGridViewTextBoxColumn TELEFONE_ALUNO;
+        private DataGridViewTextBoxColumn SEXO;
+        private DataGridViewTextBoxColumn OBSERVACAO;
     }
 }
