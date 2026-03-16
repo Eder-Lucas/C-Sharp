@@ -39,6 +39,30 @@ namespace Academia
             }
         }
 
+        public void ListaAlunos()
+        {
+            try
+            {
+                dtgAlunos.DataSource = novoAluno.Listar();
+                Estilo();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void Estilo()
+        {
+            var linhas = dtgAlunos.Rows.Count;
+
+            for (int i = 0; i < linhas; i++)
+            {
+                dtgAlunos.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
+            }
+        }
+
         private void frmAlunos_Load(object sender, EventArgs e)
         {
             dtgAlunos.AutoGenerateColumns = false;
@@ -46,7 +70,7 @@ namespace Academia
             dtgAlunos.AllowUserToResizeColumns = false;
             dtgAlunos.AllowUserToResizeRows = false;
 
-            dtgAlunos.DataSource = novoAluno.Listar();
+            ListaAlunos();
         }
     }
 }
