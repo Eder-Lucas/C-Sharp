@@ -75,5 +75,21 @@ namespace Academia
                 }
             }
         }
+
+        // Aplica o efeito zebrado aos dataGridView fornecidos
+        public static void EstiloZebrado(params DataGridView[] dtgs)
+        {
+            foreach (var dtg in dtgs)
+            {
+                if (dtg == null) continue;
+
+                int linhas = dtg.Rows.Count;               
+                
+                for (int i = 0; i < linhas; i++)
+                {
+                    dtg.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
+                }
+            }            
+        }
     }
 }
