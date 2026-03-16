@@ -79,6 +79,7 @@
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(402, 27);
             txtPesquisa.TabIndex = 1;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // btnAdicionar
             // 
@@ -271,6 +272,7 @@
             Controls.Add(label1);
             Name = "frmAlunos";
             Text = "SCA - Alunos Cadastrados";
+            Load += frmAlunos_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgAlunos).EndInit();
             ResumeLayout(false);
