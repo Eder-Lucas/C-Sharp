@@ -17,7 +17,7 @@ namespace Academia
 
         private readonly Alunos novoAluno = new();
 
-        private void btnAdicionar_Click(object sender, EventArgs e) => new frmControleAlunos().ShowDialog();
+        private void btnAdicionar_Click(object sender, EventArgs e) => new frmControleAlunos(this).ShowDialog();
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
@@ -72,7 +72,7 @@ namespace Academia
         {
             DataGridView aluno = dtgAlunos.Rows[dtgAlunos.CurrentRow.Index].DataGridView;
 
-            frmControleAlunos controleAlunos = new();
+            frmControleAlunos controleAlunos = new(this);
 
             controleAlunos.ExibirAluno(aluno);
             controleAlunos.ShowDialog();

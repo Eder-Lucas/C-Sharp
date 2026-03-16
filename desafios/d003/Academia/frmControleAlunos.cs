@@ -10,11 +10,14 @@ namespace Academia
 {
     public partial class frmControleAlunos : Form
     {
-        public frmControleAlunos()
+        readonly frmAlunos formulario;
+
+        public frmControleAlunos(frmAlunos formulario)
         {
             InitializeComponent();
 
             ListaTurmas();
+            this.formulario = formulario;
         }
 
         private int idAluno = 0;
@@ -49,7 +52,7 @@ namespace Academia
                 ValidaCampos(tabPageCadastro);
 
                 novoAluno.Salvar(idAluno, txtNome.Text, txtEndereco.Text, txtBairro.Text, txtNumero.Text, txtCidade.Text, mtbCep.Text, mtbCpf.Text, mtbTel.Text, sexo, txtObs.Text);
-                
+
                 if (novo)
                 {
                     MessageBox.Show(
@@ -92,7 +95,7 @@ namespace Academia
                 if (c is TextBox txt)
                 {
                     if (string.IsNullOrWhiteSpace(txt.Text) && txt.Name != "txtObs")
-                        throw new Exception("Preencha todos os campos corretamente!");   
+                        throw new Exception("Preencha todos os campos corretamente!");
                 }
 
                 if (c is MaskedTextBox mtb)
@@ -105,8 +108,8 @@ namespace Academia
                 {
                     if (cbo.SelectedIndex == -1)
                         throw new Exception("Preencha todos os campos corretamente!");
-                }      
-                
+                }
+
                 if (c.HasChildren)
                     ValidaCampos(c);
             }
@@ -168,13 +171,17 @@ namespace Academia
                 txtNomeAluno.Text = drv["NOME_ALUNO"].ToString();
 
                 idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
-
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+
+        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formulario.ListaAlunos();
         }
     }
 }
