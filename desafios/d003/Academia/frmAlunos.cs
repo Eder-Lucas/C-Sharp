@@ -15,6 +15,38 @@ namespace Academia
             InitializeComponent();
         }
 
+        private readonly Alunos novoAluno = new();
+
         private void btnAdicionar_Click(object sender, EventArgs e) => new frmControleAlunos().ShowDialog();
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rbNome.Checked)
+                {
+                    dtgAlunos.DataSource = novoAluno.PesquisaNome(txtPesquisa.Text);
+                }
+                else
+                {
+                    dtgAlunos.DataSource = novoAluno.PesquisaCpf(txtPesquisa.Text);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void frmAlunos_Load(object sender, EventArgs e)
+        {
+            dtgAlunos.AutoGenerateColumns = false;
+            dtgAlunos.EnableHeadersVisualStyles = false;
+            dtgAlunos.AllowUserToResizeColumns = false;
+            dtgAlunos.AllowUserToResizeRows = false;
+
+            dtgAlunos.DataSource = novoAluno.Listar();
+        }
     }
 }
