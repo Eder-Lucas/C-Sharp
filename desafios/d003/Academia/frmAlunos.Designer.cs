@@ -149,6 +149,7 @@
             dtgAlunos.RowHeadersWidth = 51;
             dtgAlunos.Size = new Size(776, 343);
             dtgAlunos.TabIndex = 6;
+            dtgAlunos.DoubleClick += dtgAlunos_DoubleClick;
             // 
             // ID_ALUNO
             // 
@@ -171,7 +172,7 @@
             // 
             // ENDERECO_ALUNO
             // 
-            ENDERECO_ALUNO.DataPropertyName = "NOME_ALUNO";
+            ENDERECO_ALUNO.DataPropertyName = "ENDERECO_ALUNO";
             ENDERECO_ALUNO.HeaderText = "ENDEREÇO";
             ENDERECO_ALUNO.MinimumWidth = 6;
             ENDERECO_ALUNO.Name = "ENDERECO_ALUNO";
@@ -273,6 +274,7 @@
             Name = "frmAlunos";
             Text = "SCA - Alunos Cadastrados";
             Load += frmAlunos_Load;
+            Enter += frmAlunos_Enter;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgAlunos).EndInit();
             ResumeLayout(false);
