@@ -78,14 +78,14 @@
             txtCodAluno = new TextBox();
             dtgMatricula = new DataGridView();
             dtgTurmasCadastradas = new DataGridView();
-            cboVencimento = new ComboBox();
-            chkSituacao = new CheckBox();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE = new DataGridViewTextBoxColumn();
             NUMERO_TURMA = new DataGridViewTextBoxColumn();
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
+            cboVencimento = new ComboBox();
+            chkSituacao = new CheckBox();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -629,25 +629,6 @@
             dtgTurmasCadastradas.Size = new Size(432, 263);
             dtgTurmasCadastradas.TabIndex = 5;
             // 
-            // cboVencimento
-            // 
-            cboVencimento.FormattingEnabled = true;
-            cboVencimento.Location = new Point(141, 124);
-            cboVencimento.Name = "cboVencimento";
-            cboVencimento.Size = new Size(120, 28);
-            cboVencimento.TabIndex = 4;
-            // 
-            // chkSituacao
-            // 
-            chkSituacao.AutoSize = true;
-            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSituacao.Location = new Point(141, 159);
-            chkSituacao.Name = "chkSituacao";
-            chkSituacao.Size = new Size(61, 21);
-            chkSituacao.TabIndex = 3;
-            chkSituacao.Text = "Ativa";
-            chkSituacao.UseVisualStyleBackColor = true;
-            // 
             // ID_MODALIDADE
             // 
             ID_MODALIDADE.DataPropertyName = "ID_MODALIDADE";
@@ -704,6 +685,25 @@
             btnHora.ReadOnly = true;
             btnHora.Width = 36;
             // 
+            // cboVencimento
+            // 
+            cboVencimento.FormattingEnabled = true;
+            cboVencimento.Location = new Point(141, 124);
+            cboVencimento.Name = "cboVencimento";
+            cboVencimento.Size = new Size(120, 28);
+            cboVencimento.TabIndex = 4;
+            // 
+            // chkSituacao
+            // 
+            chkSituacao.AutoSize = true;
+            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkSituacao.Location = new Point(141, 159);
+            chkSituacao.Name = "chkSituacao";
+            chkSituacao.Size = new Size(61, 21);
+            chkSituacao.TabIndex = 3;
+            chkSituacao.Text = "Ativa";
+            chkSituacao.UseVisualStyleBackColor = true;
+            // 
             // frmControleAlunos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -712,6 +712,7 @@
             Controls.Add(tcAluno);
             Name = "frmControleAlunos";
             Text = "SCA - Controle de Alunos";
+            FormClosed += frmControleAlunos_FormClosed;
             tcAluno.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
             tabPageCadastro.PerformLayout();
