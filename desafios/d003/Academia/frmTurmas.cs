@@ -18,9 +18,9 @@ namespace Academia
         private void frmTurmas_Load(object sender, EventArgs e)
         {
             dtgTurmas.AutoGenerateColumns = false;
-            dtgHorarios.AutoGenerateColumns = false;
-
             dtgTurmas.EnableHeadersVisualStyles = false;
+
+            dtgHorarios.AutoGenerateColumns = false;
             dtgHorarios.EnableHeadersVisualStyles = false;
 
             CarregarModalidades();
