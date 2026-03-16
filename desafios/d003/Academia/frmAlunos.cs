@@ -44,22 +44,11 @@ namespace Academia
             try
             {
                 dtgAlunos.DataSource = novoAluno.Listar();
-                Estilo();
             }
             catch (Exception)
             {
 
                 throw;
-            }
-        }
-
-        private void Estilo()
-        {
-            var linhas = dtgAlunos.Rows.Count;
-
-            for (int i = 0; i < linhas; i++)
-            {
-                dtgAlunos.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
             }
         }
 
@@ -71,6 +60,22 @@ namespace Academia
             dtgAlunos.AllowUserToResizeRows = false;
 
             ListaAlunos();
+            DataGridViewUtils.EstiloZebrado(dtgAlunos);
+        }
+
+        private void frmAlunos_Enter(object sender, EventArgs e)
+        {
+            ListaAlunos();
+        }
+
+        private void dtgAlunos_DoubleClick(object sender, EventArgs e)
+        {
+            DataGridView aluno = dtgAlunos.Rows[dtgAlunos.CurrentRow.Index].DataGridView;
+
+            frmControleAlunos controleAlunos = new();
+
+            controleAlunos.ExibirAluno(aluno);
+            controleAlunos.ShowDialog();
         }
     }
 }
