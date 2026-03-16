@@ -139,5 +139,42 @@ namespace Academia
                 MessageBox.Show(ex.Message, "Erro ao listar turmas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void ExibirAluno(DataGridView aluno)
+        {
+            try
+            {
+                if (aluno.CurrentRow == null || aluno.CurrentRow.Index < 0) return;
+
+                var linha = aluno.Rows[aluno.CurrentRow.Index];
+
+                if (linha?.DataBoundItem is not DataRowView drv) return;
+
+                this.Text = $"SCA - Controle de Alunos :: {drv["NOME_ALUNO"]} ::";
+
+                txtCod.Text = drv["ID_ALUNO"].ToString();
+                txtNome.Text = drv["NOME_ALUNO"].ToString();
+                txtEndereco.Text = drv["ENDERECO_ALUNO"].ToString();
+                txtBairro.Text = drv["BAIRRO_ALUNO"].ToString();
+                txtNumero.Text = drv["NUMERO_ALUNO"].ToString();
+                txtCidade.Text = drv["CIDADE_ALUNO"].ToString();
+                mtbCep.Text = drv["CEP_ALUNO"].ToString();
+                mtbCpf.Text = drv["CPF_ALUNO"].ToString();
+                mtbTel.Text = drv["TELEFONE_ALUNO"].ToString();
+                cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
+                txtObs.Text = drv["OBSERVACAO"].ToString();
+
+                txtCodAluno.Text = drv["ID_ALUNO"].ToString();
+                txtNomeAluno.Text = drv["NOME_ALUNO"].ToString();
+
+                idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
