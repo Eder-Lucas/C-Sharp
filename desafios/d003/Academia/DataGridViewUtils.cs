@@ -80,16 +80,7 @@ namespace Academia
         public static void EstiloZebrado(params DataGridView[] dtgs)
         {
             foreach (var dtg in dtgs)
-            {
-                if (dtg == null) continue;
-
-                int linhas = dtg.Rows.Count;               
-                
-                for (int i = 0; i < linhas; i++)
-                {
-                    dtg.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
-                }
-            }            
+                dtg.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;                  
         }
     }
 }
