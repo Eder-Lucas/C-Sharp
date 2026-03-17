@@ -168,6 +168,7 @@
             cboSexo.Name = "cboSexo";
             cboSexo.Size = new Size(106, 27);
             cboSexo.TabIndex = 5;
+            cboSexo.Tag = "SEXO";
             // 
             // mtbCep
             // 
@@ -177,6 +178,7 @@
             mtbCep.Name = "mtbCep";
             mtbCep.Size = new Size(91, 27);
             mtbCep.TabIndex = 4;
+            mtbCep.Tag = "CEP_ALUNO";
             // 
             // mtbCpf
             // 
@@ -186,6 +188,7 @@
             mtbCpf.Name = "mtbCpf";
             mtbCpf.Size = new Size(126, 27);
             mtbCpf.TabIndex = 4;
+            mtbCpf.Tag = "CPF_ALUNO";
             // 
             // mtbTel
             // 
@@ -195,6 +198,7 @@
             mtbTel.Name = "mtbTel";
             mtbTel.Size = new Size(135, 27);
             mtbTel.TabIndex = 4;
+            mtbTel.Tag = "TELEFONE_ALUNO";
             // 
             // txtObs
             // 
@@ -204,6 +208,7 @@
             txtObs.Name = "txtObs";
             txtObs.Size = new Size(312, 126);
             txtObs.TabIndex = 3;
+            txtObs.Tag = "OBSERVACAO";
             // 
             // txtNumero
             // 
@@ -212,6 +217,7 @@
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(77, 27);
             txtNumero.TabIndex = 3;
+            txtNumero.Tag = "NUMERO_ALUNO";
             // 
             // txtCidade
             // 
@@ -220,6 +226,7 @@
             txtCidade.Name = "txtCidade";
             txtCidade.Size = new Size(182, 27);
             txtCidade.TabIndex = 3;
+            txtCidade.Tag = "CIDADE_ALUNO";
             // 
             // txtBairro
             // 
@@ -228,6 +235,7 @@
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(181, 27);
             txtBairro.TabIndex = 3;
+            txtBairro.Tag = "BAIRRO_ALUNO";
             // 
             // txtEndereco
             // 
@@ -236,6 +244,7 @@
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(243, 27);
             txtEndereco.TabIndex = 3;
+            txtEndereco.Tag = "ENDERECO_ALUNO";
             // 
             // txtNome
             // 
@@ -244,6 +253,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(506, 27);
             txtNome.TabIndex = 3;
+            txtNome.Tag = "NOME_ALUNO";
             // 
             // txtCod
             // 
@@ -253,6 +263,7 @@
             txtCod.ReadOnly = true;
             txtCod.Size = new Size(93, 27);
             txtCod.TabIndex = 3;
+            txtCod.Tag = "ID_ALUNO";
             txtCod.Text = "0";
             // 
             // label11
@@ -595,6 +606,7 @@
             txtNomeAluno.PlaceholderText = "Nome do aluno";
             txtNomeAluno.Size = new Size(766, 27);
             txtNomeAluno.TabIndex = 1;
+            txtNomeAluno.Tag = "NOME_ALUNO";
             // 
             // txtCodAluno
             // 
@@ -604,6 +616,7 @@
             txtCodAluno.ReadOnly = true;
             txtCodAluno.Size = new Size(67, 27);
             txtCodAluno.TabIndex = 1;
+            txtCodAluno.Tag = "ID_ALUNO";
             txtCodAluno.Text = "0";
             // 
             // dtgMatricula
