@@ -70,18 +70,18 @@ namespace Academia
                 conexao.Open();
 
                 string sql = """
-                UPDATE Aluno
-                SET NOME_ALUNO = @nome,
-                    ENDERECO_ALUNO = @endereco,
-                    BAIRRO_ALUNO = @bairro,
-                    NUMERO_ALUNO = @num,
-                    CIDADE_ALUNO = @cidade,
-                    CEP_ALUNO = @cep,
-                    CPF_ALUNO = @cpf,
-                    TELEFONE_ALUNO = @tel,
-                    SEXO = @sexo,
-                    OBSERVACAO = @obs
-                WHERE ID_ALUNO = @idAluno
+                    UPDATE Aluno
+                    SET NOME_ALUNO = @nome,
+                        ENDERECO_ALUNO = @endereco,
+                        BAIRRO_ALUNO = @bairro,
+                        NUMERO_ALUNO = @num,
+                        CIDADE_ALUNO = @cidade,
+                        CEP_ALUNO = @cep,
+                        CPF_ALUNO = @cpf,
+                        TELEFONE_ALUNO = @tel,
+                        SEXO = @sexo,
+                        OBSERVACAO = @obs
+                    WHERE ID_ALUNO = @idAluno
                 """;
 
                 using SqlCommand cmd = new SqlCommand(sql, conexao);
