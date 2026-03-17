@@ -15,6 +15,8 @@ namespace Academia
             InitializeComponent();
         }
 
+        private readonly Turmas novaTurma = new();
+
         private void frmTurmas_Load(object sender, EventArgs e)
         {
             dtgTurmas.AutoGenerateColumns = false;
@@ -33,114 +35,6 @@ namespace Academia
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);
-        }
-
-        private readonly Turmas novaTurma = new();
-
-        public void CarregarModalidades()
-        {
-            try
-            {
-                Modalidades novaModalidade = new();
-
-                cboModalidade.DataSource = novaModalidade.Listar();
-                cboModalidade.DisplayMember = "NOME_MODALIDADE";
-                cboModalidade.ValueMember = "ID_MODALIDADE";
-
-                cboModalidade.SelectedIndex = -1;
-
-                int total = cboModalidade.Items.Count;
-
-                if (total >= 4)
-                {
-                    cboModalidade.DropDownStyle = ComboBoxStyle.DropDown;
-
-                    cboModalidade.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cboModalidade.AutoCompleteSource = AutoCompleteSource.ListItems;
-                }
-                else
-                {
-                    cboModalidade.DropDownStyle = ComboBoxStyle.DropDownList;
-
-                    cboModalidade.AutoCompleteMode = AutoCompleteMode.None;
-                    cboModalidade.AutoCompleteSource = AutoCompleteSource.None;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar as modalidades: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ListarTurmas()
-        {
-            try
-            {
-                dtgTurmas.DataSource = novaTurma.Listar();
-    
-                // Não permite redimensionar as colunas individualmente
-                foreach (DataGridViewColumn col in dtgTurmas.Columns)
-                {
-                    col.Resizable = DataGridViewTriState.False;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao listar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ListarHorarios(int idTurma)
-        {
-            try
-            {
-                Horarios novoHorario = new();
-                DataTable tabela = novoHorario.Listar(idTurma);
-
-                tabela.Columns.Add("SEMANA_NOME", typeof(string));
-
-                foreach (DataRow linha in tabela.Rows)
-                {
-                    int dia = Convert.ToInt32(linha["DIA_SEMANA"]);
-                    linha["SEMANA_NOME"] = ((NomeSemana)dia).ToString();
-                }
-
-                dtgHorarios.DataSource = tabela;
-
-                dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
-                dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
-
-                DataGridViewUtils.EstiloZebrado(dtgHorarios);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        private enum NomeSemana
-        {
-            Domingo = 1,
-            Segunda = 2,
-            Terça = 3,
-            Quarta = 4,
-            Quinta = 5,
-            Sexta = 6,
-            Sábado = 7
-        }
-
-        private void Limpar(Control parent)
-        {
-            foreach (Control c in parent.Controls)
-            {
-                if (c is TextBox || c is ComboBox)
-                    c.Text = string.Empty;
-
-                if (c.HasChildren)
-                    Limpar(c);
-
-                txtCod.Text = "0";
-            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -248,9 +142,9 @@ namespace Academia
         private void dtgTurmas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {               
+            {
                 if (e.RowIndex < 0) return;
-                
+
                 var coluna = dtgTurmas.Columns[e.ColumnIndex].Name;
                 var linha = dtgTurmas.Rows[e.RowIndex];
 
@@ -261,12 +155,118 @@ namespace Academia
                     int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
                     ListarHorarios(idTurma);
 
-                    AtualizaMensagem(dtgHorarios,"Essa turma ainda não possui horários cadastrados.");          
-                }                 
+                    AtualizaMensagem(dtgHorarios, "Essa turma ainda não possui horários cadastrados.");
+                }
             }
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public void CarregarModalidades()
+        {
+            try
+            {
+                Modalidades novaModalidade = new();
+
+                DataTable tabela = novaModalidade.Listar();
+
+                cboModalidade.DataSource = tabela;
+                cboModalidade.DisplayMember = "NOME_MODALIDADE";
+                cboModalidade.ValueMember = "ID_MODALIDADE";
+
+                cboModalidade.SelectedIndex = -1;
+
+                int total = tabela.Rows.Count;
+
+                if (total >= 4)
+                {
+                    cboModalidade.DropDownStyle = ComboBoxStyle.DropDown;
+
+                    cboModalidade.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    cboModalidade.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+                else
+                {
+                    cboModalidade.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    cboModalidade.AutoCompleteMode = AutoCompleteMode.None;
+                    cboModalidade.AutoCompleteSource = AutoCompleteSource.None;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar as modalidades: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListarTurmas()
+        {
+            try
+            {
+                dtgTurmas.DataSource = novaTurma.Listar();
+    
+                // Não permite redimensionar as colunas individualmente
+                foreach (DataGridViewColumn col in dtgTurmas.Columns)
+                    col.Resizable = DataGridViewTriState.False;          
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao listar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListarHorarios(int idTurma)
+        {
+            try
+            {
+                Horarios novoHorario = new();
+                DataTable tabela = novoHorario.Listar(idTurma);
+
+                tabela.Columns.Add("SEMANA_NOME", typeof(string));
+
+                foreach (DataRow linha in tabela.Rows)
+                {
+                    int dia = Convert.ToInt32(linha["DIA_SEMANA"]);
+                    linha["SEMANA_NOME"] = ((NomeSemana)dia).ToString();
+                }
+
+                dtgHorarios.DataSource = tabela;
+
+                dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
+                dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
+
+                DataGridViewUtils.EstiloZebrado(dtgHorarios);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private enum NomeSemana
+        {
+            Domingo = 1,
+            Segunda = 2,
+            Terça = 3,
+            Quarta = 4,
+            Quinta = 5,
+            Sexta = 6,
+            Sábado = 7
+        }
+
+        private void Limpar(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox || c is ComboBox)
+                    c.Text = string.Empty;
+
+                if (c.HasChildren)
+                    Limpar(c);
+
+                txtCod.Text = "0";
             }
         }
 
