@@ -74,32 +74,10 @@ namespace Academia
             txtNome.Focus();
         }
 
-        private void ListarProfessores()
-        {
-            try
-            {
-                dtgProfessores.DataSource = novoProfessor.Listar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao listar os dados dos professores: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void LimparCampos()
-        {
-            foreach (var txt in this.Controls.OfType<TextBox>())
-                txt.Text = (txt.Tag?.ToString() == "ID_PROFESSOR") ? "0" : string.Empty;
-
-            foreach (var mtb in this.Controls.OfType<MaskedTextBox>())
-                mtb.Text = string.Empty;
-        }
-
         // Ao clicar em uma célula do DataGridView
         private void dtgProfessores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Se a coluna clicada for a de edição (btnEditar)
+            // Se a coluna clicada for a de edição
             if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnEditar")
             {
                 var row = dtgProfessores.Rows[e.RowIndex]; // Pega a linha clicada
@@ -130,7 +108,7 @@ namespace Academia
                     }
                 }
             }
-            // Se a coluna clicada for a de exclusão (btnExcluir)
+            // Se a coluna clicada for a de exclusão
             else if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnExcluir" &&
                      MessageBox.Show("Deseja realmente excluir este professor?", "Exclusão de professor",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -208,6 +186,28 @@ namespace Academia
 
                 txt.Text = string.Join(' ', palavras);
             }
+        }
+
+        private void ListarProfessores()
+        {
+            try
+            {
+                dtgProfessores.DataSource = novoProfessor.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao listar os dados dos professores: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimparCampos()
+        {
+            foreach (var txt in this.Controls.OfType<TextBox>())
+                txt.Text = (txt.Tag?.ToString() == "ID_PROFESSOR") ? "0" : string.Empty;
+
+            foreach (var mtb in this.Controls.OfType<MaskedTextBox>())
+                mtb.Text = string.Empty;
         }
     }
 }
