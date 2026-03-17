@@ -274,7 +274,6 @@
             Name = "frmAlunos";
             Text = "SCA - Alunos Cadastrados";
             Load += frmAlunos_Load;
-            Enter += frmAlunos_Enter;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgAlunos).EndInit();
             ResumeLayout(false);
