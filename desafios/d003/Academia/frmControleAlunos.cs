@@ -24,24 +24,6 @@ namespace Academia
         private readonly Alunos novoAluno = new();
         private readonly Turmas novaTurma = new();
 
-        private void Limpar(Control parent)
-        {
-            foreach (Control c in parent.Controls)
-            {
-                if (c is TextBox txt)
-                    txt.Clear();
-                else if (c is MaskedTextBox mtb)
-                    mtb.Clear();
-
-                if (c.HasChildren)
-                    Limpar(c);
-            }
-
-            idAluno = 0;
-            txtCod.Text = "0";
-            cboSexo.SelectedIndex = -1;
-        }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -86,6 +68,11 @@ namespace Academia
             {
                 MessageBox.Show(ex.Message, "Erro ao salvar informações", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formulario.ListaAlunos();
         }
 
         private void ValidaCampos(Control parent)
@@ -143,6 +130,21 @@ namespace Academia
             }
         }
 
+        private void PreencherCampos(Control parent, DataRowView drv)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c.HasChildren)
+                    PreencherCampos(c, drv);
+
+                if (c.Tag is not string tag) continue;
+                if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
+
+                if (c is TextBox || c is MaskedTextBox)
+                    c.Text = drv[tag].ToString();               
+            }
+        }
+
         public void ExibirAluno(DataGridView aluno)
         {
             try
@@ -155,33 +157,33 @@ namespace Academia
 
                 this.Text = $"SCA - Controle de Alunos :: {drv["NOME_ALUNO"]} ::";
 
-                txtCod.Text = drv["ID_ALUNO"].ToString();
-                txtNome.Text = drv["NOME_ALUNO"].ToString();
-                txtEndereco.Text = drv["ENDERECO_ALUNO"].ToString();
-                txtBairro.Text = drv["BAIRRO_ALUNO"].ToString();
-                txtNumero.Text = drv["NUMERO_ALUNO"].ToString();
-                txtCidade.Text = drv["CIDADE_ALUNO"].ToString();
-                mtbCep.Text = drv["CEP_ALUNO"].ToString();
-                mtbCpf.Text = drv["CPF_ALUNO"].ToString();
-                mtbTel.Text = drv["TELEFONE_ALUNO"].ToString();
+                PreencherCampos(this, drv);
+
                 cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
-                txtObs.Text = drv["OBSERVACAO"].ToString();
-
-                txtCodAluno.Text = drv["ID_ALUNO"].ToString();
-                txtNomeAluno.Text = drv["NOME_ALUNO"].ToString();
-
                 idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
-        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e)
+        private void Limpar(Control parent)
         {
-            formulario.ListaAlunos();
+            foreach (Control c in parent.Controls)
+            {
+                if (c is TextBox txt)
+                    txt.Clear();
+                else if (c is MaskedTextBox mtb)
+                    mtb.Clear();
+
+                if (c.HasChildren)
+                    Limpar(c);
+            }
+
+            idAluno = 0;
+            txtCod.Text = "0";
+            cboSexo.SelectedIndex = -1;
         }
     }
 }
