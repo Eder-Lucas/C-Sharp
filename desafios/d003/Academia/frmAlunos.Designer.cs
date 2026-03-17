@@ -97,6 +97,7 @@
             // rbNome
             // 
             rbNome.AutoSize = true;
+            rbNome.Checked = true;
             rbNome.Location = new Point(239, 99);
             rbNome.Name = "rbNome";
             rbNome.Size = new Size(71, 24);
@@ -122,7 +123,6 @@
             rbCpf.Name = "rbCpf";
             rbCpf.Size = new Size(54, 24);
             rbCpf.TabIndex = 3;
-            rbCpf.TabStop = true;
             rbCpf.Text = "CPF";
             rbCpf.UseVisualStyleBackColor = true;
             // 
