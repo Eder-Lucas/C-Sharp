@@ -21,8 +21,10 @@ namespace Academia
         }
 
         private int idAluno = 0;
+        private int idMatricula = 0;
         private readonly Alunos novoAluno = new();
         private readonly Turmas novaTurma = new();
+        private readonly Matriculas novaMatricula = new();
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -73,6 +75,50 @@ namespace Academia
         private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e)
         {
             formulario.ListaAlunos();
+        }
+
+        private void btnIncluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtgTurmasCadastradas.CurrentRow == null || dtgTurmasCadastradas.CurrentRow.Index < 0) return;
+
+                var linha = dtgTurmasCadastradas.Rows[dtgTurmasCadastradas.CurrentRow.Index];
+                if (linha?.DataBoundItem is not DataRowView drv) return;
+
+                int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
+                DateTime venc = dtpVencimento.Value;
+
+                bool novo = idMatricula == 0;
+
+                DataTable dadosTabela = novaMatricula.RetornarTurmasMatriculadas(idAluno);
+
+                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, true);
+
+                if (novo)
+                {
+                    MessageBox.Show(
+                    "Aluno matrículado com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                    "Matrícula alterada com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+
+                RetornarMatricula();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao salvar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ValidaCampos(Control parent)
@@ -141,7 +187,7 @@ namespace Academia
                 if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
 
                 if (c is TextBox || c is MaskedTextBox)
-                    c.Text = drv[tag].ToString();               
+                    c.Text = drv[tag].ToString();
             }
         }
 
@@ -184,6 +230,23 @@ namespace Academia
             idAluno = 0;
             txtCod.Text = "0";
             cboSexo.SelectedIndex = -1;
+        }
+
+        public void RetornarMatricula()
+        {
+            try
+            {
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
+
+                DataTable dadosTabela = novaMatricula.RetornarMatriculas(idAluno);
+                dtgMatricula.DataSource = dadosTabela;
+
+                dtgMatricula.DataSource = novaMatricula.RetornarTurmasMatriculadas(idAluno);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao listar matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
