@@ -29,6 +29,7 @@ namespace Academia
             DataGridViewUtils.HandButton(dtgTurmas, "btnEditar", "btnExcluir", "btnHora");
             DataGridViewUtils.AjustaBarraVertical("ID_TURMA", dtgTurmas);
             DataGridViewUtils.RemoveOrdenacao(dtgTurmas, dtgHorarios);
+            DataGridViewUtils.EstiloZebrado(dtgTurmas, dtgHorarios);
 
             CursorUtils.HandButton(this);
             CursorUtils.HandToolStripButton(toolStrip1);
@@ -109,7 +110,7 @@ namespace Academia
                 dtgHorarios.Columns["INICIO"]?.DefaultCellStyle.Format = @"hh\:mm";
                 dtgHorarios.Columns["FIM"]?.DefaultCellStyle.Format = @"hh\:mm";
 
-                Estilo();
+                DataGridViewUtils.EstiloZebrado(dtgHorarios);
             }
             catch (Exception)
             {
@@ -259,9 +260,9 @@ namespace Academia
                 {
                     int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
                     ListarHorarios(idTurma);
-                }
 
-                AtualizarMensagem(dtgHorarios, "", "Essa turma ainda não possui horários cadastrados.");
+                    AtualizaMensagem(dtgHorarios,"Essa turma ainda não possui horários cadastrados.");          
+                }                 
             }
             catch (Exception)
             {
@@ -269,7 +270,7 @@ namespace Academia
             }
         }
 
-        private void AtualizarMensagem(DataGridView e, string msgPositiva = "", string msgNegativa = "")
+        private void AtualizaMensagem(DataGridView e, string msg = "")
         {
             bool semDados = e.Rows.Count == 0;
 
@@ -277,19 +278,7 @@ namespace Academia
             lblTitulo.Visible = semDados;
 
             if (semDados)
-                lblMensagem.Text = msgNegativa;
-            else
-                lblMensagem.Text = msgPositiva;
-        }
-
-        private void Estilo()
-        {
-            int linhas = dtgHorarios.Rows.Count;
-
-            for (int i = 0; i < linhas; i++)
-            {
-                dtgHorarios.Rows[i].DefaultCellStyle.BackColor = i % 2 == 0 ? Color.White : Color.LightGray;
-            }
+                lblMensagem.Text = msg;
         }
     }
 }
