@@ -17,45 +17,11 @@ namespace Academia
 
         private readonly Alunos novoAluno = new();
 
-        private void btnAdicionar_Click(object sender, EventArgs e) => new frmControleAlunos(this).ShowDialog();
-
-        private void txtPesquisa_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rbNome.Checked)
-                {
-                    dtgAlunos.DataSource = novoAluno.PesquisaNome(txtPesquisa.Text);
-                }
-                else
-                {
-                    dtgAlunos.DataSource = novoAluno.PesquisaCpf(txtPesquisa.Text);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public void ListaAlunos()
-        {
-            try
-            {
-                dtgAlunos.DataSource = novoAluno.Listar();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         private void frmAlunos_Load(object sender, EventArgs e)
         {
             dtgAlunos.AutoGenerateColumns = false;
             dtgAlunos.EnableHeadersVisualStyles = false;
+
             dtgAlunos.AllowUserToResizeColumns = false;
             dtgAlunos.AllowUserToResizeRows = false;
 
@@ -63,19 +29,43 @@ namespace Academia
             DataGridViewUtils.EstiloZebrado(dtgAlunos);
         }
 
-        private void frmAlunos_Enter(object sender, EventArgs e)
+        private void btnAdicionar_Click(object sender, EventArgs e) => new frmControleAlunos(this).ShowDialog();
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
         {
-            ListaAlunos();
+            try
+            {
+                if (rbNome.Checked)
+                    dtgAlunos.DataSource = novoAluno.PesquisaNome(txtPesquisa.Text);                
+                else              
+                    dtgAlunos.DataSource = novoAluno.PesquisaCpf(txtPesquisa.Text);               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void dtgAlunos_DoubleClick(object sender, EventArgs e)
         {
-            DataGridView aluno = dtgAlunos.Rows[dtgAlunos.CurrentRow.Index].DataGridView;
-
             frmControleAlunos controleAlunos = new(this);
 
-            controleAlunos.ExibirAluno(aluno);
+            controleAlunos.ExibirAluno(dtgAlunos);
             controleAlunos.ShowDialog();
+        }
+
+        public void ListaAlunos()
+        {
+            try
+            {
+                dtgAlunos.DataSource = novoAluno.Listar();
+                DataGridViewUtils.EstiloZebrado(dtgAlunos);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
