@@ -78,14 +78,6 @@
             txtNomeAluno = new TextBox();
             txtCodAluno = new TextBox();
             dtgMatricula = new DataGridView();
-            dtgTurmasCadastradas = new DataGridView();
-            ID_MODALIDADE = new DataGridViewTextBoxColumn();
-            ID_TURMA = new DataGridViewTextBoxColumn();
-            NOME_MODALIDADE = new DataGridViewTextBoxColumn();
-            NUMERO_TURMA = new DataGridViewTextBoxColumn();
-            MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
-            btnHora = new DataGridViewImageColumn();
-            chkSituacao = new CheckBox();
             ID_MATRICULA = new DataGridViewTextBoxColumn();
             ID_TURMA1 = new DataGridViewTextBoxColumn();
             ID_ALUNO = new DataGridViewTextBoxColumn();
@@ -94,6 +86,14 @@
             VENCIMENTO = new DataGridViewTextBoxColumn();
             MENSALIDADE = new DataGridViewTextBoxColumn();
             SITUACAO = new DataGridViewTextBoxColumn();
+            dtgTurmasCadastradas = new DataGridView();
+            ID_MODALIDADE = new DataGridViewTextBoxColumn();
+            ID_TURMA = new DataGridViewTextBoxColumn();
+            NOME_MODALIDADE = new DataGridViewTextBoxColumn();
+            NUMERO_TURMA = new DataGridViewTextBoxColumn();
+            MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
+            btnHora = new DataGridViewImageColumn();
+            chkSituacao = new CheckBox();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -651,6 +651,81 @@
             dtgMatricula.Size = new Size(557, 188);
             dtgMatricula.TabIndex = 5;
             // 
+            // ID_MATRICULA
+            // 
+            ID_MATRICULA.DataPropertyName = "ID_MATRICULA";
+            ID_MATRICULA.HeaderText = "ID_MATRICULA";
+            ID_MATRICULA.MinimumWidth = 6;
+            ID_MATRICULA.Name = "ID_MATRICULA";
+            ID_MATRICULA.ReadOnly = true;
+            ID_MATRICULA.Visible = false;
+            ID_MATRICULA.Width = 125;
+            // 
+            // ID_TURMA1
+            // 
+            ID_TURMA1.DataPropertyName = "ID_TURMA";
+            ID_TURMA1.HeaderText = "ID_TURMA1";
+            ID_TURMA1.MinimumWidth = 6;
+            ID_TURMA1.Name = "ID_TURMA1";
+            ID_TURMA1.ReadOnly = true;
+            ID_TURMA1.Visible = false;
+            ID_TURMA1.Width = 125;
+            // 
+            // ID_ALUNO
+            // 
+            ID_ALUNO.DataPropertyName = "ID_ALUNO";
+            ID_ALUNO.HeaderText = "ID_ALUNO";
+            ID_ALUNO.MinimumWidth = 6;
+            ID_ALUNO.Name = "ID_ALUNO";
+            ID_ALUNO.ReadOnly = true;
+            ID_ALUNO.Visible = false;
+            ID_ALUNO.Width = 125;
+            // 
+            // NOME_MODALIDADE1
+            // 
+            NOME_MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
+            NOME_MODALIDADE1.HeaderText = "MODALIDADE";
+            NOME_MODALIDADE1.MinimumWidth = 6;
+            NOME_MODALIDADE1.Name = "NOME_MODALIDADE1";
+            NOME_MODALIDADE1.ReadOnly = true;
+            NOME_MODALIDADE1.Width = 125;
+            // 
+            // NUMERO_TURMA1
+            // 
+            NUMERO_TURMA1.DataPropertyName = "NUMERO_TURMA";
+            NUMERO_TURMA1.HeaderText = "TURMA";
+            NUMERO_TURMA1.MinimumWidth = 6;
+            NUMERO_TURMA1.Name = "NUMERO_TURMA1";
+            NUMERO_TURMA1.ReadOnly = true;
+            NUMERO_TURMA1.Width = 125;
+            // 
+            // VENCIMENTO
+            // 
+            VENCIMENTO.DataPropertyName = "VENCIMENTO";
+            VENCIMENTO.HeaderText = "VENCIMENTO";
+            VENCIMENTO.MinimumWidth = 6;
+            VENCIMENTO.Name = "VENCIMENTO";
+            VENCIMENTO.ReadOnly = true;
+            VENCIMENTO.Width = 125;
+            // 
+            // MENSALIDADE
+            // 
+            MENSALIDADE.DataPropertyName = "MENSALIDADE";
+            MENSALIDADE.HeaderText = "MENSALIDADE";
+            MENSALIDADE.MinimumWidth = 6;
+            MENSALIDADE.Name = "MENSALIDADE";
+            MENSALIDADE.ReadOnly = true;
+            MENSALIDADE.Width = 125;
+            // 
+            // SITUACAO
+            // 
+            SITUACAO.DataPropertyName = "SITUACAO";
+            SITUACAO.HeaderText = "SITUAÇÃO";
+            SITUACAO.MinimumWidth = 6;
+            SITUACAO.Name = "SITUACAO";
+            SITUACAO.ReadOnly = true;
+            SITUACAO.Width = 125;
+            // 
             // dtgTurmasCadastradas
             // 
             dtgTurmasCadastradas.AllowUserToAddRows = false;
@@ -732,81 +807,6 @@
             chkSituacao.Text = "Ativa";
             chkSituacao.UseVisualStyleBackColor = true;
             // 
-            // ID_MATRICULA
-            // 
-            ID_MATRICULA.DataPropertyName = "ID_MATRICULA";
-            ID_MATRICULA.HeaderText = "ID_MATRICULA";
-            ID_MATRICULA.MinimumWidth = 6;
-            ID_MATRICULA.Name = "ID_MATRICULA";
-            ID_MATRICULA.ReadOnly = true;
-            ID_MATRICULA.Visible = false;
-            ID_MATRICULA.Width = 125;
-            // 
-            // ID_TURMA1
-            // 
-            ID_TURMA1.DataPropertyName = "ID_TURMA";
-            ID_TURMA1.HeaderText = "ID_TURMA1";
-            ID_TURMA1.MinimumWidth = 6;
-            ID_TURMA1.Name = "ID_TURMA1";
-            ID_TURMA1.ReadOnly = true;
-            ID_TURMA1.Visible = false;
-            ID_TURMA1.Width = 125;
-            // 
-            // ID_ALUNO
-            // 
-            ID_ALUNO.DataPropertyName = "ID_ALUNO";
-            ID_ALUNO.HeaderText = "ID_ALUNO";
-            ID_ALUNO.MinimumWidth = 6;
-            ID_ALUNO.Name = "ID_ALUNO";
-            ID_ALUNO.ReadOnly = true;
-            ID_ALUNO.Visible = false;
-            ID_ALUNO.Width = 125;
-            // 
-            // NOME_MODALIDADE1
-            // 
-            NOME_MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
-            NOME_MODALIDADE1.HeaderText = "MODALIDADE";
-            NOME_MODALIDADE1.MinimumWidth = 6;
-            NOME_MODALIDADE1.Name = "NOME_MODALIDADE1";
-            NOME_MODALIDADE1.ReadOnly = true;
-            NOME_MODALIDADE1.Width = 125;
-            // 
-            // NUMERO_TURMA1
-            // 
-            NUMERO_TURMA1.DataPropertyName = "NUMERO_TURMA";
-            NUMERO_TURMA1.HeaderText = "TURMA";
-            NUMERO_TURMA1.MinimumWidth = 6;
-            NUMERO_TURMA1.Name = "NUMERO_TURMA1";
-            NUMERO_TURMA1.ReadOnly = true;
-            NUMERO_TURMA1.Width = 125;
-            // 
-            // VENCIMENTO
-            // 
-            VENCIMENTO.DataPropertyName = "VENCIMENTO";
-            VENCIMENTO.HeaderText = "VENCIMENTO";
-            VENCIMENTO.MinimumWidth = 6;
-            VENCIMENTO.Name = "VENCIMENTO";
-            VENCIMENTO.ReadOnly = true;
-            VENCIMENTO.Width = 125;
-            // 
-            // MENSALIDADE
-            // 
-            MENSALIDADE.DataPropertyName = "MENSALIDADE";
-            MENSALIDADE.HeaderText = "MENSALIDADE";
-            MENSALIDADE.MinimumWidth = 6;
-            MENSALIDADE.Name = "MENSALIDADE";
-            MENSALIDADE.ReadOnly = true;
-            MENSALIDADE.Width = 125;
-            // 
-            // SITUACAO
-            // 
-            SITUACAO.DataPropertyName = "SITUACAO";
-            SITUACAO.HeaderText = "SITUAÇÃO";
-            SITUACAO.MinimumWidth = 6;
-            SITUACAO.Name = "SITUACAO";
-            SITUACAO.ReadOnly = true;
-            SITUACAO.Width = 125;
-            // 
             // frmControleAlunos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -816,6 +816,7 @@
             Name = "frmControleAlunos";
             Text = "SCA - Controle de Alunos";
             FormClosed += frmControleAlunos_FormClosed;
+            Load += frmControleAlunos_Load;
             tcAluno.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
             tabPageCadastro.PerformLayout();
