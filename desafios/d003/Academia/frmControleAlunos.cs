@@ -16,7 +16,6 @@ namespace Academia
         {
             InitializeComponent();
 
-            ListaTurmas();
             this.formulario = formulario;
         }
 
@@ -113,7 +112,7 @@ namespace Academia
                     MessageBoxIcon.Information);
                 }
 
-                RetornarMatricula();
+                ListarMatriculas();
             }
             catch (Exception ex)
             {
@@ -232,7 +231,7 @@ namespace Academia
             cboSexo.SelectedIndex = -1;
         }
 
-        public void RetornarMatricula()
+        public void ListarMatriculas()
         {
             try
             {
@@ -247,6 +246,17 @@ namespace Academia
             {
                 MessageBox.Show(ex.Message, "Erro ao listar matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmControleAlunos_Load(object sender, EventArgs e)
+        {
+            dtgMatricula.AutoGenerateColumns = false;
+            dtgTurmasCadastradas.AutoGenerateColumns = false;
+
+            ListaTurmas();
+            ListarMatriculas();
+
+            DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
     }
 }
