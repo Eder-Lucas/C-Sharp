@@ -71,24 +71,44 @@ namespace Academia
         // Método para excluir uma turma do banco de dados
         public void Excluir(int idTurma)
         {
+            SqlTransaction? transacao = null;
+
             try
             {
                 using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
+                transacao = conexao.BeginTransaction();
+
                 string sql = """
+                    DELETE FROM Mensalidade
+                    WHERE ID_MATRICULA IN (
+                        SELECT ID_MATRICULA
+                        FROM Matricula
+                        WHERE ID_TURMA = @idTurma
+                    );
+
+                    DELETE FROM Matricula
+                    WHERE ID_TURMA = @idTurma;
+
+                    DELETE FROM Horario
+                    WHERE ID_TURMA = @idTurma;
+
                     DELETE FROM Turma
                     WHERE ID_TURMA = @idTurma
                 """;
 
-                using SqlCommand cmd = new(sql, conexao);
+                using SqlCommand cmd = new(sql, conexao, transacao);
 
                 cmd.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
 
                 cmd.ExecuteNonQuery();
+
+                transacao.Commit();
             }
             catch (Exception)
             {
+                transacao?.Rollback();
                 throw;
             }
         }
