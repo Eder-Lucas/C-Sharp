@@ -93,7 +93,7 @@ namespace Academia
 
                 DataTable dadosTabela = novaMatricula.RetornarTurmasMatriculadas(idAluno);
 
-                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, true);
+                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, false);
 
                 if (novo)
                 {
@@ -167,7 +167,11 @@ namespace Academia
         {
             try
             {
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
+
                 dtgTurmasCadastradas.DataSource = novaTurma.Listar();
+                dtgTurmas.DataSource = novaMatricula.RetornarTurmasMatriculadas(idAluno);
+                AplicarSituacao(dtgTurmas);
             }
             catch (Exception ex)
             {
@@ -237,15 +241,55 @@ namespace Academia
             {
                 int idAluno = Convert.ToInt32(txtCodAluno.Text);
 
-                DataTable dadosTabela = novaMatricula.RetornarMatriculas(idAluno);
+                DataTable dadosTabela = novaMatricula.RetornarTurmasMatriculadas(idAluno);
                 dtgMatricula.DataSource = dadosTabela;
+                dtgTurmas.DataSource = dadosTabela;
 
-                dtgMatricula.DataSource = novaMatricula.RetornarTurmasMatriculadas(idAluno);
+                AplicarSituacao(dtgMatricula);
+                AtualizarMensagem(dtgMatricula);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro ao listar matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void AplicarSituacao(DataGridView dtg)
+        {
+            int linhas = dtg.Rows.Count;
+
+            for (int i = 0; i < linhas; i++)
+            {
+                bool situacao = Convert.ToBoolean(dtg.Rows[i].Cells["SITUACAO"].Value);
+
+                DataGridViewRow linha = dtg.Rows[i];
+                DataGridViewCell cellSituacao = linha.Cells["SITUACAO1"];
+                DataGridViewCell cellSituacao2 = linha.Cells["SITUACAO2"];
+
+                if (situacao)
+                {
+                    cellSituacao.Value = "ATIVA";
+                    cellSituacao.Style.BackColor = Color.LightGreen;
+
+                    cellSituacao2.Value = "ATIVA";
+                    cellSituacao2.Style.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    cellSituacao.Value = "INATIVA";
+                    cellSituacao.Style.BackColor = Color.LightPink;
+
+                    cellSituacao2.Value = "INATIVA";
+                    cellSituacao2.Style.BackColor = Color.LightPink;
+                }
+            }
+        }
+
+        private void AtualizarMensagem(DataGridView dtg)
+        {
+            bool semDados = dtg.Rows.Count == 0;
+
+            lblMensagem.Visible = semDados;
         }
 
         private void frmControleAlunos_Load(object sender, EventArgs e)
@@ -257,6 +301,23 @@ namespace Academia
             ListarMatriculas();
 
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
+        }
+
+        private void dtgMatricula_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var linha = dtgMatricula.Rows[e.RowIndex];
+
+            if (linha?.DataBoundItem is not DataRowView drv) return;
+
+            dtpVencimento.Value = Convert.ToDateTime(drv["VENCIMENTO"]);
+            chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
+        }
+
+        private void dtgMatricula_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            AplicarSituacao(dtgMatricula);
+            AplicarSituacao(dtgTurmas);
+            AtualizarMensagem(dtgMatricula);
         }
     }
 }
