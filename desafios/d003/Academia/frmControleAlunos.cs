@@ -25,6 +25,23 @@ namespace Academia
         private readonly Turmas novaTurma = new();
         private readonly Matriculas novaMatricula = new();
 
+        private void frmControleAlunos_Load(object sender, EventArgs e)
+        {
+            dtgMatricula.AutoGenerateColumns = false;
+            dtgTurmas.AutoGenerateColumns = false;
+            dtgTurmasCadastradas.AutoGenerateColumns = false;
+
+            // Associa o evento genérico para ambos os DataGridViews
+            dtgTurmas.CellFormatting += FormataSituacao;
+            dtgMatricula.CellFormatting += FormataSituacao;
+
+            // Lista os dados para disparar os eventos, aplicando a formatação visual
+            ListarMatriculas();
+            ListaTurmas();
+
+            DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -86,15 +103,15 @@ namespace Academia
                 if (linha?.DataBoundItem is not DataRowView drv) return;
 
                 int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
-                int idAluno = Convert.ToInt32(txtCodAluno.Text);
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);               
+                bool situacao = chkSituacao.Checked;
                 DateTime venc = dtpVencimento.Value;
 
+                ValidaCampos(tabPageMatricula);
+
+                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+
                 bool novo = idMatricula == 0;
-
-                DataTable dadosTabela = novaMatricula.RetornarTurmasMatriculadas(idAluno);
-
-                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, false);
-
                 if (novo)
                 {
                     MessageBox.Show(
@@ -128,6 +145,9 @@ namespace Academia
                 {
                     if (string.IsNullOrWhiteSpace(txt.Text) && txt.Name != "txtObs")
                         throw new Exception("Preencha todos os campos corretamente!");
+
+                    if (txt.Name == "txtNumero" && !int.TryParse(txt.Text, out _))
+                        throw new Exception("O campo número deve ser preenchido apenas com números!");
                 }
 
                 if (c is MaskedTextBox mtb)
@@ -252,62 +272,11 @@ namespace Academia
             }
         }
 
-        /* Enum para representar a situação da matrícula
-        private enum SituacaoMatricula
-        {
-            Ativa = 1,
-            Inativa = 0
-        }*/
-
-        /* Formata a coluna de situação para exibir "ATIVA" ou "INATIVA" e aplicar um estilo intuitivo de cores
-        private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
-        {
-            foreach(DataGridViewRow row in dtg.Rows)
-            {
-                var situacao = (SituacaoMatricula)Convert.ToInt32(row.Cells[col].Value);
-                var cell = row.Cells[cellNome];
-
-                if (situacao == SituacaoMatricula.Ativa)
-                {
-                    cell.Value = "ATIVA";
-                    cell.Style.BackColor = Color.LightGreen;
-
-                }
-                else
-                {
-                    cell.Value = "INATIVA";
-                    cell.Style.BackColor = Color.LightPink;
-                }
-            }
-        }*/
-
         private void AtualizarMensagem(DataGridView dtg)
         {
             bool semDados = dtg.Rows.Count == 0;
 
             lblMensagem.Visible = semDados;
-        }
-
-        private void frmControleAlunos_Load(object sender, EventArgs e)
-        {
-            dtgMatricula.AutoGenerateColumns = false;
-            dtgTurmas.AutoGenerateColumns = false;
-            dtgTurmasCadastradas.AutoGenerateColumns = false;
-
-            /* Referência os eventos aos dtgs
-             Espera os dados serem carregados corretamente e após aplica a formatação
-            dtgTurmas.DataBindingComplete += Grid_DataBindingComplete;
-            dtgMatricula.DataBindingComplete += Grid_DataBindingComplete;
-            */
-
-            dtgTurmas.CellFormatting += Grid_CellFormatting;
-            dtgMatricula.CellFormatting += Grid_CellFormatting;
-
-            // Lista os dados para disparar os eventos, aplicando a formatação visual
-            ListarMatriculas();
-            ListaTurmas();
-
-            DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
 
         private void dtgMatricula_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -320,19 +289,7 @@ namespace Academia
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
         }
 
-        /* Evento genérico que espera os dados serem carregados para aplicar a formatação de situação
-        private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (sender is not DataGridView dtg) return;
-
-            if (dtg.Columns.Contains("SITUACAO1"))
-                AplicarSituacao(dtgMatricula, "SITUACAO", "SITUACAO1");
-
-            if (dtg.Columns.Contains("SITUACAO2"))
-                AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
-        }*/
-
-        private void Grid_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        private void FormataSituacao(object? sender, DataGridViewCellFormattingEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
 
@@ -346,5 +303,84 @@ namespace Academia
                 e.FormattingApplied = true;
             }
         }
+
+        #region 📌 Implementação antiga - controle de situação da matrícula
+
+        /*
+        ⚠️ CÓDIGO LEGADO (mantido para estudo)
+
+        CONTEXTO:
+        Antes, a formatação da situação (ATIVA / INATIVA) era feita manualmente,
+        percorrendo todas as linhas do DataGridView após o carregamento dos dados.
+
+        MOTIVO DA MUDANÇA:
+        Substituído por CellFormatting por ser mais eficiente e não exigir loop manual
+
+        ========================================================
+         Enum para representar a situação da matrícula
+        ========================================================
+        
+        private enum SituacaoMatricula
+        {
+            Ativa = 1,
+            Inativa = 0
+        }
+
+        ========================================================
+         Método antigo de formatação manual
+        ========================================================
+
+        private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
+        {
+            foreach (DataGridViewRow row in dtg.Rows)
+            {
+                var situacao = (SituacaoMatricula)Convert.ToInt32(row.Cells[col].Value);
+                var cell = row.Cells[cellNome];
+
+                if (situacao == SituacaoMatricula.Ativa)
+                {
+                    cell.Value = "ATIVA";
+                    cell.Style.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    cell.Value = "INATIVA";
+                    cell.Style.BackColor = Color.LightPink;
+                }
+            }
+        }
+
+        ========================================================
+         Associação dos eventos (forma antiga)
+        ========================================================
+
+        Era necessário aguardar os dados carregarem para aplicar a formatação.
+
+        private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (sender is not DataGridView dtg) return;
+
+            if (dtg.Columns.Contains("SITUACAO1"))
+                AplicarSituacao(dtgMatricula, "SITUACAO", "SITUACAO1");
+
+            if (dtg.Columns.Contains("SITUACAO2"))
+                AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
+        }
+
+        ========================================================
+         MELHORIA IMPLEMENTADA
+        ========================================================
+
+        Substituído pelo evento CellFormatting:
+
+        ✔ Não precisa percorrer linhas manualmente
+        ✔ Atualiza automaticamente ao renderizar células
+
+        Método atual utilizado:
+        → FormataSituacao(object sender, DataGridViewCellFormattingEventArgs e)
+        */
+
+        #endregion
     }
 }
+
