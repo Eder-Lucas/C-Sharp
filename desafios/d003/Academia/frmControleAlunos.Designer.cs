@@ -87,7 +87,6 @@
             NUMERO_TURMA1 = new DataGridViewTextBoxColumn();
             VENCIMENTO = new DataGridViewTextBoxColumn();
             MENSALIDADE = new DataGridViewTextBoxColumn();
-            SITUACAO1 = new DataGridViewTextBoxColumn();
             dtgTurmasCadastradas = new DataGridView();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
@@ -96,7 +95,7 @@
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
             chkSituacao = new CheckBox();
-            SITUACAO2 = new DataGridViewTextBoxColumn();
+            SITUACAO1 = new DataGridViewTextBoxColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -165,7 +164,7 @@
             dtgTurmas.AllowUserToAddRows = false;
             dtgTurmas.AllowUserToDeleteRows = false;
             dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { SITUACAO2 });
+            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { SITUACAO1 });
             dtgTurmas.Location = new Point(8, 327);
             dtgTurmas.Name = "dtgTurmas";
             dtgTurmas.ReadOnly = true;
@@ -663,7 +662,7 @@
             dtgMatricula.AllowUserToAddRows = false;
             dtgMatricula.AllowUserToDeleteRows = false;
             dtgMatricula.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgMatricula.Columns.AddRange(new DataGridViewColumn[] { ID_MATRICULA, ID_TURMA1, ID_ALUNO, SITUACAO, NOME_MODALIDADE1, NUMERO_TURMA1, VENCIMENTO, MENSALIDADE, SITUACAO1 });
+            dtgMatricula.Columns.AddRange(new DataGridViewColumn[] { ID_MATRICULA, ID_TURMA1, ID_ALUNO, SITUACAO, NOME_MODALIDADE1, NUMERO_TURMA1, VENCIMENTO, MENSALIDADE });
             dtgMatricula.Location = new Point(377, 124);
             dtgMatricula.Name = "dtgMatricula";
             dtgMatricula.ReadOnly = true;
@@ -710,7 +709,6 @@
             SITUACAO.MinimumWidth = 6;
             SITUACAO.Name = "SITUACAO";
             SITUACAO.ReadOnly = true;
-            SITUACAO.Visible = false;
             SITUACAO.Width = 125;
             // 
             // NOME_MODALIDADE1
@@ -748,14 +746,6 @@
             MENSALIDADE.Name = "MENSALIDADE";
             MENSALIDADE.ReadOnly = true;
             MENSALIDADE.Width = 125;
-            // 
-            // SITUACAO1
-            // 
-            SITUACAO1.HeaderText = "SITUAÇÃO";
-            SITUACAO1.MinimumWidth = 6;
-            SITUACAO1.Name = "SITUACAO1";
-            SITUACAO1.ReadOnly = true;
-            SITUACAO1.Width = 125;
             // 
             // dtgTurmasCadastradas
             // 
@@ -838,13 +828,14 @@
             chkSituacao.Text = "Ativa";
             chkSituacao.UseVisualStyleBackColor = true;
             // 
-            // SITUACAO2
+            // SITUACAO1
             // 
-            SITUACAO2.HeaderText = "SITUAÇÃO";
-            SITUACAO2.MinimumWidth = 6;
-            SITUACAO2.Name = "SITUACAO2";
-            SITUACAO2.ReadOnly = true;
-            SITUACAO2.Width = 125;
+            SITUACAO1.DataPropertyName = "SITUACAO";
+            SITUACAO1.HeaderText = "SITUAÇÃO";
+            SITUACAO1.MinimumWidth = 6;
+            SITUACAO1.Name = "SITUACAO1";
+            SITUACAO1.ReadOnly = true;
+            SITUACAO1.Width = 125;
             // 
             // frmControleAlunos
             // 
@@ -945,6 +936,5 @@
         private DataGridViewTextBoxColumn VENCIMENTO;
         private DataGridViewTextBoxColumn MENSALIDADE;
         private DataGridViewTextBoxColumn SITUACAO1;
-        private DataGridViewTextBoxColumn SITUACAO2;
     }
 }
