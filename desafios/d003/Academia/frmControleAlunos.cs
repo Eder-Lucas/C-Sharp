@@ -252,14 +252,14 @@ namespace Academia
             }
         }
 
-        // Enum para representar a situação da matrícula
+        /* Enum para representar a situação da matrícula
         private enum SituacaoMatricula
         {
             Ativa = 1,
             Inativa = 0
-        }
+        }*/
 
-        // Formata a coluna de situação para exibir "ATIVA" ou "INATIVA" e aplicar um estilo intuitivo de cores
+        /* Formata a coluna de situação para exibir "ATIVA" ou "INATIVA" e aplicar um estilo intuitivo de cores
         private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
         {
             foreach(DataGridViewRow row in dtg.Rows)
@@ -279,7 +279,7 @@ namespace Academia
                     cell.Style.BackColor = Color.LightPink;
                 }
             }
-        }
+        }*/
 
         private void AtualizarMensagem(DataGridView dtg)
         {
@@ -291,12 +291,17 @@ namespace Academia
         private void frmControleAlunos_Load(object sender, EventArgs e)
         {
             dtgMatricula.AutoGenerateColumns = false;
+            dtgTurmas.AutoGenerateColumns = false;
             dtgTurmasCadastradas.AutoGenerateColumns = false;
 
-            // Referência os eventos aos dtgs
-            // Espera os dados serem carregados corretamente e após aplica a formatação
+            /* Referência os eventos aos dtgs
+             Espera os dados serem carregados corretamente e após aplica a formatação
             dtgTurmas.DataBindingComplete += Grid_DataBindingComplete;
             dtgMatricula.DataBindingComplete += Grid_DataBindingComplete;
+            */
+
+            dtgTurmas.CellFormatting += Grid_CellFormatting;
+            dtgMatricula.CellFormatting += Grid_CellFormatting;
 
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
@@ -315,7 +320,7 @@ namespace Academia
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
         }
 
-        // Evento genérico que espera os dados serem carregados para aplicar a formatação de situação
+        /* Evento genérico que espera os dados serem carregados para aplicar a formatação de situação
         private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
@@ -325,6 +330,21 @@ namespace Academia
 
             if (dtg.Columns.Contains("SITUACAO2"))
                 AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
+        }*/
+
+        private void Grid_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (sender is not DataGridView dtg) return;
+
+            if (dtg.Columns[e.ColumnIndex].DataPropertyName == "SITUACAO")
+            {
+                if (e.Value is not bool situacao) return;
+
+                e.Value = situacao ? "ATIVA" : "INATIVA";
+                e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
+
+                e.FormattingApplied = true;
+            }
         }
     }
 }
