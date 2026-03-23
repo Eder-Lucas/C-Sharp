@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
@@ -32,8 +33,8 @@ namespace Academia
             dtgTurmasCadastradas.AutoGenerateColumns = false;
 
             // Associa o evento genérico para ambos os DataGridViews
-            dtgTurmas.CellFormatting += FormataSituacao;
-            dtgMatricula.CellFormatting += FormataSituacao;
+            dtgTurmas.CellFormatting += FormataGrid;
+            dtgMatricula.CellFormatting += FormataGrid;
 
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
@@ -289,18 +290,31 @@ namespace Academia
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
         }
 
-        private void FormataSituacao(object? sender, DataGridViewCellFormattingEventArgs e)
+        private void FormataGrid(object? sender, DataGridViewCellFormattingEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
+            if (e.ColumnIndex < 0) return;
 
-            if (dtg.Columns[e.ColumnIndex].DataPropertyName == "SITUACAO")
+            var dataColumn = dtg.Columns[e.ColumnIndex].DataPropertyName;
+
+            switch (dataColumn)
             {
-                if (e.Value is not bool situacao) return;
+                case "SITUACAO":
+                    if (e.Value is not bool situacao) return;
 
-                e.Value = situacao ? "ATIVA" : "INATIVA";
-                e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
+                    e.Value = situacao ? "ATIVA" : "INATIVA";
+                    e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
 
-                e.FormattingApplied = true;
+                    e.FormattingApplied = true;
+                    break;
+
+                case "MENSALIDADE":
+                    if (e.Value is not decimal valor) return;
+
+                    e.Value = valor.ToString("C2", new CultureInfo("pt-BR"));
+
+                    e.FormattingApplied = true;
+                    break;
             }
         }
 
