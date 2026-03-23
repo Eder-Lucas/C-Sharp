@@ -31,6 +31,11 @@
             tcAluno = new TabControl();
             tabPageCadastro = new TabPage();
             dtgTurmas = new DataGridView();
+            SITUACAO1 = new DataGridViewTextBoxColumn();
+            MODALIDADE = new DataGridViewTextBoxColumn();
+            TURMA = new DataGridViewTextBoxColumn();
+            MENSALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO1 = new DataGridViewTextBoxColumn();
             cboSexo = new ComboBox();
             mtbCep = new MaskedTextBox();
             mtbCpf = new MaskedTextBox();
@@ -85,8 +90,8 @@
             SITUACAO = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE1 = new DataGridViewTextBoxColumn();
             NUMERO_TURMA1 = new DataGridViewTextBoxColumn();
-            VENCIMENTO = new DataGridViewTextBoxColumn();
             MENSALIDADE = new DataGridViewTextBoxColumn();
+            VENCIMENTO = new DataGridViewTextBoxColumn();
             dtgTurmasCadastradas = new DataGridView();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
@@ -95,7 +100,6 @@
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
             chkSituacao = new CheckBox();
-            SITUACAO1 = new DataGridViewTextBoxColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -164,7 +168,7 @@
             dtgTurmas.AllowUserToAddRows = false;
             dtgTurmas.AllowUserToDeleteRows = false;
             dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { SITUACAO1 });
+            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { SITUACAO1, MODALIDADE, TURMA, MENSALIDADE1, VENCIMENTO1 });
             dtgTurmas.Location = new Point(8, 327);
             dtgTurmas.Name = "dtgTurmas";
             dtgTurmas.ReadOnly = true;
@@ -172,6 +176,51 @@
             dtgTurmas.RowHeadersWidth = 51;
             dtgTurmas.Size = new Size(588, 254);
             dtgTurmas.TabIndex = 6;
+            // 
+            // SITUACAO1
+            // 
+            SITUACAO1.DataPropertyName = "SITUACAO";
+            SITUACAO1.HeaderText = "SITUAÇÃO";
+            SITUACAO1.MinimumWidth = 6;
+            SITUACAO1.Name = "SITUACAO1";
+            SITUACAO1.ReadOnly = true;
+            SITUACAO1.Width = 125;
+            // 
+            // MODALIDADE
+            // 
+            MODALIDADE.DataPropertyName = "NOME_MODALIDADE";
+            MODALIDADE.HeaderText = "MODALIDADE";
+            MODALIDADE.MinimumWidth = 6;
+            MODALIDADE.Name = "MODALIDADE";
+            MODALIDADE.ReadOnly = true;
+            MODALIDADE.Width = 125;
+            // 
+            // TURMA
+            // 
+            TURMA.DataPropertyName = "NUMERO_TURMA";
+            TURMA.HeaderText = "TURMA";
+            TURMA.MinimumWidth = 6;
+            TURMA.Name = "TURMA";
+            TURMA.ReadOnly = true;
+            TURMA.Width = 125;
+            // 
+            // MENSALIDADE1
+            // 
+            MENSALIDADE1.DataPropertyName = "MENSALIDADE";
+            MENSALIDADE1.HeaderText = "MENSALIDADE";
+            MENSALIDADE1.MinimumWidth = 6;
+            MENSALIDADE1.Name = "MENSALIDADE1";
+            MENSALIDADE1.ReadOnly = true;
+            MENSALIDADE1.Width = 125;
+            // 
+            // VENCIMENTO1
+            // 
+            VENCIMENTO1.DataPropertyName = "VENCIMENTO";
+            VENCIMENTO1.HeaderText = "VENCIMENTO";
+            VENCIMENTO1.MinimumWidth = 6;
+            VENCIMENTO1.Name = "VENCIMENTO1";
+            VENCIMENTO1.ReadOnly = true;
+            VENCIMENTO1.Width = 125;
             // 
             // cboSexo
             // 
@@ -662,7 +711,7 @@
             dtgMatricula.AllowUserToAddRows = false;
             dtgMatricula.AllowUserToDeleteRows = false;
             dtgMatricula.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgMatricula.Columns.AddRange(new DataGridViewColumn[] { ID_MATRICULA, ID_TURMA1, ID_ALUNO, SITUACAO, NOME_MODALIDADE1, NUMERO_TURMA1, VENCIMENTO, MENSALIDADE });
+            dtgMatricula.Columns.AddRange(new DataGridViewColumn[] { ID_MATRICULA, ID_TURMA1, ID_ALUNO, SITUACAO, NOME_MODALIDADE1, NUMERO_TURMA1, MENSALIDADE, VENCIMENTO });
             dtgMatricula.Location = new Point(377, 124);
             dtgMatricula.Name = "dtgMatricula";
             dtgMatricula.ReadOnly = true;
@@ -729,15 +778,6 @@
             NUMERO_TURMA1.ReadOnly = true;
             NUMERO_TURMA1.Width = 125;
             // 
-            // VENCIMENTO
-            // 
-            VENCIMENTO.DataPropertyName = "VENCIMENTO";
-            VENCIMENTO.HeaderText = "VENCIMENTO";
-            VENCIMENTO.MinimumWidth = 6;
-            VENCIMENTO.Name = "VENCIMENTO";
-            VENCIMENTO.ReadOnly = true;
-            VENCIMENTO.Width = 125;
-            // 
             // MENSALIDADE
             // 
             MENSALIDADE.DataPropertyName = "MENSALIDADE";
@@ -746,6 +786,15 @@
             MENSALIDADE.Name = "MENSALIDADE";
             MENSALIDADE.ReadOnly = true;
             MENSALIDADE.Width = 125;
+            // 
+            // VENCIMENTO
+            // 
+            VENCIMENTO.DataPropertyName = "VENCIMENTO";
+            VENCIMENTO.HeaderText = "VENCIMENTO";
+            VENCIMENTO.MinimumWidth = 6;
+            VENCIMENTO.Name = "VENCIMENTO";
+            VENCIMENTO.ReadOnly = true;
+            VENCIMENTO.Width = 125;
             // 
             // dtgTurmasCadastradas
             // 
@@ -820,6 +869,8 @@
             // chkSituacao
             // 
             chkSituacao.AutoSize = true;
+            chkSituacao.Checked = true;
+            chkSituacao.CheckState = CheckState.Checked;
             chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkSituacao.Location = new Point(141, 159);
             chkSituacao.Name = "chkSituacao";
@@ -827,15 +878,6 @@
             chkSituacao.TabIndex = 3;
             chkSituacao.Text = "Ativa";
             chkSituacao.UseVisualStyleBackColor = true;
-            // 
-            // SITUACAO1
-            // 
-            SITUACAO1.DataPropertyName = "SITUACAO";
-            SITUACAO1.HeaderText = "SITUAÇÃO";
-            SITUACAO1.MinimumWidth = 6;
-            SITUACAO1.Name = "SITUACAO1";
-            SITUACAO1.ReadOnly = true;
-            SITUACAO1.Width = 125;
             // 
             // frmControleAlunos
             // 
@@ -927,14 +969,18 @@
         private DataGridViewImageColumn btnHora;
         private DateTimePicker dtpVencimento;
         private Label lblMensagem;
+        private DataGridViewTextBoxColumn SITUACAO1;
+        private DataGridViewTextBoxColumn MODALIDADE;
+        private DataGridViewTextBoxColumn TURMA;
+        private DataGridViewTextBoxColumn MENSALIDADE1;
+        private DataGridViewTextBoxColumn VENCIMENTO1;
         private DataGridViewTextBoxColumn ID_MATRICULA;
         private DataGridViewTextBoxColumn ID_TURMA1;
         private DataGridViewTextBoxColumn ID_ALUNO;
         private DataGridViewTextBoxColumn SITUACAO;
         private DataGridViewTextBoxColumn NOME_MODALIDADE1;
         private DataGridViewTextBoxColumn NUMERO_TURMA1;
-        private DataGridViewTextBoxColumn VENCIMENTO;
         private DataGridViewTextBoxColumn MENSALIDADE;
-        private DataGridViewTextBoxColumn SITUACAO1;
+        private DataGridViewTextBoxColumn VENCIMENTO;
     }
 }
