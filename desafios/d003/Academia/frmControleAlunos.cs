@@ -171,7 +171,6 @@ namespace Academia
 
                 dtgTurmasCadastradas.DataSource = novaTurma.Listar();
                 dtgTurmas.DataSource = novaMatricula.RetornarTurmasMatriculadas(idAluno);
-                AplicarSituacao(dtgTurmas);
             }
             catch (Exception ex)
             {
@@ -245,7 +244,6 @@ namespace Academia
                 dtgMatricula.DataSource = dadosTabela;
                 dtgTurmas.DataSource = dadosTabela;
 
-                AplicarSituacao(dtgMatricula);
                 AtualizarMensagem(dtgMatricula);
             }
             catch (Exception ex)
@@ -254,33 +252,31 @@ namespace Academia
             }
         }
 
-        private void AplicarSituacao(DataGridView dtg)
+        // Enum para representar a situação da matrícula
+        private enum SituacaoMatricula
         {
-            int linhas = dtg.Rows.Count;
+            Ativa = 1,
+            Inativa = 0
+        }
 
-            for (int i = 0; i < linhas; i++)
+        // Formata a coluna de situação para exibir "ATIVA" ou "INATIVA" e aplicar um estilo intuitivo de cores
+        private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
+        {
+            foreach(DataGridViewRow row in dtg.Rows)
             {
-                bool situacao = Convert.ToBoolean(dtg.Rows[i].Cells["SITUACAO"].Value);
+                var situacao = (SituacaoMatricula)Convert.ToInt32(row.Cells[col].Value);
+                var cell = row.Cells[cellNome];
 
-                DataGridViewRow linha = dtg.Rows[i];
-                DataGridViewCell cellSituacao = linha.Cells["SITUACAO1"];
-                DataGridViewCell cellSituacao2 = linha.Cells["SITUACAO2"];
-
-                if (situacao)
+                if (situacao == SituacaoMatricula.Ativa)
                 {
-                    cellSituacao.Value = "ATIVA";
-                    cellSituacao.Style.BackColor = Color.LightGreen;
+                    cell.Value = "ATIVA";
+                    cell.Style.BackColor = Color.LightGreen;
 
-                    cellSituacao2.Value = "ATIVA";
-                    cellSituacao2.Style.BackColor = Color.LightGreen;
                 }
                 else
                 {
-                    cellSituacao.Value = "INATIVA";
-                    cellSituacao.Style.BackColor = Color.LightPink;
-
-                    cellSituacao2.Value = "INATIVA";
-                    cellSituacao2.Style.BackColor = Color.LightPink;
+                    cell.Value = "INATIVA";
+                    cell.Style.BackColor = Color.LightPink;
                 }
             }
         }
@@ -297,8 +293,14 @@ namespace Academia
             dtgMatricula.AutoGenerateColumns = false;
             dtgTurmasCadastradas.AutoGenerateColumns = false;
 
-            ListaTurmas();
+            // Referência os eventos aos dtgs
+            // Espera os dados serem carregados corretamente e após aplica a formatação
+            dtgTurmas.DataBindingComplete += Grid_DataBindingComplete;
+            dtgMatricula.DataBindingComplete += Grid_DataBindingComplete;
+
+            // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
+            ListaTurmas();
 
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
@@ -313,11 +315,16 @@ namespace Academia
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
         }
 
-        private void dtgMatricula_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        // Evento genérico que espera os dados serem carregados para aplicar a formatação de situação
+        private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
         {
-            AplicarSituacao(dtgMatricula);
-            AplicarSituacao(dtgTurmas);
-            AtualizarMensagem(dtgMatricula);
+            if (sender is not DataGridView dtg) return;
+
+            if (dtg.Columns.Contains("SITUACAO1"))
+                AplicarSituacao(dtgMatricula, "SITUACAO", "SITUACAO1");
+
+            if (dtg.Columns.Contains("SITUACAO2"))
+                AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
         }
     }
 }
