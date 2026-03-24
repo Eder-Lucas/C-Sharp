@@ -104,31 +104,27 @@ namespace Academia
                 if (linha?.DataBoundItem is not DataRowView drv) return;
 
                 int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
-                int idAluno = Convert.ToInt32(txtCodAluno.Text);               
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
                 bool situacao = chkSituacao.Checked;
                 DateTime venc = dtpVencimento.Value;
 
                 ValidaCampos(tabPageMatricula);
 
+                bool existe = novaMatricula.ExisteMatricula(idAluno, idTurma);
+
+                if (existe)
+                {
+                    MessageBox.Show("Este aluno já possui uma matrícula ativa para esta turma!", "Matrícula existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }              
+
                 novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
 
-                bool novo = idMatricula == 0;
-                if (novo)
-                {
-                    MessageBox.Show(
-                    "Aluno matrículado com sucesso!",
-                    "Sucesso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show(
-                    "Matrícula alterada com sucesso!",
-                    "Sucesso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                }
+                MessageBox.Show(
+                "Aluno matrículado com sucesso!",
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
                 ListarMatriculas();
             }
