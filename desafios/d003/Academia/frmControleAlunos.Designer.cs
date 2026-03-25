@@ -93,7 +93,6 @@
             MENSALIDADE = new DataGridViewTextBoxColumn();
             VENCIMENTO = new DataGridViewTextBoxColumn();
             dtgTurmasCadastradas = new DataGridView();
-            chkSituacao = new CheckBox();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE = new DataGridViewTextBoxColumn();
@@ -101,6 +100,7 @@
             VAGAS = new DataGridViewTextBoxColumn();
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
+            chkSituacao = new CheckBox();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -576,6 +576,7 @@
             dtpVencimento.Name = "dtpVencimento";
             dtpVencimento.Size = new Size(93, 27);
             dtpVencimento.TabIndex = 10;
+            dtpVencimento.Tag = "VENCIMENTO";
             // 
             // btnSalvarMatricula
             // 
@@ -585,6 +586,7 @@
             btnSalvarMatricula.Size = new Size(94, 55);
             btnSalvarMatricula.TabIndex = 9;
             btnSalvarMatricula.UseVisualStyleBackColor = true;
+            btnSalvarMatricula.Click += btnSalvarMatricula_Click;
             // 
             // btnIncluir
             // 
@@ -813,19 +815,6 @@
             dtgTurmasCadastradas.Size = new Size(432, 263);
             dtgTurmasCadastradas.TabIndex = 5;
             // 
-            // chkSituacao
-            // 
-            chkSituacao.AutoSize = true;
-            chkSituacao.Checked = true;
-            chkSituacao.CheckState = CheckState.Checked;
-            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSituacao.Location = new Point(141, 159);
-            chkSituacao.Name = "chkSituacao";
-            chkSituacao.Size = new Size(61, 21);
-            chkSituacao.TabIndex = 3;
-            chkSituacao.Text = "Ativa";
-            chkSituacao.UseVisualStyleBackColor = true;
-            // 
             // ID_MODALIDADE
             // 
             ID_MODALIDADE.DataPropertyName = "ID_MODALIDADE";
@@ -891,6 +880,20 @@
             btnHora.Name = "btnHora";
             btnHora.ReadOnly = true;
             btnHora.Width = 36;
+            // 
+            // chkSituacao
+            // 
+            chkSituacao.AutoSize = true;
+            chkSituacao.Checked = true;
+            chkSituacao.CheckState = CheckState.Checked;
+            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkSituacao.Location = new Point(141, 159);
+            chkSituacao.Name = "chkSituacao";
+            chkSituacao.Size = new Size(61, 21);
+            chkSituacao.TabIndex = 3;
+            chkSituacao.Tag = "SITUACAO";
+            chkSituacao.Text = "Ativa";
+            chkSituacao.UseVisualStyleBackColor = true;
             // 
             // frmControleAlunos
             // 
