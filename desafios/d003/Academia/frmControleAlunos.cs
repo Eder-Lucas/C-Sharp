@@ -81,7 +81,8 @@ namespace Academia
                     MessageBoxIcon.Information);
                 }
 
-                Limpar(tabPageCadastro);
+                this.Text = $"SCA - Controle de Alunos :: {txtNome.Text} ::";
+                txtNomeAluno.Text = txtNome.Text;
             }
             catch (Exception ex)
             {
