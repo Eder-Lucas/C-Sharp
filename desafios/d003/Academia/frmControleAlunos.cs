@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Academia
 {
@@ -26,13 +27,15 @@ namespace Academia
         private readonly Turmas novaTurma = new();
         private readonly Matriculas novaMatricula = new();
 
+        // Quando o form é carregado
         private void frmControleAlunos_Load(object sender, EventArgs e)
         {
+            // Configura os DataGridViews para não gerar colunas automaticamente
             dtgMatricula.AutoGenerateColumns = false;
             dtgTurmas.AutoGenerateColumns = false;
             dtgTurmasCadastradas.AutoGenerateColumns = false;
 
-            // Associa o evento genérico para ambos os DataGridViews
+            // Associa o evento genérico ao CellFormatting de ambos os DataGridViews
             dtgTurmas.CellFormatting += FormataGrid;
             dtgMatricula.CellFormatting += FormataGrid;
 
@@ -40,6 +43,7 @@ namespace Academia
             ListarMatriculas();
             ListaTurmas();
 
+            // Aplica o estilo zebrado para melhor visualização
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
 
@@ -136,6 +140,25 @@ namespace Academia
             }
         }
 
+        private void btnSalvarMatricula_Click(object sender, EventArgs e)
+        {
+            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
+            int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
+            DateTime venc = dtpVencimento.Value;
+            bool situacao = chkSituacao.Checked;
+
+            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+
+            MessageBox.Show(
+            "Matrícula alterada com sucesso!",
+            "Sucesso",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+            ListarMatriculas();
+        }
+
         private void ValidaCampos(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -227,7 +250,7 @@ namespace Academia
                 PreencherCampos(this, drv);
 
                 cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
-                idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
+                //idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
             }
             catch (Exception)
             {
@@ -263,7 +286,7 @@ namespace Academia
                 dtgMatricula.DataSource = dadosTabela;
                 dtgTurmas.DataSource = dadosTabela;
 
-                AtualizarMensagem(dtgMatricula);
+                AtualizarMensagem(dtgMatricula);                    
             }
             catch (Exception ex)
             {
@@ -411,6 +434,7 @@ namespace Academia
         */
 
         #endregion
+
     }
 }
 
