@@ -133,6 +133,9 @@ namespace Academia
 
                 ListaTurmas();
                 ListarMatriculas();
+
+                dtpVencimento.Value = Convert.ToDateTime(dtgMatricula.CurrentRow?.Cells["VENCIMENTO"].Value);
+                chkSituacao.Checked = Convert.ToBoolean(dtgMatricula.CurrentRow?.Cells["SITUACAO"].Value);
             }
             catch (Exception ex)
             {
@@ -144,7 +147,7 @@ namespace Academia
         {
             int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
-            int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
+            int idTurma = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_TURMA1"].Value);
             DateTime venc = dtpVencimento.Value;
             bool situacao = chkSituacao.Checked;
 
