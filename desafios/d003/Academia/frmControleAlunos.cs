@@ -115,11 +115,45 @@ namespace Academia
 
                 ValidaCampos(tabPageMatricula);
 
-                bool existe = novaMatricula.ExisteMatricula(idAluno, idTurma);
+                bool existe = novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma);
 
                 if (existe)
                 {
                     MessageBox.Show("Este aluno já possui uma matrícula ativa para esta turma!", "Matrícula existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                bool inativa = novaMatricula.ExisteMatriculaInativa(idAluno, idTurma);
+
+                if (inativa)
+                {
+                    bool result = MessageBox.Show(
+                        "Este aluno já possui uma matrícula para esta turma, porém INATIVA. Deseja reativá-la?",
+                        "Reativar matrícula?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes;
+
+                    if (!result) return;
+
+                    int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
+
+                    novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, true);
+
+                    MessageBox.Show(
+                    "Matrícula reativada com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                    ListarMatriculas();
+                    dtpVencimento.Value = Convert.ToDateTime(dtgMatricula.CurrentRow?.Cells["VENCIMENTO"].Value);
+                    chkSituacao.Checked = Convert.ToBoolean(dtgMatricula.CurrentRow?.Cells["SITUACAO"].Value);
+                    return;
+                }
+
+                if (!situacao)
+                {
+                    MessageBox.Show("Não é possível realizar uma matrícula já inativa. Por favor, marque a situação como ATIVA para realizar a matrícula.", "Situação inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
