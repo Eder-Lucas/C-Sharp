@@ -58,6 +58,7 @@
             NUMERO_TURMA = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE = new DataGridViewTextBoxColumn();
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
+            VAGAS = new DataGridViewTextBoxColumn();
             btnEditar = new DataGridViewImageColumn();
             btnExcluir = new DataGridViewImageColumn();
             btnHora = new DataGridViewImageColumn();
@@ -327,7 +328,7 @@
             dtgTurmas.AllowUserToResizeRows = false;
             dtgTurmas.ColumnHeadersHeight = 29;
             dtgTurmas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { ID_TURMA, ID_MODALIDADE, NUMERO_TURMA, NOME_MODALIDADE, MAXIMO_ALUNOS, btnEditar, btnExcluir, btnHora });
+            dtgTurmas.Columns.AddRange(new DataGridViewColumn[] { ID_TURMA, ID_MODALIDADE, NUMERO_TURMA, NOME_MODALIDADE, MAXIMO_ALUNOS, VAGAS, btnEditar, btnExcluir, btnHora });
             dtgTurmas.EnableHeadersVisualStyles = false;
             dtgTurmas.Location = new Point(12, 317);
             dtgTurmas.Name = "dtgTurmas";
@@ -386,6 +387,15 @@
             MAXIMO_ALUNOS.Name = "MAXIMO_ALUNOS";
             MAXIMO_ALUNOS.ReadOnly = true;
             MAXIMO_ALUNOS.Width = 200;
+            // 
+            // VAGAS
+            // 
+            VAGAS.DataPropertyName = "VAGAS";
+            VAGAS.HeaderText = "VAGAS";
+            VAGAS.MinimumWidth = 6;
+            VAGAS.Name = "VAGAS";
+            VAGAS.ReadOnly = true;
+            VAGAS.Width = 125;
             // 
             // btnEditar
             // 
@@ -479,6 +489,7 @@
         private DataGridViewTextBoxColumn NUMERO_TURMA;
         private DataGridViewTextBoxColumn NOME_MODALIDADE;
         private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
+        private DataGridViewTextBoxColumn VAGAS;
         private DataGridViewImageColumn btnEditar;
         private DataGridViewImageColumn btnExcluir;
         private DataGridViewImageColumn btnHora;
