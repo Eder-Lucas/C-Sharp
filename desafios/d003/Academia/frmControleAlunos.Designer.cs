@@ -93,13 +93,14 @@
             MENSALIDADE = new DataGridViewTextBoxColumn();
             VENCIMENTO = new DataGridViewTextBoxColumn();
             dtgTurmasCadastradas = new DataGridView();
+            chkSituacao = new CheckBox();
             ID_MODALIDADE = new DataGridViewTextBoxColumn();
             ID_TURMA = new DataGridViewTextBoxColumn();
             NOME_MODALIDADE = new DataGridViewTextBoxColumn();
             NUMERO_TURMA = new DataGridViewTextBoxColumn();
+            VAGAS = new DataGridViewTextBoxColumn();
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
-            chkSituacao = new CheckBox();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -527,6 +528,7 @@
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(88, 36);
             btnExcluir.Text = "Excluir";
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // tabPageMatricula
             // 
@@ -602,6 +604,7 @@
             btnExcluirMatricula.Size = new Size(94, 55);
             btnExcluirMatricula.TabIndex = 9;
             btnExcluirMatricula.UseVisualStyleBackColor = true;
+            btnExcluirMatricula.Click += btnExcluirMatricula_Click;
             // 
             // pictureBox3
             // 
@@ -801,7 +804,7 @@
             dtgTurmasCadastradas.AllowUserToAddRows = false;
             dtgTurmasCadastradas.AllowUserToDeleteRows = false;
             dtgTurmasCadastradas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgTurmasCadastradas.Columns.AddRange(new DataGridViewColumn[] { ID_MODALIDADE, ID_TURMA, NOME_MODALIDADE, NUMERO_TURMA, MAXIMO_ALUNOS, btnHora });
+            dtgTurmasCadastradas.Columns.AddRange(new DataGridViewColumn[] { ID_MODALIDADE, ID_TURMA, NOME_MODALIDADE, NUMERO_TURMA, VAGAS, MAXIMO_ALUNOS, btnHora });
             dtgTurmasCadastradas.Location = new Point(8, 318);
             dtgTurmasCadastradas.Name = "dtgTurmasCadastradas";
             dtgTurmasCadastradas.ReadOnly = true;
@@ -809,6 +812,19 @@
             dtgTurmasCadastradas.RowHeadersWidth = 51;
             dtgTurmasCadastradas.Size = new Size(432, 263);
             dtgTurmasCadastradas.TabIndex = 5;
+            // 
+            // chkSituacao
+            // 
+            chkSituacao.AutoSize = true;
+            chkSituacao.Checked = true;
+            chkSituacao.CheckState = CheckState.Checked;
+            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkSituacao.Location = new Point(141, 159);
+            chkSituacao.Name = "chkSituacao";
+            chkSituacao.Size = new Size(61, 21);
+            chkSituacao.TabIndex = 3;
+            chkSituacao.Text = "Ativa";
+            chkSituacao.UseVisualStyleBackColor = true;
             // 
             // ID_MODALIDADE
             // 
@@ -848,13 +864,23 @@
             NUMERO_TURMA.ReadOnly = true;
             NUMERO_TURMA.Width = 125;
             // 
+            // VAGAS
+            // 
+            VAGAS.DataPropertyName = "VAGAS";
+            VAGAS.HeaderText = "VAGAS";
+            VAGAS.MinimumWidth = 6;
+            VAGAS.Name = "VAGAS";
+            VAGAS.ReadOnly = true;
+            VAGAS.Width = 125;
+            // 
             // MAXIMO_ALUNOS
             // 
             MAXIMO_ALUNOS.DataPropertyName = "MAXIMO_ALUNOS";
-            MAXIMO_ALUNOS.HeaderText = "VAGAS";
+            MAXIMO_ALUNOS.HeaderText = "MAXIMO_ALUNOS";
             MAXIMO_ALUNOS.MinimumWidth = 6;
             MAXIMO_ALUNOS.Name = "MAXIMO_ALUNOS";
             MAXIMO_ALUNOS.ReadOnly = true;
+            MAXIMO_ALUNOS.Visible = false;
             MAXIMO_ALUNOS.Width = 125;
             // 
             // btnHora
@@ -865,19 +891,6 @@
             btnHora.Name = "btnHora";
             btnHora.ReadOnly = true;
             btnHora.Width = 36;
-            // 
-            // chkSituacao
-            // 
-            chkSituacao.AutoSize = true;
-            chkSituacao.Checked = true;
-            chkSituacao.CheckState = CheckState.Checked;
-            chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSituacao.Location = new Point(141, 159);
-            chkSituacao.Name = "chkSituacao";
-            chkSituacao.Size = new Size(61, 21);
-            chkSituacao.TabIndex = 3;
-            chkSituacao.Text = "Ativa";
-            chkSituacao.UseVisualStyleBackColor = true;
             // 
             // frmControleAlunos
             // 
@@ -961,12 +974,6 @@
         private Button btnSalvarMatricula;
         private Button btnExcluirMatricula;
         private Button btnIncluir;
-        private DataGridViewTextBoxColumn ID_MODALIDADE;
-        private DataGridViewTextBoxColumn ID_TURMA;
-        private DataGridViewTextBoxColumn NOME_MODALIDADE;
-        private DataGridViewTextBoxColumn NUMERO_TURMA;
-        private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
-        private DataGridViewImageColumn btnHora;
         private DateTimePicker dtpVencimento;
         private Label lblMensagem;
         private DataGridViewTextBoxColumn SITUACAO1;
@@ -982,5 +989,12 @@
         private DataGridViewTextBoxColumn NUMERO_TURMA1;
         private DataGridViewTextBoxColumn MENSALIDADE;
         private DataGridViewTextBoxColumn VENCIMENTO;
+        private DataGridViewTextBoxColumn ID_MODALIDADE;
+        private DataGridViewTextBoxColumn ID_TURMA;
+        private DataGridViewTextBoxColumn NOME_MODALIDADE;
+        private DataGridViewTextBoxColumn NUMERO_TURMA;
+        private DataGridViewTextBoxColumn VAGAS;
+        private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
+        private DataGridViewImageColumn btnHora;
     }
 }
