@@ -195,7 +195,7 @@ namespace Academia
             }
         }
 
-        public bool ExisteMatricula(int idAluno, int idTurma)
+        public bool ExisteMatriculaAtiva(int idAluno, int idTurma)
         {
             try
             {
@@ -207,6 +207,35 @@ namespace Academia
                     FROM Matricula
                     WHERE ID_ALUNO = @idAluno
                     AND ID_TURMA = @idTurma
+                    AND SITUACAO = 1
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idAluno", System.Data.SqlDbType.Int).Value = idAluno;
+                cmd.Parameters.Add("@idTurma", System.Data.SqlDbType.Int).Value = idTurma;
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                return leitor.HasRows;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool ExisteMatriculaInativa(int idAluno, int idTurma)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 1
+                    FROM Matricula
+                    WHERE ID_ALUNO = @idAluno
+                    AND ID_TURMA = @idTurma
+                    AND SITUACAO = 0
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
