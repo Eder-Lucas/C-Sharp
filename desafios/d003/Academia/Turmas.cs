@@ -123,9 +123,22 @@ namespace Academia
                 conexao.Open();
 
                 string sql = """
-                    SELECT t.*, m.NOME_MODALIDADE
+                    SELECT 
+                        t.ID_TURMA,
+                        t.MAXIMO_ALUNOS,
+                        t.NUMERO_TURMA,
+                        md.NOME_MODALIDADE,
+                        (t.MAXIMO_ALUNOS - COUNT(m.ID_MATRICULA)) AS VAGAS
+                    
                     FROM Turma t
-                    INNER JOIN Modalidade m ON t.ID_MODALIDADE = m.ID_MODALIDADE
+                    LEFT JOIN Matricula m ON m.ID_TURMA = t.ID_TURMA
+                    INNER JOIN Modalidade md ON t.ID_MODALIDADE = md.ID_MODALIDADE
+                    
+                    GROUP BY
+                        t.ID_TURMA,
+                        t.NUMERO_TURMA,
+                        t.MAXIMO_ALUNOS,
+                        md.NOME_MODALIDADE
                     ORDER BY t.ID_TURMA DESC
                 """;
 
@@ -140,6 +153,6 @@ namespace Academia
             {
                 throw;
             }
-        }
+        }      
     }
 }
