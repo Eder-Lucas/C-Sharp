@@ -116,7 +116,7 @@ namespace Academia
                 {
                     MessageBox.Show("Este aluno já possui uma matrícula ativa para esta turma!", "Matrícula existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }              
+                }
 
                 novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
 
@@ -126,6 +126,7 @@ namespace Academia
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
+                ListaTurmas();
                 ListarMatriculas();
             }
             catch (Exception ex)
