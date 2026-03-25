@@ -315,6 +315,24 @@ namespace Academia
             }
         }
 
+        private void btnExcluirMatricula_Click(object sender, EventArgs e)
+        {
+            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
+            novaMatricula.Excluir(idMatricula);
+
+            ListarMatriculas();
+            ListaTurmas();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            novoAluno.Excluir(idAluno);
+
+            ListarMatriculas();
+            Limpar(tcAluno);
+        }
+
         #region 📌 Implementação antiga - controle de situação da matrícula
 
         /*
