@@ -107,10 +107,10 @@ namespace Academia
                 ValidaCampos(tabPageMatricula);
 
                 // Obtém os dados necessários para inclusão
-                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosInclusao();
+                var (idTurma, idAluno, idMatricula, situacao, venc, vagas) = ObterDadosInclusao();
 
                 // Valida as regras de negócio específicas para matrícula
-                if (!ValidaRegrasInclusao(situacao, venc, idMatricula, idTurma, idAluno)) return;
+                if (!ValidaRegrasInclusao(situacao, venc, idMatricula, idTurma, idAluno, vagas)) return;
 
                 // Salva a nova matrícula
                 IncluirMatricula(idAluno, idTurma, venc, situacao);
@@ -126,8 +126,18 @@ namespace Academia
             }
         }
 
-        private bool ValidaRegrasInclusao(bool situacao, DateTime venc, int idMatricula, int idTurma, int idAluno)
+        private bool ValidaRegrasInclusao(bool situacao, DateTime venc, int idMatricula, int idTurma, int idAluno, int vagas)
         {
+            if (vagas <= 0)
+            {
+                MessageBox.Show(
+                "Não há vagas disponíveis para esta turma. Por favor, escolha outra turma.",
+                "Turma lotada",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (TratarMatriculaExistente(idAluno, idTurma, idMatricula)) return false;
 
             if (!situacao)
@@ -165,14 +175,15 @@ namespace Academia
                 MessageBoxIcon.Information);
         }
 
-        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosInclusao()
+        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc, int vagas) ObterDadosInclusao()
         {
             int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
             int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value ?? 0);
             bool situacao = chkSituacao.Checked;
             DateTime venc = dtpVencimento.Value;
-            return (idTurma, idAluno, idMatricula, situacao, venc);
+            int vagas = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["VAGAS"].Value);
+            return (idTurma, idAluno, idMatricula, situacao, venc, vagas);
         }
 
         private bool TratarMatriculaExistente(int idAluno, int idTurma, int idMatricula)
