@@ -103,73 +103,22 @@ namespace Academia
         {
             try
             {
-                if (dtgTurmasCadastradas.CurrentRow == null || dtgTurmasCadastradas.CurrentRow.Index < 0) return;
-
-                var linha = dtgTurmasCadastradas.Rows[dtgTurmasCadastradas.CurrentRow.Index];
-                if (linha?.DataBoundItem is not DataRowView drv) return;
-
-                int idTurma = Convert.ToInt32(drv["ID_TURMA"]);
-                int idAluno = Convert.ToInt32(txtCodAluno.Text);
-                bool situacao = chkSituacao.Checked;
-                DateTime venc = dtpVencimento.Value;
-
+                // Valida campos comuns
                 ValidaCampos(tabPageMatricula);
 
-                bool existe = novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma);
+                // Obtém os dados necessários para inclusão
+                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosInclusao();
 
-                if (existe)
-                {
-                    MessageBox.Show("Este aluno já possui uma matrícula ativa para esta turma!", "Matrícula existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                // Valida as regras de negócio específicas para matrícula
+                if (!ValidaRegrasInclusao(situacao, venc, idMatricula, idTurma, idAluno)) return;
 
-                bool inativa = novaMatricula.ExisteMatriculaInativa(idAluno, idTurma);
+                // Salva a nova matrícula
+                IncluirMatricula(idAluno, idTurma, venc, situacao);
 
-                if (inativa)
-                {
-                    bool result = MessageBox.Show(
-                        "Este aluno já possui uma matrícula para esta turma, porém INATIVA. Deseja reativá-la?",
-                        "Reativar matrícula?",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes;
-
-                    if (!result) return;
-
-                    int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
-
-                    novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, true);
-
-                    MessageBox.Show(
-                    "Matrícula reativada com sucesso!",
-                    "Sucesso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                    ListarMatriculas();
-                    dtpVencimento.Value = Convert.ToDateTime(dtgMatricula.CurrentRow?.Cells["VENCIMENTO"].Value);
-                    chkSituacao.Checked = Convert.ToBoolean(dtgMatricula.CurrentRow?.Cells["SITUACAO"].Value);
-                    return;
-                }
-
-                if (!situacao)
-                {
-                    MessageBox.Show("Não é possível realizar uma matrícula já inativa. Por favor, marque a situação como ATIVA para realizar a matrícula.", "Situação inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
-
-                MessageBox.Show(
-                "Aluno matrículado com sucesso!",
-                "Sucesso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
+                // Atualiza a interface
                 ListaTurmas();
                 ListarMatriculas();
-
-                dtpVencimento.Value = Convert.ToDateTime(dtgMatricula.CurrentRow?.Cells["VENCIMENTO"].Value);
-                chkSituacao.Checked = Convert.ToBoolean(dtgMatricula.CurrentRow?.Cells["SITUACAO"].Value);
+                PreencherCampos(tabPageMatricula, dtgMatricula);
             }
             catch (Exception ex)
             {
@@ -177,14 +126,105 @@ namespace Academia
             }
         }
 
-        private void btnSalvarMatricula_Click(object sender, EventArgs e)
+        private bool ValidaRegrasInclusao(bool situacao, DateTime venc, int idMatricula, int idTurma, int idAluno)
         {
-            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
+            if (TratarMatriculaExistente(idAluno, idTurma, idMatricula)) return false;
+
+            if (!situacao)
+            {
+                MessageBox.Show(
+                "Não é possível criar uma matrícula INATIVA. Por favor, ATIVE a matrícula após criá-la.",
+                "Situação inválida",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (venc.Date <= DateTime.Today)
+            {
+                MessageBox.Show(
+                "A data de vencimento não pode ser anterior ou igual a data atual.",
+                "Data inválida",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void IncluirMatricula(int idAluno, int idTurma, DateTime venc, bool situacao)
+        {
+            int idMatricula = 0;
+            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+
+            MessageBox.Show(
+                "Aluno matrículado com sucesso!",
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosInclusao()
+        {
+            int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value ?? 0);
+            bool situacao = chkSituacao.Checked;
+            DateTime venc = dtpVencimento.Value;
+            return (idTurma, idAluno, idMatricula, situacao, venc);
+        }
+
+        private bool TratarMatriculaExistente(int idAluno, int idTurma, int idMatricula)
+        {
+            if (novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma, idMatricula))
+            {
+                MessageBox.Show(
+                "Este aluno já possui uma matrícula ativa para esta turma!",
+                "Matrícula existente", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Warning);
+                return true;
+            }
+
+            if (novaMatricula.ExisteMatriculaInativa(idAluno, idTurma))
+            {
+                bool reativar = MessageBox.Show(
+                    "Este aluno já possui uma matrícula para esta turma, porém INATIVA. Deseja reativá-la?",
+                    "Reativar matrícula?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes;
+
+                if (!reativar) return true;
+
+                novaMatricula.Salvar(idMatricula, idAluno, idTurma, dtpVencimento.Value, true);
+
+                MessageBox.Show(
+                "Matrícula reativada com sucesso!",
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+                ListarMatriculas();
+                PreencherCampos(tabPageMatricula, dtgMatricula);
+                return true;
+            }
+
+            return false;
+        }
+
+        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosAlteracao()
+        {
             int idTurma = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_TURMA1"].Value);
+            int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
             DateTime venc = dtpVencimento.Value;
             bool situacao = chkSituacao.Checked;
+            return (idTurma, idAluno, idMatricula, situacao, venc);
+        }
 
+        private void AlterarMatricula(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        {
             novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
 
             MessageBox.Show(
@@ -192,8 +232,46 @@ namespace Academia
             "Sucesso",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
+        }
 
-            ListarMatriculas();
+        private bool ValidaRegrasAlteracao(DateTime venc)
+        {
+            if (venc.Date <= DateTime.Today)
+            {
+                MessageBox.Show(
+                "A data de vencimento não pode ser anterior ou igual a data atual.",
+                "Data inválida",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnSalvarMatricula_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                // Valida os campos comuns por segurança
+                ValidaCampos(tabPageMatricula);
+
+                // Obtém os dados necessários para alteração
+                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosAlteracao();
+
+                // Valida as regras de negócio específicas para alteração de matrícula
+                if (!ValidaRegrasAlteracao(venc)) return;
+
+                // Salva as alterações da matrícula
+                AlterarMatricula(idMatricula, idAluno, idTurma, venc, situacao);
+
+                // Atualiza a interface
+                ListarMatriculas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao alterar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ValidaCampos(Control parent)
@@ -257,18 +335,29 @@ namespace Academia
             }
         }
 
-        private void PreencherCampos(Control parent, DataRowView drv)
+        private void PreencherCampos(Control parent, DataGridView dtg)
         {
+            if (dtg.CurrentRow?.DataBoundItem is not DataRowView drv) return;
+
             foreach (Control c in parent.Controls)
             {
                 if (c.HasChildren)
-                    PreencherCampos(c, drv);
+                    PreencherCampos(c, dtg);
 
                 if (c.Tag is not string tag) continue;
                 if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
 
+                var valor = drv[tag];
+                if (valor == DBNull.Value) continue;
+
                 if (c is TextBox || c is MaskedTextBox)
-                    c.Text = drv[tag].ToString();
+                    c.Text = valor.ToString();
+
+                else if (c is CheckBox chk)
+                    chk.Checked = Convert.ToBoolean(valor);
+
+                else if (c is DateTimePicker dtp)
+                    dtp.Value = Convert.ToDateTime(valor);
             }
         }
 
@@ -284,7 +373,7 @@ namespace Academia
 
                 this.Text = $"SCA - Controle de Alunos :: {drv["NOME_ALUNO"]} ::";
 
-                PreencherCampos(this, drv);
+                PreencherCampos(this, aluno);
 
                 cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
                 //idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
