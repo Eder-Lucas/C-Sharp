@@ -12,6 +12,8 @@ namespace Academia
         {
             try
             {
+                ValidaRegras(idAluno, idTurma, idMatricula, situacao, venc);
+
                 if (idMatricula == 0)
                     Inserir(idAluno, idTurma, venc, situacao);
                 else
@@ -248,6 +250,19 @@ namespace Academia
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void ValidaRegras(int idAluno, int idTurma, int idMatricula, bool situacao, DateTime venc)
+        {
+            if (idMatricula == 0 && !situacao)
+            {
+                throw new Exception("Não é possível criar uma matrícula inativa. Por favor, ative a matrícula após criá-la.");
+            }
+
+            if (venc.Date <= DateTime.Today)
+            {
+                throw new Exception("A data de vencimento não pode ser anterior ou igual a data atual.");
             }
         }
     }
