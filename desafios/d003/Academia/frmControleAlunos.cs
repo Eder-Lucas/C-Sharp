@@ -177,7 +177,7 @@ namespace Academia
 
         private bool TratarMatriculaExistente(int idAluno, int idTurma, int idMatricula)
         {
-            if (novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma, idMatricula))
+            if (novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma))
             {
                 MessageBox.Show(
                 "Este aluno já possui uma matrícula ativa para esta turma!",
