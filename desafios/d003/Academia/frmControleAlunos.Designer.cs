@@ -814,6 +814,7 @@
             dtgTurmasCadastradas.RowHeadersWidth = 51;
             dtgTurmasCadastradas.Size = new Size(432, 263);
             dtgTurmasCadastradas.TabIndex = 5;
+            dtgTurmasCadastradas.CellContentClick += dtgTurmasCadastradas_CellContentClick;
             // 
             // ID_MODALIDADE
             // 
