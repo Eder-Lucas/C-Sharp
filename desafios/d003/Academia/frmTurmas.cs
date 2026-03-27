@@ -43,13 +43,13 @@ namespace Academia
             {
                 if (txtCod.Text == "0")
                 {
-                    novaTurma.Salvar(Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
+                    novaTurma.Salvar(0, Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
 
                     MessageBox.Show("Turma salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    novaTurma.Alterar(Convert.ToInt32(txtCod.Text), Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
+                    novaTurma.Salvar(Convert.ToInt32(txtCod.Text), Convert.ToInt32(cboModalidade.SelectedValue), Convert.ToInt32(txtAluno.Text), Convert.ToInt32(txtTurma.Text));
 
                     MessageBox.Show("Turma alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -59,7 +59,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao listar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao salvar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
