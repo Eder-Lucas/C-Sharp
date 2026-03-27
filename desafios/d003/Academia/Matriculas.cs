@@ -253,17 +253,38 @@ namespace Academia
             }
         }
 
+        private int VagasDisponiveis(int idTurma)
+        {
+            using SqlConnection conexao = new(Conexao.StringConexao);
+            conexao.Open();
+
+            string sql = """
+                SELECT 
+                    t.MAXIMO_ALUNOS - COUNT(m.ID_MATRICULA)
+                FROM Turma t
+                LEFT JOIN Matricula m 
+                    ON m.ID_TURMA = t.ID_TURMA 
+                    AND m.SITUACAO = 1
+                WHERE t.ID_TURMA = @idTurma
+                GROUP BY t.MAXIMO_ALUNOS
+            """;
+
+            using SqlCommand cmd = new(sql, conexao);
+            cmd.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
+
+            return (int)cmd.ExecuteScalar();
+        }
+
         private void ValidaRegras(int idAluno, int idTurma, int idMatricula, bool situacao, DateTime venc)
         {
-            if (idMatricula == 0 && !situacao)
-            {
-                throw new Exception("Não é possível criar uma matrícula inativa. Por favor, ative a matrícula após criá-la.");
-            }
+            if (VagasDisponiveis(idTurma) <= 0 && idMatricula == 0)
+                throw new Exception("Não há vagas disponíveis para esta turma.");
 
+            if (idMatricula == 0 && !situacao)
+                throw new Exception("Não é possível criar uma matrícula inativa. Por favor, ative a matrícula após criá-la.");
+            
             if (venc.Date <= DateTime.Today)
-            {
-                throw new Exception("A data de vencimento não pode ser anterior ou igual a data atual.");
-            }
+                throw new Exception("A data de vencimento não pode ser anterior ou igual a data atual.");         
         }
     }
 }
