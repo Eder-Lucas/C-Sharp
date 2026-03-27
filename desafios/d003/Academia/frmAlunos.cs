@@ -69,14 +69,14 @@ namespace Academia
         // Ao dar um duplo clique em um aluno no DataGridView
         private void dtgAlunos_DoubleClick(object sender, EventArgs e)
         {
-            // Cria uma instância do frmControleAlunos passando o form atual
-            // Permite que o formulário frmControleAlunos acesse os métodos e dados do frmAlunos
-            frmControleAlunos controleAlunos = new(this);
-
             // Executa o método ExibirAluno do frmControleAlunos, passando o dtgAlunos como parâmetro
             // abre o form logo após isso
+            using frmControleAlunos controleAlunos = new(this);
+
+            // Cria uma instância do frmControleAlunos passando o form atual
+            // Permite que o formulário frmControleAlunos acesse os métodos e dados do frmAlunos
             controleAlunos.ExibirAluno(dtgAlunos);
-            controleAlunos.ShowDialog();
+            controleAlunos.ShowDialog();         
         }
     }
 }
