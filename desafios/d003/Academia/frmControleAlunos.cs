@@ -192,8 +192,8 @@ namespace Academia
             {
                 MessageBox.Show(
                 "Este aluno já possui uma matrícula ativa para esta turma!",
-                "Matrícula existente", 
-                MessageBoxButtons.OK, 
+                "Matrícula existente",
+                MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
                 return true;
             }
@@ -263,7 +263,7 @@ namespace Academia
         private void btnSalvarMatricula_Click(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 // Valida os campos comuns por segurança
                 ValidaCampos(tabPageMatricula);
 
@@ -423,7 +423,7 @@ namespace Academia
                 dtgMatricula.DataSource = dadosTabela;
                 dtgTurmas.DataSource = dadosTabela;
 
-                AtualizarMensagem(dtgMatricula);                    
+                AtualizarMensagem(dtgMatricula);
             }
             catch (Exception ex)
             {
@@ -492,6 +492,27 @@ namespace Academia
 
             ListarMatriculas();
             Limpar(tcAluno);
+        }
+
+        private void dtgTurmasCadastradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var coluna = dtgTurmasCadastradas.Columns[e.ColumnIndex].Name;
+            var linha = dtgTurmasCadastradas.Rows[e.RowIndex];
+
+            if (linha?.DataBoundItem is not DataRowView drv) return;
+
+            if (coluna == "btnHora")
+            {
+                using frmHorarios frm = new frmHorarios(
+                    Convert.ToInt32(drv["ID_TURMA"]),
+                    Convert.ToString(drv["NOME_MODALIDADE"])!,
+                    Convert.ToString(drv["NUMERO_TURMA"])!
+                );
+
+                frm.ShowDialog();   
+            }
         }
 
         #region 📌 Implementação antiga - controle de situação da matrícula
