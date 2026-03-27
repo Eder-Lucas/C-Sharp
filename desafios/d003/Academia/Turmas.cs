@@ -10,8 +10,25 @@ namespace Academia
     // Classe que gerencia operações relacionadas as turmas, como salvar e listar informações
     internal class Turmas
     {
+        public void Salvar(int idTurma, int idModalidade, int maxAlunos, int numTurma)
+        {
+            try
+            {
+                ValidaRegras(idTurma, idModalidade, maxAlunos, numTurma);
+
+                if (idTurma == 0)
+                    Inserir(idModalidade, maxAlunos, numTurma);
+                else
+                    Atualizar(idTurma, idModalidade, maxAlunos, numTurma);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
         // Método para salvar as informações de uma turma no banco de dados
-        public void Salvar(int idModalidade, int maxAlunos, int numTurma)
+        public void Inserir(int idModalidade, int maxAlunos, int numTurma)
         {
             try
             {
@@ -38,7 +55,7 @@ namespace Academia
         }
 
         // Método para alterar as informações de uma turma existente no banco de dados
-        public void Alterar(int idTurma, int idModalidade, int maxAlunos, int numTurma)
+        public void Atualizar(int idTurma, int idModalidade, int maxAlunos, int numTurma)
         {
             try
             {
@@ -153,6 +170,46 @@ namespace Academia
             {
                 throw;
             }
-        }      
+        }
+
+        public int QuantidadeMatriculas(int idTurma)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT COUNT(*)
+                    FROM Matricula
+                    WHERE ID_TURMA = @idTurma
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idTurma", System.Data.SqlDbType.Int).Value = idTurma;
+
+                return (int)cmd.ExecuteScalar();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private bool ValidaRegras(int idTurma, int idModalidade, int maxAlunos, int numTurma)
+        {
+            if (maxAlunos <= 0)
+                throw new Exception("O máximo de alunos deve ser maior que zero.");
+
+            if (idTurma != 0)
+            {
+                int vagas = maxAlunos - QuantidadeMatriculas(idTurma);
+
+                if (vagas <= 0)
+                    throw new Exception("O máximo de alunos não pode ser menor que a quantidade já matriculada.");
+            }
+
+            return true;
+        }
     }
 }
