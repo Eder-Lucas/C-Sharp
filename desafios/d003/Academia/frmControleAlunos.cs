@@ -12,17 +12,24 @@ namespace Academia
 {
     public partial class frmControleAlunos : Form
     {
-        readonly frmAlunos formulario;
+        // Cria uma variável para armazenar a referência do frmAlunos
+        readonly frmAlunos formAlunos;
 
+        // Método construtor: Executa sempre quando o formulário é instanciado
+        // Este form(frmControleAlunos) é aberto a partir do frmAlunos
+        // Então recebemos uma referência do frmAlunos JÁ ABERTO para podermos atualizar seus métodos
+        // Não criamos uma nova instância do frmAlunos, pois teriamos DUAS INSTÂNCIAS DIFERENTES
         public frmControleAlunos(frmAlunos formulario)
         {
             InitializeComponent();
 
-            this.formulario = formulario;
+            this.formAlunos = formulario; // Armazena a referência do frmAlunos passado como parâmetro
         }
 
+        // Variável para controlar o ID do aluno
         private int idAluno = 0;
-        private int idMatricula = 0;
+
+        // Cria instâncias das classes Alunos, Turmas e Matriculas para serem usadas em todo o formulário
         private readonly Alunos novoAluno = new();
         private readonly Turmas novaTurma = new();
         private readonly Matriculas novaMatricula = new();
@@ -47,6 +54,7 @@ namespace Academia
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
 
+        // Ao clicar no botão "Salvar" na aba de cadastro
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -94,11 +102,10 @@ namespace Academia
             }
         }
 
-        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            formulario.ListaAlunos();
-        }
+        // Quando o formulário é fechado, lista os alunos novamente no frmAlunos para atualizar a exibição
+        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e) => formAlunos.ListaAlunos();
 
+        // Ao clicar no botão "Incluir" na aba de matrícula
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             try
@@ -126,10 +133,31 @@ namespace Academia
             }
         }
 
+        #region 📌 Métodos Auxiliares para inclusão de matrícula
+
+        // Obtém os dados necessários para inclusão de matrícula
+        // Usando Tupla: permite retornar múltiplos valores de forma organizada
+        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc, int vagas) ObterDadosInclusao()
+        {
+            // Coleta os dados já convertidos
+            int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
+            int idAluno = Convert.ToInt32(txtCodAluno.Text);
+            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value ?? 0);
+            bool situacao = chkSituacao.Checked;
+            DateTime venc = dtpVencimento.Value;
+            int vagas = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["VAGAS"].Value);
+
+            // Retorna os dados para serem usados posteriormente
+            return (idTurma, idAluno, idMatricula, situacao, venc, vagas);
+        }
+
+        // Valida as regras de negócio para inclusão de matrículas
         private bool ValidaRegrasInclusao(bool situacao, DateTime venc, int idMatricula, int idTurma, int idAluno, int vagas)
         {
+            // Trata as situações onde exista alguma matrícula desse aluno para essa turma
             if (TratarMatriculaExistente(idAluno, idTurma, idMatricula)) return false;
 
+            // Verifica se há vagas disponíveis para a turma selecionada
             if (vagas <= 0)
             {
                 MessageBox.Show(
@@ -140,6 +168,7 @@ namespace Academia
                 return false;
             }
 
+            // Não permite criar uma matrícula já inativa, pois isso pode gerar confusão e inconsistências
             if (!situacao)
             {
                 MessageBox.Show(
@@ -150,6 +179,7 @@ namespace Academia
                 return false;
             }
 
+            // A data de vencimento deve ser obrigatoriamente futura para evitar confusões e erros de controle
             if (venc.Date <= DateTime.Today)
             {
                 MessageBox.Show(
@@ -160,7 +190,57 @@ namespace Academia
                 return false;
             }
 
+            // Se passou por todas as validações, retorna true para prosseguir o fluxo do código
             return true;
+        }
+
+        // Trata os casos onde já exista uma matrícula para o mesmo aluno e turma
+        private bool TratarMatriculaExistente(int idAluno, int idTurma, int idMatricula)
+        {
+            // Se a matrícula existe e está ativa, avisa ao usuário e bloqueia a inclusão
+            if (novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma))
+            {
+                MessageBox.Show(
+                "Este aluno já possui uma matrícula ativa para esta turma!",
+                "Matrícula existente",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+                return true;
+            }
+
+            // Se a matrícula existe mas está inativa, oferece a opção de reativar
+            if (novaMatricula.ExisteMatriculaInativa(idAluno, idTurma))
+            {
+                // Pergunta ao usuário se deseja reativar
+                bool reativar = MessageBox.Show(
+                    "Este aluno já possui uma matrícula para esta turma, porém INATIVA. Deseja reativá-la?",
+                    "Reativar matrícula?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes;
+
+                // Se o usuário escolher não reativar, bloqueia a inclusão
+                if (!reativar) return true;
+
+                // Reativa a matrícula existente
+                novaMatricula.Salvar(idMatricula, idAluno, idTurma, dtpVencimento.Value, true);
+
+                // Mensagem de sucesso
+                MessageBox.Show(
+                "Matrícula reativada com sucesso!",
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+                // Atualiza a interface para refletir a reativação
+                ListarMatriculas();
+                PreencherCampos(tabPageMatricula, dtgMatricula);
+
+                // Retorna true para bloquear a inclusão original, pois já reativamos a matrícula existente
+                return true;
+            }
+
+            // Se não existe nenhuma matrícula desse aluno nessa turma, permite a inclusão normalmente
+            return false;
         }
 
         private void IncluirMatricula(int idAluno, int idTurma, DateTime venc, bool situacao)
@@ -174,55 +254,7 @@ namespace Academia
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
-
-        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc, int vagas) ObterDadosInclusao()
-        {
-            int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
-            int idAluno = Convert.ToInt32(txtCodAluno.Text);
-            int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value ?? 0);
-            bool situacao = chkSituacao.Checked;
-            DateTime venc = dtpVencimento.Value;
-            int vagas = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["VAGAS"].Value);
-            return (idTurma, idAluno, idMatricula, situacao, venc, vagas);
-        }
-
-        private bool TratarMatriculaExistente(int idAluno, int idTurma, int idMatricula)
-        {
-            if (novaMatricula.ExisteMatriculaAtiva(idAluno, idTurma))
-            {
-                MessageBox.Show(
-                "Este aluno já possui uma matrícula ativa para esta turma!",
-                "Matrícula existente",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
-                return true;
-            }
-
-            if (novaMatricula.ExisteMatriculaInativa(idAluno, idTurma))
-            {
-                bool reativar = MessageBox.Show(
-                    "Este aluno já possui uma matrícula para esta turma, porém INATIVA. Deseja reativá-la?",
-                    "Reativar matrícula?",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes;
-
-                if (!reativar) return true;
-
-                novaMatricula.Salvar(idMatricula, idAluno, idTurma, dtpVencimento.Value, true);
-
-                MessageBox.Show(
-                "Matrícula reativada com sucesso!",
-                "Sucesso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
-                ListarMatriculas();
-                PreencherCampos(tabPageMatricula, dtgMatricula);
-                return true;
-            }
-
-            return false;
-        }
+        #endregion
 
         private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosAlteracao()
         {
@@ -388,7 +420,7 @@ namespace Academia
                 PreencherCampos(this, aluno);
 
                 cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
-                //idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
+                idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
             }
             catch (Exception)
             {
