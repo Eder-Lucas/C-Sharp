@@ -41,7 +41,7 @@ namespace Academia
 
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
-            ListaTurmas();
+            ListarTurmas();
 
             // Aplica o estilo zebrado para melhor visualização
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
@@ -116,7 +116,7 @@ namespace Academia
                 IncluirMatricula(idAluno, idTurma, venc, situacao);
 
                 // Atualiza a interface
-                ListaTurmas();
+                ListarTurmas();
                 ListarMatriculas();
                 PreencherCampos(tabPageMatricula, dtgMatricula);
             }
@@ -278,6 +278,7 @@ namespace Academia
 
                 // Atualiza a interface
                 ListarMatriculas();
+                ListarTurmas();
             }
             catch (Exception ex)
             {
@@ -331,7 +332,7 @@ namespace Academia
             }
         }
 
-        private void ListaTurmas()
+        private void ListarTurmas()
         {
             try
             {
@@ -482,7 +483,7 @@ namespace Academia
             novaMatricula.Excluir(idMatricula);
 
             ListarMatriculas();
-            ListaTurmas();
+            ListarTurmas();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
