@@ -128,6 +128,8 @@ namespace Academia
 
         private bool ValidaRegrasInclusao(bool situacao, DateTime venc, int idMatricula, int idTurma, int idAluno, int vagas)
         {
+            if (TratarMatriculaExistente(idAluno, idTurma, idMatricula)) return false;
+
             if (vagas <= 0)
             {
                 MessageBox.Show(
@@ -137,8 +139,6 @@ namespace Academia
                 MessageBoxIcon.Warning);
                 return false;
             }
-
-            if (TratarMatriculaExistente(idAluno, idTurma, idMatricula)) return false;
 
             if (!situacao)
             {
