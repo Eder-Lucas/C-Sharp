@@ -148,8 +148,13 @@ namespace Academia
                         (t.MAXIMO_ALUNOS - COUNT(m.ID_MATRICULA)) AS VAGAS
                     
                     FROM Turma t
-                    LEFT JOIN Matricula m ON m.ID_TURMA = t.ID_TURMA
-                    INNER JOIN Modalidade md ON t.ID_MODALIDADE = md.ID_MODALIDADE
+
+                    LEFT JOIN Matricula m 
+                        ON m.ID_TURMA = t.ID_TURMA
+                        AND SITUACAO = 1
+
+                    INNER JOIN Modalidade md 
+                        ON t.ID_MODALIDADE = md.ID_MODALIDADE
                     
                     GROUP BY
                         t.ID_TURMA,
