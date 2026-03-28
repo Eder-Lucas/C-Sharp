@@ -46,6 +46,8 @@ namespace Academia
             dtgTurmas.CellFormatting += FormataGrid;
             dtgMatricula.CellFormatting += FormataGrid;
 
+            dtgMatricula.SelectionChanged += CarregarMatriculaAtual;
+
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
             ListarTurmas();
@@ -54,36 +56,50 @@ namespace Academia
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
         }
 
+        // Quando o formulário é fechado, lista os alunos novamente no frmAlunos para atualizar a exibição
+        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e) => formAlunos.ListaAlunos();
+
         // Ao clicar no botão "Salvar" na aba de cadastro
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                var sexo = cboSexo.SelectedIndex == 0 ? "M" : "F";
-                bool novo = idAluno == 0;
-
+                // Valida os campos
                 ValidaCampos(tabPageCadastro);
 
+                // Converte o campo sexo para o formato que o banco espera (M ou F)
+                var sexo = cboSexo.SelectedIndex == 0 ? "M" : "F";
+
+                // Salva as informações do aluno (tanto para novo cadastro quanto para alteração)
                 novoAluno.Salvar(idAluno, txtNome.Text, txtEndereco.Text, txtBairro.Text, txtNumero.Text, txtCidade.Text, mtbCep.Text, mtbCpf.Text, mtbTel.Text, sexo, txtObs.Text);
 
+                // Verifica através da variável global se é um nono cadastro
+                bool novo = idAluno == 0;
+
+                // Se for um novo aluno
                 if (novo)
                 {
+                    // Mensagem de sucesso para o usuário
                     MessageBox.Show(
                     "Aluno salvo com sucesso!",
                     "Sucesso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
+                    // Pergunta se o usuário já deseja realizar uma matrícula, salvando a resposta na variável
                     bool matricula = MessageBox.Show(
                         "Deseja realizar a matrícula do aluno agora?",
                         "Realizar matrícula?",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes;
 
+                    // Se deseja, troca para a aba de matrículas para facilitar o processo
                     if (matricula) tcAluno.SelectedTab = tabPageMatricula;
 
+                    // Lista os dados do aluno recém cadastrado nos campos da aba matrícula
                     ListaUltimoAluno();
                 }
+                // Se não for um novo aluno, exibe a mensagem de alteração bem sucedida
                 else
                 {
                     MessageBox.Show(
@@ -93,6 +109,7 @@ namespace Academia
                     MessageBoxIcon.Information);
                 }
 
+                // Atualiza o título do formulário e o campo de nome na aba de matrícula para refletir as alterações
                 this.Text = $"SCA - Controle de Alunos :: {txtNome.Text} ::";
                 txtNomeAluno.Text = txtNome.Text;
             }
@@ -101,9 +118,6 @@ namespace Academia
                 MessageBox.Show(ex.Message, "Erro ao salvar informações", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // Quando o formulário é fechado, lista os alunos novamente no frmAlunos para atualizar a exibição
-        private void frmControleAlunos_FormClosed(object sender, FormClosedEventArgs e) => formAlunos.ListaAlunos();
 
         // Ao clicar no botão "Incluir" na aba de matrícula
         private void btnIncluir_Click(object sender, EventArgs e)
@@ -243,9 +257,10 @@ namespace Academia
             return false;
         }
 
+        // Método que incluir a matrícula no banco de dados e exibe a mensagem de sucesso
         private void IncluirMatricula(int idAluno, int idTurma, DateTime venc, bool situacao)
         {
-            int idMatricula = 0;
+            int idMatricula = 0; // Para inclusão, o ID é sempre 0
             novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
 
             MessageBox.Show(
@@ -256,6 +271,9 @@ namespace Academia
         }
         #endregion
 
+        #region 📌 Métodos Auxiliares para alteração da matrícula
+
+        // Obtém os dados necessários para alteração de matrícula
         private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosAlteracao()
         {
             int idTurma = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_TURMA1"].Value);
@@ -266,19 +284,10 @@ namespace Academia
             return (idTurma, idAluno, idMatricula, situacao, venc);
         }
 
-        private void AlterarMatricula(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
-        {
-            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
-
-            MessageBox.Show(
-            "Matrícula alterada com sucesso!",
-            "Sucesso",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
-        }
-
+        // Método que valida as regras de negócio para alteração de matrícula
         private bool ValidaRegrasAlteracao(DateTime venc)
         {
+            // A data de vencimento deve ser obrigatoriamente maior que a data de hoje
             if (venc.Date <= DateTime.Today)
             {
                 MessageBox.Show(
@@ -289,9 +298,24 @@ namespace Academia
                 return false;
             }
 
+            // Se passou por todas as validações, retorna true para prosseguir o fluxo do código
             return true;
         }
 
+        // Método que salva as alterações da matrícula no banco de dados e exibe a mensagem de sucesso
+        private void AlterarMatricula(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        {
+            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+
+            MessageBox.Show(
+            "Matrícula alterada com sucesso!",
+            "Sucesso",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+        }
+        #endregion
+
+        // Ao clicar no botão "Salvar" na aba de matrícula, realiza a alteração da matrícula selecionada
         private void btnSalvarMatricula_Click(object sender, EventArgs e)
         {
             try
@@ -471,11 +495,11 @@ namespace Academia
             lblMensagem.Visible = semDados;
         }
 
-        private void dtgMatricula_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void CarregarMatriculaAtual(object? sender, EventArgs e)
         {
-            var linha = dtgMatricula.Rows[e.RowIndex];
+            if (dtgMatricula.CurrentRow == null || dtgMatricula.CurrentRow.Index < 0) return;
 
-            if (linha?.DataBoundItem is not DataRowView drv) return;
+            if (dtgMatricula.CurrentRow.DataBoundItem is not DataRowView drv) return;
 
             dtpVencimento.Value = Convert.ToDateTime(drv["VENCIMENTO"]);
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
