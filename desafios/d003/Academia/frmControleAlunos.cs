@@ -237,7 +237,7 @@ namespace Academia
                 if (!reativar) return true;
 
                 // Reativa a matrícula existente
-                novaMatricula.Salvar(idMatricula, idAluno, idTurma, dtpVencimento.Value, true);
+                novaMatricula.ReativarMatricula(idMatricula);
 
                 // Mensagem de sucesso
                 MessageBox.Show(
