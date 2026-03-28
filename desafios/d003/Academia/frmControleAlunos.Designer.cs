@@ -724,7 +724,6 @@
             dtgMatricula.RowHeadersWidth = 51;
             dtgMatricula.Size = new Size(557, 188);
             dtgMatricula.TabIndex = 5;
-            dtgMatricula.CellClick += dtgMatricula_CellClick;
             // 
             // ID_MATRICULA
             // 
