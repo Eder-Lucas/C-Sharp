@@ -275,6 +275,31 @@ namespace Academia
             return (int)cmd.ExecuteScalar();
         }
 
+        public void ReativarMatricula(int idMatricula)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    UPDATE Matricula
+                    SET SITUACAO = 1
+                    WHERE ID_MATRICULA = @idMatricula
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                cmd.Parameters.Add("@idMatricula", System.Data.SqlDbType.Int).Value = idMatricula;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         private void ValidaRegras(int idAluno, int idTurma, int idMatricula, bool situacao, DateTime venc)
         {
             if (VagasDisponiveis(idTurma) <= 0 && idMatricula == 0)
