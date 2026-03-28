@@ -46,11 +46,12 @@ namespace Academia
             dtgTurmas.CellFormatting += FormataGrid;
             dtgMatricula.CellFormatting += FormataGrid;
 
-            dtgMatricula.SelectionChanged += CarregarMatriculaAtual;
-
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
             ListarTurmas();
+
+            dtgMatricula.SelectionChanged += (s, e) => CarregarMatriculaAtual();
+            dtgMatricula.DataBindingComplete += (s, e) => CarregarMatriculaAtual();
 
             // Aplica o estilo zebrado para melhor visualização
             DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
@@ -147,7 +148,7 @@ namespace Academia
             }
         }
 
-        #region 📌 Métodos Auxiliares para inclusão de matrícula
+        // 📌 Métodos Auxiliares para inclusão de matrícula
 
         // Obtém os dados necessários para inclusão de matrícula
         // Usando Tupla: permite retornar múltiplos valores de forma organizada
@@ -269,9 +270,35 @@ namespace Academia
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
-        #endregion
 
-        #region 📌 Métodos Auxiliares para alteração da matrícula
+        // Ao clicar no botão "Salvar" na aba de matrícula, realiza a alteração da matrícula selecionada
+        private void btnSalvarMatricula_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Valida os campos comuns por segurança
+                ValidaCampos(tabPageMatricula);
+
+                // Obtém os dados necessários para alteração
+                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosAlteracao();
+
+                // Valida as regras de negócio específicas para alteração de matrícula
+                if (!ValidaRegrasAlteracao(venc)) return;
+
+                // Salva as alterações da matrícula
+                AlterarMatricula(idMatricula, idAluno, idTurma, venc, situacao);
+
+                // Atualiza a interface
+                ListarMatriculas();
+                ListarTurmas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao alterar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 📌 Métodos Auxiliares para alteração da matrícula
 
         // Obtém os dados necessários para alteração de matrícula
         private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosAlteracao()
@@ -313,39 +340,13 @@ namespace Academia
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
         }
-        #endregion
 
-        // Ao clicar no botão "Salvar" na aba de matrícula, realiza a alteração da matrícula selecionada
-        private void btnSalvarMatricula_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Valida os campos comuns por segurança
-                ValidaCampos(tabPageMatricula);
-
-                // Obtém os dados necessários para alteração
-                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosAlteracao();
-
-                // Valida as regras de negócio específicas para alteração de matrícula
-                if (!ValidaRegrasAlteracao(venc)) return;
-
-                // Salva as alterações da matrícula
-                AlterarMatricula(idMatricula, idAluno, idTurma, venc, situacao);
-
-                // Atualiza a interface
-                ListarMatriculas();
-                ListarTurmas();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erro ao alterar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        // Método geral para validar os campos do formulário, percorrendo recursivamente todos os controles filhos
         private void ValidaCampos(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
+                // Valida TextBox: não pode estar vazio (exceto txtObs) e txtNumero deve conter apenas números
                 if (c is TextBox txt)
                 {
                     if (string.IsNullOrWhiteSpace(txt.Text) && txt.Name != "txtObs")
@@ -355,30 +356,37 @@ namespace Academia
                         throw new Exception("O campo número deve ser preenchido apenas com números!");
                 }
 
+                // Valida MaskedTextBox: a máscara deve estar completamente preenchido
                 if (c is MaskedTextBox mtb)
                 {
                     if (!mtb.MaskFull)
                         throw new Exception("Preencha todos os campos corretamente!");
                 }
 
+                // Valida ComboBox: deve ter uma opção selecionada
                 if (c is ComboBox cbo)
                 {
                     if (cbo.SelectedIndex == -1)
                         throw new Exception("Preencha todos os campos corretamente!");
                 }
 
+                // Se o controle tiver filhos, chama recursivamente para validar os campos filhos
                 if (c.HasChildren)
                     ValidaCampos(c);
             }
         }
 
+        // Método para listar os dados do último aluno cadastrado
         private void ListaUltimoAluno()
         {
             try
             {
+                // Obtém os dados através do método Listar, armazenando num DataTable
                 DataTable dadosTabela = new();
                 dadosTabela = novoAluno.Listar();
 
+                // Preenche os campos da aba de matrícula com os dados do último aluno cadastrado
+                // Rows[0]: o último aluno sempre estará na primeira linha
                 txtCodAluno.Text = dadosTabela.Rows[0]["ID_ALUNO"].ToString();
                 txtNomeAluno.Text = dadosTabela.Rows[0]["NOME_ALUNO"].ToString();
             }
@@ -388,12 +396,15 @@ namespace Academia
             }
         }
 
+        // Método para listar as turmas disponíveis e as turmas já matriculadas para o aluno
         private void ListarTurmas()
         {
             try
             {
+                // Obtém o ID do aluno para listar as turmas matriculadas
                 int idAluno = Convert.ToInt32(txtCodAluno.Text);
 
+                // Executa as query salvando seu retorno no dataGridView
                 dtgTurmasCadastradas.DataSource = novaTurma.Listar();
                 dtgTurmas.DataSource = novaMatricula.RetornarTurmasMatriculadas(idAluno);
             }
@@ -403,21 +414,30 @@ namespace Academia
             }
         }
 
+        // Método para preencher os campos do formulário com os dados do aluno selecionado no DataGridView
         private void PreencherCampos(Control parent, DataGridView dtg)
         {
+            // Verifica se a linha atual é válida e se o item vinculado é um DataRowView
+            // Se for já salva na variável drv
             if (dtg.CurrentRow?.DataBoundItem is not DataRowView drv) return;
 
             foreach (Control c in parent.Controls)
             {
+                // Se o controle tiver filhos, chama recursivamente para preencher os campos filhos
                 if (c.HasChildren)
                     PreencherCampos(c, dtg);
 
+                // Se o controle tiver uma tag, verifica se é uma string e salva na variável tag
                 if (c.Tag is not string tag) continue;
+
+                // Verifica se a coluna correspondente à tag existe na tabela de dados
                 if (drv.DataView?.Table?.Columns.Contains(tag) == false) continue;
 
+                // Obtém seu valor e salva na variável valor, verificando se é DBNull antes de preencher os campos
                 var valor = drv[tag];
                 if (valor == DBNull.Value) continue;
 
+                // Preenche os campos de acordo com o tipo do controle
                 if (c is TextBox || c is MaskedTextBox)
                     c.Text = valor.ToString();
 
@@ -429,21 +449,29 @@ namespace Academia
             }
         }
 
+        // Método para exibir os dados do aluno selecionado no DataGridView do frmALunos
+        // É executado somente pelo frmAlunos
         public void ExibirAluno(DataGridView aluno)
         {
             try
             {
+                // Verifica se a linha atual é válida
                 if (aluno.CurrentRow == null || aluno.CurrentRow.Index < 0) return;
 
+                // Obtém a linha selecionada e verifica se o item vinculado é um DataRowView
                 var linha = aluno.Rows[aluno.CurrentRow.Index];
-
                 if (linha?.DataBoundItem is not DataRowView drv) return;
 
+                // Atualiza o título do formulário para refletir o nome do aluno selecionado
                 this.Text = $"SCA - Controle de Alunos :: {drv["NOME_ALUNO"]} ::";
 
+                // Preenche os campos da aba de cadastro com os dados do aluno selecionado
                 PreencherCampos(this, aluno);
 
+                // Converte o valor do banco ("M"/"F") para o índice do ComboBox (0/1)
                 cboSexo.SelectedIndex = drv["SEXO"].ToString() == "M" ? 0 : 1;
+
+                // Armazena o ID do aluno atual para operações futuras (alteração/exclusão)
                 idAluno = Convert.ToInt32(drv["ID_ALUNO"]);
             }
             catch (Exception)
@@ -452,6 +480,7 @@ namespace Academia
             }
         }
 
+        // Método para limpar os campos do formulário
         private void Limpar(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -465,21 +494,28 @@ namespace Academia
                     Limpar(c);
             }
 
+            // Reseta os campos específicos
             idAluno = 0;
             txtCod.Text = "0";
             cboSexo.SelectedIndex = -1;
         }
 
+        // Método para listar as matrículas do aluno, exibindo as turmas em que ele está matriculado
         public void ListarMatriculas()
         {
             try
             {
+                // Armazena seu ID
                 int idAluno = Convert.ToInt32(txtCodAluno.Text);
 
+                // Salva o retorno da query em um DataTable para ser usado como fonte de dados dos DataGridView
                 DataTable dadosTabela = novaMatricula.RetornarTurmasMatriculadas(idAluno);
+
+                // Aplica a mesma fonte de dados para ambos
                 dtgMatricula.DataSource = dadosTabela;
                 dtgTurmas.DataSource = dadosTabela;
 
+                // Atualiza a mensagem presente dentro do dtgMatricula
                 AtualizarMensagem(dtgMatricula);
             }
             catch (Exception ex)
@@ -488,51 +524,74 @@ namespace Academia
             }
         }
 
+        // Método para atualizar a mensagem de "sem dados" presente dentro de DataGridViews
         private void AtualizarMensagem(DataGridView dtg)
         {
+            // Se o dtg não tiver linhas, retorna true para a variável
             bool semDados = dtg.Rows.Count == 0;
 
+            // Exibe ou oculta a mensagem de acordo com a presença de dados
             lblMensagem.Visible = semDados;
         }
 
-        private void CarregarMatriculaAtual(object? sender, EventArgs e)
-        {
-            if (dtgMatricula.CurrentRow == null || dtgMatricula.CurrentRow.Index < 0) return;
+        // Armazena o ultimo ID de matrícula carregado para evitar recarregar os mesmos dados ao selecionar a mesma linha no DataGridView
+        private int _ultimoId = -1;
 
+        // Carrega os dados da matricula selecionada no dtgMatriculas para os campos de edição
+        private void CarregarMatriculaAtual()
+        {
+            // Verifica se a linha atual é válida e se o item vinculado é um DataRowView
+            if (dtgMatricula.CurrentRow == null || dtgMatricula.CurrentRow.Index < 0) return;
             if (dtgMatricula.CurrentRow.DataBoundItem is not DataRowView drv) return;
 
+            int idAtual = Convert.ToInt32(drv["ID_MATRICULA"]); // Obtém o ID da matrícula atual para comparação
+
+            if (idAtual == _ultimoId) return; // Evita recarregar os mesmos dados
+
+            _ultimoId = idAtual; // Atualiza o último ID carregado
+
+            // Carrega os dados da matrícula selecionada nos campos de edição
             dtpVencimento.Value = Convert.ToDateTime(drv["VENCIMENTO"]);
             chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
         }
 
+        // Método para formatar a visibilidade das células do DataGridView
         private void FormataGrid(object? sender, DataGridViewCellFormattingEventArgs e)
         {
+            // Verifica se quem disparou o evento é um DataGridView e se a coluna é válida
             if (sender is not DataGridView dtg) return;
             if (e.ColumnIndex < 0) return;
 
+            // Armazena o nome da propriedade de dados da coluna atual
             var dataColumn = dtg.Columns[e.ColumnIndex].DataPropertyName;
 
+            // Trata cada cada tipo de dado de forma específica, aplicando formatações visuais e de texto
             switch (dataColumn)
             {
+                // Caso seja SITUACAO
                 case "SITUACAO":
-                    if (e.Value is not bool situacao) return;
+                    if (e.Value is not bool situacao) return; // Verifica se o valor da célula é booleano true/false
 
+                    // Mostra "ATIVA" ou "INATIVA" ao invés de true/false, e aplica uma cor de fundo para facilitar a visualização
                     e.Value = situacao ? "ATIVA" : "INATIVA";
                     e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
 
+                    // Evita que o DataGridView aplique formatação automática por cima
                     e.FormattingApplied = true;
                     break;
 
+                // Caso seja MENSALIDADE
                 case "MENSALIDADE":
-                    if (e.Value is not decimal valor) return;
+                    if (e.Value is not decimal valor) return; // Verifica o tipo da célula
 
-                    e.Value = valor.ToString("C2", new CultureInfo("pt-BR"));
+                    e.Value = valor.ToString("C2", new CultureInfo("pt-BR")); // Formata como moeda brasileira
 
                     e.FormattingApplied = true;
                     break;
             }
         }
 
+        // Ao clicar no botão "Excluir" na aba de matrícula, exclui a matrícula selecionada
         private void btnExcluirMatricula_Click(object sender, EventArgs e)
         {
             int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
@@ -542,6 +601,7 @@ namespace Academia
             ListarTurmas();
         }
 
+        // Ao clicar no botão "Excluir" na aba de cadastro, exclui o aluno selecionado
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
@@ -551,6 +611,7 @@ namespace Academia
             Limpar(tcAluno);
         }
 
+        // Ao clicar no botão "Horários" presente no dtgTurmasCadastradas, abre o formulário de horários da turma selecionada
         private void dtgTurmasCadastradas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -562,94 +623,94 @@ namespace Academia
 
             if (coluna == "btnHora")
             {
-                using frmHorarios frm = new frmHorarios(
+                using frmHorarios frm = new frmHorarios( // Usando Using para descartar o form corretamente após o uso
                     Convert.ToInt32(drv["ID_TURMA"]),
                     Convert.ToString(drv["NOME_MODALIDADE"])!,
                     Convert.ToString(drv["NUMERO_TURMA"])!
                 );
 
-                frm.ShowDialog();   
+                frm.ShowDialog();
             }
         }
-
-        #region 📌 Implementação antiga - controle de situação da matrícula
-
-        /*
-        ⚠️ CÓDIGO LEGADO (mantido para estudo)
-
-        CONTEXTO:
-        Antes, a formatação da situação (ATIVA / INATIVA) era feita manualmente,
-        percorrendo todas as linhas do DataGridView após o carregamento dos dados.
-
-        MOTIVO DA MUDANÇA:
-        Substituído por CellFormatting por ser mais eficiente e não exigir loop manual
-
-        ========================================================
-         Enum para representar a situação da matrícula
-        ========================================================
-        
-        private enum SituacaoMatricula
-        {
-            Ativa = 1,
-            Inativa = 0
-        }
-
-        ========================================================
-         Método antigo de formatação manual
-        ========================================================
-
-        private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
-        {
-            foreach (DataGridViewRow row in dtg.Rows)
-            {
-                var situacao = (SituacaoMatricula)Convert.ToInt32(row.Cells[col].Value);
-                var cell = row.Cells[cellNome];
-
-                if (situacao == SituacaoMatricula.Ativa)
-                {
-                    cell.Value = "ATIVA";
-                    cell.Style.BackColor = Color.LightGreen;
-                }
-                else
-                {
-                    cell.Value = "INATIVA";
-                    cell.Style.BackColor = Color.LightPink;
-                }
-            }
-        }
-
-        ========================================================
-         Associação dos eventos (forma antiga)
-        ========================================================
-
-        Era necessário aguardar os dados carregarem para aplicar a formatação.
-
-        private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (sender is not DataGridView dtg) return;
-
-            if (dtg.Columns.Contains("SITUACAO1"))
-                AplicarSituacao(dtgMatricula, "SITUACAO", "SITUACAO1");
-
-            if (dtg.Columns.Contains("SITUACAO2"))
-                AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
-        }
-
-        ========================================================
-         MELHORIA IMPLEMENTADA
-        ========================================================
-
-        Substituído pelo evento CellFormatting:
-
-        ✔ Não precisa percorrer linhas manualmente
-        ✔ Atualiza automaticamente ao renderizar células
-
-        Método atual utilizado:
-        → FormataSituacao(object sender, DataGridViewCellFormattingEventArgs e)
-        */
-
-        #endregion
-
+     
     }
+
+    #region 📌 Implementação antiga - controle de situação da matrícula
+
+    /*
+    ⚠️ CÓDIGO LEGADO (mantido para estudo)
+
+    CONTEXTO:
+    Antes, a formatação da situação (ATIVA / INATIVA) era feita manualmente,
+    percorrendo todas as linhas do DataGridView após o carregamento dos dados.
+
+    MOTIVO DA MUDANÇA:
+    Substituído por CellFormatting por ser mais eficiente e não exigir loop manual
+
+    ========================================================
+     Enum para representar a situação da matrícula
+    ========================================================
+
+    private enum SituacaoMatricula
+    {
+        Ativa = 1,
+        Inativa = 0
+    }
+
+    ========================================================
+     Método antigo de formatação manual
+    ========================================================
+
+    private void AplicarSituacao(DataGridView dtg, string col, string cellNome)
+    {
+        foreach (DataGridViewRow row in dtg.Rows)
+        {
+            var situacao = (SituacaoMatricula)Convert.ToInt32(row.Cells[col].Value);
+            var cell = row.Cells[cellNome];
+
+            if (situacao == SituacaoMatricula.Ativa)
+            {
+                cell.Value = "ATIVA";
+                cell.Style.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                cell.Value = "INATIVA";
+                cell.Style.BackColor = Color.LightPink;
+            }
+        }
+    }
+
+    ========================================================
+     Associação dos eventos (forma antiga)
+    ========================================================
+
+    Era necessário aguardar os dados carregarem para aplicar a formatação.
+
+    private void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
+    {
+        if (sender is not DataGridView dtg) return;
+
+        if (dtg.Columns.Contains("SITUACAO1"))
+            AplicarSituacao(dtgMatricula, "SITUACAO", "SITUACAO1");
+
+        if (dtg.Columns.Contains("SITUACAO2"))
+            AplicarSituacao(dtgTurmas, "SITUACAO", "SITUACAO2");
+    }
+
+    ========================================================
+     MELHORIA IMPLEMENTADA
+    ========================================================
+
+    Substituído pelo evento CellFormatting:
+
+    ✔ Não precisa percorrer linhas manualmente
+    ✔ Atualiza automaticamente ao renderizar células
+
+    Método atual utilizado:
+    → FormataSituacao(object sender, DataGridViewCellFormattingEventArgs e)
+    */
+
+    #endregion
 }
 
