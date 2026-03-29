@@ -101,6 +101,22 @@
             MAXIMO_ALUNOS = new DataGridViewTextBoxColumn();
             btnHora = new DataGridViewImageColumn();
             chkSituacao = new CheckBox();
+            tabPageMensalidade = new TabPage();
+            dataGridView1 = new DataGridView();
+            groupBox4 = new GroupBox();
+            button1 = new Button();
+            groupBox3 = new GroupBox();
+            label22 = new Label();
+            groupBox2 = new GroupBox();
+            btnFiltro = new Button();
+            cboSituacaoMensalidade = new ComboBox();
+            label21 = new Label();
+            pictureBox4 = new PictureBox();
+            MODALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO2 = new DataGridViewTextBoxColumn();
+            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
+            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -112,17 +128,24 @@
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgMatricula).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgTurmasCadastradas).BeginInit();
+            tabPageMensalidade.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // tcAluno
             // 
             tcAluno.Controls.Add(tabPageCadastro);
             tcAluno.Controls.Add(tabPageMatricula);
+            tcAluno.Controls.Add(tabPageMensalidade);
             tcAluno.Dock = DockStyle.Fill;
             tcAluno.Location = new Point(0, 0);
             tcAluno.Name = "tcAluno";
             tcAluno.SelectedIndex = 0;
-            tcAluno.Size = new Size(950, 622);
+            tcAluno.Size = new Size(839, 622);
             tcAluno.TabIndex = 0;
             // 
             // tabPageCadastro
@@ -159,7 +182,7 @@
             tabPageCadastro.Location = new Point(4, 29);
             tabPageCadastro.Name = "tabPageCadastro";
             tabPageCadastro.Padding = new Padding(3);
-            tabPageCadastro.Size = new Size(942, 589);
+            tabPageCadastro.Size = new Size(831, 589);
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
@@ -175,7 +198,7 @@
             dtgTurmas.ReadOnly = true;
             dtgTurmas.RowHeadersVisible = false;
             dtgTurmas.RowHeadersWidth = 51;
-            dtgTurmas.Size = new Size(588, 254);
+            dtgTurmas.Size = new Size(506, 254);
             dtgTurmas.TabIndex = 6;
             // 
             // SITUACAO1
@@ -185,7 +208,7 @@
             SITUACAO1.MinimumWidth = 6;
             SITUACAO1.Name = "SITUACAO1";
             SITUACAO1.ReadOnly = true;
-            SITUACAO1.Width = 125;
+            SITUACAO1.Width = 90;
             // 
             // MODALIDADE
             // 
@@ -194,7 +217,7 @@
             MODALIDADE.MinimumWidth = 6;
             MODALIDADE.Name = "MODALIDADE";
             MODALIDADE.ReadOnly = true;
-            MODALIDADE.Width = 125;
+            MODALIDADE.Width = 115;
             // 
             // TURMA
             // 
@@ -203,7 +226,7 @@
             TURMA.MinimumWidth = 6;
             TURMA.Name = "TURMA";
             TURMA.ReadOnly = true;
-            TURMA.Width = 125;
+            TURMA.Width = 70;
             // 
             // MENSALIDADE1
             // 
@@ -212,7 +235,7 @@
             MENSALIDADE1.MinimumWidth = 6;
             MENSALIDADE1.Name = "MENSALIDADE1";
             MENSALIDADE1.ReadOnly = true;
-            MENSALIDADE1.Width = 125;
+            MENSALIDADE1.Width = 118;
             // 
             // VENCIMENTO1
             // 
@@ -221,7 +244,7 @@
             VENCIMENTO1.MinimumWidth = 6;
             VENCIMENTO1.Name = "VENCIMENTO1";
             VENCIMENTO1.ReadOnly = true;
-            VENCIMENTO1.Width = 125;
+            VENCIMENTO1.Width = 110;
             // 
             // cboSexo
             // 
@@ -271,7 +294,7 @@
             txtObs.Location = new Point(622, 177);
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
-            txtObs.Size = new Size(312, 126);
+            txtObs.Size = new Size(201, 126);
             txtObs.TabIndex = 3;
             txtObs.Tag = "OBSERVACAO";
             // 
@@ -445,7 +468,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(668, 374);
+            label14.Location = new Point(586, 374);
             label14.Name = "label14";
             label14.Size = new Size(242, 19);
             label14.TabIndex = 2;
@@ -455,7 +478,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(668, 347);
+            label12.Location = new Point(590, 347);
             label12.Name = "label12";
             label12.Size = new Size(94, 27);
             label12.TabIndex = 2;
@@ -474,7 +497,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.turmas_maior;
-            pictureBox2.Location = new Point(602, 327);
+            pictureBox2.Location = new Point(520, 327);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(64, 66);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -497,7 +520,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnSalvar, btnExcluir });
             toolStrip1.Location = new Point(3, 3);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(936, 39);
+            toolStrip1.Size = new Size(825, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -551,7 +574,7 @@
             tabPageMatricula.Location = new Point(4, 29);
             tabPageMatricula.Name = "tabPageMatricula";
             tabPageMatricula.Padding = new Padding(3);
-            tabPageMatricula.Size = new Size(942, 589);
+            tabPageMatricula.Size = new Size(831, 589);
             tabPageMatricula.TabIndex = 1;
             tabPageMatricula.Text = "Matrícula";
             tabPageMatricula.UseVisualStyleBackColor = true;
@@ -562,7 +585,7 @@
             lblMensagem.BackColor = Color.DarkGray;
             lblMensagem.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMensagem.ForeColor = Color.Red;
-            lblMensagem.Location = new Point(529, 209);
+            lblMensagem.Location = new Point(446, 220);
             lblMensagem.Name = "lblMensagem";
             lblMensagem.Size = new Size(252, 19);
             lblMensagem.TabIndex = 11;
@@ -572,18 +595,18 @@
             // 
             dtpVencimento.CustomFormat = "dd/MM/yy";
             dtpVencimento.Format = DateTimePickerFormat.Custom;
-            dtpVencimento.Location = new Point(141, 124);
+            dtpVencimento.Location = new Point(139, 123);
             dtpVencimento.Name = "dtpVencimento";
-            dtpVencimento.Size = new Size(93, 27);
+            dtpVencimento.Size = new Size(89, 27);
             dtpVencimento.TabIndex = 10;
             dtpVencimento.Tag = "VENCIMENTO";
             // 
             // btnSalvarMatricula
             // 
             btnSalvarMatricula.Image = Properties.Resources.salvar;
-            btnSalvarMatricula.Location = new Point(277, 124);
+            btnSalvarMatricula.Location = new Point(247, 123);
             btnSalvarMatricula.Name = "btnSalvarMatricula";
-            btnSalvarMatricula.Size = new Size(94, 55);
+            btnSalvarMatricula.Size = new Size(66, 55);
             btnSalvarMatricula.TabIndex = 9;
             btnSalvarMatricula.UseVisualStyleBackColor = true;
             btnSalvarMatricula.Click += btnSalvarMatricula_Click;
@@ -601,9 +624,9 @@
             // btnExcluirMatricula
             // 
             btnExcluirMatricula.Image = Properties.Resources.excluir;
-            btnExcluirMatricula.Location = new Point(277, 185);
+            btnExcluirMatricula.Location = new Point(247, 184);
             btnExcluirMatricula.Name = "btnExcluirMatricula";
-            btnExcluirMatricula.Size = new Size(94, 55);
+            btnExcluirMatricula.Size = new Size(66, 55);
             btnExcluirMatricula.TabIndex = 9;
             btnExcluirMatricula.UseVisualStyleBackColor = true;
             btnExcluirMatricula.Click += btnExcluirMatricula_Click;
@@ -622,7 +645,7 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.Location = new Point(498, 100);
+            label18.Location = new Point(440, 100);
             label18.Name = "label18";
             label18.Size = new Size(79, 21);
             label18.TabIndex = 7;
@@ -652,7 +675,7 @@
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.Location = new Point(36, 155);
+            label20.Location = new Point(34, 154);
             label20.Name = "label20";
             label20.Size = new Size(99, 24);
             label20.TabIndex = 7;
@@ -662,7 +685,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.Location = new Point(8, 124);
+            label19.Location = new Point(6, 123);
             label19.Name = "label19";
             label19.Size = new Size(127, 24);
             label19.TabIndex = 7;
@@ -672,7 +695,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(377, 94);
+            label15.Location = new Point(319, 95);
             label15.Name = "label15";
             label15.Size = new Size(128, 27);
             label15.TabIndex = 7;
@@ -717,12 +740,12 @@
             dtgMatricula.AllowUserToDeleteRows = false;
             dtgMatricula.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgMatricula.Columns.AddRange(new DataGridViewColumn[] { ID_MATRICULA, ID_TURMA1, ID_ALUNO, SITUACAO, NOME_MODALIDADE1, NUMERO_TURMA1, MENSALIDADE, VENCIMENTO });
-            dtgMatricula.Location = new Point(377, 124);
+            dtgMatricula.Location = new Point(317, 124);
             dtgMatricula.Name = "dtgMatricula";
             dtgMatricula.ReadOnly = true;
             dtgMatricula.RowHeadersVisible = false;
             dtgMatricula.RowHeadersWidth = 51;
-            dtgMatricula.Size = new Size(557, 188);
+            dtgMatricula.Size = new Size(506, 188);
             dtgMatricula.TabIndex = 5;
             // 
             // ID_MATRICULA
@@ -762,7 +785,7 @@
             SITUACAO.MinimumWidth = 6;
             SITUACAO.Name = "SITUACAO";
             SITUACAO.ReadOnly = true;
-            SITUACAO.Width = 125;
+            SITUACAO.Width = 90;
             // 
             // NOME_MODALIDADE1
             // 
@@ -771,7 +794,7 @@
             NOME_MODALIDADE1.MinimumWidth = 6;
             NOME_MODALIDADE1.Name = "NOME_MODALIDADE1";
             NOME_MODALIDADE1.ReadOnly = true;
-            NOME_MODALIDADE1.Width = 125;
+            NOME_MODALIDADE1.Width = 115;
             // 
             // NUMERO_TURMA1
             // 
@@ -780,7 +803,7 @@
             NUMERO_TURMA1.MinimumWidth = 6;
             NUMERO_TURMA1.Name = "NUMERO_TURMA1";
             NUMERO_TURMA1.ReadOnly = true;
-            NUMERO_TURMA1.Width = 125;
+            NUMERO_TURMA1.Width = 70;
             // 
             // MENSALIDADE
             // 
@@ -789,7 +812,7 @@
             MENSALIDADE.MinimumWidth = 6;
             MENSALIDADE.Name = "MENSALIDADE";
             MENSALIDADE.ReadOnly = true;
-            MENSALIDADE.Width = 125;
+            MENSALIDADE.Width = 118;
             // 
             // VENCIMENTO
             // 
@@ -798,7 +821,7 @@
             VENCIMENTO.MinimumWidth = 6;
             VENCIMENTO.Name = "VENCIMENTO";
             VENCIMENTO.ReadOnly = true;
-            VENCIMENTO.Width = 125;
+            VENCIMENTO.Width = 110;
             // 
             // dtgTurmasCadastradas
             // 
@@ -887,7 +910,7 @@
             chkSituacao.Checked = true;
             chkSituacao.CheckState = CheckState.Checked;
             chkSituacao.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkSituacao.Location = new Point(141, 159);
+            chkSituacao.Location = new Point(139, 158);
             chkSituacao.Name = "chkSituacao";
             chkSituacao.Size = new Size(61, 21);
             chkSituacao.TabIndex = 3;
@@ -895,11 +918,175 @@
             chkSituacao.Text = "Ativa";
             chkSituacao.UseVisualStyleBackColor = true;
             // 
+            // tabPageMensalidade
+            // 
+            tabPageMensalidade.Controls.Add(dataGridView1);
+            tabPageMensalidade.Controls.Add(groupBox4);
+            tabPageMensalidade.Controls.Add(groupBox3);
+            tabPageMensalidade.Controls.Add(groupBox2);
+            tabPageMensalidade.Controls.Add(pictureBox4);
+            tabPageMensalidade.Location = new Point(4, 29);
+            tabPageMensalidade.Name = "tabPageMensalidade";
+            tabPageMensalidade.Size = new Size(831, 589);
+            tabPageMensalidade.TabIndex = 2;
+            tabPageMensalidade.Text = "Mensalidade";
+            tabPageMensalidade.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { MODALIDADE1, VENCIMENTO2, DATA_PAGAMENTO, VALOR, SITUACAO_MENSALIDADE });
+            dataGridView1.Location = new Point(8, 104);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(817, 477);
+            dataGridView1.TabIndex = 13;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(button1);
+            groupBox4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox4.Location = new Point(631, 6);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(194, 92);
+            groupBox4.TabIndex = 12;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Controle";
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Image = Properties.Resources.dinheiro;
+            button1.ImageAlign = ContentAlignment.TopCenter;
+            button1.Location = new Point(20, 30);
+            button1.Name = "button1";
+            button1.Size = new Size(153, 52);
+            button1.TabIndex = 13;
+            button1.Text = "Pagamento";
+            button1.TextAlign = ContentAlignment.BottomCenter;
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(label22);
+            groupBox3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox3.Location = new Point(461, 6);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(164, 92);
+            groupBox3.TabIndex = 11;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Detalhes";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label22.Location = new Point(6, 30);
+            label22.Name = "label22";
+            label22.Size = new Size(133, 21);
+            label22.TabIndex = 12;
+            label22.Text = "Total em atraso";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btnFiltro);
+            groupBox2.Controls.Add(cboSituacaoMensalidade);
+            groupBox2.Controls.Add(label21);
+            groupBox2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.Location = new Point(79, 6);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(376, 92);
+            groupBox2.TabIndex = 10;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Filtro";
+            // 
+            // btnFiltro
+            // 
+            btnFiltro.Image = Properties.Resources.icon_filtro;
+            btnFiltro.Location = new Point(308, 37);
+            btnFiltro.Name = "btnFiltro";
+            btnFiltro.Size = new Size(62, 31);
+            btnFiltro.TabIndex = 13;
+            btnFiltro.UseVisualStyleBackColor = true;
+            // 
+            // cboSituacaoMensalidade
+            // 
+            cboSituacaoMensalidade.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboSituacaoMensalidade.FormattingEnabled = true;
+            cboSituacaoMensalidade.Location = new Point(97, 39);
+            cboSituacaoMensalidade.Name = "cboSituacaoMensalidade";
+            cboSituacaoMensalidade.Size = new Size(205, 27);
+            cboSituacaoMensalidade.TabIndex = 12;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label21.Location = new Point(6, 42);
+            label21.Name = "label21";
+            label21.Size = new Size(85, 21);
+            label21.TabIndex = 11;
+            label21.Text = "Situação:";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.pagamento;
+            pictureBox4.Location = new Point(8, 6);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(65, 92);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 9;
+            pictureBox4.TabStop = false;
+            // 
+            // MODALIDADE1
+            // 
+            MODALIDADE1.HeaderText = "MODALIDADE";
+            MODALIDADE1.MinimumWidth = 6;
+            MODALIDADE1.Name = "MODALIDADE1";
+            MODALIDADE1.ReadOnly = true;
+            MODALIDADE1.Width = 125;
+            // 
+            // VENCIMENTO2
+            // 
+            VENCIMENTO2.HeaderText = "VENCIMENTO";
+            VENCIMENTO2.MinimumWidth = 6;
+            VENCIMENTO2.Name = "VENCIMENTO2";
+            VENCIMENTO2.ReadOnly = true;
+            VENCIMENTO2.Width = 125;
+            // 
+            // DATA_PAGAMENTO
+            // 
+            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
+            DATA_PAGAMENTO.MinimumWidth = 6;
+            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.ReadOnly = true;
+            DATA_PAGAMENTO.Width = 125;
+            // 
+            // VALOR
+            // 
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 125;
+            // 
+            // SITUACAO_MENSALIDADE
+            // 
+            SITUACAO_MENSALIDADE.HeaderText = "SITUAÇÃO";
+            SITUACAO_MENSALIDADE.MinimumWidth = 6;
+            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
+            SITUACAO_MENSALIDADE.ReadOnly = true;
+            SITUACAO_MENSALIDADE.Width = 125;
+            // 
             // frmControleAlunos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(950, 622);
+            ClientSize = new Size(839, 622);
             Controls.Add(tcAluno);
             Name = "frmControleAlunos";
             Text = "SCA - Controle de Alunos";
@@ -920,6 +1107,14 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgMatricula).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgTurmasCadastradas).EndInit();
+            tabPageMensalidade.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox4.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -979,11 +1174,23 @@
         private Button btnIncluir;
         private DateTimePicker dtpVencimento;
         private Label lblMensagem;
-        private DataGridViewTextBoxColumn SITUACAO1;
-        private DataGridViewTextBoxColumn MODALIDADE;
-        private DataGridViewTextBoxColumn TURMA;
-        private DataGridViewTextBoxColumn MENSALIDADE1;
-        private DataGridViewTextBoxColumn VENCIMENTO1;
+        private DataGridViewTextBoxColumn ID_MODALIDADE;
+        private DataGridViewTextBoxColumn ID_TURMA;
+        private DataGridViewTextBoxColumn NOME_MODALIDADE;
+        private DataGridViewTextBoxColumn NUMERO_TURMA;
+        private DataGridViewTextBoxColumn VAGAS;
+        private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
+        private DataGridViewImageColumn btnHora;
+        private TabPage tabPageMensalidade;
+        private PictureBox pictureBox4;
+        private Label label21;
+        private GroupBox groupBox2;
+        private ComboBox cboSituacaoMensalidade;
+        private Button btnFiltro;
+        private GroupBox groupBox3;
+        private Label label22;
+        private GroupBox groupBox4;
+        private Button button1;
         private DataGridViewTextBoxColumn ID_MATRICULA;
         private DataGridViewTextBoxColumn ID_TURMA1;
         private DataGridViewTextBoxColumn ID_ALUNO;
@@ -992,12 +1199,15 @@
         private DataGridViewTextBoxColumn NUMERO_TURMA1;
         private DataGridViewTextBoxColumn MENSALIDADE;
         private DataGridViewTextBoxColumn VENCIMENTO;
-        private DataGridViewTextBoxColumn ID_MODALIDADE;
-        private DataGridViewTextBoxColumn ID_TURMA;
-        private DataGridViewTextBoxColumn NOME_MODALIDADE;
-        private DataGridViewTextBoxColumn NUMERO_TURMA;
-        private DataGridViewTextBoxColumn VAGAS;
-        private DataGridViewTextBoxColumn MAXIMO_ALUNOS;
-        private DataGridViewImageColumn btnHora;
+        private DataGridViewTextBoxColumn SITUACAO1;
+        private DataGridViewTextBoxColumn MODALIDADE;
+        private DataGridViewTextBoxColumn TURMA;
+        private DataGridViewTextBoxColumn MENSALIDADE1;
+        private DataGridViewTextBoxColumn VENCIMENTO1;
+        private DataGridViewTextBoxColumn MODALIDADE1;
+        private DataGridViewTextBoxColumn VENCIMENTO2;
+        private DataGridViewTextBoxColumn DATA_PAGAMENTO;
+        private DataGridViewTextBoxColumn VALOR;
+        private DataGridViewTextBoxColumn SITUACAO_MENSALIDADE;
     }
 }
