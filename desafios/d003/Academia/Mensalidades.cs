@@ -16,7 +16,7 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					INSERT INTO Mensalidade (ID_MATRICULA, VENCIMENTO, SITUACAO)
+					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
 					VALUES (@idMatricula, @vencimento, @situacao)
 				""";
 
@@ -35,7 +35,7 @@ namespace Academia
 			}
         }
 
-		public DataTable Listar(int idMatricula)
+		public DataTable Listar(int idAluno)
 		{
 			try
 			{
@@ -43,13 +43,20 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					SELECT * FROM Mensalidade
-					WHERE ID_MATRICULA = @idMatricula
-					ORDER BY VENCIMENTO DESC
+					SELECT men.*, md.NOME_MODALIDADE, md.MENSALIDADE, m.ID_ALUNO
+					FROM Mensalidade men
+					INNER JOIN Matricula m
+						ON m.ID_MATRICULA = men.ID_MATRICULA
+					INNER JOIN TURMA t
+						ON t.ID_TURMA = m.ID_TURMA
+					INNER JOIN MODALIDADE md
+						ON md.ID_MODALIDADE = t.ID_MODALIDADE
+					WHERE m.ID_ALUNO = @idAluno
+					ORDER BY men.DATA_VENCIMENTO DESC
 				""";
 
 				using SqlCommand cmd = new(sql, conexao);
-				cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+				cmd.Parameters.Add("@idAluno", SqlDbType.Int).Value = idAluno;
 
 				DataTable tabela = new();
 
