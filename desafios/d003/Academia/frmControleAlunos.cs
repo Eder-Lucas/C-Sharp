@@ -33,6 +33,7 @@ namespace Academia
         private readonly Alunos novoAluno = new();
         private readonly Turmas novaTurma = new();
         private readonly Matriculas novaMatricula = new();
+        private readonly MatriculaService matriculaService = new();
 
         // Quando o form é carregado
         private void frmControleAlunos_Load(object sender, EventArgs e)
@@ -49,6 +50,7 @@ namespace Academia
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
             ListarTurmas();
+            ListarMensalidades();
 
             dtgMatricula.SelectionChanged += (s, e) => CarregarMatriculaAtual();
             dtgMatricula.DataBindingComplete += (s, e) => CarregarMatriculaAtual();
@@ -134,12 +136,13 @@ namespace Academia
                 // Valida as regras de negócio específicas para matrícula
                 if (!ValidaRegrasInclusao(situacao, venc, idMatricula, idTurma, idAluno, vagas)) return;
 
-                // Salva a nova matrícula
-                IncluirMatricula(idAluno, idTurma, venc, situacao);
-
+                // Salva a nova matrícula e gera uma mensalidade correspondente
+                IncluirMatriculaComMensalidade(idAluno, idTurma, venc, situacao);
+         
                 // Atualiza a interface
                 ListarTurmas();
                 ListarMatriculas();
+                ListarMensalidades();
                 PreencherCampos(tabPageMatricula, dtgMatricula);
             }
             catch (Exception ex)
@@ -258,17 +261,23 @@ namespace Academia
             return false;
         }
 
-        // Método que incluir a matrícula no banco de dados e exibe a mensagem de sucesso
-        private void IncluirMatricula(int idAluno, int idTurma, DateTime venc, bool situacao)
+        // Método que incluir a matrícula e gera sua mensalidade
+        private void IncluirMatriculaComMensalidade(int idAluno, int idTurma, DateTime venc, bool situacao)
         {
-            int idMatricula = 0; // Para inclusão, o ID é sempre 0
-            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+            try
+            {
+                matriculaService.SalvarTudo(idAluno, idTurma, venc, situacao, false);
 
-            MessageBox.Show(
-                "Aluno matrículado com sucesso!",
+                MessageBox.Show(
+                "Matrícula efetivada com sucesso! Foi gerada uma mensalidade para essa matrícula. Consulte a guia Mensalidade para visualizá-la",
                 "Sucesso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao salvar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }           
         }
 
         // Ao clicar no botão "Salvar" na aba de matrícula, realiza a alteração da matrícula selecionada
@@ -521,6 +530,21 @@ namespace Academia
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro ao listar matrículas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ListarMensalidades()
+        {
+            try
+            {
+                int idMatricula = Convert.ToInt32(txtCodAluno.Text);
+
+                DataTable dadosTabela = novaMensalidade.Listar(idMatricula);
+                dtgMensalidades.DataSource = dadosTabela;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao listar mensalidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
