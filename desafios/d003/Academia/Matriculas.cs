@@ -8,16 +8,21 @@ namespace Academia
 {
     internal class Matriculas
     {
-        public void Salvar(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        public int Salvar(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
         {
             try
             {
                 ValidaRegras(idAluno, idTurma, idMatricula, situacao, venc);
 
                 if (idMatricula == 0)
-                    Inserir(idAluno, idTurma, venc, situacao);
+                {
+                    return Inserir(idMatricula, idAluno, idTurma, venc, situacao);
+                }
                 else
+                {
                     Atualizar(idMatricula, idAluno, idTurma, venc, situacao);
+                    return idMatricula;
+                }
             }
             catch (Exception ex)
             {
@@ -25,7 +30,7 @@ namespace Academia
             }
         }
 
-        public void Inserir(int idAluno, int idTurma, DateTime venc, bool situacao)
+        public int Inserir(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
         {
             try
             {
@@ -35,6 +40,7 @@ namespace Academia
                 string sql = """
                     INSERT INTO Matricula (ID_ALUNO, ID_TURMA, VENCIMENTO, SITUACAO)
                     VALUES (@idAluno, @idTurma, @venc, @situacao)
+                    SELECT SCOPE_IDENTITY()
                 """;
 
                 using SqlCommand cmd = new SqlCommand(sql, conexao);
@@ -44,7 +50,7 @@ namespace Academia
                 cmd.Parameters.Add("@venc", System.Data.SqlDbType.Date).Value = venc;
                 cmd.Parameters.Add("@situacao", System.Data.SqlDbType.Bit).Value = situacao;
 
-                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
             catch (Exception ex)
             {
