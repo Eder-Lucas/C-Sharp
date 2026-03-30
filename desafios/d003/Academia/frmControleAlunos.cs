@@ -33,6 +33,7 @@ namespace Academia
         private readonly Alunos novoAluno = new();
         private readonly Turmas novaTurma = new();
         private readonly Matriculas novaMatricula = new();
+        private readonly Mensalidades novaMensalidade = new();
         private readonly MatriculaService matriculaService = new();
 
         // Quando o form é carregado
@@ -537,9 +538,9 @@ namespace Academia
         {
             try
             {
-                int idMatricula = Convert.ToInt32(txtCodAluno.Text);
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
 
-                DataTable dadosTabela = novaMensalidade.Listar(idMatricula);
+                DataTable dadosTabela = novaMensalidade.Listar(idAluno);
                 dtgMensalidades.DataSource = dadosTabela;
             }
             catch (Exception ex)
