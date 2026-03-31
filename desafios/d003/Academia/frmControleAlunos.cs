@@ -43,21 +43,23 @@ namespace Academia
             dtgMatricula.AutoGenerateColumns = false;
             dtgTurmas.AutoGenerateColumns = false;
             dtgTurmasCadastradas.AutoGenerateColumns = false;
+            dtgMensalidades.AutoGenerateColumns = false;
 
             // Associa o evento genérico ao CellFormatting de ambos os DataGridViews
             dtgTurmas.CellFormatting += FormataGrid;
             dtgMatricula.CellFormatting += FormataGrid;
+            dtgMensalidades.CellFormatting += FormataGrid;
 
             // Lista os dados para disparar os eventos, aplicando a formatação visual
             ListarMatriculas();
             ListarTurmas();
-            ListarMensalidades();
+            CarregarMensalidades();
 
             dtgMatricula.SelectionChanged += (s, e) => CarregarMatriculaAtual();
             dtgMatricula.DataBindingComplete += (s, e) => CarregarMatriculaAtual();
 
             // Aplica o estilo zebrado para melhor visualização
-            DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmasCadastradas);
+            DataGridViewUtils.EstiloZebrado(dtgMatricula, dtgTurmas, dtgTurmasCadastradas, dtgMensalidades);
         }
 
         // Quando o formulário é fechado, lista os alunos novamente no frmAlunos para atualizar a exibição
@@ -143,7 +145,7 @@ namespace Academia
                 // Atualiza a interface
                 ListarTurmas();
                 ListarMatriculas();
-                ListarMensalidades();
+                CarregarMensalidades();
                 PreencherCampos(tabPageMatricula, dtgMatricula);
             }
             catch (Exception ex)
@@ -301,6 +303,7 @@ namespace Academia
                 // Atualiza a interface
                 ListarMatriculas();
                 ListarTurmas();
+                CarregarMensalidades();
             }
             catch (Exception ex)
             {
@@ -596,12 +599,30 @@ namespace Academia
                 // Caso seja SITUACAO
                 case "SITUACAO":
                     if (e.Value is not bool situacao) return; // Verifica se o valor da célula é booleano true/false
-
-                    // Mostra "ATIVA" ou "INATIVA" ao invés de true/false, e aplica uma cor de fundo para facilitar a visualização
-                    e.Value = situacao ? "ATIVA" : "INATIVA";
+            
+                    e.Value = situacao ? "ATIVA" : "INATIVA";             
                     e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
 
                     // Evita que o DataGridView aplique formatação automática por cima
+                    e.FormattingApplied = true;
+                    break;
+
+                case "STATUS_MENSALIDADE":
+                    if (e.Value is not string status) return; 
+
+                    switch (status)
+                    {
+                        case "PAGO":
+                            e.CellStyle.BackColor = Color.LightGreen;
+                            break;
+                        case "ATRASADA":
+                            e.CellStyle.BackColor = Color.LightPink;
+                            break;
+                        case "EM ABERTO":
+                            e.CellStyle.BackColor = Color.FromArgb(253, 255, 82);
+                            break;
+                    }
+
                     e.FormattingApplied = true;
                     break;
 
@@ -614,6 +635,30 @@ namespace Academia
                     e.FormattingApplied = true;
                     break;
             }
+        }
+
+        private void TotalAtraso()
+        {
+            try
+            {
+                int idAluno = Convert.ToInt32(txtCodAluno.Text);
+
+                decimal atraso = novaMensalidade.TotalAtraso(idAluno);
+
+                lblAtraso.Text = $"{atraso:C2}";
+                lblAtraso.ForeColor = atraso > 0 ? Color.Red : Color.Green;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void CarregarMensalidades()
+        {
+            ListarMensalidades();
+            TotalAtraso();
         }
 
         // Ao clicar no botão "Excluir" na aba de matrícula, exclui a matrícula selecionada
