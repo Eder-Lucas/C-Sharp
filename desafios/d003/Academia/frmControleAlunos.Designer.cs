@@ -103,20 +103,22 @@
             chkSituacao = new CheckBox();
             tabPageMensalidade = new TabPage();
             dtgMensalidades = new DataGridView();
-            MODALIDADE1 = new DataGridViewTextBoxColumn();
-            VENCIMENTO2 = new DataGridViewTextBoxColumn();
-            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
-            VALOR = new DataGridViewTextBoxColumn();
-            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
             groupBox4 = new GroupBox();
             button1 = new Button();
             groupBox3 = new GroupBox();
+            lblAtraso = new Label();
             label22 = new Label();
             groupBox2 = new GroupBox();
             btnFiltro = new Button();
             cboSituacaoMensalidade = new ComboBox();
             label21 = new Label();
             pictureBox4 = new PictureBox();
+            MODALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO2 = new DataGridViewTextBoxColumn();
+            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
+            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
+            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -937,7 +939,7 @@
             dtgMensalidades.AllowUserToAddRows = false;
             dtgMensalidades.AllowUserToDeleteRows = false;
             dtgMensalidades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgMensalidades.Columns.AddRange(new DataGridViewColumn[] { MODALIDADE1, VENCIMENTO2, DATA_PAGAMENTO, VALOR, SITUACAO_MENSALIDADE });
+            dtgMensalidades.Columns.AddRange(new DataGridViewColumn[] { MODALIDADE1, VENCIMENTO2, DATA_PAGAMENTO, VALOR, SITUACAO_MENSALIDADE, STATUS_MENSALIDADE });
             dtgMensalidades.Location = new Point(8, 104);
             dtgMensalidades.Name = "dtgMensalidades";
             dtgMensalidades.ReadOnly = true;
@@ -945,46 +947,6 @@
             dtgMensalidades.RowHeadersWidth = 51;
             dtgMensalidades.Size = new Size(817, 477);
             dtgMensalidades.TabIndex = 13;
-            // 
-            // MODALIDADE1
-            // 
-            MODALIDADE1.HeaderText = "MODALIDADE";
-            MODALIDADE1.MinimumWidth = 6;
-            MODALIDADE1.Name = "MODALIDADE1";
-            MODALIDADE1.ReadOnly = true;
-            MODALIDADE1.Width = 125;
-            // 
-            // VENCIMENTO2
-            // 
-            VENCIMENTO2.HeaderText = "VENCIMENTO";
-            VENCIMENTO2.MinimumWidth = 6;
-            VENCIMENTO2.Name = "VENCIMENTO2";
-            VENCIMENTO2.ReadOnly = true;
-            VENCIMENTO2.Width = 125;
-            // 
-            // DATA_PAGAMENTO
-            // 
-            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
-            DATA_PAGAMENTO.MinimumWidth = 6;
-            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.ReadOnly = true;
-            DATA_PAGAMENTO.Width = 125;
-            // 
-            // VALOR
-            // 
-            VALOR.HeaderText = "VALOR";
-            VALOR.MinimumWidth = 6;
-            VALOR.Name = "VALOR";
-            VALOR.ReadOnly = true;
-            VALOR.Width = 125;
-            // 
-            // SITUACAO_MENSALIDADE
-            // 
-            SITUACAO_MENSALIDADE.HeaderText = "SITUAÇÃO";
-            SITUACAO_MENSALIDADE.MinimumWidth = 6;
-            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
-            SITUACAO_MENSALIDADE.ReadOnly = true;
-            SITUACAO_MENSALIDADE.Width = 125;
             // 
             // groupBox4
             // 
@@ -1012,6 +974,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(lblAtraso);
             groupBox3.Controls.Add(label22);
             groupBox3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox3.Location = new Point(461, 6);
@@ -1021,13 +984,24 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Detalhes";
             // 
+            // lblAtraso
+            // 
+            lblAtraso.BackColor = Color.CornflowerBlue;
+            lblAtraso.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAtraso.Location = new Point(6, 55);
+            lblAtraso.Name = "lblAtraso";
+            lblAtraso.Size = new Size(152, 25);
+            lblAtraso.TabIndex = 14;
+            lblAtraso.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label22.Font = new Font("Arial Narrow", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.FromArgb(0, 0, 192);
             label22.Location = new Point(6, 30);
             label22.Name = "label22";
-            label22.Size = new Size(133, 21);
+            label22.Size = new Size(117, 22);
             label22.TabIndex = 12;
             label22.Text = "Total em atraso";
             // 
@@ -1081,6 +1055,60 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
+            // 
+            // MODALIDADE1
+            // 
+            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
+            MODALIDADE1.HeaderText = "MODALIDADE";
+            MODALIDADE1.MinimumWidth = 6;
+            MODALIDADE1.Name = "MODALIDADE1";
+            MODALIDADE1.ReadOnly = true;
+            MODALIDADE1.Width = 125;
+            // 
+            // VENCIMENTO2
+            // 
+            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
+            VENCIMENTO2.HeaderText = "VENCIMENTO";
+            VENCIMENTO2.MinimumWidth = 6;
+            VENCIMENTO2.Name = "VENCIMENTO2";
+            VENCIMENTO2.ReadOnly = true;
+            VENCIMENTO2.Width = 125;
+            // 
+            // DATA_PAGAMENTO
+            // 
+            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
+            DATA_PAGAMENTO.MinimumWidth = 6;
+            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.ReadOnly = true;
+            DATA_PAGAMENTO.Width = 125;
+            // 
+            // VALOR
+            // 
+            VALOR.DataPropertyName = "MENSALIDADE";
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 125;
+            // 
+            // SITUACAO_MENSALIDADE
+            // 
+            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
+            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
+            SITUACAO_MENSALIDADE.MinimumWidth = 6;
+            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
+            SITUACAO_MENSALIDADE.ReadOnly = true;
+            SITUACAO_MENSALIDADE.Visible = false;
+            SITUACAO_MENSALIDADE.Width = 125;
+            // 
+            // STATUS_MENSALIDADE
+            // 
+            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
+            STATUS_MENSALIDADE.MinimumWidth = 6;
+            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.ReadOnly = true;
+            STATUS_MENSALIDADE.Width = 125;
             // 
             // frmControleAlunos
             // 
@@ -1204,10 +1232,12 @@
         private DataGridViewTextBoxColumn TURMA;
         private DataGridViewTextBoxColumn MENSALIDADE1;
         private DataGridViewTextBoxColumn VENCIMENTO1;
+        private Label lblAtraso;
         private DataGridViewTextBoxColumn MODALIDADE1;
         private DataGridViewTextBoxColumn VENCIMENTO2;
         private DataGridViewTextBoxColumn DATA_PAGAMENTO;
         private DataGridViewTextBoxColumn VALOR;
         private DataGridViewTextBoxColumn SITUACAO_MENSALIDADE;
+        private DataGridViewTextBoxColumn STATUS_MENSALIDADE;
     }
 }
