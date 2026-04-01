@@ -62,7 +62,7 @@ namespace Academia
 					INNER JOIN MODALIDADE md
 						ON md.ID_MODALIDADE = t.ID_MODALIDADE
 					WHERE m.ID_ALUNO = @idAluno
-					ORDER BY men.DATA_VENCIMENTO DESC
+					ORDER BY men.DATA_VENCIMENTO DESC, men.ID_MENSALIDADE DESC
 				""";
 
 				using SqlCommand cmd = new(sql, conexao);
@@ -83,7 +83,7 @@ namespace Academia
 			}
 		}
 
-		public DataTable Filtrar(int idMatricula, bool situacao)
+		public DataTable Filtrar(int idAluno, string filtro)
 		{
 			try
 			{
@@ -91,14 +91,32 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					SELECT * FROM Mensalidade
-					WHERE ID_MATRICULA = @idMatricula 
-					AND SITUACAO = @situacao
+						SELECT
+						men.*,
+						md.NOME_MODALIDADE,
+						md.MENSALIDADE,
+						m.ID_ALUNO,
+						CASE
+							WHEN men.SITUACAO = 1 THEN 'PAGO'
+							WHEN men.SITUACAO = 0 AND men.DATA_VENCIMENTO < CAST(GETDATE() AS DATE) THEN 'ATRASADA'
+							ELSE 'EM ABERTO'
+						END AS STATUS_MENSALIDADE
+				
+					FROM Mensalidade men
+					INNER JOIN Matricula m
+						ON m.ID_MATRICULA = men.ID_MATRICULA
+					INNER JOIN TURMA t
+						ON t.ID_TURMA = m.ID_TURMA
+					INNER JOIN MODALIDADE md
+						ON md.ID_MODALIDADE = t.ID_MODALIDADE
+					WHERE m.ID_ALUNO = @idAluno
+					AND(@filtro = 'Todas' OR (men.SITUACAO = 1 AND @filtro = 'Pagas') OR (men.SITUACAO = 0 AND @filtro = 'Pendentes'))
+					ORDER BY men.DATA_VENCIMENTO DESC, men.ID_MENSALIDADE DESC
 				""";
 
 				using SqlCommand cmd = new(sql, conexao);
-				cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-				cmd.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
+				cmd.Parameters.Add("@idAluno", SqlDbType.Int).Value = idAluno;
+				cmd.Parameters.Add("@filtro", SqlDbType.VarChar).Value = filtro;
 
 				DataTable tabela = new();
 
