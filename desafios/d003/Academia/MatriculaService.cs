@@ -10,10 +10,10 @@ namespace Academia
     {
         public void SalvarTudo(int idAluno, int idTurma, DateTime venc, bool situacao, bool pago)
         {
-			SqlTransaction? transacao = null;
+            SqlTransaction? transacao = null;
 
             try
-			{
+            {
                 using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
@@ -47,12 +47,63 @@ namespace Academia
 
                 transacao.Commit();
             }
-			catch (Exception)
-			{
+            catch (Exception)
+            {
                 if (transacao?.Connection != null)
                     transacao.Rollback();
                 throw;
-			}
+            }
+        }
+
+            public void AlterarTudo(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        {
+            SqlTransaction? transacao = null;
+
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                transacao = conexao.BeginTransaction();
+
+                string sqlMatricula = """
+                    UPDATE Matricula
+                    SET ID_ALUNO = @idAluno,
+                        ID_TURMA = @idTurma,
+                        VENCIMENTO = @venc,
+                        SITUACAO = @situacao
+                    WHERE ID_MATRICULA = @idMatricula
+                """;
+
+                using SqlCommand cmdMatricula = new(sqlMatricula, conexao, transacao);
+                cmdMatricula.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                cmdMatricula.Parameters.Add("@idAluno", SqlDbType.Int).Value = idAluno;
+                cmdMatricula.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
+                cmdMatricula.Parameters.Add("@venc", SqlDbType.Date).Value = venc;
+                cmdMatricula.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
+
+                cmdMatricula.ExecuteNonQuery();
+
+                string sqlMensalidade = """
+                    UPDATE Mensalidade
+                    SET DATA_VENCIMENTO = @venc
+                    WHERE ID_MATRICULA = @idMatricula
+                """;
+
+                using SqlCommand cmdMensalidade = new(sqlMensalidade, conexao, transacao);
+                cmdMensalidade.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                cmdMensalidade.Parameters.Add("@venc", SqlDbType.Date).Value = venc;
+
+                cmdMensalidade.ExecuteNonQuery();
+
+                transacao.Commit();
+            }
+            catch (Exception)
+            {
+                if (transacao?.Connection != null)
+                    transacao.Rollback();
+                throw;
+            }
         }
     }
 }
