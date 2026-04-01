@@ -45,6 +45,9 @@ namespace Academia
             dtgTurmasCadastradas.AutoGenerateColumns = false;
             dtgMensalidades.AutoGenerateColumns = false;
 
+            // O comboBox de filtro se inicia em "Todas"
+            cboSituacaoMensalidade.SelectedIndex = 0;
+
             // Associa o evento genérico ao CellFormatting de ambos os DataGridViews
             dtgTurmas.CellFormatting += FormataGrid;
             dtgMatricula.CellFormatting += FormataGrid;
@@ -55,6 +58,7 @@ namespace Academia
             ListarTurmas();
             CarregarMensalidades();
 
+            // Associa os eventos ao método de carregamento da matrícula em seus respectivos campos
             dtgMatricula.SelectionChanged += (s, e) => CarregarMatriculaAtual();
             dtgMatricula.DataBindingComplete += (s, e) => CarregarMatriculaAtual();
 
@@ -141,7 +145,7 @@ namespace Academia
 
                 // Salva a nova matrícula e gera uma mensalidade correspondente
                 IncluirMatriculaComMensalidade(idAluno, idTurma, venc, situacao);
-         
+
                 // Atualiza a interface
                 ListarTurmas();
                 ListarMatriculas();
@@ -280,7 +284,7 @@ namespace Academia
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro ao salvar matrícula", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
+            }
         }
 
         // Ao clicar no botão "Salvar" na aba de matrícula, realiza a alteração da matrícula selecionada
@@ -298,7 +302,7 @@ namespace Academia
                 if (!ValidaRegrasAlteracao(venc)) return;
 
                 // Salva as alterações da matrícula
-                AlterarMatricula(idMatricula, idAluno, idTurma, venc, situacao);
+                AlterarMatriculaComMensalidade(idMatricula, idAluno, idTurma, venc.Date, situacao);
 
                 // Atualiza a interface
                 ListarMatriculas();
@@ -343,9 +347,9 @@ namespace Academia
         }
 
         // Método que salva as alterações da matrícula no banco de dados e exibe a mensagem de sucesso
-        private void AlterarMatricula(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        private void AlterarMatriculaComMensalidade(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
         {
-            novaMatricula.Salvar(idMatricula, idAluno, idTurma, venc, situacao);
+            matriculaService.AlterarTudo(idMatricula, idAluno, idTurma, venc, situacao);
 
             MessageBox.Show(
             "Matrícula alterada com sucesso!",
@@ -596,20 +600,22 @@ namespace Academia
             // Trata cada cada tipo de dado de forma específica, aplicando formatações visuais e de texto
             switch (dataColumn)
             {
-                // Caso seja SITUACAO
+                // Caso seja a situação das matrículas
                 case "SITUACAO":
                     if (e.Value is not bool situacao) return; // Verifica se o valor da célula é booleano true/false
-            
-                    e.Value = situacao ? "ATIVA" : "INATIVA";             
+
+                    e.Value = situacao ? "ATIVA" : "INATIVA";
                     e.CellStyle.BackColor = situacao ? Color.LightGreen : Color.LightPink;
 
                     // Evita que o DataGridView aplique formatação automática por cima
                     e.FormattingApplied = true;
                     break;
-
+                
+                // Caso seja a situação das mensalidades
                 case "STATUS_MENSALIDADE":
-                    if (e.Value is not string status) return; 
+                    if (e.Value is not string status) return;
 
+                    // Aplica apenas a cor pois a lógica é feita no banco
                     switch (status)
                     {
                         case "PAGO":
@@ -702,7 +708,14 @@ namespace Academia
                 frm.ShowDialog();
             }
         }
-     
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            string status = cboSituacaoMensalidade.Text;
+            var idAluno = Convert.ToInt32(txtCodAluno.Text);
+
+            dtgMensalidades.DataSource = novaMensalidade.Filtrar(idAluno, status);
+        }
     }
 
     #region 📌 Implementação antiga - controle de situação da matrícula
