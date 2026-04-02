@@ -40,5 +40,7 @@ namespace Academia
         private void btnTurmas_Click(object sender, EventArgs e) => new frmTurmas().ShowDialog();
 
         private void btnAlunos_Click(object sender, EventArgs e) => new frmAlunos().ShowDialog();
+
+        private void btnCaixa_Click(object sender, EventArgs e) => new frmCaixa().ShowDialog();
     }
 }

@@ -115,6 +115,7 @@
             btnCaixa.Size = new Size(49, 56);
             btnCaixa.Text = "Caixa";
             btnCaixa.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnCaixa.Click += btnCaixa_Click;
             // 
             // btnRelatorioCaixa
             // 
