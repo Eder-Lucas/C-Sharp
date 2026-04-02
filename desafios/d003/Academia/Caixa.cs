@@ -12,7 +12,7 @@ namespace Academia
         {
             try
             {
-                using SqlConnection conexao = new SqlConnection(Conexao.StringConexao);
+                using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
                 string sql = """
@@ -22,7 +22,7 @@ namespace Academia
                     SELECT SCOPE_IDENTITY()
                 """;
 
-                using SqlCommand cmd = new SqlCommand(sql, conexao);
+                using SqlCommand cmd = new(sql, conexao);
 
                 cmd.Parameters.Add("@Dia", SqlDbType.Date).Value = dia.Date;
                 cmd.Parameters.Add("@Hora", SqlDbType.Time).Value = hora.TimeOfDay;
@@ -35,10 +35,9 @@ namespace Academia
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Erro ao salvar caixa", ex);
             }
         }
 
@@ -50,7 +49,7 @@ namespace Academia
                 movimento = movimento.Substring(0, 1);
                 tipoPagamento = tipoPagamento.ToUpper();
 
-                using SqlConnection conexao = new SqlConnection(Conexao.StringConexao);
+                using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
                 string sql = """
@@ -60,7 +59,7 @@ namespace Academia
                     SELECT SCOPE_IDENTITY()
                 """;
 
-                using SqlCommand cmd = new SqlCommand(sql, conexao);
+                using SqlCommand cmd = new(sql, conexao);
 
                 cmd.Parameters.Add("@IdCaixa", SqlDbType.Int).Value = idCaixa;
                 cmd.Parameters.Add("@Movimento", SqlDbType.Char, 1).Value = movimento;
@@ -73,10 +72,9 @@ namespace Academia
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception("Erro ao salvar transação no caixa", ex);
             }
         }
     }
