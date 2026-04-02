@@ -34,7 +34,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            comboBox1 = new ComboBox();
             cboTipoPagamento = new ComboBox();
             cboMovimento = new ComboBox();
             btnFiltrar = new Button();
@@ -48,12 +47,13 @@
             label5 = new Label();
             label4 = new Label();
             groupBox3 = new GroupBox();
-            btnSuprimento = new Button();
             btnRetirada = new Button();
+            btnSuprimento = new Button();
             btnAbrirCaixa = new Button();
             btnFecharCaixa = new Button();
             btnSair = new Button();
             dtgCaixa = new DataGridView();
+            dtpDataPagamento = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -73,16 +73,16 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(dtpDataPagamento);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(cboTipoPagamento);
             groupBox1.Controls.Add(cboMovimento);
             groupBox1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(79, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(664, 90);
+            groupBox1.Size = new Size(626, 90);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtros";
@@ -117,23 +117,12 @@
             label1.TabIndex = 12;
             label1.Text = "Movimento";
             // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Todas", "Pagas", "Pendentes" });
-            comboBox1.Location = new Point(452, 54);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(205, 27);
-            comboBox1.TabIndex = 12;
-            // 
             // cboTipoPagamento
             // 
             cboTipoPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTipoPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboTipoPagamento.FormattingEnabled = true;
-            cboTipoPagamento.Items.AddRange(new object[] { "Todas", "Pagas", "Pendentes" });
+            cboTipoPagamento.Items.AddRange(new object[] { "PIX", "Dinheiro", "Cartão" });
             cboTipoPagamento.Location = new Point(229, 54);
             cboTipoPagamento.Name = "cboTipoPagamento";
             cboTipoPagamento.Size = new Size(205, 27);
@@ -144,7 +133,7 @@
             cboMovimento.DropDownStyle = ComboBoxStyle.DropDownList;
             cboMovimento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboMovimento.FormattingEnabled = true;
-            cboMovimento.Items.AddRange(new object[] { "Todas", "Pagas", "Pendentes" });
+            cboMovimento.Items.AddRange(new object[] { "Todos", "Suprimento", "Retirada" });
             cboMovimento.Location = new Point(6, 54);
             cboMovimento.Name = "cboMovimento";
             cboMovimento.Size = new Size(205, 27);
@@ -153,7 +142,7 @@
             // btnFiltrar
             // 
             btnFiltrar.Image = Properties.Resources.filtro_maior;
-            btnFiltrar.Location = new Point(752, 25);
+            btnFiltrar.Location = new Point(711, 25);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(72, 53);
             btnFiltrar.TabIndex = 12;
@@ -172,7 +161,7 @@
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label4);
             groupBox2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(830, 12);
+            groupBox2.Location = new Point(789, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(176, 296);
             groupBox2.TabIndex = 13;
@@ -265,25 +254,12 @@
             groupBox3.Controls.Add(btnRetirada);
             groupBox3.Controls.Add(btnSuprimento);
             groupBox3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox3.Location = new Point(830, 323);
+            groupBox3.Location = new Point(789, 323);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(176, 183);
             groupBox3.TabIndex = 14;
             groupBox3.TabStop = false;
             groupBox3.Text = "Lançamentos";
-            // 
-            // btnSuprimento
-            // 
-            btnSuprimento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSuprimento.Image = Properties.Resources.seta_cima;
-            btnSuprimento.ImageAlign = ContentAlignment.TopCenter;
-            btnSuprimento.Location = new Point(21, 43);
-            btnSuprimento.Name = "btnSuprimento";
-            btnSuprimento.Size = new Size(137, 62);
-            btnSuprimento.TabIndex = 15;
-            btnSuprimento.Text = "Suprimento";
-            btnSuprimento.TextAlign = ContentAlignment.BottomCenter;
-            btnSuprimento.UseVisualStyleBackColor = true;
             // 
             // btnRetirada
             // 
@@ -298,12 +274,25 @@
             btnRetirada.TextAlign = ContentAlignment.BottomCenter;
             btnRetirada.UseVisualStyleBackColor = true;
             // 
+            // btnSuprimento
+            // 
+            btnSuprimento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSuprimento.Image = Properties.Resources.seta_cima;
+            btnSuprimento.ImageAlign = ContentAlignment.TopCenter;
+            btnSuprimento.Location = new Point(21, 43);
+            btnSuprimento.Name = "btnSuprimento";
+            btnSuprimento.Size = new Size(137, 62);
+            btnSuprimento.TabIndex = 15;
+            btnSuprimento.Text = "Suprimento";
+            btnSuprimento.TextAlign = ContentAlignment.BottomCenter;
+            btnSuprimento.UseVisualStyleBackColor = true;
+            // 
             // btnAbrirCaixa
             // 
             btnAbrirCaixa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAbrirCaixa.Image = Properties.Resources.cadeado_aberto;
             btnAbrirCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAbrirCaixa.Location = new Point(842, 528);
+            btnAbrirCaixa.Location = new Point(801, 529);
             btnAbrirCaixa.Name = "btnAbrirCaixa";
             btnAbrirCaixa.Padding = new Padding(0, 0, 22, 0);
             btnAbrirCaixa.Size = new Size(153, 50);
@@ -317,7 +306,7 @@
             btnFecharCaixa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFecharCaixa.Image = Properties.Resources.cadeado_fechado;
             btnFecharCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFecharCaixa.Location = new Point(842, 584);
+            btnFecharCaixa.Location = new Point(801, 585);
             btnFecharCaixa.Name = "btnFecharCaixa";
             btnFecharCaixa.Padding = new Padding(0, 0, 6, 0);
             btnFecharCaixa.Size = new Size(153, 50);
@@ -331,7 +320,7 @@
             btnSair.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSair.Image = Properties.Resources.sair;
             btnSair.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSair.Location = new Point(842, 654);
+            btnSair.Location = new Point(801, 655);
             btnSair.Name = "btnSair";
             btnSair.Padding = new Padding(3, 0, 0, 0);
             btnSair.Size = new Size(76, 40);
@@ -349,14 +338,24 @@
             dtgCaixa.Name = "dtgCaixa";
             dtgCaixa.ReadOnly = true;
             dtgCaixa.RowHeadersWidth = 51;
-            dtgCaixa.Size = new Size(816, 608);
+            dtgCaixa.Size = new Size(775, 608);
             dtgCaixa.TabIndex = 19;
+            // 
+            // dtpDataPagamento
+            // 
+            dtpDataPagamento.CustomFormat = "dd/MM/yy";
+            dtpDataPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataPagamento.Format = DateTimePickerFormat.Custom;
+            dtpDataPagamento.Location = new Point(452, 55);
+            dtpDataPagamento.Name = "dtpDataPagamento";
+            dtpDataPagamento.Size = new Size(167, 27);
+            dtpDataPagamento.TabIndex = 13;
             // 
             // frmCaixa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1014, 718);
+            ClientSize = new Size(974, 718);
             Controls.Add(dtgCaixa);
             Controls.Add(btnSair);
             Controls.Add(btnFecharCaixa);
@@ -367,7 +366,9 @@
             Controls.Add(groupBox1);
             Controls.Add(pictureBox3);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmCaixa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Controle de Caixa";
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             groupBox1.ResumeLayout(false);
@@ -387,7 +388,6 @@
         private Label label1;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox1;
         private ComboBox cboTipoPagamento;
         private Button btnFiltrar;
         private GroupBox groupBox2;
@@ -406,5 +406,6 @@
         private Button btnFecharCaixa;
         private Button btnSair;
         private DataGridView dtgCaixa;
+        private DateTimePicker dtpDataPagamento;
     }
 }
