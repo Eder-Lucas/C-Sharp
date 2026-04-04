@@ -14,5 +14,13 @@ namespace Academia
         {
             InitializeComponent();
         }
+
+        private void frmAberturaCaixa_Load(object sender, EventArgs e)
+        {
+            string data = DateTime.Today.Date.ToShortDateString();
+            string hora = DateTime.Now.ToShortTimeString();
+
+            this.Text = $"Abertura do Caixa - Data: {data} - Hora: {hora}";
+        }
     }
 }
