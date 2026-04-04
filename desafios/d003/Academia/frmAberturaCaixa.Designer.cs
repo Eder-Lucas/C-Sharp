@@ -67,6 +67,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Zerado", "Com os valores que eu digitar", "Com o saldo do caixa anterior" });
             comboBox1.Location = new Point(79, 74);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(299, 25);
@@ -231,7 +232,11 @@
             Controls.Add(btnAbrirCaixa);
             Controls.Add(tcCaixa);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmAberturaCaixa";
+            Load += frmAberturaCaixa_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
