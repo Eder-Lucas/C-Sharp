@@ -205,7 +205,7 @@
             btnAbrirCaixa.ImageAlign = ContentAlignment.MiddleLeft;
             btnAbrirCaixa.Location = new Point(177, 281);
             btnAbrirCaixa.Name = "btnAbrirCaixa";
-            btnAbrirCaixa.Size = new Size(132, 40);
+            btnAbrirCaixa.Size = new Size(132, 50);
             btnAbrirCaixa.TabIndex = 17;
             btnAbrirCaixa.Text = "Abrir Caixa";
             btnAbrirCaixa.TextAlign = ContentAlignment.MiddleRight;
@@ -217,7 +217,7 @@
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.Location = new Point(315, 280);
             button1.Name = "button1";
-            button1.Size = new Size(82, 40);
+            button1.Size = new Size(82, 51);
             button1.TabIndex = 18;
             button1.Text = "Fechar";
             button1.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 332);
+            ClientSize = new Size(410, 349);
             Controls.Add(button1);
             Controls.Add(btnAbrirCaixa);
             Controls.Add(tcCaixa);
