@@ -14,5 +14,7 @@ namespace Academia
         {
             InitializeComponent();
         }
+
+        private void btnAbrirCaixa_Click(object sender, EventArgs e) => new frmAberturaCaixa().ShowDialog();
     }
 }

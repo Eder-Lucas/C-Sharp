@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCaixa));
             pictureBox3 = new PictureBox();
             groupBox1 = new GroupBox();
+            dtpDataPagamento = new DateTimePicker();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -53,7 +54,6 @@
             btnFecharCaixa = new Button();
             btnSair = new Button();
             dtgCaixa = new DataGridView();
-            dtpDataPagamento = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -86,6 +86,16 @@
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtros";
+            // 
+            // dtpDataPagamento
+            // 
+            dtpDataPagamento.CustomFormat = "dd/MM/yy";
+            dtpDataPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataPagamento.Format = DateTimePickerFormat.Custom;
+            dtpDataPagamento.Location = new Point(452, 55);
+            dtpDataPagamento.Name = "dtpDataPagamento";
+            dtpDataPagamento.Size = new Size(167, 27);
+            dtpDataPagamento.TabIndex = 13;
             // 
             // label3
             // 
@@ -300,6 +310,7 @@
             btnAbrirCaixa.Text = "Abrir Caixa";
             btnAbrirCaixa.TextAlign = ContentAlignment.MiddleRight;
             btnAbrirCaixa.UseVisualStyleBackColor = true;
+            btnAbrirCaixa.Click += btnAbrirCaixa_Click;
             // 
             // btnFecharCaixa
             // 
@@ -340,16 +351,6 @@
             dtgCaixa.RowHeadersWidth = 51;
             dtgCaixa.Size = new Size(775, 608);
             dtgCaixa.TabIndex = 19;
-            // 
-            // dtpDataPagamento
-            // 
-            dtpDataPagamento.CustomFormat = "dd/MM/yy";
-            dtpDataPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpDataPagamento.Format = DateTimePickerFormat.Custom;
-            dtpDataPagamento.Location = new Point(452, 55);
-            dtpDataPagamento.Name = "dtpDataPagamento";
-            dtpDataPagamento.Size = new Size(167, 27);
-            dtpDataPagamento.TabIndex = 13;
             // 
             // frmCaixa
             // 
