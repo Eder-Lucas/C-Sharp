@@ -22,5 +22,22 @@ namespace Academia
 
             this.Text = $"Abertura do Caixa - Data: {data} - Hora: {hora}";
         }
+
+        private void cboValorInicial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboValorInicial.Text == "Zerado")
+            {
+                tcCaixa.Enabled = false;
+                txtDinheiro.Text = "0,00";
+                txtCaixa.Text = "0,00";
+            }
+            if (cboValorInicial.Text == "Com os valores que eu digitar")
+            {
+                tcCaixa.Enabled = true;
+                txtDinheiro.Text = "0,00";
+                txtCaixa.Text = "0,00";
+                txtDinheiro.Focus();
+            }
+        }
     }
 }
