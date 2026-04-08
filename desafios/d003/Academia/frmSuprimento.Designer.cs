@@ -33,12 +33,12 @@
             label1 = new Label();
             tcCaixa = new TabControl();
             tabPageDadosCaixa = new TabPage();
-            textBox1 = new TextBox();
-            label3 = new Label();
+            cboFormaPagamento = new ComboBox();
             label2 = new Label();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            btnAbrirCaixa = new Button();
+            txtDinheiro = new TextBox();
+            label3 = new Label();
+            btnCancelar = new Button();
+            btnConfirmar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tcCaixa.SuspendLayout();
@@ -86,9 +86,9 @@
             // 
             // tabPageDadosCaixa
             // 
-            tabPageDadosCaixa.Controls.Add(comboBox1);
+            tabPageDadosCaixa.Controls.Add(cboFormaPagamento);
             tabPageDadosCaixa.Controls.Add(label2);
-            tabPageDadosCaixa.Controls.Add(textBox1);
+            tabPageDadosCaixa.Controls.Add(txtDinheiro);
             tabPageDadosCaixa.Controls.Add(label3);
             tabPageDadosCaixa.Location = new Point(4, 29);
             tabPageDadosCaixa.Name = "tabPageDadosCaixa";
@@ -98,25 +98,15 @@
             tabPageDadosCaixa.Text = "Dados do caixa";
             tabPageDadosCaixa.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // cboFormaPagamento
             // 
-            textBox1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(63, 14);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(86, 25);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "0,00";
-            textBox1.TextAlign = HorizontalAlignment.Right;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(6, 17);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 19);
-            label3.TabIndex = 11;
-            label3.Text = "Valor:";
+            cboFormaPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFormaPagamento.FormattingEnabled = true;
+            cboFormaPagamento.Items.AddRange(new object[] { "Dinheiro", "PIX", "Cartão" });
+            cboFormaPagamento.Location = new Point(230, 12);
+            cboFormaPagamento.Name = "cboFormaPagamento";
+            cboFormaPagamento.Size = new Size(151, 28);
+            cboFormaPagamento.TabIndex = 13;
             // 
             // label2
             // 
@@ -128,47 +118,60 @@
             label2.TabIndex = 12;
             label2.Text = "Forma:";
             // 
-            // comboBox1
+            // txtDinheiro
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(230, 12);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 13;
+            txtDinheiro.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDinheiro.Location = new Point(63, 14);
+            txtDinheiro.Name = "txtDinheiro";
+            txtDinheiro.Size = new Size(86, 25);
+            txtDinheiro.TabIndex = 2;
+            txtDinheiro.Text = "0,00";
+            txtDinheiro.TextAlign = HorizontalAlignment.Right;
             // 
-            // button1
+            // label3
             // 
-            button1.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(326, 219);
-            button1.Name = "button1";
-            button1.Size = new Size(82, 51);
-            button1.TabIndex = 19;
-            button1.Text = "Fechar";
-            button1.UseVisualStyleBackColor = true;
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(6, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 19);
+            label3.TabIndex = 11;
+            label3.Text = "Valor:";
             // 
-            // btnAbrirCaixa
+            // btnCancelar
             // 
-            btnAbrirCaixa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAbrirCaixa.Image = Properties.Resources.confirmar;
-            btnAbrirCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAbrirCaixa.Location = new Point(188, 219);
-            btnAbrirCaixa.Name = "btnAbrirCaixa";
-            btnAbrirCaixa.Padding = new Padding(3, 0, 3, 0);
-            btnAbrirCaixa.Size = new Size(132, 50);
-            btnAbrirCaixa.TabIndex = 20;
-            btnAbrirCaixa.Text = "Confirmar";
-            btnAbrirCaixa.TextAlign = ContentAlignment.MiddleRight;
-            btnAbrirCaixa.UseVisualStyleBackColor = true;
+            btnCancelar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(326, 219);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(82, 51);
+            btnCancelar.TabIndex = 19;
+            btnCancelar.Text = "Fechar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnConfirmar
+            // 
+            btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfirmar.Image = Properties.Resources.confirmar;
+            btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfirmar.Location = new Point(188, 219);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Padding = new Padding(3, 0, 3, 0);
+            btnConfirmar.Size = new Size(132, 50);
+            btnConfirmar.TabIndex = 20;
+            btnConfirmar.Text = "Confirmar";
+            btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
+            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // frmSuprimento
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(422, 281);
-            Controls.Add(btnAbrirCaixa);
-            Controls.Add(button1);
+            Controls.Add(btnConfirmar);
+            Controls.Add(btnCancelar);
             Controls.Add(tcCaixa);
             Controls.Add(panel1);
             MaximizeBox = false;
@@ -191,11 +194,11 @@
         private Label label1;
         private TabControl tcCaixa;
         private TabPage tabPageDadosCaixa;
-        private TextBox textBox1;
+        private TextBox txtDinheiro;
         private Label label3;
-        private ComboBox comboBox1;
+        private ComboBox cboFormaPagamento;
         private Label label2;
-        private Button button1;
-        private Button btnAbrirCaixa;
+        private Button btnCancelar;
+        private Button btnConfirmar;
     }
 }
