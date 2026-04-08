@@ -103,14 +103,8 @@
             chkSituacao = new CheckBox();
             tabPageMensalidade = new TabPage();
             dtgMensalidades = new DataGridView();
-            MODALIDADE1 = new DataGridViewTextBoxColumn();
-            VENCIMENTO2 = new DataGridViewTextBoxColumn();
-            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
-            VALOR = new DataGridViewTextBoxColumn();
-            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
-            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             groupBox4 = new GroupBox();
-            button1 = new Button();
+            btnPagamento = new Button();
             groupBox3 = new GroupBox();
             lblAtraso = new Label();
             label22 = new Label();
@@ -119,6 +113,12 @@
             cboSituacaoMensalidade = new ComboBox();
             label21 = new Label();
             pictureBox4 = new PictureBox();
+            MODALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO2 = new DataGridViewTextBoxColumn();
+            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
+            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
+            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             tcAluno.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgTurmas).BeginInit();
@@ -948,63 +948,9 @@
             dtgMensalidades.Size = new Size(817, 477);
             dtgMensalidades.TabIndex = 13;
             // 
-            // MODALIDADE1
-            // 
-            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
-            MODALIDADE1.HeaderText = "MODALIDADE";
-            MODALIDADE1.MinimumWidth = 6;
-            MODALIDADE1.Name = "MODALIDADE1";
-            MODALIDADE1.ReadOnly = true;
-            MODALIDADE1.Width = 125;
-            // 
-            // VENCIMENTO2
-            // 
-            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
-            VENCIMENTO2.HeaderText = "VENCIMENTO";
-            VENCIMENTO2.MinimumWidth = 6;
-            VENCIMENTO2.Name = "VENCIMENTO2";
-            VENCIMENTO2.ReadOnly = true;
-            VENCIMENTO2.Width = 125;
-            // 
-            // DATA_PAGAMENTO
-            // 
-            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
-            DATA_PAGAMENTO.MinimumWidth = 6;
-            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.ReadOnly = true;
-            DATA_PAGAMENTO.Width = 125;
-            // 
-            // VALOR
-            // 
-            VALOR.DataPropertyName = "MENSALIDADE";
-            VALOR.HeaderText = "VALOR";
-            VALOR.MinimumWidth = 6;
-            VALOR.Name = "VALOR";
-            VALOR.ReadOnly = true;
-            VALOR.Width = 125;
-            // 
-            // SITUACAO_MENSALIDADE
-            // 
-            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
-            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
-            SITUACAO_MENSALIDADE.MinimumWidth = 6;
-            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
-            SITUACAO_MENSALIDADE.ReadOnly = true;
-            SITUACAO_MENSALIDADE.Visible = false;
-            SITUACAO_MENSALIDADE.Width = 125;
-            // 
-            // STATUS_MENSALIDADE
-            // 
-            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
-            STATUS_MENSALIDADE.MinimumWidth = 6;
-            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.ReadOnly = true;
-            STATUS_MENSALIDADE.Width = 125;
-            // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(button1);
+            groupBox4.Controls.Add(btnPagamento);
             groupBox4.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox4.Location = new Point(631, 6);
             groupBox4.Name = "groupBox4";
@@ -1013,18 +959,19 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Controle";
             // 
-            // button1
+            // btnPagamento
             // 
-            button1.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Image = Properties.Resources.dinheiro;
-            button1.ImageAlign = ContentAlignment.TopCenter;
-            button1.Location = new Point(20, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(153, 52);
-            button1.TabIndex = 13;
-            button1.Text = "Pagamento";
-            button1.TextAlign = ContentAlignment.BottomCenter;
-            button1.UseVisualStyleBackColor = true;
+            btnPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPagamento.Image = Properties.Resources.dinheiro;
+            btnPagamento.ImageAlign = ContentAlignment.TopCenter;
+            btnPagamento.Location = new Point(20, 30);
+            btnPagamento.Name = "btnPagamento";
+            btnPagamento.Size = new Size(153, 52);
+            btnPagamento.TabIndex = 13;
+            btnPagamento.Text = "Pagamento";
+            btnPagamento.TextAlign = ContentAlignment.BottomCenter;
+            btnPagamento.UseVisualStyleBackColor = true;
+            btnPagamento.Click += btnPagamento_Click;
             // 
             // groupBox3
             // 
@@ -1112,6 +1059,61 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
+            // 
+            // MODALIDADE1
+            // 
+            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
+            MODALIDADE1.HeaderText = "MODALIDADE";
+            MODALIDADE1.MinimumWidth = 6;
+            MODALIDADE1.Name = "MODALIDADE1";
+            MODALIDADE1.ReadOnly = true;
+            MODALIDADE1.Width = 125;
+            // 
+            // VENCIMENTO2
+            // 
+            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
+            VENCIMENTO2.HeaderText = "VENCIMENTO";
+            VENCIMENTO2.MinimumWidth = 6;
+            VENCIMENTO2.Name = "VENCIMENTO2";
+            VENCIMENTO2.ReadOnly = true;
+            VENCIMENTO2.Width = 125;
+            // 
+            // DATA_PAGAMENTO
+            // 
+            DATA_PAGAMENTO.DataPropertyName = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
+            DATA_PAGAMENTO.MinimumWidth = 6;
+            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.ReadOnly = true;
+            DATA_PAGAMENTO.Width = 125;
+            // 
+            // VALOR
+            // 
+            VALOR.DataPropertyName = "MENSALIDADE";
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 125;
+            // 
+            // SITUACAO_MENSALIDADE
+            // 
+            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
+            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
+            SITUACAO_MENSALIDADE.MinimumWidth = 6;
+            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
+            SITUACAO_MENSALIDADE.ReadOnly = true;
+            SITUACAO_MENSALIDADE.Visible = false;
+            SITUACAO_MENSALIDADE.Width = 125;
+            // 
+            // STATUS_MENSALIDADE
+            // 
+            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
+            STATUS_MENSALIDADE.MinimumWidth = 6;
+            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.ReadOnly = true;
+            STATUS_MENSALIDADE.Width = 125;
             // 
             // frmControleAlunos
             // 
@@ -1221,7 +1223,7 @@
         private GroupBox groupBox3;
         private Label label22;
         private GroupBox groupBox4;
-        private Button button1;
+        private Button btnPagamento;
         private DataGridViewTextBoxColumn ID_MATRICULA;
         private DataGridViewTextBoxColumn ID_TURMA1;
         private DataGridViewTextBoxColumn ID_ALUNO;
