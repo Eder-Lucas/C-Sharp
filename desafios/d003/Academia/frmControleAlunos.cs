@@ -610,7 +610,7 @@ namespace Academia
                     // Evita que o DataGridView aplique formatação automática por cima
                     e.FormattingApplied = true;
                     break;
-                
+
                 // Caso seja a situação das mensalidades
                 case "STATUS_MENSALIDADE":
                     if (e.Value is not string status) return;
@@ -661,7 +661,7 @@ namespace Academia
             }
         }
 
-        private void CarregarMensalidades()
+        public void CarregarMensalidades()
         {
             ListarMensalidades();
             TotalAtraso();
@@ -715,6 +715,43 @@ namespace Academia
             var idAluno = Convert.ToInt32(txtCodAluno.Text);
 
             dtgMensalidades.DataSource = novaMensalidade.Filtrar(idAluno, status);
+        }
+
+        private void btnPagamento_Click(object sender, EventArgs e)
+        {
+            if (dtgMensalidades.CurrentRow == null || dtgMensalidades.CurrentRow.Index < 0) return;
+
+            var linha = dtgMensalidades.Rows[dtgMensalidades.CurrentRow.Index];
+
+            if (linha?.DataBoundItem is not DataRowView drv) return;
+
+            if (drv["STATUS_MENSALIDADE"].ToString() != "PAGO")
+            {
+                bool pagar = MessageBox.Show(
+                    "Deseja registrar o pagamento desta mensalidade?",
+                    "Registrar pagamento?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes;
+
+                if (!pagar) return;
+
+                using frmSuprimento frm = new frmSuprimento(
+                    Convert.ToInt32(drv["ID_MENSALIDADE"]),
+                    Convert.ToDecimal(drv["MENSALIDADE"]),
+                    this
+                );
+
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Esta mensalidade já está paga!",
+                    "Mensalidade paga",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
         }
     }
 
