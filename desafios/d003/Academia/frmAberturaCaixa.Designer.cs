@@ -33,17 +33,17 @@
             label1 = new Label();
             label2 = new Label();
             label5 = new Label();
-            txtCaixa = new TextBox();
-            txtDinheiro = new TextBox();
+            txtSaldoAnterior = new TextBox();
+            txtValorAbertura = new TextBox();
             label3 = new Label();
             btnAbrirCaixa = new Button();
-            button1 = new Button();
+            btnCancelarAbertura = new Button();
             switchZerado = new ToggleSwitch();
             label4 = new Label();
             switchSaldoAnterior = new ToggleSwitch();
             label6 = new Label();
             label7 = new Label();
-            textBox1 = new TextBox();
+            txtTotal = new TextBox();
             panel2 = new Panel();
             panel3 = new Panel();
             panel1.SuspendLayout();
@@ -102,25 +102,26 @@
             label5.TabIndex = 13;
             label5.Text = "Saldo do Caixa anterior:";
             // 
-            // txtCaixa
+            // txtSaldoAnterior
             // 
-            txtCaixa.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCaixa.Location = new Point(211, 11);
-            txtCaixa.Name = "txtCaixa";
-            txtCaixa.Size = new Size(167, 25);
-            txtCaixa.TabIndex = 2;
-            txtCaixa.Text = "0,00";
-            txtCaixa.TextAlign = HorizontalAlignment.Right;
+            txtSaldoAnterior.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSaldoAnterior.Location = new Point(211, 11);
+            txtSaldoAnterior.Name = "txtSaldoAnterior";
+            txtSaldoAnterior.ReadOnly = true;
+            txtSaldoAnterior.Size = new Size(167, 25);
+            txtSaldoAnterior.TabIndex = 2;
+            txtSaldoAnterior.Text = "0,00";
+            txtSaldoAnterior.TextAlign = HorizontalAlignment.Right;
             // 
-            // txtDinheiro
+            // txtValorAbertura
             // 
-            txtDinheiro.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDinheiro.Location = new Point(211, 45);
-            txtDinheiro.Name = "txtDinheiro";
-            txtDinheiro.Size = new Size(167, 25);
-            txtDinheiro.TabIndex = 2;
-            txtDinheiro.Text = "0,00";
-            txtDinheiro.TextAlign = HorizontalAlignment.Right;
+            txtValorAbertura.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtValorAbertura.Location = new Point(211, 45);
+            txtValorAbertura.Name = "txtValorAbertura";
+            txtValorAbertura.Size = new Size(167, 25);
+            txtValorAbertura.TabIndex = 2;
+            txtValorAbertura.Text = "0,00";
+            txtValorAbertura.TextAlign = HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -149,26 +150,28 @@
             btnAbrirCaixa.Text = "Confirmar";
             btnAbrirCaixa.TextAlign = ContentAlignment.MiddleRight;
             btnAbrirCaixa.UseVisualStyleBackColor = false;
+            btnAbrirCaixa.Click += btnAbrirCaixa_Click;
             // 
-            // button1
+            // btnCancelarAbertura
             // 
-            button1.BackColor = Color.White;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(196, 196, 196);
-            button1.FlatAppearance.MouseDownBackColor = Color.White;
-            button1.FlatAppearance.MouseOverBackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Black;
-            button1.Image = Properties.Resources.fecharPreto;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(12, 401);
-            button1.Name = "button1";
-            button1.Padding = new Padding(32, 0, 28, 0);
-            button1.Size = new Size(173, 31);
-            button1.TabIndex = 18;
-            button1.Text = "Cancelar";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
+            btnCancelarAbertura.BackColor = Color.White;
+            btnCancelarAbertura.FlatAppearance.BorderColor = Color.FromArgb(196, 196, 196);
+            btnCancelarAbertura.FlatAppearance.MouseDownBackColor = Color.White;
+            btnCancelarAbertura.FlatAppearance.MouseOverBackColor = Color.White;
+            btnCancelarAbertura.FlatStyle = FlatStyle.Flat;
+            btnCancelarAbertura.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelarAbertura.ForeColor = Color.Black;
+            btnCancelarAbertura.Image = Properties.Resources.fecharPreto;
+            btnCancelarAbertura.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelarAbertura.Location = new Point(12, 401);
+            btnCancelarAbertura.Name = "btnCancelarAbertura";
+            btnCancelarAbertura.Padding = new Padding(32, 0, 28, 0);
+            btnCancelarAbertura.Size = new Size(173, 31);
+            btnCancelarAbertura.TabIndex = 18;
+            btnCancelarAbertura.Text = "Cancelar";
+            btnCancelarAbertura.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelarAbertura.UseVisualStyleBackColor = false;
+            btnCancelarAbertura.Click += btnCancelarAbertura_Click;
             // 
             // switchZerado
             // 
@@ -177,6 +180,7 @@
             switchZerado.Name = "switchZerado";
             switchZerado.Size = new Size(47, 25);
             switchZerado.TabIndex = 19;
+            switchZerado.OnCheckedChanged += switchZerado_OnCheckedChanged;
             switchZerado.MouseDown += switchZerado_MouseDown;
             // 
             // label4
@@ -196,6 +200,7 @@
             switchSaldoAnterior.Name = "switchSaldoAnterior";
             switchSaldoAnterior.Size = new Size(47, 25);
             switchSaldoAnterior.TabIndex = 19;
+            switchSaldoAnterior.OnCheckedChanged += switchSaldoAnterior_OnCheckedChanged;
             switchSaldoAnterior.MouseDown += switchSaldoAnterior_MouseDown;
             // 
             // label6
@@ -218,15 +223,16 @@
             label7.TabIndex = 11;
             label7.Text = " Total da abertura:";
             // 
-            // textBox1
+            // txtTotal
             // 
-            textBox1.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(211, 79);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(167, 25);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "0,00";
-            textBox1.TextAlign = HorizontalAlignment.Right;
+            txtTotal.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTotal.Location = new Point(211, 79);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(167, 25);
+            txtTotal.TabIndex = 2;
+            txtTotal.Text = "0,00";
+            txtTotal.TextAlign = HorizontalAlignment.Right;
             // 
             // panel2
             // 
@@ -246,10 +252,10 @@
             panel3.BackColor = Color.White;
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label3);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(txtTotal);
             panel3.Controls.Add(label7);
-            panel3.Controls.Add(txtDinheiro);
-            panel3.Controls.Add(txtCaixa);
+            panel3.Controls.Add(txtValorAbertura);
+            panel3.Controls.Add(txtSaldoAnterior);
             panel3.Location = new Point(12, 255);
             panel3.Name = "panel3";
             panel3.Size = new Size(378, 125);
@@ -262,7 +268,7 @@
             ClientSize = new Size(403, 450);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(button1);
+            Controls.Add(btnCancelarAbertura);
             Controls.Add(btnAbrirCaixa);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -292,17 +298,16 @@
         private Label label4;
         private TextBox textBox3;
         private TextBox textBox2;
-        private TextBox txtCaixa;
-        private TextBox txtDinheiro;
+        private TextBox txtSaldoAnterior;
+        private TextBox txtValorAbertura;
         private Button btnAbrirCaixa;
-        private Button button1;
+        private Button btnCancelarAbertura;
         private ToggleSwitch toggleSwitch1;
         private ToggleSwitch switchSaldoAnterior;
         private ToggleSwitch switchZerado;
         private Label label7;
-        private TextBox textBox1;
+        private TextBox txtTotal;
         private Panel panel2;
         private Panel panel3;
-        private ModernButton modernButton1;
     }
 }
