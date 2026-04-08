@@ -23,20 +23,19 @@ namespace Academia
             this.Text = $"Abertura do Caixa - Data: {data} - Hora: {hora}";
         }
 
-        private void cboValorInicial_SelectedIndexChanged(object sender, EventArgs e)
+        private void switchZerado_MouseDown(object sender, MouseEventArgs e)
         {
-            if (cboValorInicial.Text == "Zerado")
+            if (e.Button == MouseButtons.Left)
             {
-                tcCaixa.Enabled = false;
-                txtDinheiro.Text = "0,00";
-                txtCaixa.Text = "0,00";
+                switchSaldoAnterior.Checked = false;
             }
-            if (cboValorInicial.Text == "Com os valores que eu digitar")
+        }
+
+        private void switchSaldoAnterior_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
-                tcCaixa.Enabled = true;
-                txtDinheiro.Text = "0,00";
-                txtCaixa.Text = "0,00";
-                txtDinheiro.Focus();
+                switchZerado.Checked = false;
             }
         }
     }
