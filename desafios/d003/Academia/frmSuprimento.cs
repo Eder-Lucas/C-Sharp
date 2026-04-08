@@ -19,7 +19,7 @@ namespace Academia
             InitializeComponent();
 
             this.idMensalidade = idMensalidade;
-            this.valor = valor.ToString("c");
+            this.valor = valor.ToString();
             txtDinheiro.Text = this.valor;
             this.frmControleAlunos = frmControleAlunos;
         }
@@ -32,8 +32,26 @@ namespace Academia
         }
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            var forma = cboFormaPagamento.SelectedIndex.ToString();
-            novoCaixa.SalvarTransacao();
+            try
+            {
+                DataTable dadosCaixa = novoCaixa.Listar();
+
+                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
+                decimal valor = Convert.ToDecimal(txtDinheiro.Text);
+                var forma = cboFormaPagamento.Text;
+                MessageBox.Show($"Valor: {valor} - Forma de pagamento: {forma}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+                MessageBox.Show("Suprimento registrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                novaMensalidade.Pagar(idMensalidade, DateTime.Now.Date, true);
+                frmControleAlunos.CarregarMensalidades();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }           
         }
     }
 }
