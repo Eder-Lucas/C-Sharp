@@ -35,6 +35,75 @@ namespace Academia
 			}
         }
 
+		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao)
+		{
+            SqlTransaction? transacao = null;
+
+            try
+			{
+				using SqlConnection conexao = new(Conexao.StringConexao);
+				conexao.Open();
+
+                transacao = conexao.BeginTransaction();
+
+                // Salvando a mensalidade como paga
+                string pagamentoSql = """
+					UPDATE Mensalidade
+					SET DATA_PAGAMENTO = @dataPagamento, SITUACAO = @situacao
+					WHERE ID_MENSALIDADE = @idMensalidade
+				""";
+
+                using SqlCommand cmdPagamento = new(pagamentoSql, conexao, transacao);
+                cmdPagamento.Parameters.Add("@idMensalidade", SqlDbType.Int).Value = idMensalidade;
+                cmdPagamento.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
+                cmdPagamento.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
+
+                cmdPagamento.ExecuteNonQuery();
+
+                // Coletando os dados para gerar a próxima mensalidade
+                string buscarDadosSql = """
+					SELECT m.ID_MATRICULA, m.DATA_VENCIMENTO
+					FROM Mensalidade m
+					WHERE m.ID_MENSALIDADE = @idMensalidade
+				""";
+
+				using SqlCommand cmdBuscar = new(buscarDadosSql, conexao, transacao);
+				cmdBuscar.Parameters.Add("@idMensalidade", SqlDbType.Int).Value = idMensalidade;
+
+				using SqlDataReader leitor = cmdBuscar.ExecuteReader();
+
+				if (!leitor.Read())
+					throw new Exception("Mensalidade não encontrada.");
+
+                int idMatricula = leitor.GetInt32(0);
+                DateTime vencimentoAtual = leitor.GetDateTime(1);
+
+                leitor.Close();
+
+                // Gerando a próxima mensalidade
+                DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
+
+				string proximaMensalidadeSql = """
+					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+					VALUES (@idMatricula, @proximoVencimento, 0)
+				""";
+
+				using SqlCommand cmdProxima = new(proximaMensalidadeSql, conexao, transacao);
+				cmdProxima.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+				cmdProxima.Parameters.Add("@proximoVencimento", SqlDbType.Date).Value = proximoVencimento;
+
+				cmdProxima.ExecuteNonQuery();
+
+				transacao.Commit();
+            }
+			catch (Exception)
+			{
+                if (transacao?.Connection != null)
+                    transacao.Rollback();
+                throw;
+			}
+		}
+
 		public DataTable Listar(int idAluno)
 		{
 			try
