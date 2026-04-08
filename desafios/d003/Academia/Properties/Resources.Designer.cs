@@ -133,6 +133,16 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap confirmBranco {
+            get {
+                object obj = ResourceManager.GetObject("confirmBranco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dinheiro {
             get {
                 object obj = ResourceManager.GetObject("dinheiro", resourceCulture);
@@ -186,6 +196,16 @@ namespace Academia.Properties {
         internal static System.Drawing.Bitmap excluir {
             get {
                 object obj = ResourceManager.GetObject("excluir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fecharPreto {
+            get {
+                object obj = ResourceManager.GetObject("fecharPreto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
