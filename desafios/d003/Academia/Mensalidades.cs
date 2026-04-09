@@ -35,7 +35,7 @@ namespace Academia
 			}
         }
 
-		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao, bool gerarProxima)
+		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao)
 		{
             SqlTransaction? transacao = null;
 
@@ -60,12 +60,6 @@ namespace Academia
 
                 cmdPagamento.ExecuteNonQuery();
 
-				if (!gerarProxima)
-                {
-                    transacao.Commit();
-                    return;
-                }
-
                 // Coletando os dados para gerar a próxima mensalidade
                 string buscarDadosSql = """
 					SELECT m.ID_MATRICULA, m.DATA_VENCIMENTO
@@ -83,6 +77,8 @@ namespace Academia
 
                 int idMatricula = leitor.GetInt32(0);
                 DateTime vencimentoAtual = leitor.GetDateTime(1);
+
+				leitor.Close();
 
                 // Gerando a próxima mensalidade
                 DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
