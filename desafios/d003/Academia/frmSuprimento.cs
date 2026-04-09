@@ -41,11 +41,21 @@ namespace Academia
                 var forma = cboFormaPagamento.Text;
                 MessageBox.Show($"Valor: {valor} - Forma de pagamento: {forma}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+                
                 MessageBox.Show("Suprimento registrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                novaMensalidade.Pagar(idMensalidade, DateTime.Now.Date, true);
+                bool gerarProxima = MessageBox.Show(
+                    "Deseja registrar o pagamento desta mensalidade?",
+                    "Registrar pagamento?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes;
+
+                novaMensalidade.Pagar(idMensalidade, DateTime.Now.Date, true, gerarProxima);
+
+                novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+
                 frmControleAlunos.CarregarMensalidades();
+                frmControleAlunos.ListarMatriculas();
                 this.Close();
             }
             catch (Exception)
