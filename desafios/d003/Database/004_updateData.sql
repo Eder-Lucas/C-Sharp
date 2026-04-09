@@ -1,0 +1,8 @@
+USE Academia;
+GO
+
+UPDATE Mensalidade
+SET SITUACAO = CASE 
+    WHEN SITUACAO = 1 THEN 1
+    ELSE 0
+END;
