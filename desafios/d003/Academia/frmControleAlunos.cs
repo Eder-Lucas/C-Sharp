@@ -296,13 +296,13 @@ namespace Academia
                 ValidaCampos(tabPageMatricula);
 
                 // Obtém os dados necessários para alteração
-                var (idTurma, idAluno, idMatricula, situacao, venc) = ObterDadosAlteracao();
+                var (idTurma, idAluno, idMatricula, situacao, venc, pago) = ObterDadosAlteracao();
 
                 // Valida as regras de negócio específicas para alteração de matrícula
                 if (!ValidaRegrasAlteracao(venc)) return;
 
                 // Salva as alterações da matrícula
-                AlterarMatriculaComMensalidade(idMatricula, idAluno, idTurma, venc.Date, situacao);
+                AlterarMatriculaComMensalidade(idMatricula, idAluno, idTurma, venc.Date, situacao, pago);
 
                 // Atualiza a interface
                 ListarMatriculas();
@@ -318,14 +318,18 @@ namespace Academia
         // 📌 Métodos Auxiliares para alteração da matrícula
 
         // Obtém os dados necessários para alteração de matrícula
-        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc) ObterDadosAlteracao()
+        private (int idTurma, int idAluno, int idMatricula, bool situacao, DateTime venc, int pago) ObterDadosAlteracao()
         {
             int idTurma = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_TURMA1"].Value);
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
             int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
             DateTime venc = dtpVencimento.Value;
+
+            DataTable dt = novaMensalidade.Listar(idAluno);
+            int pago = Convert.ToInt32(dt.Rows[0]["SITUACAO"]);
+
             bool situacao = chkSituacao.Checked;
-            return (idTurma, idAluno, idMatricula, situacao, venc);
+            return (idTurma, idAluno, idMatricula, situacao, venc, pago);
         }
 
         // Método que valida as regras de negócio para alteração de matrícula
@@ -347,15 +351,17 @@ namespace Academia
         }
 
         // Método que salva as alterações da matrícula no banco de dados e exibe a mensagem de sucesso
-        private void AlterarMatriculaComMensalidade(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+        private void AlterarMatriculaComMensalidade(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao, int pago)
         {
-            matriculaService.AlterarTudo(idMatricula, idAluno, idTurma, venc, situacao);
+            matriculaService.AlterarTudo(idMatricula, idAluno, idTurma, venc, situacao, pago);
 
             MessageBox.Show(
             "Matrícula alterada com sucesso!",
             "Sucesso",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
+
+            CarregarMensalidades();
         }
 
         // Método geral para validar os campos do formulário, percorrendo recursivamente todos os controles filhos
@@ -618,6 +624,10 @@ namespace Academia
                     // Aplica apenas a cor pois a lógica é feita no banco
                     switch (status)
                     {
+                        case "CANCELADA":
+                            e.CellStyle.BackColor = Color.FromArgb(40, 40, 40);
+                            e.CellStyle.ForeColor = Color.White;
+                            break;
                         case "PAGO":
                             e.CellStyle.BackColor = Color.LightGreen;
                             break;
@@ -724,6 +734,16 @@ namespace Academia
             var linha = dtgMensalidades.Rows[dtgMensalidades.CurrentRow.Index];
 
             if (linha?.DataBoundItem is not DataRowView drv) return;
+
+            if (drv["STATUS_MENSALIDADE"].ToString() == "CANCELADA")
+            {
+                MessageBox.Show(
+                    "O pagamento desta mensalidade não pode ser efetuado porque a matrícula associada está inativa.",
+                    "Não é possível realizar o pagamento",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
 
             if (drv["STATUS_MENSALIDADE"].ToString() != "PAGO")
             {
