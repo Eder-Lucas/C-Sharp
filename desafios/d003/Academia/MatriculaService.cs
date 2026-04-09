@@ -55,7 +55,7 @@ namespace Academia
             }
         }
 
-            public void AlterarTudo(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
+            public void AlterarTudo(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao, int pago)
         {
             SqlTransaction? transacao = null;
 
@@ -84,17 +84,36 @@ namespace Academia
 
                 cmdMatricula.ExecuteNonQuery();
 
-                string sqlMensalidade = """
-                    UPDATE Mensalidade
-                    SET DATA_VENCIMENTO = @venc
-                    WHERE ID_MATRICULA = @idMatricula
-                """;
+                // Atualizar mensalidades com segurança
+                if (situacao == false)
+                {
+                    string cancelarMensalidadesSql = """
+                        UPDATE Mensalidade
+                        SET SITUACAO = 2
+                        WHERE ID_MATRICULA = @idMatricula
+                          AND SITUACAO = 0
+                    """;
 
-                using SqlCommand cmdMensalidade = new(sqlMensalidade, conexao, transacao);
-                cmdMensalidade.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-                cmdMensalidade.Parameters.Add("@venc", SqlDbType.Date).Value = venc;
+                    using SqlCommand cmdCancelar = new(cancelarMensalidadesSql, conexao, transacao);
+                    cmdCancelar.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                    cmdCancelar.ExecuteNonQuery();
+                }
+                else
+                {
+                    string ajustarMensalidadesSql = """
+                        UPDATE Mensalidade
+                        SET DATA_VENCIMENTO = @venc,
+                            SITUACAO = @pago
+                        WHERE ID_MATRICULA = @idMatricula
+                    """;
 
-                cmdMensalidade.ExecuteNonQuery();
+                    using SqlCommand cmdAjustar = new(ajustarMensalidadesSql, conexao, transacao);
+                    cmdAjustar.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                    cmdAjustar.Parameters.Add("@venc", SqlDbType.Date).Value = venc;
+                    cmdAjustar.Parameters.Add("@pago", SqlDbType.Bit).Value = pago;
+
+                    cmdAjustar.ExecuteNonQuery();
+                }
 
                 transacao.Commit();
             }
