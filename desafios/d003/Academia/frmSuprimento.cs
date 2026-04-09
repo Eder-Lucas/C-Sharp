@@ -26,10 +26,12 @@ namespace Academia
 
         private readonly Caixa novoCaixa = new();
         private readonly Mensalidades novaMensalidade = new();
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
@@ -39,23 +41,21 @@ namespace Academia
                 int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
                 decimal valor = Convert.ToDecimal(txtDinheiro.Text);
                 var forma = cboFormaPagamento.Text;
-                MessageBox.Show($"Valor: {valor} - Forma de pagamento: {forma}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DateTime dataAtualPagamento = DateTime.Now.Date;
 
-                
-                MessageBox.Show("Suprimento registrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                bool gerarProxima = MessageBox.Show(
-                    "Deseja registrar o pagamento desta mensalidade?",
-                    "Registrar pagamento?",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes;
-
-                novaMensalidade.Pagar(idMensalidade, DateTime.Now.Date, true, gerarProxima);
-
+                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true);
                 novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+
+                MessageBox.Show(
+                "Pagamento realizado com sucesso! Uma nova mensalidade foi gerada automaticamente para o próximo mês nessa turma, " +
+                "verifique a lista de mensalidades. Você pode cancelar esta mensalidade caso inative a matrícula.",
+                "Pagamento de mensalidades",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
                 frmControleAlunos.CarregarMensalidades();
                 frmControleAlunos.ListarMatriculas();
+
                 this.Close();
             }
             catch (Exception)
