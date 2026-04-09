@@ -101,10 +101,8 @@ namespace Academia
                 else
                 {
                     string ajustarMensalidadesSql = """
-                        UPDATE Mensalidade
-                        SET DATA_VENCIMENTO = @venc,
-                            SITUACAO = @pago
-                        WHERE ID_MATRICULA = @idMatricula
+                        INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+                        VALUES (@idMatricula, @venc, 0)
                     """;
 
                     using SqlCommand cmdAjustar = new(ajustarMensalidadesSql, conexao, transacao);
