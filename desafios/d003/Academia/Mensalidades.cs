@@ -35,7 +35,7 @@ namespace Academia
 			}
         }
 
-		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao)
+		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao, bool gerarProxima)
 		{
             SqlTransaction? transacao = null;
 
@@ -60,6 +60,12 @@ namespace Academia
 
                 cmdPagamento.ExecuteNonQuery();
 
+				if (!gerarProxima)
+                {
+                    transacao.Commit();
+                    return;
+                }
+
                 // Coletando os dados para gerar a próxima mensalidade
                 string buscarDadosSql = """
 					SELECT m.ID_MATRICULA, m.DATA_VENCIMENTO
@@ -78,14 +84,17 @@ namespace Academia
                 int idMatricula = leitor.GetInt32(0);
                 DateTime vencimentoAtual = leitor.GetDateTime(1);
 
-                leitor.Close();
-
                 // Gerando a próxima mensalidade
                 DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
 
-				string proximaMensalidadeSql = """
+                // Insere uma nova mensalidade e atualiza o vencimento da matrícula
+                string proximaMensalidadeSql = """
 					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-					VALUES (@idMatricula, @proximoVencimento, 0)
+					VALUES (@idMatricula, @proximoVencimento, 0);
+
+					UPDATE Matricula
+					SET VENCIMENTO = @proximoVencimento
+					WHERE ID_MATRICULA = @idMatricula;
 				""";
 
 				using SqlCommand cmdProxima = new(proximaMensalidadeSql, conexao, transacao);
@@ -118,6 +127,7 @@ namespace Academia
 						md.MENSALIDADE,
 						m.ID_ALUNO,
 						CASE
+							WHEN men.SITUACAO = 2 THEN 'CANCELADA'
 							WHEN men.SITUACAO = 1 THEN 'PAGO'
 							WHEN men.SITUACAO = 0 AND men.DATA_VENCIMENTO < CAST(GETDATE() AS DATE) THEN 'ATRASADA'
 							ELSE 'EM ABERTO'
@@ -166,6 +176,7 @@ namespace Academia
 						md.MENSALIDADE,
 						m.ID_ALUNO,
 						CASE
+							WHEN men.SITUACAO = 2 THEN 'CANCELADA'
 							WHEN men.SITUACAO = 1 THEN 'PAGO'
 							WHEN men.SITUACAO = 0 AND men.DATA_VENCIMENTO < CAST(GETDATE() AS DATE) THEN 'ATRASADA'
 							ELSE 'EM ABERTO'
@@ -218,8 +229,7 @@ namespace Academia
 					INNER JOIN MODALIDADE md
 						ON md.ID_MODALIDADE = t.ID_MODALIDADE
 					WHERE m.ID_ALUNO = @idAluno
-					AND men.SITUACAO = 0
-					AND men.DATA_VENCIMENTO < CAST(GETDATE() AS DATE)
+					AND men.SITUACAO = 0				
 				""";
 
 				using SqlCommand cmd = new(sql, conexao);
