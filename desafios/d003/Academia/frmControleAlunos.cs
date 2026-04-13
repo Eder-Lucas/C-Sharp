@@ -168,7 +168,7 @@ namespace Academia
             int idTurma = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["ID_TURMA"].Value);
             int idAluno = Convert.ToInt32(txtCodAluno.Text);
             int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value ?? 0);
-            bool situacao = chkSituacao.Checked;
+            bool situacao = switchSituacao.Checked;
             DateTime venc = dtpVencimento.Value;
             int vagas = Convert.ToInt32(dtgTurmasCadastradas.CurrentRow?.Cells["VAGAS"].Value);
 
@@ -302,7 +302,7 @@ namespace Academia
                 if (!ValidaRegrasAlteracao(venc)) return;
 
                 // Salva as alterações da matrícula
-                AlterarMatriculaComMensalidade(idMatricula, idAluno, idTurma, venc.Date, situacao, pago);
+                AlterarMatriculaComMensalidade(idMatricula, idAluno, idTurma, venc.Date, situacao);
 
                 // Atualiza a interface
                 ListarMatriculas();
@@ -328,7 +328,7 @@ namespace Academia
             DataTable dt = novaMensalidade.Listar(idAluno);
             int pago = Convert.ToInt32(dt.Rows[0]["SITUACAO"]);
 
-            bool situacao = chkSituacao.Checked;
+            bool situacao = switchSituacao.Checked;
             return (idTurma, idAluno, idMatricula, situacao, venc, pago);
         }
 
@@ -351,9 +351,9 @@ namespace Academia
         }
 
         // Método que salva as alterações da matrícula no banco de dados e exibe a mensagem de sucesso
-        private void AlterarMatriculaComMensalidade(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao, int pago)
+        private void AlterarMatriculaComMensalidade(int idMatricula, int idAluno, int idTurma, DateTime venc, bool situacao)
         {
-            matriculaService.AlterarTudo(idMatricula, idAluno, idTurma, venc, situacao, pago);
+            matriculaService.AlterarTudo(idMatricula, idAluno, idTurma, venc, situacao);
 
             MessageBox.Show(
             "Matrícula alterada com sucesso!",
@@ -552,7 +552,6 @@ namespace Academia
             try
             {
                 int idAluno = Convert.ToInt32(txtCodAluno.Text);
-
                 DataTable dadosTabela = novaMensalidade.Listar(idAluno);
                 dtgMensalidades.DataSource = dadosTabela;
             }
@@ -574,6 +573,7 @@ namespace Academia
 
         // Armazena o ultimo ID de matrícula carregado para evitar recarregar os mesmos dados ao selecionar a mesma linha no DataGridView
         private int _ultimoId = -1;
+        private bool _carregando = false;
 
         // Carrega os dados da matricula selecionada no dtgMatriculas para os campos de edição
         private void CarregarMatriculaAtual()
@@ -588,9 +588,13 @@ namespace Academia
 
             _ultimoId = idAtual; // Atualiza o último ID carregado
 
+            _carregando = true;
+
             // Carrega os dados da matrícula selecionada nos campos de edição
             dtpVencimento.Value = Convert.ToDateTime(drv["VENCIMENTO"]);
-            chkSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
+            switchSituacao.Checked = Convert.ToBoolean(drv["SITUACAO"]);
+
+            _carregando = false;
         }
 
         // Método para formatar a visibilidade das células do DataGridView
@@ -772,6 +776,37 @@ namespace Academia
                     MessageBoxIcon.Information);
             }
 
+        }
+
+        private void switchSituacao_OnCheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_carregando) return;
+
+                int idMatricula = Convert.ToInt32(dtgMatricula.CurrentRow?.Cells["ID_MATRICULA"].Value);
+                DateTime venc = dtpVencimento.Value.Date;
+
+                if (switchSituacao.Checked)
+                {
+                    lblSwitchSituacao.Text = "Inativar matrícula";
+                    matriculaService.ReativarMatricula(idMatricula, venc);
+                }
+
+                if (!switchSituacao.Checked)
+                {
+                    lblSwitchSituacao.Text = "Ativar matrícula";
+                    matriculaService.InativarMatricula(idMatricula);
+                }
+
+                ListarMatriculas();
+                ListarTurmas();
+                CarregarMensalidades();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao listar mensalidades", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 
