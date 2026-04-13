@@ -20,7 +20,7 @@ namespace Academia
 					VALUES (@idMatricula, @vencimento, @situacao)
 				""";
 
-				using SqlCommand cmd = new(sql, conexao);
+                using SqlCommand cmd = new(sql, conexao);
 
 				cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
 				cmd.Parameters.Add("@vencimento", SqlDbType.Date).Value = venc;
@@ -81,9 +81,9 @@ namespace Academia
 				leitor.Close();
 
                 // Gerando a próxima mensalidade
-                DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
+                //DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
 
-                // Insere uma nova mensalidade e atualiza o vencimento da matrícula
+                /* Insere uma nova mensalidade e atualiza o vencimento da matrícula
                 string proximaMensalidadeSql = """
 					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
 					VALUES (@idMatricula, @proximoVencimento, 0);
@@ -97,9 +97,9 @@ namespace Academia
 				cmdProxima.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
 				cmdProxima.Parameters.Add("@proximoVencimento", SqlDbType.Date).Value = proximoVencimento;
 
-				cmdProxima.ExecuteNonQuery();
+				cmdProxima.ExecuteNonQuery();*/
 
-				transacao.Commit();
+                transacao.Commit();
             }
 			catch (Exception)
 			{
@@ -126,7 +126,7 @@ namespace Academia
 							WHEN men.SITUACAO = 2 THEN 'CANCELADA'
 							WHEN men.SITUACAO = 1 THEN 'PAGO'
 							WHEN men.SITUACAO = 0 AND men.DATA_VENCIMENTO < CAST(GETDATE() AS DATE) THEN 'ATRASADA'
-							ELSE 'EM ABERTO'
+							WHEN men.SITUACAO = 0 AND men.DATA_VENCIMENTO >= CAST(GETDATE() AS DATE) THEN 'EM ABERTO'
 						END AS STATUS_MENSALIDADE
 
 					FROM Mensalidade men
