@@ -20,6 +20,9 @@ namespace Academia
             {
                 novaConexao.Open(); // Abre a conexão com o banco
                 MessageBox.Show("Conexão com o banco de dados realizada!"); // Mensagem de sucesso caso a conexão seja estabelecida
+
+                MatriculaService matriculaService = new ();
+                matriculaService.GerarMensalidade();
             }
             // Se falhar captura o erro e exibe uma mensagem de falha
             catch (Exception)
