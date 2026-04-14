@@ -41,6 +41,7 @@ namespace Academia
                 int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
                 decimal valor = Convert.ToDecimal(txtDinheiro.Text);
                 var forma = cboFormaPagamento.Text;
+                int meses = (int)numQuantosMeses.Value;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
 
                 bool gerar = MessageBox.Show(
@@ -49,7 +50,7 @@ namespace Academia
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes;
 
-                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar);
+                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
                 novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
 
                 MessageBox.Show(
