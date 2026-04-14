@@ -20,55 +20,55 @@ namespace Academia
                 transacao = conexao.BeginTransaction();
 
                 string geraMensalidadeSql = """
-                WITH UltimaMensalidade AS (
-                    SELECT 
-                        m.ID_MATRICULA,
-                        m.VENCIMENTO,
-                        ISNULL(MAX(ms.DATA_VENCIMENTO), m.VENCIMENTO) AS ULTIMA_DATA
-                    FROM Matricula m
-                    LEFT JOIN Mensalidade ms ON ms.ID_MATRICULA = m.ID_MATRICULA
-                    WHERE m.SITUACAO = 1
-                    GROUP BY m.ID_MATRICULA, m.VENCIMENTO
-                ),
-                Meses AS (
-                    SELECT 
-                        ID_MATRICULA,
-                        VENCIMENTO,
-                        DATEADD(MONTH, 1, ULTIMA_DATA) AS DATA
-                    FROM UltimaMensalidade
-                    WHERE DATEADD(MONTH, 1, ULTIMA_DATA) <= EOMONTH(GETDATE())
-
-                    UNION ALL
-
-                    SELECT 
-                        ID_MATRICULA,
-                        VENCIMENTO,
-                        DATEADD(MONTH, 1, DATA)
-                    FROM Meses
-                    WHERE 
-                        DATEADD(MONTH, 1, DATA) <= EOMONTH(GETDATE())
-                )
-                INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-                SELECT 
-                    ID_MATRICULA,
-                    DATEFROMPARTS(
-                        YEAR(DATA),
-                        MONTH(DATA),
-                        CASE 
-                            WHEN DAY(VENCIMENTO) > DAY(EOMONTH(DATA)) 
-                                THEN DAY(EOMONTH(DATA))
-                            ELSE DAY(VENCIMENTO)
-                        END
+                    WITH UltimaMensalidade AS (
+                        SELECT 
+                            m.ID_MATRICULA,
+                            m.VENCIMENTO,
+                            ISNULL(MAX(ms.DATA_VENCIMENTO), m.VENCIMENTO) AS ULTIMA_DATA
+                        FROM Matricula m
+                        LEFT JOIN Mensalidade ms ON ms.ID_MATRICULA = m.ID_MATRICULA
+                        WHERE m.SITUACAO = 1
+                        GROUP BY m.ID_MATRICULA, m.VENCIMENTO
                     ),
-                    0
-                FROM Meses
-                WHERE NOT EXISTS (
-                    SELECT 1 FROM Mensalidade ms
-                    WHERE ms.ID_MATRICULA = Meses.ID_MATRICULA
-                    AND YEAR(ms.DATA_VENCIMENTO) = YEAR(Meses.DATA)
-                    AND MONTH(ms.DATA_VENCIMENTO) = MONTH(Meses.DATA)
-                )
-                OPTION (MAXRECURSION 1000);
+                    Meses AS (
+                        SELECT 
+                            ID_MATRICULA,
+                            VENCIMENTO,
+                            DATEADD(MONTH, 1, ULTIMA_DATA) AS DATA
+                        FROM UltimaMensalidade
+                        WHERE DATEADD(MONTH, 1, ULTIMA_DATA) <= EOMONTH(GETDATE())
+
+                        UNION ALL
+
+                        SELECT 
+                            ID_MATRICULA,
+                            VENCIMENTO,
+                            DATEADD(MONTH, 1, DATA)
+                        FROM Meses
+                        WHERE 
+                            DATEADD(MONTH, 1, DATA) <= EOMONTH(GETDATE())
+                    )
+                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+                    SELECT 
+                        ID_MATRICULA,
+                        DATEFROMPARTS(
+                            YEAR(DATA),
+                            MONTH(DATA),
+                            CASE 
+                                WHEN DAY(VENCIMENTO) > DAY(EOMONTH(DATA)) 
+                                    THEN DAY(EOMONTH(DATA))
+                                ELSE DAY(VENCIMENTO)
+                            END
+                        ),
+                        0
+                    FROM Meses
+                    WHERE NOT EXISTS (
+                        SELECT 1 FROM Mensalidade ms
+                        WHERE ms.ID_MATRICULA = Meses.ID_MATRICULA
+                        AND YEAR(ms.DATA_VENCIMENTO) = YEAR(Meses.DATA)
+                        AND MONTH(ms.DATA_VENCIMENTO) = MONTH(Meses.DATA)
+                    )
+                    OPTION (MAXRECURSION 1000);
                 """;
 
                 using SqlCommand cmdGerar = new(geraMensalidadeSql, conexao, transacao);
@@ -78,7 +78,8 @@ namespace Academia
             }
             catch (Exception)
             {
-
+                if (transacao?.Connection != null)
+                    transacao.Rollback();
                 throw;
             }
         }
@@ -237,22 +238,22 @@ namespace Academia
                 cmdReativar.ExecuteNonQuery();
 
                 string ajustarMensalidadesSql = """                   
-                UPDATE Mensalidade
-                SET SITUACAO = 0
-                WHERE ID_MATRICULA = @idMatricula
-                AND SITUACAO = 2
-                AND YEAR(DATA_VENCIMENTO) = YEAR(@venc)
-                AND MONTH(DATA_VENCIMENTO) = MONTH(@venc);
+                    UPDATE Mensalidade
+                    SET SITUACAO = 0
+                    WHERE ID_MATRICULA = @idMatricula
+                        AND SITUACAO = 2
+                        AND YEAR(DATA_VENCIMENTO) = YEAR(@venc)
+                        AND MONTH(DATA_VENCIMENTO) = MONTH(@venc);
                 
-                IF @@ROWCOUNT = 0
-                BEGIN
-                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-                    VALUES (@idMatricula, @venc, 0);
-                END
+                    IF @@ROWCOUNT = 0
+                    BEGIN
+                        INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+                        VALUES (@idMatricula, @venc, 0);
+                    END
               
-                UPDATE Matricula
-                SET VENCIMENTO = @venc
-                WHERE ID_MATRICULA = @idMatricula;
+                    UPDATE Matricula
+                    SET VENCIMENTO = @venc
+                    WHERE ID_MATRICULA = @idMatricula;
                 """;
 
                 using SqlCommand cmdAjustar = new(ajustarMensalidadesSql, conexao, transacao);
