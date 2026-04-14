@@ -43,7 +43,13 @@ namespace Academia
                 var forma = cboFormaPagamento.Text;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
 
-                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true);
+                bool gerar = MessageBox.Show(
+                "Deseja gerar a próxima mensalidade?",
+                "Pagamento",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes;
+
+                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar);
                 novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
 
                 MessageBox.Show(
