@@ -33,9 +33,11 @@
             label1 = new Label();
             tcCaixa = new TabControl();
             tabPageDadosCaixa = new TabPage();
+            numericUpDown1 = new NumericUpDown();
             cboFormaPagamento = new ComboBox();
             label2 = new Label();
             txtDinheiro = new TextBox();
+            label4 = new Label();
             label3 = new Label();
             btnCancelar = new Button();
             btnConfirmar = new Button();
@@ -43,6 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tcCaixa.SuspendLayout();
             tabPageDadosCaixa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -81,22 +84,37 @@
             tcCaixa.Location = new Point(12, 127);
             tcCaixa.Name = "tcCaixa";
             tcCaixa.SelectedIndex = 0;
-            tcCaixa.Size = new Size(400, 86);
+            tcCaixa.Size = new Size(400, 127);
             tcCaixa.TabIndex = 2;
             // 
             // tabPageDadosCaixa
             // 
+            tabPageDadosCaixa.Controls.Add(numericUpDown1);
             tabPageDadosCaixa.Controls.Add(cboFormaPagamento);
             tabPageDadosCaixa.Controls.Add(label2);
             tabPageDadosCaixa.Controls.Add(txtDinheiro);
+            tabPageDadosCaixa.Controls.Add(label4);
             tabPageDadosCaixa.Controls.Add(label3);
             tabPageDadosCaixa.Location = new Point(4, 29);
             tabPageDadosCaixa.Name = "tabPageDadosCaixa";
             tabPageDadosCaixa.Padding = new Padding(3);
-            tabPageDadosCaixa.Size = new Size(392, 53);
+            tabPageDadosCaixa.Size = new Size(392, 94);
             tabPageDadosCaixa.TabIndex = 0;
             tabPageDadosCaixa.Text = "Dados do caixa";
             tabPageDadosCaixa.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.AccessibleDescription = "numQuantosMeses";
+            numericUpDown1.Location = new Point(239, 54);
+            numericUpDown1.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.ReadOnly = true;
+            numericUpDown1.Size = new Size(142, 27);
+            numericUpDown1.TabIndex = 14;
+            numericUpDown1.TextAlign = HorizontalAlignment.Center;
+            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cboFormaPagamento
             // 
@@ -128,6 +146,16 @@
             txtDinheiro.Text = "0,00";
             txtDinheiro.TextAlign = HorizontalAlignment.Right;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(6, 57);
+            label4.Name = "label4";
+            label4.Size = new Size(229, 19);
+            label4.TabIndex = 11;
+            label4.Text = "Quantos meses deseja pagar?";
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -142,7 +170,7 @@
             // 
             btnCancelar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(326, 219);
+            btnCancelar.Location = new Point(331, 300);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 51);
             btnCancelar.TabIndex = 19;
@@ -155,7 +183,7 @@
             btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConfirmar.Image = Properties.Resources.confirmar;
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(188, 219);
+            btnConfirmar.Location = new Point(193, 300);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Padding = new Padding(3, 0, 3, 0);
             btnConfirmar.Size = new Size(132, 50);
@@ -169,7 +197,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(422, 281);
+            ClientSize = new Size(422, 362);
             Controls.Add(btnConfirmar);
             Controls.Add(btnCancelar);
             Controls.Add(tcCaixa);
@@ -184,6 +212,7 @@
             tcCaixa.ResumeLayout(false);
             tabPageDadosCaixa.ResumeLayout(false);
             tabPageDadosCaixa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -200,5 +229,7 @@
         private Label label2;
         private Button btnCancelar;
         private Button btnConfirmar;
+        private Label label4;
+        private NumericUpDown numericUpDown1;
     }
 }
