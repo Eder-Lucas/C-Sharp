@@ -33,7 +33,7 @@
             label1 = new Label();
             tcCaixa = new TabControl();
             tabPageDadosCaixa = new TabPage();
-            numericUpDown1 = new NumericUpDown();
+            numQuantosMeses = new NumericUpDown();
             cboFormaPagamento = new ComboBox();
             label2 = new Label();
             txtDinheiro = new TextBox();
@@ -45,7 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tcCaixa.SuspendLayout();
             tabPageDadosCaixa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numQuantosMeses).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -89,7 +89,7 @@
             // 
             // tabPageDadosCaixa
             // 
-            tabPageDadosCaixa.Controls.Add(numericUpDown1);
+            tabPageDadosCaixa.Controls.Add(numQuantosMeses);
             tabPageDadosCaixa.Controls.Add(cboFormaPagamento);
             tabPageDadosCaixa.Controls.Add(label2);
             tabPageDadosCaixa.Controls.Add(txtDinheiro);
@@ -103,18 +103,18 @@
             tabPageDadosCaixa.Text = "Dados do caixa";
             tabPageDadosCaixa.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // numQuantosMeses
             // 
-            numericUpDown1.AccessibleDescription = "numQuantosMeses";
-            numericUpDown1.Location = new Point(239, 54);
-            numericUpDown1.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.ReadOnly = true;
-            numericUpDown1.Size = new Size(142, 27);
-            numericUpDown1.TabIndex = 14;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantosMeses.AccessibleDescription = "";
+            numQuantosMeses.Location = new Point(239, 54);
+            numQuantosMeses.Maximum = new decimal(new int[] { 12, 0, 0, 0 });
+            numQuantosMeses.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantosMeses.Name = "numQuantosMeses";
+            numQuantosMeses.ReadOnly = true;
+            numQuantosMeses.Size = new Size(142, 27);
+            numQuantosMeses.TabIndex = 14;
+            numQuantosMeses.TextAlign = HorizontalAlignment.Center;
+            numQuantosMeses.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cboFormaPagamento
             // 
@@ -212,7 +212,7 @@
             tcCaixa.ResumeLayout(false);
             tabPageDadosCaixa.ResumeLayout(false);
             tabPageDadosCaixa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numQuantosMeses).EndInit();
             ResumeLayout(false);
         }
 
@@ -230,6 +230,6 @@
         private Button btnCancelar;
         private Button btnConfirmar;
         private Label label4;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numQuantosMeses;
     }
 }
