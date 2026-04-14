@@ -8,111 +8,6 @@ namespace Academia
 {
     internal class Mensalidades
     {
-        public void Salvar(int idMatricula, DateTime venc, bool situacao)
-        {
-			try
-			{
-				using SqlConnection conexao = new(Conexao.StringConexao);
-				conexao.Open();
-
-				string sql = """
-					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-					VALUES (@idMatricula, @vencimento, @situacao)
-				""";
-
-                using SqlCommand cmd = new(sql, conexao);
-
-				cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-				cmd.Parameters.Add("@vencimento", SqlDbType.Date).Value = venc;
-				cmd.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
-
-				cmd.ExecuteNonQuery();
-
-            }
-			catch (Exception)
-			{
-				throw;
-			}
-        }
-
-		public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao, bool gerar)
-		{
-            SqlTransaction? transacao = null;
-
-            try
-			{
-				using SqlConnection conexao = new(Conexao.StringConexao);
-				conexao.Open();
-
-                transacao = conexao.BeginTransaction();
-
-                // Salvando a mensalidade como paga
-                string pagamentoSql = """
-					UPDATE Mensalidade
-					SET DATA_PAGAMENTO = @dataPagamento, SITUACAO = @situacao
-					WHERE ID_MENSALIDADE = @idMensalidade
-				""";
-
-                using SqlCommand cmdPagamento = new(pagamentoSql, conexao, transacao);
-                cmdPagamento.Parameters.Add("@idMensalidade", SqlDbType.Int).Value = idMensalidade;
-                cmdPagamento.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
-                cmdPagamento.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
-
-                cmdPagamento.ExecuteNonQuery();
-
-				// Se o usuário escolher gerar a próxima mensalidade
-				if (gerar)
-				{
-                    // Coleta os dados
-                    string buscarDadosSql = """
-						SELECT m.ID_MATRICULA, m.DATA_VENCIMENTO
-						FROM Mensalidade m
-						WHERE m.ID_MENSALIDADE = @idMensalidade
-					""";
-
-                    using SqlCommand cmdBuscar = new(buscarDadosSql, conexao, transacao);
-                    cmdBuscar.Parameters.Add("@idMensalidade", SqlDbType.Int).Value = idMensalidade;
-
-                    using SqlDataReader leitor = cmdBuscar.ExecuteReader();
-
-                    if (!leitor.Read())
-                        throw new Exception("Mensalidade não encontrada.");
-
-                    int idMatricula = leitor.GetInt32(0);
-                    DateTime vencimentoAtual = leitor.GetDateTime(1);
-
-                    leitor.Close();
-
-                    // Gerando a próxima mensalidade
-                    DateTime proximoVencimento = vencimentoAtual.AddMonths(1);
-
-                    // Insere uma nova mensalidade e atualiza o vencimento da matrícula
-                    string proximaMensalidadeSql = """
-						INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-						VALUES (@idMatricula, @proximoVencimento, 0);
-
-						UPDATE Matricula
-						SET VENCIMENTO = @proximoVencimento
-						WHERE ID_MATRICULA = @idMatricula;
-					""";
-
-                    using SqlCommand cmdProxima = new(proximaMensalidadeSql, conexao, transacao);
-                    cmdProxima.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-                    cmdProxima.Parameters.Add("@proximoVencimento", SqlDbType.Date).Value = proximoVencimento;
-
-                    cmdProxima.ExecuteNonQuery();
-                }
-
-                transacao.Commit();
-            }
-			catch (Exception)
-			{
-                if (transacao?.Connection != null)
-                    transacao.Rollback();
-                throw;
-			}
-		}
-
 		public DataTable Listar(int idAluno)
 		{
 			try
@@ -121,7 +16,7 @@ namespace Academia
 				conexao.Open();
 
 				string sql = """
-					SELECT
+					SELECT				
 						men.*,
 						md.NOME_MODALIDADE,
 						md.MENSALIDADE,
@@ -244,5 +139,138 @@ namespace Academia
 				throw;
 			}
 		}
+
+        public void Pagar(int idMensalidade, DateTime dataPagamento, bool situacao, bool gerar, int qtdMeses)
+        {
+            SqlTransaction? transacao = null;
+
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                transacao = conexao.BeginTransaction();
+
+                // Coleta os dados
+                string buscarDadosSql = """
+					SELECT m.ID_MATRICULA, m.DATA_VENCIMENTO
+					FROM Mensalidade m
+					WHERE m.ID_MENSALIDADE = @idMensalidade
+				""";
+
+                using SqlCommand cmdBuscar = new(buscarDadosSql, conexao, transacao);
+                cmdBuscar.Parameters.Add("@idMensalidade", SqlDbType.Int).Value = idMensalidade;
+                using SqlDataReader leitor = cmdBuscar.ExecuteReader();
+
+                if (!leitor.Read())
+                    throw new Exception("Mensalidade não encontrada.");
+
+                int idMatricula = leitor.GetInt32(0);
+                DateTime vencimentoAtual = leitor.GetDateTime(1);
+
+                leitor.Close();
+
+                List<int> ids = [];
+
+                // seleciona todas nao pagas
+                string proximaMensalidadeSql = """
+					SELECT TOP (@qtd)
+						ID_MENSALIDADE
+					FROM Mensalidade
+					WHERE ID_MATRICULA = @idMatricula
+						AND SITUACAO = 0
+					ORDER BY DATA_VENCIMENTO;
+				""";
+
+                using SqlCommand cmdProxima = new(proximaMensalidadeSql, conexao, transacao);
+                cmdProxima.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                cmdProxima.Parameters.Add("@qtd", SqlDbType.Int).Value = qtdMeses;
+
+                using SqlDataReader ler = cmdProxima.ExecuteReader();
+
+                while (ler.Read())
+                    ids.Add(ler.GetInt32(0));
+
+                ler.Close();
+
+                // paga todas em ordem
+                foreach (int id in ids)
+                {
+                    string updateSql = """
+						UPDATE Mensalidade
+						SET DATA_PAGAMENTO = @dataPagamento,
+							SITUACAO = 1
+						WHERE ID_MENSALIDADE = @id
+					""";
+
+                    using SqlCommand cmdUpdate = new(updateSql, conexao, transacao);
+                    cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cmdUpdate.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
+
+                    cmdUpdate.ExecuteNonQuery();
+                }
+
+                int faltam = qtdMeses - ids.Count;
+
+                if (faltam > 0)
+                {
+                    // pega última data
+                    string sqlUltima = """
+						SELECT MAX(DATA_VENCIMENTO)
+						FROM Mensalidade
+						WHERE ID_MATRICULA = @idMatricula
+					""";
+
+                    using SqlCommand cmdUltima = new(sqlUltima, conexao, transacao);
+                    cmdUltima.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+
+                    object resultado = cmdUltima.ExecuteScalar();
+
+                    DateTime ultimoVencimento = resultado == DBNull.Value
+                        ? vencimentoAtual
+                        : (DateTime)resultado;
+
+                    DateTime proximo = ultimoVencimento;
+
+                    for (int i = 0; i < faltam; i++)
+                    {
+                        proximo = proximo.AddMonths(1);
+
+                        string variosMesesSql = """
+						INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, DATA_PAGAMENTO, SITUACAO)
+						VALUES (
+						@idMatricula,
+						DATEFROMPARTS(
+						    YEAR(@data),
+						    MONTH(@data),
+						    CASE 
+						        WHEN DAY(@vencimentoBase) > DAY(EOMONTH(@data)) 
+						            THEN DAY(EOMONTH(@data))
+						        ELSE DAY(@vencimentoBase)
+						    END
+							),
+							@dataPagamento,
+							1
+						);
+					""";
+
+                        using SqlCommand cmdVarios = new(variosMesesSql, conexao, transacao);
+                        cmdVarios.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+                        cmdVarios.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
+                        cmdVarios.Parameters.Add("@data", SqlDbType.Date).Value = proximo;
+                        cmdVarios.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
+                        cmdVarios.ExecuteNonQuery();
+                    }
+                }
+
+                transacao.Commit();
+            }
+            catch (Exception)
+            {
+                if (transacao?.Connection != null)
+                    transacao.Rollback();
+                throw;
+            }
+        }
     }
 }
