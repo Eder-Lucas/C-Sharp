@@ -11,7 +11,7 @@ namespace Academia
     public partial class frmSuprimento : Form
     {
         int idMensalidade;
-        string valor;
+        decimal valor;
         frmControleAlunos frmControleAlunos;
 
         public frmSuprimento(int idMensalidade, decimal valor, frmControleAlunos frmControleAlunos)
@@ -19,8 +19,8 @@ namespace Academia
             InitializeComponent();
 
             this.idMensalidade = idMensalidade;
-            this.valor = valor.ToString();
-            txtDinheiro.Text = this.valor;
+            this.valor = valor;
+            txtDinheiro.Text = this.valor.ToString();
             this.frmControleAlunos = frmControleAlunos;
         }
 
@@ -74,11 +74,9 @@ namespace Academia
         private void numQuantosMeses_ValueChanged(object sender, EventArgs e)
         {
             int meses = (int)numQuantosMeses.Value;
-            decimal valorBase = Convert.ToDecimal(this.valor);
+            decimal valorTotal = valor * meses;
 
-            int valorTotal = (int)(valorBase * meses);
-
-            txtDinheiro.Text = valorTotal.ToString();
+            txtDinheiro.Text = valorTotal.ToString("F2");
         }
     }
 }
