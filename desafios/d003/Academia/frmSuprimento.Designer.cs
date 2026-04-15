@@ -115,6 +115,7 @@
             numQuantosMeses.TabIndex = 14;
             numQuantosMeses.TextAlign = HorizontalAlignment.Center;
             numQuantosMeses.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantosMeses.ValueChanged += numQuantosMeses_ValueChanged;
             // 
             // cboFormaPagamento
             // 
