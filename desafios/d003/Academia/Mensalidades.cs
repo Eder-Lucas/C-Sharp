@@ -160,49 +160,11 @@ namespace Academia
                 PagaMensalidades(transacao, conexao, ids, dataPagamento);
 
                 if (faltam > 0)
-                {
-                    
-                }
+                    GerarMensalidadesFaltantes(transacao, conexao, idMatricula, faltam, proximo, vencimentoAtual, dataPagamento);
 
-				if (gerar)
-				{
-					DateTime ultimo = ObterUltimoVencimento(transacao, conexao, idMatricula, vencimentoAtual);
-					ultimo = ultimo.AddMonths(1);
-
-					string sql = """
-						IF NOT EXISTS (
-							SELECT 1 
-							FROM Mensalidade
-							WHERE ID_MATRICULA = @idMatricula
-							AND DATA_VENCIMENTO = @proximo
-						)
-						BEGIN
-							INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-							VALUES (
-							@idMatricula,
-							DATEFROMPARTS(
-								YEAR(@proximo),
-								MONTH(@proximo),
-								CASE 
-									WHEN DAY(@vencimentoBase) > DAY(EOMONTH(@proximo)) 
-										THEN DAY(EOMONTH(@proximo))
-									ELSE DAY(@vencimentoBase)
-								END
-								),
-								0
-							);
-						END
-					""";
-
-					using SqlCommand cmd = new(sql, conexao, transacao);
-					cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-					cmd.Parameters.Add("@proximo", SqlDbType.Date).Value= ultimo;
-					cmd.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
-
-					cmd.ExecuteNonQuery();
-
-				}
-
+                if (gerar)
+					GerarMensalidadesAoPagar(transacao, conexao, idMatricula, vencimentoAtual);
+                
                 transacao.Commit();
             }
             catch (Exception)
@@ -308,7 +270,7 @@ namespace Academia
             }
         }
 
-		private void GerarMensalidadesFaltantes(SqlTransaction transacao, SqlConnection conexao, int idMatricula, DateTime proximo, DateTime vencimentoBase, int faltam)
+		private void GerarMensalidadesFaltantes(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int faltam, DateTime proximo, DateTime vencimentoAtual, DateTime dataPagamento)
 		{
             for (int i = 0; i < faltam; i++)
             {
@@ -340,6 +302,44 @@ namespace Academia
                 cmdVarios.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
                 cmdVarios.ExecuteNonQuery();
             }
+        }
+
+		private void GerarMensalidadesAoPagar(SqlTransaction transacao, SqlConnection conexao, int idMatricula, DateTime vencimentoAtual)
+		{
+            DateTime ultimo = ObterUltimoVencimento(transacao, conexao, idMatricula, vencimentoAtual);
+            ultimo = ultimo.AddMonths(1);
+
+            string sql = """
+				IF NOT EXISTS (
+					SELECT 1 
+					FROM Mensalidade
+					WHERE ID_MATRICULA = @idMatricula
+					AND SITUACAO = 0
+				)
+				BEGIN
+					INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+					VALUES (
+					@idMatricula,
+					DATEFROMPARTS(
+						YEAR(@proximo),
+						MONTH(@proximo),
+						CASE 
+							WHEN DAY(@vencimentoBase) > DAY(EOMONTH(@proximo)) 
+								THEN DAY(EOMONTH(@proximo))
+							ELSE DAY(@vencimentoBase)
+						END
+						),
+						0
+					);
+				END
+			""";
+
+            using SqlCommand cmd = new(sql, conexao, transacao);
+            cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+            cmd.Parameters.Add("@proximo", SqlDbType.Date).Value = ultimo;
+            cmd.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
