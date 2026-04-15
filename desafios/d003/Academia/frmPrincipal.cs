@@ -21,7 +21,7 @@ namespace Academia
                 novaConexao.Open(); // Abre a conexão com o banco
                 MessageBox.Show("Conexão com o banco de dados realizada!"); // Mensagem de sucesso caso a conexão seja estabelecida
 
-                MatriculaService matriculaService = new ();
+                MatriculaService matriculaService = new();
                 matriculaService.GerarMensalidade();
             }
             // Se falhar captura o erro e exibe uma mensagem de falha
@@ -45,5 +45,7 @@ namespace Academia
         private void btnAlunos_Click(object sender, EventArgs e) => new frmAlunos().ShowDialog();
 
         private void btnCaixa_Click(object sender, EventArgs e) => new frmCaixa().ShowDialog();
+
+        private void btnConfig_Click(object sender, EventArgs e) => new frmConfig().ShowDialog();
     }
 }
