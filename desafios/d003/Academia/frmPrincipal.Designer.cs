@@ -37,15 +37,15 @@
             btnTurmas = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             btnCaixa = new ToolStripButton();
-            btnRelatorioCaixa = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
+            toolStripButton2 = new ToolStripButton();
+            btnConfig = new ToolStripButton();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, btnRelatorioCaixa, toolStripSeparator3 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, toolStripButton2, btnConfig });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 59);
@@ -117,20 +117,27 @@
             btnCaixa.TextImageRelation = TextImageRelation.ImageAboveText;
             btnCaixa.Click += btnCaixa_Click;
             // 
-            // btnRelatorioCaixa
+            // toolStripButton2
             // 
-            btnRelatorioCaixa.Image = Properties.Resources.icon_relatorioCaixa;
-            btnRelatorioCaixa.ImageScaling = ToolStripItemImageScaling.None;
-            btnRelatorioCaixa.ImageTransparentColor = Color.Magenta;
-            btnRelatorioCaixa.Name = "btnRelatorioCaixa";
-            btnRelatorioCaixa.Size = new Size(135, 56);
-            btnRelatorioCaixa.Text = "Relatório de Caixa";
-            btnRelatorioCaixa.TextImageRelation = TextImageRelation.ImageAboveText;
+            toolStripButton2.Image = Properties.Resources.icon_relatorioCaixa;
+            toolStripButton2.ImageScaling = ToolStripItemImageScaling.None;
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Size = new Size(135, 56);
+            toolStripButton2.Text = "Relatório de Caixa";
+            toolStripButton2.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
-            // toolStripSeparator3
+            // btnConfig
             // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 59);
+            btnConfig.Alignment = ToolStripItemAlignment.Right;
+            btnConfig.Image = Properties.Resources.configuracoes;
+            btnConfig.ImageScaling = ToolStripItemImageScaling.None;
+            btnConfig.ImageTransparentColor = Color.Magenta;
+            btnConfig.Name = "btnConfig";
+            btnConfig.Size = new Size(108, 56);
+            btnConfig.Text = "Configurações";
+            btnConfig.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnConfig.Click += btnConfig_Click;
             // 
             // frmPrincipal
             // 
@@ -154,7 +161,6 @@
         #endregion
 
         private ToolStrip toolStrip1;
-        private ToolStripButton btnRelatorioCaixa;
         private ToolStripButton btnProfessor;
         private ToolStripButton btnAlunos;
         private ToolStripSeparator toolStripSeparator1;
@@ -162,6 +168,7 @@
         private ToolStripButton btnTurmas;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton btnCaixa;
-        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripButton toolStripButton2;
+        private ToolStripButton btnConfig;
     }
 }
