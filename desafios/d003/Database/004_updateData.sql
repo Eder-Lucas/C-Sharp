@@ -6,3 +6,11 @@ SET SITUACAO = CASE
     WHEN SITUACAO = 1 THEN 1
     ELSE 0
 END;
+
+IF NOT EXISTS (
+    SELECT 1 FROM Configuracoes WHERE CHAVE = 'GERAR_AUTO_MENSALIDADE'
+)
+BEGIN
+    INSERT INTO Configuracoes (CHAVE, DESCRICAO, VALOR, TIPO)
+    VALUES ('GERAR_AUTO_MENSALIDADE', 'Gerar mensalidade automaticamente', 'false', 'BOOL')
+END
