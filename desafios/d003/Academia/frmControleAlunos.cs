@@ -778,7 +778,7 @@ namespace Academia
 
         }
 
-        private void switchSituacao_OnCheckedChanged(object sender, EventArgs e)
+        private void switchSituacao_CheckedChanged(object sender, EventArgs e)
         {
             try
             {

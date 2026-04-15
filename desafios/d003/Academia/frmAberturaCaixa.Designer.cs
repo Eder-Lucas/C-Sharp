@@ -180,7 +180,7 @@
             switchZerado.Name = "switchZerado";
             switchZerado.Size = new Size(47, 25);
             switchZerado.TabIndex = 19;
-            switchZerado.OnCheckedChanged += switchZerado_OnCheckedChanged;
+            switchZerado.CheckedChanged += switchZerado_OnCheckedChanged;
             switchZerado.MouseDown += switchZerado_MouseDown;
             // 
             // label4
@@ -200,7 +200,7 @@
             switchSaldoAnterior.Name = "switchSaldoAnterior";
             switchSaldoAnterior.Size = new Size(47, 25);
             switchSaldoAnterior.TabIndex = 19;
-            switchSaldoAnterior.OnCheckedChanged += switchSaldoAnterior_OnCheckedChanged;
+            switchSaldoAnterior.CheckedChanged += switchSaldoAnterior_CheckedChanged;
             switchSaldoAnterior.MouseDown += switchSaldoAnterior_MouseDown;
             // 
             // label6

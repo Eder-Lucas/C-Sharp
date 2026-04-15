@@ -590,7 +590,7 @@
             switchSituacao.Size = new Size(65, 25);
             switchSituacao.TabIndex = 12;
             switchSituacao.Text = "toggleSwitch1";
-            switchSituacao.OnCheckedChanged += switchSituacao_OnCheckedChanged;
+            switchSituacao.CheckedChanged += switchSituacao_CheckedChanged;
             // 
             // lblMensagem
             // 

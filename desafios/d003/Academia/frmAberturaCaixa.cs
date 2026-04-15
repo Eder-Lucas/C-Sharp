@@ -80,7 +80,7 @@ namespace Academia
             }
         }
 
-        private void switchSaldoAnterior_OnCheckedChanged(object sender, EventArgs e)
+        private void switchSaldoAnterior_CheckedChanged(object sender, EventArgs e)
         {
             if (switchSaldoAnterior.Checked)
             {
