@@ -207,6 +207,7 @@
             Name = "frmSuprimento";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Movimento do Caixa";
+            Load += frmSuprimento_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
