@@ -68,7 +68,17 @@ namespace Academia
             catch (Exception)
             {
                 throw;
-            }           
+            }
+        }
+
+        private void numQuantosMeses_ValueChanged(object sender, EventArgs e)
+        {
+            int meses = (int)numQuantosMeses.Value;
+            decimal valorBase = Convert.ToDecimal(this.valor);
+
+            int valorTotal = (int)(valorBase * meses);
+
+            txtDinheiro.Text = valorTotal.ToString();
         }
     }
 }
