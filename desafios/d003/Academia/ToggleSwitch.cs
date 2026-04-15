@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
@@ -9,102 +9,117 @@ namespace Academia
 {
     // Código completamente gerado por IA
     // Personaliza um controle para parecer um switch
-
     public class ToggleSwitch : Control
     {
-        // 🔹 Estado do toggle
-        private bool isChecked = false;
-
-        // 🔹 Posição da bolinha (0 = desligado, 1 = ligado)
         private float togglePosition = 0f;
-
-        // 🔹 Timer da animação
         private Timer animationTimer;
 
-        // 🔹 Cores internas
+        private bool suppressEvents = false;
+
+        private bool isChecked = false;
+        private bool enableAnimation = true;
+        private int animationSpeed = 15;
+
         private Color onColor = Color.MediumSeaGreen;
         private Color offColor = Color.Gray;
         private Color toggleColor = Color.White;
 
-        // 🔹 Velocidade da animação (milissegundos do Timer)
-        private int animationInterval = 15;
-
-        // 🔹 Propriedades visíveis no Designer
-        [Category("Appearance")]
-        [Description("Cor quando o toggle está ligado")]
-        public Color OnColor
-        {
-            get => onColor;
-            set { onColor = value; Invalidate(); }
-        }
-        public bool ShouldSerializeOnColor() => OnColor != Color.MediumSeaGreen;
-        public void ResetOnColor() => OnColor = Color.MediumSeaGreen;
-
-        [Category("Appearance")]
-        [Description("Cor quando o toggle está desligado")]
-        public Color OffColor
-        {
-            get => offColor;
-            set { offColor = value; Invalidate(); }
-        }
-        public bool ShouldSerializeOffColor() => OffColor != Color.Gray;
-        public void ResetOffColor() => OffColor = Color.Gray;
-
-        [Category("Appearance")]
-        [Description("Cor da bolinha do toggle")]
-        public Color ToggleColor
-        {
-            get => toggleColor;
-            set { toggleColor = value; Invalidate(); }
-        }
-        public bool ShouldSerializeToggleColor() => ToggleColor != Color.White;
-        public void ResetToggleColor() => ToggleColor = Color.White;
+        public event EventHandler CheckedChanged;
 
         [Category("Behavior")]
-        [Description("Intervalo da animação em milissegundos (quanto menor, mais rápido)")]
-        public int AnimationSpeed
-        {
-            get => animationInterval;
-            set
-            {
-                animationInterval = value;
-                if (animationTimer != null)
-                    animationTimer.Interval = animationInterval;
-            }
-        }
-        public bool ShouldSerializeAnimationSpeed() => AnimationSpeed != 15;
-        public void ResetAnimationSpeed() => AnimationSpeed = 15;
-
-        [Category("Behavior")]
-        [Description("Define se o toggle está ligado ou desligado")]
+        [Description("Define se o switch está ligado ou desligado")]
         public bool Checked
         {
             get => isChecked;
             set
             {
-                if (isChecked != value)
+                if (isChecked == value)
+                    return;
+
+                isChecked = value;
+
+                if (enableAnimation)
                 {
-                    isChecked = value;
-                    StartAnimation();
-                    OnCheckedChanged?.Invoke(this, EventArgs.Empty);
+                    animationTimer.Start();
                 }
+                else
+                {
+                    togglePosition = isChecked ? 1f : 0f;
+                    animationTimer.Stop();
+                    Invalidate();
+                }
+
+                if (!suppressEvents)
+                    CheckedChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public bool ShouldSerializeChecked() => Checked != false;
-        public void ResetChecked() => Checked = false;
 
-        // 🔹 Evento
-        public event EventHandler OnCheckedChanged;
+        public bool ShouldSerializeChecked() => isChecked != false;
+        public void ResetChecked() => isChecked = false;
 
-        // 🔹 Construtor
+        [Category("Behavior")]
+        public bool EnableAnimation
+        {
+            get => enableAnimation;
+            set => enableAnimation = value;
+        }
+
+        public bool ShouldSerializeEnableAnimation() => enableAnimation != true;
+        public void ResetEnableAnimation() => enableAnimation = true;
+
+        [Category("Behavior")]
+        public int AnimationSpeed
+        {
+            get => animationSpeed;
+            set
+            {
+                animationSpeed = value;
+                if (animationTimer != null)
+                    animationTimer.Interval = value;
+            }
+        }
+
+        public bool ShouldSerializeAnimationSpeed() => animationSpeed != 15;
+        public void ResetAnimationSpeed() => animationSpeed = 15;
+
+        [Category("Appearance")]
+        public Color OnColor
+        {
+            get => onColor;
+            set { onColor = value; Invalidate(); }
+        }
+
+        public bool ShouldSerializeOnColor() => onColor != Color.MediumSeaGreen;
+        public void ResetOnColor() => onColor = Color.MediumSeaGreen;
+
+        [Category("Appearance")]
+        public Color OffColor
+        {
+            get => offColor;
+            set { offColor = value; Invalidate(); }
+        }
+
+        public bool ShouldSerializeOffColor() => offColor != Color.Gray;
+        public void ResetOffColor() => offColor = Color.Gray;
+
+        [Category("Appearance")]
+        public Color ToggleColor
+        {
+            get => toggleColor;
+            set { toggleColor = value; Invalidate(); }
+        }
+
+        public bool ShouldSerializeToggleColor() => toggleColor != Color.White;
+        public void ResetToggleColor() => toggleColor = Color.White;
+
         public ToggleSwitch()
         {
-            this.DoubleBuffered = true;
-            this.Size = new Size(60, 30);
-            this.Cursor = Cursors.Hand;
+            DoubleBuffered = true;
+            Size = new Size(60, 30);
+            Cursor = Cursors.Hand;
 
             animationTimer = new Timer();
-            animationTimer.Interval = animationInterval;
+            animationTimer.Interval = animationSpeed;
             animationTimer.Tick += AnimationTick;
         }
 
@@ -112,35 +127,19 @@ namespace Academia
         {
             base.OnMouseDown(e);
 
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Checked = !this.Checked;
+            if (e.Button != MouseButtons.Left)
+                return;
 
-                // 🔥 dá resposta imediata parcial
-                togglePosition += isChecked ? 0.15f : -0.15f;
-
-                // mantém dentro do limite
-                togglePosition = Math.Max(0f, Math.Min(1f, togglePosition));
-
-                animationTimer.Start();
-            }
+            Checked = !Checked;
         }
 
-        // 🔹 Inicia a animação
-        private void StartAnimation()
-        {
-            animationTimer.Start();
-        }
-
-        // 🔹 Move a bolinha suavemente
         private void AnimationTick(object sender, EventArgs e)
         {
             float target = isChecked ? 1f : 0f;
-            float speed = 0.2f; // maior = mais rápido
+            float speed = 0.2f;
 
             togglePosition += (target - togglePosition) * speed;
 
-            // aproximação final
             if (Math.Abs(togglePosition - target) < 0.01f)
             {
                 togglePosition = target;
@@ -150,47 +149,59 @@ namespace Academia
             Invalidate();
         }
 
-        // 🔹 Desenho do toggle
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            e.Graphics.Clear(this.BackColor);
+            e.Graphics.Clear(BackColor);
 
-            int radius = this.Height;
-            Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
+            int radius = Height;
+            Rectangle rect = new Rectangle(0, 0, Width, Height);
 
             using (GraphicsPath path = GetRoundedPath(rect, radius))
             {
-                using (Brush bgBrush = new SolidBrush(this.Checked ? OnColor : OffColor))
-                    e.Graphics.FillPath(bgBrush, path);
+                using (Brush bg = new SolidBrush(isChecked ? OnColor : OffColor))
+                    e.Graphics.FillPath(bg, path);
 
-                using (Pen pen = new Pen(Color.LightGray, 1))
-                    e.Graphics.DrawPath(pen, path);
+                e.Graphics.DrawPath(Pens.LightGray, path);
             }
 
             int padding = 3;
-            int toggleSize = this.Height - padding * 2;
-            int x = (int)(padding + togglePosition * (this.Width - toggleSize - padding * 2));
+            int size = Height - padding * 2;
 
-            using (Brush toggleBrush = new SolidBrush(ToggleColor))
+            int x = (int)(padding + togglePosition * (Width - size - padding * 2));
+
+            using (Brush b = new SolidBrush(ToggleColor))
             {
-                e.Graphics.FillEllipse(toggleBrush, new Rectangle(x, padding, toggleSize, toggleSize));
+                e.Graphics.FillEllipse(b, new Rectangle(x, padding, size, size));
             }
         }
 
-        // 🔹 Cantos arredondados
         private GraphicsPath GetRoundedPath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
-            int d = radius;
 
-            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
-            path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
-            path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
 
             path.CloseFigure();
             return path;
+        }
+
+        public void SetCheckedSilently(bool value)
+        {
+            suppressEvents = true;
+
+            EnableAnimation = false;
+
+            isChecked = value;
+            togglePosition = value ? 1f : 0f;
+
+            Invalidate();
+
+            EnableAnimation = true;
+            suppressEvents = false;
         }
     }
 }
