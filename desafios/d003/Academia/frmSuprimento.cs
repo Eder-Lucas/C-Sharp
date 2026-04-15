@@ -43,12 +43,16 @@ namespace Academia
                 var forma = cboFormaPagamento.Text;
                 int meses = (int)numQuantosMeses.Value;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
+                bool gerar = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
 
-                bool gerar = MessageBox.Show(
-                "Deseja gerar a próxima mensalidade?",
-                "Pagamento",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes;
+                if (gerar == false)
+                {
+                    gerar = MessageBox.Show(
+                    "Deseja gerar a próxima mensalidade?",
+                    "Pagamento",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes;
+                }
 
                 novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
                 novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
@@ -77,6 +81,11 @@ namespace Academia
             decimal valorTotal = valor * meses;
 
             txtDinheiro.Text = valorTotal.ToString("F2");
+        }
+
+        private void frmSuprimento_Load(object sender, EventArgs e)
+        {
+            cboFormaPagamento.SelectedIndex = 0;
         }
     }
 }
