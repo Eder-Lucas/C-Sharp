@@ -20,7 +20,7 @@ namespace Academia
 
             this.idMensalidade = idMensalidade;
             this.valor = valor;
-            txtDinheiro.Text = this.valor.ToString();
+            txtDinheiro.Text = $"{this.valor:C2}";
             this.frmControleAlunos = frmControleAlunos;
         }
 
@@ -39,14 +39,14 @@ namespace Academia
                 DataTable dadosCaixa = novoCaixa.Listar();
 
                 int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
-                decimal valor = Convert.ToDecimal(txtDinheiro.Text);
+                decimal valorFinal = valor * (int)numQuantosMeses.Value;
                 var forma = cboFormaPagamento.Text;
                 int meses = (int)numQuantosMeses.Value;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
                 bool gerar = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
 
                 novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
-                novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+                novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma);
 
                 MessageBox.Show(
                 "Pagamento realizado com sucesso! Uma nova mensalidade foi gerada automaticamente para o próximo mês nessa turma, " +
@@ -71,7 +71,7 @@ namespace Academia
             int meses = (int)numQuantosMeses.Value;
             decimal valorTotal = valor * meses;
 
-            txtDinheiro.Text = valorTotal.ToString("F2");
+            txtDinheiro.Text = $"{valorTotal:C2}";
         }
 
         private void frmSuprimento_Load(object sender, EventArgs e)
