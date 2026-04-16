@@ -74,6 +74,31 @@ namespace Academia
                 using SqlCommand cmdGerar = new(geraMensalidadeSql, conexao, transacao);
                 cmdGerar.ExecuteNonQuery();
 
+                string updateMatriculasql = """
+                    UPDATE m
+                    SET VENCIMENTO = DATEFROMPARTS(
+                        YEAR(ms.MAX_DATA),
+                        MONTH(ms.MAX_DATA),
+                        CASE 
+                            WHEN DAY(m.VENCIMENTO) > DAY(EOMONTH(ms.MAX_DATA)) 
+                                THEN DAY(EOMONTH(ms.MAX_DATA))
+                            ELSE DAY(m.VENCIMENTO)
+                        END
+                    )
+                    FROM Matricula m
+                    JOIN (
+                        SELECT 
+                            ID_MATRICULA, 
+                            MAX(DATA_VENCIMENTO) AS MAX_DATA
+                        FROM Mensalidade
+                        WHERE SITUACAO <> 2
+                        GROUP BY ID_MATRICULA
+                    ) ms ON ms.ID_MATRICULA = m.ID_MATRICULA;
+                """;
+
+                using SqlCommand cmdUpdateMatricula = new(updateMatriculasql, conexao, transacao);
+                cmdUpdateMatricula.ExecuteNonQuery();
+
                 transacao.Commit();
             }
             catch (Exception)
