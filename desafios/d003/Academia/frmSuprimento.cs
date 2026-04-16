@@ -45,15 +45,6 @@ namespace Academia
                 DateTime dataAtualPagamento = DateTime.Now.Date;
                 bool gerar = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
 
-                if (gerar == false)
-                {
-                    gerar = MessageBox.Show(
-                    "Deseja gerar a próxima mensalidade?",
-                    "Pagamento",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes;
-                }
-
                 novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
                 novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
 
