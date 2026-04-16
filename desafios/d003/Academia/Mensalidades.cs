@@ -36,7 +36,10 @@ namespace Academia
 					INNER JOIN MODALIDADE md
 						ON md.ID_MODALIDADE = t.ID_MODALIDADE
 					WHERE m.ID_ALUNO = @idAluno
-					ORDER BY men.DATA_VENCIMENTO DESC, men.ID_MENSALIDADE DESC
+					ORDER BY 
+						md.NOME_MODALIDADE ASC,	
+						men.DATA_VENCIMENTO DESC,
+						men.ID_MENSALIDADE DESC
 				""";
 
 				using SqlCommand cmd = new(sql, conexao);
@@ -164,7 +167,9 @@ namespace Academia
 
                 if (gerar)
 					GerarMensalidadesAoPagar(transacao, conexao, idMatricula, vencimentoAtual);
-                
+
+                AtualizaMatriculas(transacao, conexao, idMatricula,	vencimentoAtual);
+
                 transacao.Commit();
             }
             catch (Exception)
@@ -259,26 +264,49 @@ namespace Academia
 						UPDATE Mensalidade
 						SET DATA_PAGAMENTO = @dataPagamento,
 							SITUACAO = 1
-						WHERE ID_MENSALIDADE = @id
+						WHERE ID_MENSALIDADE = @id;
 					""";
 
                 using SqlCommand cmdUpdate = new(updateSql, conexao, transacao);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 cmdUpdate.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
-
                 cmdUpdate.ExecuteNonQuery();
             }
+        }
+
+		private void AtualizaMatriculas (SqlTransaction transacao, SqlConnection conexao, int idMatricula, DateTime vencimentoAtual)
+		{
+            DateTime ultimo = ObterUltimoVencimento(transacao, conexao, idMatricula, vencimentoAtual);
+
+            string updateMatriculaSql = """
+					UPDATE Matricula
+					SET VENCIMENTO = DATEFROMPARTS(
+					    YEAR(@data),
+					    MONTH(@data),
+					    CASE 
+					        WHEN DAY(@vencimento) > DAY(EOMONTH(@data)) 
+					            THEN DAY(EOMONTH(@data))
+					        ELSE DAY(@vencimento)
+					    END
+						)
+					WHERE ID_MATRICULA = @idMatricula;
+				""";
+
+            using SqlCommand cmdUpdateMatricula = new(updateMatriculaSql, conexao, transacao);
+            cmdUpdateMatricula.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+            cmdUpdateMatricula.Parameters.Add("@data", SqlDbType.Date).Value = ultimo;
+            cmdUpdateMatricula.Parameters.Add("@vencimento", SqlDbType.Date).Value = vencimentoAtual;
+            cmdUpdateMatricula.ExecuteNonQuery();
         }
 
 		private void GerarMensalidadesFaltantes(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int faltam, DateTime proximo, DateTime vencimentoAtual, DateTime dataPagamento)
 		{
             for (int i = 0; i < faltam; i++)
             {
-
                 proximo = proximo.AddMonths(1);
 
                 string variosMesesSql = """
-						INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, DATA_PAGAMENTO, SITUACAO)
+					   INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, DATA_PAGAMENTO, SITUACAO)				
 						VALUES (
 						@idMatricula,
 						DATEFROMPARTS(
