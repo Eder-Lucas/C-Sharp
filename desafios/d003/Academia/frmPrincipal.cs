@@ -25,9 +25,9 @@ namespace Academia
                 matriculaService.GerarMensalidade();
             }
             // Se falhar captura o erro e exibe uma mensagem de falha
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao tentar se conectar ao banco de dados!"); // Mensagem de erro caso a conexão falhe
+                MessageBox.Show($"Erro ao tentar se conectar ao banco de dados: {ex.Message}"); // Mensagem de erro caso a conexão falhe
             }
             // Executa sempre, independentemente do sucesso ou falha da conexão
             finally
