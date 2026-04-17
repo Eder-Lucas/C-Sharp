@@ -27,24 +27,33 @@ namespace Academia
         private readonly Caixa novoCaixa = new();
         private readonly Mensalidades novaMensalidade = new();
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        // Ao carregar o form
+        private void frmSuprimento_Load(object sender, EventArgs e)
         {
-            this.Close();
+            cboFormaPagamento.SelectedIndex = 0;
         }
 
+        // Fecha o form ao clicar no botão cancelar
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
+
+        // Ao clicar no botão confirmar
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
                 DataTable dadosCaixa = novoCaixa.Listar();
 
-                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
-                decimal valorFinal = valor * (int)numQuantosMeses.Value;
-                var forma = cboFormaPagamento.Text;
+                // Dados para pagar a mensalidade
                 int meses = (int)numQuantosMeses.Value;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
                 bool gerar = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
 
+                // Dados para salvar a transação no caixa
+                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
+                decimal valorFinal = valor * (int)numQuantosMeses.Value;
+                var forma = cboFormaPagamento.Text;
+
+                // Executa o pagamaento e salva a transação do caixa
                 novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
                 novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma);
 
@@ -55,6 +64,7 @@ namespace Academia
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
+                // Recarrega as mensalidades e matrículas do frmControleAlunos
                 frmControleAlunos.CarregarMensalidades();
                 frmControleAlunos.ListarMatriculas();
 
@@ -66,17 +76,13 @@ namespace Academia
             }
         }
 
+        // Sempre que o valor do numQuantosMeses for alterado, atualiza o valor total a ser pago
         private void numQuantosMeses_ValueChanged(object sender, EventArgs e)
         {
             int meses = (int)numQuantosMeses.Value;
             decimal valorTotal = valor * meses;
 
             txtDinheiro.Text = $"{valorTotal:C2}";
-        }
-
-        private void frmSuprimento_Load(object sender, EventArgs e)
-        {
-            cboFormaPagamento.SelectedIndex = 0;
         }
     }
 }
