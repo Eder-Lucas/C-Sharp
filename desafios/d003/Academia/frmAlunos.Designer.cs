@@ -168,7 +168,7 @@
             NOME_ALUNO.MinimumWidth = 6;
             NOME_ALUNO.Name = "NOME_ALUNO";
             NOME_ALUNO.ReadOnly = true;
-            NOME_ALUNO.Width = 125;
+            NOME_ALUNO.Width = 323;
             // 
             // ENDERECO_ALUNO
             // 
@@ -177,7 +177,7 @@
             ENDERECO_ALUNO.MinimumWidth = 6;
             ENDERECO_ALUNO.Name = "ENDERECO_ALUNO";
             ENDERECO_ALUNO.ReadOnly = true;
-            ENDERECO_ALUNO.Width = 125;
+            ENDERECO_ALUNO.Width = 200;
             // 
             // BAIRRO_ALUNO
             // 
