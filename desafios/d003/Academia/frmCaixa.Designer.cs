@@ -374,6 +374,7 @@
             Name = "frmCaixa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Controle de Caixa";
+            Load += frmCaixa_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
