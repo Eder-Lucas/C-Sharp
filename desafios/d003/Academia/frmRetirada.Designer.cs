@@ -118,7 +118,6 @@
             label2.Size = new Size(61, 19);
             label2.TabIndex = 12;
             label2.Text = "Forma:";
-            label2.Click += this.label2_Click;
             // 
             // txtDinheiro
             // 
