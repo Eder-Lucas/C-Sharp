@@ -20,14 +20,21 @@ namespace Academia
 
         private readonly Caixa novoCaixa = new();
 
+        private void frmCaixa_Load(object sender, EventArgs e)
+        {
+            AtualizaComponentes();
+        }
+
         private void btnAbrirCaixa_Click(object sender, EventArgs e)
         {
+            // Exibe o form de abertura de caixa e armazena a resposta do usuário
             var formAbertura = new frmAberturaCaixa();
             var result = formAbertura.ShowDialog() == DialogResult.OK;
 
+            // Se for true significa que o caixa foi aberto, atualizando a UI
             if (result)
             {
-                VerificaComponentesCaixa();
+                AtualizaComponentes();
                 formularioPrincipal.VerificaSituacaoCaixa();
             }
         }
@@ -50,7 +57,7 @@ namespace Academia
                     // Fecha o caixa
                     novoCaixa.AlterarSituacao(idCaixa, false);
                     formularioPrincipal.VerificaSituacaoCaixa();
-                    VerificaComponentesCaixa();
+                    AtualizaComponentes();
 
                     MessageBox.Show("Caixa fechado com sucesso!", "Caixa fechado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -61,8 +68,21 @@ namespace Academia
             }
         }
 
+        // Chamando o formulário de suprimento e retirada ao clicar no seu respectivo botão
+        private void btnSuprimento_Click(object sender, EventArgs e)
+        {
+            frmSuprimento suprimento = new();
+            suprimento.ShowDialog();
+        }
+
+        private void btnRetirada_Click(object sender, EventArgs e)
+        {
+            frmRetirada retirada = new();
+            retirada.ShowDialog();
+        }
+
         // Atualiza os componentes dependendo da situação do caixa
-        private void VerificaComponentesCaixa()
+        private void AtualizaComponentes()
         {
             DataTable dadosCaixa = novoCaixa.Listar();
             var situacao = dadosCaixa.Rows[0]["SITUACAO"];
@@ -82,19 +102,6 @@ namespace Academia
             lblEntrada.Enabled = caixaAberto;
             lblRetirada.Enabled = caixaAberto;
             lblSaldo.Enabled = caixaAberto;
-        }
-
-        // Chamando o formulário de suprimento e retirada ao clicar no seu respectivo botão
-        private void btnSuprimento_Click(object sender, EventArgs e)
-        {
-            frmSuprimento suprimento = new();
-            suprimento.ShowDialog();
-        }
-
-        private void btnRetirada_Click(object sender, EventArgs e)
-        {
-            frmRetirada retirada = new();
-            retirada.ShowDialog();
         }
     }
 }
