@@ -37,6 +37,7 @@ namespace Academia
 
         private void btnCancelarAbertura_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -53,6 +54,7 @@ namespace Academia
                     Caixa novoCaixa = new();
 
                     novoCaixa.Salvar(DateTime.Today, DateTime.Now, Convert.ToDecimal(txtTotal.Text), true);
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
