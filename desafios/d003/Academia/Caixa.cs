@@ -41,6 +41,31 @@ namespace Academia
             }
         }
 
+        public void AlterarSituacao(int idCaixa, bool situacao)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    UPDATE Caixa
+                    SET SITUACAO = @situacao             
+                    WHERE ID_CAIXA = @idCaixa;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
+                cmd.Parameters.Add("@situacao", SqlDbType.Bit).Value = situacao;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
         public int SalvarTransacao(int idCaixa, decimal valor, string movimento, string tipoPagamento)
         {
             try
