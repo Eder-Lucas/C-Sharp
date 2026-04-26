@@ -38,6 +38,7 @@ namespace Academia
             }
         }
 
+        // Linkando aos formulários
         private void btnProfessor_Click(object sender, EventArgs e) => new frmProfessores().ShowDialog();
         private void btnModalidades_Click(object sender, EventArgs e) => new frmModalidades().ShowDialog();
         private void btnTurmas_Click(object sender, EventArgs e) => new frmTurmas().ShowDialog();
@@ -45,6 +46,7 @@ namespace Academia
         private void btnCaixa_Click(object sender, EventArgs e) => new frmCaixa(this).ShowDialog();
         private void btnConfig_Click(object sender, EventArgs e) => new frmConfig().ShowDialog();
 
+        // Manipula a visualização do label dependendo da situação do caixa
         public void VerificaSituacaoCaixa()
         {
             try
