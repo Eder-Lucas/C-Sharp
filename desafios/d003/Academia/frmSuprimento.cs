@@ -27,7 +27,6 @@ namespace Academia
         private readonly Caixa novoCaixa = new();
         private readonly Mensalidades novaMensalidade = new();
 
-        // Ao carregar o form
         private void frmSuprimento_Load(object sender, EventArgs e)
         {
             cboFormaPagamento.SelectedIndex = 0;
@@ -36,11 +35,11 @@ namespace Academia
         // Fecha o form ao clicar no botão cancelar
         private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
 
-        // Ao clicar no botão confirmar
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
+                // dadosCaixa armazena todas as informações do caixa através do método listar
                 DataTable dadosCaixa = novoCaixa.Listar();
 
                 // Dados para pagar a mensalidade
