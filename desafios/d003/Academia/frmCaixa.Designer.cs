@@ -317,7 +317,7 @@
             btnFecharCaixa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFecharCaixa.Image = Properties.Resources.cadeado_fechado;
             btnFecharCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFecharCaixa.Location = new Point(801, 585);
+            btnFecharCaixa.Location = new Point(801, 529);
             btnFecharCaixa.Name = "btnFecharCaixa";
             btnFecharCaixa.Padding = new Padding(0, 0, 6, 0);
             btnFecharCaixa.Size = new Size(153, 50);
@@ -325,13 +325,14 @@
             btnFecharCaixa.Text = "Fechar Caixa";
             btnFecharCaixa.TextAlign = ContentAlignment.MiddleRight;
             btnFecharCaixa.UseVisualStyleBackColor = true;
+            btnFecharCaixa.Click += btnFecharCaixa_Click;
             // 
             // btnSair
             // 
             btnSair.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSair.Image = Properties.Resources.sair;
             btnSair.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSair.Location = new Point(801, 655);
+            btnSair.Location = new Point(802, 600);
             btnSair.Name = "btnSair";
             btnSair.Padding = new Padding(3, 0, 0, 0);
             btnSair.Size = new Size(76, 40);
