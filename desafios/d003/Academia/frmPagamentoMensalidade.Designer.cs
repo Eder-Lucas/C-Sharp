@@ -1,6 +1,6 @@
 ﻿namespace Academia
 {
-    partial class frmSuprimento
+    partial class frmPagamentoMensalidade
     {
         /// <summary>
         /// Required designer variable.
@@ -72,11 +72,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(102, 42);
+            label1.Location = new Point(71, 41);
             label1.Name = "label1";
-            label1.Size = new Size(243, 27);
+            label1.Size = new Size(322, 27);
             label1.TabIndex = 1;
-            label1.Text = "Suprimento do Caixa";
+            label1.Text = " Pagamento de mensalidade";
             // 
             // tcCaixa
             // 
@@ -194,7 +194,7 @@
             btnConfirmar.UseVisualStyleBackColor = true;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
-            // frmSuprimento
+            // frmPagamentoMensalidade
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -204,7 +204,7 @@
             Controls.Add(tcCaixa);
             Controls.Add(panel1);
             MaximizeBox = false;
-            Name = "frmSuprimento";
+            Name = "frmPagamentoMensalidade";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Movimento do Caixa";
             Load += frmSuprimento_Load;

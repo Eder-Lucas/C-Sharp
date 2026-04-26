@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace Academia
 {
-    public partial class frmSuprimento : Form
+    public partial class frmPagamentoMensalidade : Form
     {
         int idMensalidade;
         decimal valor;
         frmControleAlunos frmControleAlunos;
 
-        public frmSuprimento(int idMensalidade, decimal valor, frmControleAlunos frmControleAlunos)
+        public frmPagamentoMensalidade(int idMensalidade, decimal valor, frmControleAlunos frmControleAlunos)
         {
             InitializeComponent();
 
