@@ -39,13 +39,15 @@
             btnCaixa = new ToolStripButton();
             toolStripButton2 = new ToolStripButton();
             btnConfig = new ToolStripButton();
+            lblCaixa = new ToolStripLabel();
+            toolStripLabel1 = new ToolStripLabel();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, toolStripButton2, btnConfig });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, toolStripButton2, btnConfig, lblCaixa, toolStripLabel1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 59);
@@ -129,7 +131,6 @@
             // 
             // btnConfig
             // 
-            btnConfig.Alignment = ToolStripItemAlignment.Right;
             btnConfig.Image = Properties.Resources.configuracoes;
             btnConfig.ImageScaling = ToolStripItemImageScaling.None;
             btnConfig.ImageTransparentColor = Color.Magenta;
@@ -138,6 +139,21 @@
             btnConfig.Text = "Configurações";
             btnConfig.TextImageRelation = TextImageRelation.ImageAboveText;
             btnConfig.Click += btnConfig_Click;
+            // 
+            // lblCaixa
+            // 
+            lblCaixa.Alignment = ToolStripItemAlignment.Right;
+            lblCaixa.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCaixa.Name = "lblCaixa";
+            lblCaixa.Size = new Size(0, 56);
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Alignment = ToolStripItemAlignment.Right;
+            toolStripLabel1.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(58, 56);
+            toolStripLabel1.Text = "Caixa:";
             // 
             // frmPrincipal
             // 
@@ -170,5 +186,7 @@
         private ToolStripButton btnCaixa;
         private ToolStripButton toolStripButton2;
         private ToolStripButton btnConfig;
+        private ToolStripLabel lblCaixa;
+        private ToolStripLabel toolStripLabel1;
     }
 }
