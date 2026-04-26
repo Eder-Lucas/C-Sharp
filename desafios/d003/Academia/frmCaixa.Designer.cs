@@ -39,11 +39,11 @@
             cboMovimento = new ComboBox();
             btnFiltrar = new Button();
             groupBox2 = new GroupBox();
-            label10 = new Label();
+            lblSaldo = new Label();
             label9 = new Label();
-            label8 = new Label();
+            lblRetirada = new Label();
             label7 = new Label();
-            label6 = new Label();
+            lblEntrada = new Label();
             lblInicial = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -162,11 +162,11 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.FromArgb(224, 224, 224);
-            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(lblSaldo);
             groupBox2.Controls.Add(label9);
-            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(lblRetirada);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(lblEntrada);
             groupBox2.Controls.Add(lblInicial);
             groupBox2.Controls.Add(label5);
             groupBox2.Controls.Add(label4);
@@ -178,15 +178,15 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Informações";
             // 
-            // label10
+            // lblSaldo
             // 
-            label10.BackColor = Color.White;
-            label10.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(6, 258);
-            label10.Name = "label10";
-            label10.Size = new Size(152, 28);
-            label10.TabIndex = 20;
-            label10.TextAlign = ContentAlignment.MiddleCenter;
+            lblSaldo.BackColor = Color.White;
+            lblSaldo.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSaldo.Location = new Point(6, 258);
+            lblSaldo.Name = "lblSaldo";
+            lblSaldo.Size = new Size(152, 28);
+            lblSaldo.TabIndex = 20;
+            lblSaldo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -198,15 +198,15 @@
             label9.TabIndex = 19;
             label9.Text = "Saldo:";
             // 
-            // label8
+            // lblRetirada
             // 
-            label8.BackColor = Color.White;
-            label8.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(6, 196);
-            label8.Name = "label8";
-            label8.Size = new Size(152, 28);
-            label8.TabIndex = 18;
-            label8.TextAlign = ContentAlignment.MiddleCenter;
+            lblRetirada.BackColor = Color.White;
+            lblRetirada.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRetirada.Location = new Point(6, 196);
+            lblRetirada.Name = "lblRetirada";
+            lblRetirada.Size = new Size(152, 28);
+            lblRetirada.TabIndex = 18;
+            lblRetirada.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -218,15 +218,15 @@
             label7.TabIndex = 17;
             label7.Text = "Retirada:";
             // 
-            // label6
+            // lblEntrada
             // 
-            label6.BackColor = Color.White;
-            label6.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(6, 134);
-            label6.Name = "label6";
-            label6.Size = new Size(152, 28);
-            label6.TabIndex = 16;
-            label6.TextAlign = ContentAlignment.MiddleCenter;
+            lblEntrada.BackColor = Color.White;
+            lblEntrada.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEntrada.Location = new Point(6, 134);
+            lblEntrada.Name = "lblEntrada";
+            lblEntrada.Size = new Size(152, 28);
+            lblEntrada.TabIndex = 16;
+            lblEntrada.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblInicial
             // 
@@ -394,11 +394,11 @@
         private Button btnFiltrar;
         private GroupBox groupBox2;
         private Label label4;
-        private Label label10;
+        private Label lblSaldo;
         private Label label9;
-        private Label label8;
+        private Label lblRetirada;
         private Label label7;
-        private Label label6;
+        private Label lblEntrada;
         private Label lblInicial;
         private Label label5;
         private GroupBox groupBox3;
