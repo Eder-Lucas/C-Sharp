@@ -283,6 +283,7 @@
             btnRetirada.Text = "Retirada";
             btnRetirada.TextAlign = ContentAlignment.BottomCenter;
             btnRetirada.UseVisualStyleBackColor = true;
+            btnRetirada.Click += btnRetirada_Click;
             // 
             // btnSuprimento
             // 
@@ -296,6 +297,7 @@
             btnSuprimento.Text = "Suprimento";
             btnSuprimento.TextAlign = ContentAlignment.BottomCenter;
             btnSuprimento.UseVisualStyleBackColor = true;
+            btnSuprimento.Click += btnSuprimento_Click;
             // 
             // btnAbrirCaixa
             // 

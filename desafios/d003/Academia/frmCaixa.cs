@@ -37,7 +37,7 @@ namespace Academia
             try
             {
                 bool fechar = MessageBox.Show(
-                    "Deseja realmente fechar o caixa?", 
+                    "Deseja realmente fechar o caixa?",
                     "Deseja fechar?",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes;
@@ -68,7 +68,7 @@ namespace Academia
             var situacao = dadosCaixa.Rows[0]["SITUACAO"];
 
             bool caixaAberto = Convert.ToBoolean(situacao);
-           
+
             btnFecharCaixa.Enabled = caixaAberto;
             btnFecharCaixa.Visible = caixaAberto;
 
@@ -82,6 +82,19 @@ namespace Academia
             lblEntrada.Enabled = caixaAberto;
             lblRetirada.Enabled = caixaAberto;
             lblSaldo.Enabled = caixaAberto;
+        }
+
+        // Chamando o formulário de suprimento e retirada ao clicar no seu respectivo botão
+        private void btnSuprimento_Click(object sender, EventArgs e)
+        {
+            frmSuprimento suprimento = new();
+            suprimento.ShowDialog();
+        }
+
+        private void btnRetirada_Click(object sender, EventArgs e)
+        {
+            frmRetirada retirada = new();
+            retirada.ShowDialog();
         }
     }
 }
