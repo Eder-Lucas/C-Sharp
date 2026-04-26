@@ -37,8 +37,8 @@
             label2 = new Label();
             txtDinheiro = new TextBox();
             label3 = new Label();
-            btnConfirmar = new Button();
             btnCancelar = new Button();
+            btnConfirmar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tcCaixa.SuspendLayout();
@@ -103,7 +103,7 @@
             cboFormaPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
             cboFormaPagamento.FormattingEnabled = true;
             cboFormaPagamento.Items.AddRange(new object[] { "Dinheiro", "PIX", "Cartão" });
-            cboFormaPagamento.Location = new Point(230, 18);
+            cboFormaPagamento.Location = new Point(230, 15);
             cboFormaPagamento.Name = "cboFormaPagamento";
             cboFormaPagamento.Size = new Size(151, 28);
             cboFormaPagamento.TabIndex = 13;
@@ -113,7 +113,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(170, 23);
+            label2.Location = new Point(167, 20);
             label2.Name = "label2";
             label2.Size = new Size(61, 19);
             label2.TabIndex = 12;
@@ -123,7 +123,7 @@
             // txtDinheiro
             // 
             txtDinheiro.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDinheiro.Location = new Point(63, 20);
+            txtDinheiro.Location = new Point(63, 17);
             txtDinheiro.Name = "txtDinheiro";
             txtDinheiro.Size = new Size(86, 25);
             txtDinheiro.TabIndex = 2;
@@ -134,46 +134,59 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(12, 23);
+            label3.Location = new Point(9, 20);
             label3.Name = "label3";
             label3.Size = new Size(51, 19);
             label3.TabIndex = 11;
             label3.Text = "Valor:";
             // 
-            // btnConfirmar
-            // 
-            btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnConfirmar.Image = Properties.Resources.confirmar;
-            btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(191, 241);
-            btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Padding = new Padding(3, 0, 3, 0);
-            btnConfirmar.Size = new Size(132, 50);
-            btnConfirmar.TabIndex = 28;
-            btnConfirmar.Text = "Confirmar";
-            btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
-            btnConfirmar.UseVisualStyleBackColor = true;
-            // 
             // btnCancelar
             // 
+            btnCancelar.BackColor = Color.White;
+            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(196, 196, 196);
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.White;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.White;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.Black;
+            btnCancelar.Image = Properties.Resources.fecharPreto;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(325, 241);
+            btnCancelar.Location = new Point(24, 238);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 51);
-            btnCancelar.TabIndex = 27;
-            btnCancelar.Text = "Fechar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Padding = new Padding(32, 0, 28, 0);
+            btnCancelar.Size = new Size(173, 31);
+            btnCancelar.TabIndex = 28;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.UseVisualStyleBackColor = false;
+            // 
+            // btnConfirmar
+            // 
+            btnConfirmar.BackColor = Color.Green;
+            btnConfirmar.FlatAppearance.BorderSize = 0;
+            btnConfirmar.FlatStyle = FlatStyle.Flat;
+            btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfirmar.ForeColor = Color.White;
+            btnConfirmar.Image = Properties.Resources.confirmBranco;
+            btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfirmar.Location = new Point(223, 238);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Padding = new Padding(28, 0, 28, 0);
+            btnConfirmar.Size = new Size(173, 31);
+            btnConfirmar.TabIndex = 27;
+            btnConfirmar.Text = "Confirmar";
+            btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
+            btnConfirmar.UseVisualStyleBackColor = false;
             // 
             // frmRetirada
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(422, 304);
+            ClientSize = new Size(422, 283);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnConfirmar);
             Controls.Add(panel1);
             Controls.Add(tcCaixa);
-            Controls.Add(btnConfirmar);
-            Controls.Add(btnCancelar);
             Name = "frmRetirada";
             Text = "Movimento do caixa";
             panel1.ResumeLayout(false);
@@ -196,7 +209,7 @@
         private Label label2;
         private TextBox txtDinheiro;
         private Label label3;
-        private Button btnConfirmar;
         private Button btnCancelar;
+        private Button btnConfirmar;
     }
 }

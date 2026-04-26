@@ -140,38 +140,51 @@
             // 
             // btnConfirmar
             // 
+            btnConfirmar.BackColor = Color.Green;
+            btnConfirmar.FlatAppearance.BorderSize = 0;
+            btnConfirmar.FlatStyle = FlatStyle.Flat;
             btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnConfirmar.Image = Properties.Resources.confirmar;
+            btnConfirmar.ForeColor = Color.White;
+            btnConfirmar.Image = Properties.Resources.confirmBranco;
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(187, 241);
+            btnConfirmar.Location = new Point(223, 238);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Padding = new Padding(3, 0, 3, 0);
-            btnConfirmar.Size = new Size(132, 50);
-            btnConfirmar.TabIndex = 24;
+            btnConfirmar.Padding = new Padding(28, 0, 28, 0);
+            btnConfirmar.Size = new Size(173, 31);
+            btnConfirmar.TabIndex = 25;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
-            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.UseVisualStyleBackColor = false;
             // 
             // btnCancelar
             // 
+            btnCancelar.BackColor = Color.White;
+            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(196, 196, 196);
+            btnCancelar.FlatAppearance.MouseDownBackColor = Color.White;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.White;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.Black;
+            btnCancelar.Image = Properties.Resources.fecharPreto;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(325, 241);
+            btnCancelar.Location = new Point(24, 238);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(82, 51);
-            btnCancelar.TabIndex = 23;
-            btnCancelar.Text = "Fechar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Padding = new Padding(32, 0, 28, 0);
+            btnCancelar.Size = new Size(173, 31);
+            btnCancelar.TabIndex = 26;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // frmSuprimento
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(422, 304);
+            ClientSize = new Size(422, 283);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnConfirmar);
             Controls.Add(panel1);
             Controls.Add(tcCaixa);
-            Controls.Add(btnConfirmar);
-            Controls.Add(btnCancelar);
             Name = "frmSuprimento";
             Text = "Movimento do caixa";
             panel1.ResumeLayout(false);
