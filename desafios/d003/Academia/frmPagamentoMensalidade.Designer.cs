@@ -171,7 +171,7 @@
             // 
             btnCancelar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(331, 300);
+            btnCancelar.Location = new Point(331, 277);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(82, 51);
             btnCancelar.TabIndex = 19;
@@ -184,7 +184,7 @@
             btnConfirmar.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConfirmar.Image = Properties.Resources.confirmar;
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(193, 300);
+            btnConfirmar.Location = new Point(193, 277);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Padding = new Padding(3, 0, 3, 0);
             btnConfirmar.Size = new Size(132, 50);
@@ -198,7 +198,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(422, 362);
+            ClientSize = new Size(422, 340);
             Controls.Add(btnConfirmar);
             Controls.Add(btnCancelar);
             Controls.Add(tcCaixa);
