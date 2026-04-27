@@ -23,6 +23,7 @@ namespace Academia
         private void frmCaixa_Load(object sender, EventArgs e)
         {
             AtualizaComponentes();
+            ListarDetalhesCaixa();
         }
 
         private void btnAbrirCaixa_Click(object sender, EventArgs e)
@@ -102,6 +103,45 @@ namespace Academia
             lblEntrada.Enabled = caixaAberto;
             lblRetirada.Enabled = caixaAberto;
             lblSaldo.Enabled = caixaAberto;
+        }
+
+        public void ListarDetalhesCaixa()
+        {
+            try
+            {
+                dtgCaixa.DataSource = novoCaixa.ListaTransacao();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void dtgCaixa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (sender is not DataGridView dtg) return;
+            if (e.ColumnIndex < 0) return;
+
+            var coluna = dtg.Columns[e.ColumnIndex].Name;
+            var linha = dtg.Rows[e.RowIndex];
+
+            if (linha.DataBoundItem is not DataRowView drv) return;
+
+            switch (coluna)
+            {
+                // Adiciona uma imagem na linha referente ao tipo do movimento
+                case "IMAGEM":
+                    var movimento = Convert.ToString(drv["MOVIMENTO"]);
+
+                    if (movimento == "E")
+                        e.Value = Properties.Resources.setaCima_menor;
+                    else if (movimento == "S")
+                        e.Value = Properties.Resources.setaBaixo_menor;
+
+                    e.FormattingApplied = true;
+                    break;
+            }
         }
     }
 }
