@@ -363,6 +363,26 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap setaBaixo_menor {
+            get {
+                object obj = ResourceManager.GetObject("setaBaixo-menor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setaCima_menor {
+            get {
+                object obj = ResourceManager.GetObject("setaCima-menor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sinal_mais {
             get {
                 object obj = ResourceManager.GetObject("sinal-mais", resourceCulture);
