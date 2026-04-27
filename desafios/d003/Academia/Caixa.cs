@@ -166,5 +166,47 @@ namespace Academia
                 throw new Exception("Erro ao listar transação do caixa", ex);
             }
         }
+
+        public (decimal entrada, decimal retirada, decimal saldo) ObterTotal(decimal saldoInicial)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 
+                        SUM(CASE WHEN MOVIMENTO = 'E' THEN VALOR ELSE 0 END) AS TOTAL_ENTRADA,
+                        SUM(CASE WHEN MOVIMENTO = 'S' THEN VALOR ELSE 0 END) AS TOTAL_RETIRADA,
+                        SUM(
+                            CASE 
+                                WHEN MOVIMENTO = 'E' THEN VALOR
+                                WHEN MOVIMENTO = 'S' THEN -VALOR
+                            END
+                        ) + @saldoInicial AS SALDO
+                    FROM Transacao_Caixa;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@saldoInicial", SqlDbType.Decimal).Value = saldoInicial;
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                if (leitor.Read())
+                {
+                    return (
+                        leitor.IsDBNull(0) ? 0 : leitor.GetDecimal(0),
+                        leitor.IsDBNull(1) ? 0 : leitor.GetDecimal(1),
+                        leitor.IsDBNull(2) ? 0 : leitor.GetDecimal(2)
+                    );
+                }
+
+                return (0, 0, 0);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
