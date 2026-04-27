@@ -15,6 +15,10 @@ namespace Academia
             InitializeComponent();
         }
 
+        private Caixa novoCaixa;
+
+        public decimal ValorAbertura { get; private set; }
+
         private void frmAberturaCaixa_Load(object sender, EventArgs e)
         {
             string data = DateTime.Today.Date.ToShortDateString();
@@ -45,15 +49,21 @@ namespace Academia
         {
             try
             {
-                if (!switchZerado.Checked && txtTotal.Text == "0,00")
+                if (switchZerado.Checked && txtTotal.Text == "0,00")
                 {
-                    MessageBox.Show("pode nao ser zero", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IniciaZerado();
                 }
                 else
                 {
-                    Caixa novoCaixa = new();
+                    decimal valorAbertura = Convert.ToDecimal(txtValorAbertura.Text);
+                    decimal total = Convert.ToDecimal(txtTotal.Text) + valorAbertura;
+                    novoCaixa = new Caixa();
 
-                    novoCaixa.Salvar(DateTime.Today, DateTime.Now, Convert.ToDecimal(txtTotal.Text), true);
+                    novoCaixa.Salvar(DateTime.Today, DateTime.Now, total, true);
+
+                    DataTable dadosCaixa = novoCaixa.Listar();
+                    ValorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -92,6 +102,23 @@ namespace Academia
             {
                 txtSaldoAnterior.Enabled = true;
             }
+        }
+
+        private void IniciaZerado()
+        {
+            txtTotal.Text = "0,00";
+            txtSaldoAnterior.Text = "0,00";
+            txtValorAbertura.Text = "0,00";
+
+            novoCaixa = new Caixa();
+
+            novoCaixa.Salvar(DateTime.Today, DateTime.Now, Convert.ToDecimal(txtTotal.Text), true);
+
+            DataTable dadosCaixa = novoCaixa.Listar();
+            ValorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
