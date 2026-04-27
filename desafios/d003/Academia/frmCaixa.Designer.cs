@@ -54,6 +54,12 @@
             btnFecharCaixa = new Button();
             btnSair = new Button();
             dtgCaixa = new DataGridView();
+            IMAGEM = new DataGridViewImageColumn();
+            MOVIMENTO = new DataGridViewTextBoxColumn();
+            STATUS_MOVIMENTO = new DataGridViewTextBoxColumn();
+            DATA = new DataGridViewTextBoxColumn();
+            PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -348,12 +354,68 @@
             dtgCaixa.AllowUserToAddRows = false;
             dtgCaixa.AllowUserToDeleteRows = false;
             dtgCaixa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgCaixa.Columns.AddRange(new DataGridViewColumn[] { IMAGEM, MOVIMENTO, STATUS_MOVIMENTO, DATA, PAGAMENTO, VALOR });
             dtgCaixa.Location = new Point(8, 98);
             dtgCaixa.Name = "dtgCaixa";
             dtgCaixa.ReadOnly = true;
+            dtgCaixa.RowHeadersVisible = false;
             dtgCaixa.RowHeadersWidth = 51;
             dtgCaixa.Size = new Size(775, 608);
             dtgCaixa.TabIndex = 19;
+            dtgCaixa.CellFormatting += dtgCaixa_CellFormatting;
+            // 
+            // IMAGEM
+            // 
+            IMAGEM.HeaderText = "";
+            IMAGEM.MinimumWidth = 6;
+            IMAGEM.Name = "IMAGEM";
+            IMAGEM.ReadOnly = true;
+            IMAGEM.Width = 36;
+            // 
+            // MOVIMENTO
+            // 
+            MOVIMENTO.DataPropertyName = "MOVIMENTO";
+            MOVIMENTO.HeaderText = "REAL_MOVIMENTO";
+            MOVIMENTO.MinimumWidth = 6;
+            MOVIMENTO.Name = "MOVIMENTO";
+            MOVIMENTO.ReadOnly = true;
+            MOVIMENTO.Visible = false;
+            MOVIMENTO.Width = 125;
+            // 
+            // STATUS_MOVIMENTO
+            // 
+            STATUS_MOVIMENTO.DataPropertyName = "STATUS_MOVIMENTO";
+            STATUS_MOVIMENTO.HeaderText = "MOVIMENTO";
+            STATUS_MOVIMENTO.MinimumWidth = 6;
+            STATUS_MOVIMENTO.Name = "STATUS_MOVIMENTO";
+            STATUS_MOVIMENTO.ReadOnly = true;
+            STATUS_MOVIMENTO.Width = 125;
+            // 
+            // DATA
+            // 
+            DATA.HeaderText = "DATA";
+            DATA.MinimumWidth = 6;
+            DATA.Name = "DATA";
+            DATA.ReadOnly = true;
+            DATA.Width = 125;
+            // 
+            // PAGAMENTO
+            // 
+            PAGAMENTO.DataPropertyName = "TIPO_PAGAMENTO";
+            PAGAMENTO.HeaderText = "PAGAMENTO";
+            PAGAMENTO.MinimumWidth = 6;
+            PAGAMENTO.Name = "PAGAMENTO";
+            PAGAMENTO.ReadOnly = true;
+            PAGAMENTO.Width = 125;
+            // 
+            // VALOR
+            // 
+            VALOR.DataPropertyName = "VALOR";
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 125;
             // 
             // frmCaixa
             // 
@@ -412,5 +474,11 @@
         private Button btnSair;
         private DataGridView dtgCaixa;
         private DateTimePicker dtpDataPagamento;
+        private DataGridViewImageColumn IMAGEM;
+        private DataGridViewTextBoxColumn MOVIMENTO;
+        private DataGridViewTextBoxColumn STATUS_MOVIMENTO;
+        private DataGridViewTextBoxColumn DATA;
+        private DataGridViewTextBoxColumn PAGAMENTO;
+        private DataGridViewTextBoxColumn VALOR;
     }
 }
