@@ -188,6 +188,7 @@
             // 
             lblSaldo.BackColor = Color.White;
             lblSaldo.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSaldo.ForeColor = Color.Green;
             lblSaldo.Location = new Point(6, 258);
             lblSaldo.Name = "lblSaldo";
             lblSaldo.Size = new Size(152, 28);
@@ -208,6 +209,7 @@
             // 
             lblRetirada.BackColor = Color.White;
             lblRetirada.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRetirada.ForeColor = Color.Red;
             lblRetirada.Location = new Point(6, 196);
             lblRetirada.Name = "lblRetirada";
             lblRetirada.Size = new Size(152, 28);
@@ -228,6 +230,7 @@
             // 
             lblEntrada.BackColor = Color.White;
             lblEntrada.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEntrada.ForeColor = Color.Green;
             lblEntrada.Location = new Point(6, 134);
             lblEntrada.Name = "lblEntrada";
             lblEntrada.Size = new Size(152, 28);
@@ -238,6 +241,7 @@
             // 
             lblInicial.BackColor = Color.White;
             lblInicial.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblInicial.ForeColor = Color.Green;
             lblInicial.Location = new Point(6, 72);
             lblInicial.Name = "lblInicial";
             lblInicial.Size = new Size(152, 28);
