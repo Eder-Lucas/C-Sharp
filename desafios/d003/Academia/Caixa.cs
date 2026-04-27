@@ -140,7 +140,8 @@ namespace Academia
 
                 string sql = """
                     SELECT 
-                        VALOR,  
+                        VALOR,
+                        DATA_TRANSACAO,
                         TIPO_PAGAMENTO,
                         MOVIMENTO,
                         CASE
