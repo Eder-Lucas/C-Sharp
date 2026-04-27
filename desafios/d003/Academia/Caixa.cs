@@ -130,5 +130,41 @@ namespace Academia
                 throw new Exception("Erro ao salvar transação no caixa", ex);
             }
         }
+
+        public DataTable ListaTransacao()
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 
+                        VALOR,  
+                        TIPO_PAGAMENTO,
+                        MOVIMENTO,
+                        CASE
+                            WHEN MOVIMENTO = 'E' THEN 'SUPRIMENTO'
+                            WHEN MOVIMENTO = 'S' THEN 'RETIRADA'
+                        END AS STATUS_MOVIMENTO
+                    FROM Transacao_Caixa
+                    ORDER BY ID_TRANSACAO DESC;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                DataTable dadosTabela = new();
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                dadosTabela.Load(leitor);
+
+                return dadosTabela;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao listar transação do caixa", ex);
+            }
+        }
     }
 }
