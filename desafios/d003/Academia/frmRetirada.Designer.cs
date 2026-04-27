@@ -35,7 +35,7 @@
             tabPageDadosCaixa = new TabPage();
             cboFormaPagamento = new ComboBox();
             label2 = new Label();
-            txtDinheiro = new TextBox();
+            txtValor = new TextBox();
             label3 = new Label();
             btnCancelar = new Button();
             btnConfirmar = new Button();
@@ -88,7 +88,7 @@
             // 
             tabPageDadosCaixa.Controls.Add(cboFormaPagamento);
             tabPageDadosCaixa.Controls.Add(label2);
-            tabPageDadosCaixa.Controls.Add(txtDinheiro);
+            tabPageDadosCaixa.Controls.Add(txtValor);
             tabPageDadosCaixa.Controls.Add(label3);
             tabPageDadosCaixa.Location = new Point(4, 29);
             tabPageDadosCaixa.Name = "tabPageDadosCaixa";
@@ -107,7 +107,6 @@
             cboFormaPagamento.Name = "cboFormaPagamento";
             cboFormaPagamento.Size = new Size(151, 28);
             cboFormaPagamento.TabIndex = 13;
-            cboFormaPagamento.SelectedIndexChanged += cboFormaPagamento_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -119,15 +118,15 @@
             label2.TabIndex = 12;
             label2.Text = "Forma:";
             // 
-            // txtDinheiro
+            // txtValor
             // 
-            txtDinheiro.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDinheiro.Location = new Point(63, 17);
-            txtDinheiro.Name = "txtDinheiro";
-            txtDinheiro.Size = new Size(86, 25);
-            txtDinheiro.TabIndex = 2;
-            txtDinheiro.Text = "0,00";
-            txtDinheiro.TextAlign = HorizontalAlignment.Right;
+            txtValor.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtValor.Location = new Point(63, 17);
+            txtValor.Name = "txtValor";
+            txtValor.Size = new Size(86, 25);
+            txtValor.TabIndex = 2;
+            txtValor.Text = "0,00";
+            txtValor.TextAlign = HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -158,6 +157,7 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnConfirmar
             // 
@@ -176,6 +176,7 @@
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // frmRetirada
             // 
@@ -206,7 +207,7 @@
         private TabPage tabPageDadosCaixa;
         private ComboBox cboFormaPagamento;
         private Label label2;
-        private TextBox txtDinheiro;
+        private TextBox txtValor;
         private Label label3;
         private Button btnCancelar;
         private Button btnConfirmar;
