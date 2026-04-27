@@ -19,6 +19,7 @@ namespace Academia
         }
 
         private readonly Caixa novoCaixa = new();
+        public decimal valorAbertura;
 
         private void frmCaixa_Load(object sender, EventArgs e)
         {
@@ -35,6 +36,9 @@ namespace Academia
             // Se for true significa que o caixa foi aberto, atualizando a UI
             if (result)
             {
+                valorAbertura = formAbertura.ValorAbertura;
+
+                ListarDetalhesCaixa();
                 AtualizaComponentes();
                 formularioPrincipal.VerificaSituacaoCaixa();
             }
@@ -72,13 +76,13 @@ namespace Academia
         // Chamando o formulário de suprimento e retirada ao clicar no seu respectivo botão
         private void btnSuprimento_Click(object sender, EventArgs e)
         {
-            frmSuprimento suprimento = new();
+            frmSuprimento suprimento = new(this);
             suprimento.ShowDialog();
         }
 
         private void btnRetirada_Click(object sender, EventArgs e)
         {
-            frmRetirada retirada = new();
+            frmRetirada retirada = new(this);
             retirada.ShowDialog();
         }
 
@@ -86,8 +90,9 @@ namespace Academia
         private void AtualizaComponentes()
         {
             DataTable dadosCaixa = novoCaixa.Listar();
-            var situacao = dadosCaixa.Rows[0]["SITUACAO"];
 
+            var situacao = dadosCaixa.Rows[0]["SITUACAO"];
+            
             bool caixaAberto = Convert.ToBoolean(situacao);
 
             btnFecharCaixa.Enabled = caixaAberto;
@@ -110,6 +115,16 @@ namespace Academia
             try
             {
                 dtgCaixa.DataSource = novoCaixa.ListaTransacao();
+
+                DataTable dadosCaixa = novoCaixa.Listar();
+                valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
+
+                var (entrada, retirada, saldo) = novoCaixa.ObterTotal(valorAbertura);
+
+                lblInicial.Text = valorAbertura.ToString("C");
+                lblEntrada.Text = entrada.ToString("C");
+                lblRetirada.Text = retirada.ToString("C");
+                lblSaldo.Text = saldo.ToString("C");
             }
             catch (Exception)
             {
