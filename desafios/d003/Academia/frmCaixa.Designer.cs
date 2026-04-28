@@ -56,7 +56,7 @@
             dtgCaixa = new DataGridView();
             IMAGEM = new DataGridViewImageColumn();
             MOVIMENTO = new DataGridViewTextBoxColumn();
-            STATUS_MOVIMENTO = new DataGridViewTextBoxColumn();
+            TIPO_MOVIMENTO = new DataGridViewTextBoxColumn();
             DATA = new DataGridViewTextBoxColumn();
             PAGAMENTO = new DataGridViewTextBoxColumn();
             VALOR = new DataGridViewTextBoxColumn();
@@ -360,7 +360,7 @@
             dtgCaixa.AllowUserToResizeColumns = false;
             dtgCaixa.AllowUserToResizeRows = false;
             dtgCaixa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgCaixa.Columns.AddRange(new DataGridViewColumn[] { IMAGEM, MOVIMENTO, STATUS_MOVIMENTO, DATA, PAGAMENTO, VALOR });
+            dtgCaixa.Columns.AddRange(new DataGridViewColumn[] { IMAGEM, MOVIMENTO, TIPO_MOVIMENTO, DATA, PAGAMENTO, VALOR });
             dtgCaixa.Location = new Point(8, 98);
             dtgCaixa.MultiSelect = false;
             dtgCaixa.Name = "dtgCaixa";
@@ -390,14 +390,14 @@
             MOVIMENTO.Visible = false;
             MOVIMENTO.Width = 125;
             // 
-            // STATUS_MOVIMENTO
+            // TIPO_MOVIMENTO
             // 
-            STATUS_MOVIMENTO.DataPropertyName = "STATUS_MOVIMENTO";
-            STATUS_MOVIMENTO.HeaderText = "MOVIMENTO";
-            STATUS_MOVIMENTO.MinimumWidth = 6;
-            STATUS_MOVIMENTO.Name = "STATUS_MOVIMENTO";
-            STATUS_MOVIMENTO.ReadOnly = true;
-            STATUS_MOVIMENTO.Width = 225;
+            TIPO_MOVIMENTO.DataPropertyName = "TIPO_MOVIMENTO";
+            TIPO_MOVIMENTO.HeaderText = "MOVIMENTO";
+            TIPO_MOVIMENTO.MinimumWidth = 6;
+            TIPO_MOVIMENTO.Name = "TIPO_MOVIMENTO";
+            TIPO_MOVIMENTO.ReadOnly = true;
+            TIPO_MOVIMENTO.Width = 225;
             // 
             // DATA
             // 
@@ -485,7 +485,7 @@
         private DateTimePicker dtpDataPagamento;
         private DataGridViewImageColumn IMAGEM;
         private DataGridViewTextBoxColumn MOVIMENTO;
-        private DataGridViewTextBoxColumn STATUS_MOVIMENTO;
+        private DataGridViewTextBoxColumn TIPO_MOVIMENTO;
         private DataGridViewTextBoxColumn DATA;
         private DataGridViewTextBoxColumn PAGAMENTO;
         private DataGridViewTextBoxColumn VALOR;
