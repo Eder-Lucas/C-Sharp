@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Academia
 {
@@ -116,6 +117,32 @@ namespace Academia
             {
                 dtgCaixa.DataSource = novoCaixa.ListaTransacao();
 
+                // Formata a visualização dos dados para moeda e data
+                dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.Format = "C2";
+                dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR");
+                dtgCaixa.Columns?["DATA"]?.DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                // Percorre as linhas do DataGridView para aplicar a formatação de cor com base no tipo de movimento
+                foreach (DataGridViewRow linha in dtgCaixa.Rows)
+                {
+                    if (linha.Cells["MOVIMENTO"].Value == null) continue;
+
+                    var movimento = Convert.ToString(linha.Cells["MOVIMENTO"].Value);
+
+                    if (movimento == "E")
+                    {
+                        linha.DefaultCellStyle.BackColor = Color.Green;
+                        linha.DefaultCellStyle.SelectionBackColor = Color.DarkGreen;
+                    }
+                    else if(movimento == "S")
+                    {
+                        linha.DefaultCellStyle.BackColor = Color.Red;
+                        linha.DefaultCellStyle.SelectionBackColor = Color.DarkRed;
+                    }   
+
+                    linha.DefaultCellStyle.ForeColor = Color.White;
+                }
+
                 DataTable dadosCaixa = novoCaixa.Listar();
                 valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
 
@@ -140,7 +167,7 @@ namespace Academia
 
             var coluna = dtg.Columns[e.ColumnIndex].Name;
             var linha = dtg.Rows[e.RowIndex];
-
+            
             if (linha.DataBoundItem is not DataRowView drv) return;
 
             switch (coluna)
@@ -148,11 +175,11 @@ namespace Academia
                 // Adiciona uma imagem na linha referente ao tipo do movimento
                 case "IMAGEM":
                     var movimento = Convert.ToString(drv["MOVIMENTO"]);
-
+                    
                     if (movimento == "E")
-                        e.Value = Properties.Resources.setaCima_menor;
+                        e.Value = Properties.Resources.setaCima_menor;                                        
                     else if (movimento == "S")
-                        e.Value = Properties.Resources.setaBaixo_menor;
+                       e.Value = Properties.Resources.setaBaixo_menor;                  
 
                     e.FormattingApplied = true;
                     break;
