@@ -93,7 +93,7 @@ namespace Academia
                 paramValor.Scale = 2;
                 paramValor.Value = valor;
 
-                return Convert.ToInt32(cmd.ExecuteScalar());
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -166,6 +166,7 @@ namespace Academia
             }
         }
 
+        // Obtém valores totais de entrada, retirada e saldo atual considerando o saldo inicial
         public (decimal entrada, decimal retirada, decimal saldo) ObterTotal(decimal saldoInicial)
         {
             try
@@ -189,6 +190,7 @@ namespace Academia
                 using SqlCommand cmd = new(sql, conexao);
                 cmd.Parameters.Add("@saldoInicial", SqlDbType.Decimal).Value = saldoInicial;
 
+                // Validação para evitar valores nulos retornados pela consulta
                 using SqlDataReader leitor = cmd.ExecuteReader();
                 if (leitor.Read())
                 {
