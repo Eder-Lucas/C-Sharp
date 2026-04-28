@@ -125,20 +125,25 @@ namespace Academia
                 // Percorre as linhas do DataGridView para aplicar a formatação de cor com base no tipo de movimento
                 foreach (DataGridViewRow linha in dtgCaixa.Rows)
                 {
-                    if (linha.Cells["MOVIMENTO"].Value == null) continue;
+                    if (linha.Cells["TIPO_MOVIMENTO"].Value == null) continue;
 
-                    var movimento = Convert.ToString(linha.Cells["MOVIMENTO"].Value);
+                    var movimento = Convert.ToString(linha.Cells["TIPO_MOVIMENTO"].Value);
 
-                    if (movimento == "E")
+                    if (movimento == "SUPRIMENTO")
                     {
                         linha.DefaultCellStyle.BackColor = Color.Green;
                         linha.DefaultCellStyle.SelectionBackColor = Color.DarkGreen;
                     }
-                    else if(movimento == "S")
+                    else if(movimento == "RETIRADA")
                     {
                         linha.DefaultCellStyle.BackColor = Color.Red;
                         linha.DefaultCellStyle.SelectionBackColor = Color.DarkRed;
                     }   
+                    else if (movimento == "PAGAMENTO")
+                    {
+                        linha.DefaultCellStyle.BackColor = Color.FromArgb(255, 140, 0);
+                        linha.DefaultCellStyle.SelectionBackColor = Color.FromArgb(184, 83, 0);
+                    }
 
                     linha.DefaultCellStyle.ForeColor = Color.White;
                 }
@@ -174,12 +179,14 @@ namespace Academia
             {
                 // Adiciona uma imagem na linha referente ao tipo do movimento
                 case "IMAGEM":
-                    var movimento = Convert.ToString(drv["MOVIMENTO"]);
-                    
-                    if (movimento == "E")
-                        e.Value = Properties.Resources.setaCima_menor;                                        
-                    else if (movimento == "S")
-                       e.Value = Properties.Resources.setaBaixo_menor;                  
+                    var movimento = Convert.ToString(drv["TIPO_MOVIMENTO"]);
+
+                    if (movimento == "SUPRIMENTO")
+                        e.Value = Properties.Resources.setaCima_menor;
+                    else if (movimento == "PAGAMENTO")
+                        e.Value = Properties.Resources.pagamento_menor;
+                    else if (movimento == "RETIRADA")
+                        e.Value = Properties.Resources.setaBaixo_menor;                  
 
                     e.FormattingApplied = true;
                     break;
