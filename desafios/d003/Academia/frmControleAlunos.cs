@@ -35,6 +35,7 @@ namespace Academia
         private readonly Matriculas novaMatricula = new();
         private readonly Mensalidades novaMensalidade = new();
         private readonly MatriculaService matriculaService = new();
+        private readonly Caixa novoCaixa = new();
 
         // Quando o form é carregado
         private void frmControleAlunos_Load(object sender, EventArgs e)
@@ -739,11 +740,26 @@ namespace Academia
 
             if (linha?.DataBoundItem is not DataRowView drv) return;
 
+            DataTable dadosCaixa = novoCaixa.Listar();
+            var situacaoCaixa = dadosCaixa.Rows[0]["SITUACAO"];
+
+            bool caixaAberto = Convert.ToBoolean(situacaoCaixa) == true;
+
             if (drv["STATUS_MENSALIDADE"].ToString() == "CANCELADA")
             {
                 MessageBox.Show(
                     "O pagamento desta mensalidade não pode ser efetuado porque a matrícula associada está inativa.",
                     "Não é possível realizar o pagamento",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!caixaAberto)
+            {
+                MessageBox.Show(
+                    "O pagamento não pode ser efetuado porque o caixa está fechado. Por favor, abra o caixa para registrar o pagamento.",
+                    "Caixa fechado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
