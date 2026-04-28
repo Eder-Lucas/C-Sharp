@@ -66,20 +66,21 @@ namespace Academia
             }
         }
 
-        public void SalvarTransacao(int idCaixa, decimal valor, string movimento, string tipoPagamento)
+        public void SalvarTransacao(int idCaixa, decimal valor, string movimento, string tipoPagamento, string tipoMovimento)
         {
             try
             {
                 movimento = movimento.ToUpper();
                 movimento = movimento.Substring(0, 1);
                 tipoPagamento = tipoPagamento.ToUpper();
+                tipoMovimento = tipoMovimento.ToUpper();
 
                 using SqlConnection conexao = new(Conexao.StringConexao);
                 conexao.Open();
 
                 string sql = """
-                    INSERT INTO Transacao_Caixa (ID_CAIXA, VALOR, MOVIMENTO, TIPO_PAGAMENTO, DATA_TRANSACAO)
-                    VALUES (@IdCaixa, @Valor, @Movimento, @TipoPagamento, GETDATE())
+                    INSERT INTO Transacao_Caixa (ID_CAIXA, VALOR, MOVIMENTO, TIPO_PAGAMENTO, DATA_TRANSACAO, TIPO_MOVIMENTO)
+                    VALUES (@IdCaixa, @Valor, @Movimento, @TipoPagamento, GETDATE(), @TipoMovimento)
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
@@ -87,6 +88,7 @@ namespace Academia
                 cmd.Parameters.Add("@IdCaixa", SqlDbType.Int).Value = idCaixa;
                 cmd.Parameters.Add("@Movimento", SqlDbType.Char, 1).Value = movimento;
                 cmd.Parameters.Add("@TipoPagamento", SqlDbType.VarChar, 20).Value = tipoPagamento;
+                cmd.Parameters.Add("@TipoMovimento", SqlDbType.VarChar, 20).Value = tipoMovimento;
 
                 var paramValor = cmd.Parameters.Add("@Valor", SqlDbType.Decimal);
                 paramValor.Precision = 12;
@@ -141,11 +143,7 @@ namespace Academia
                         VALOR,
                         DATA_TRANSACAO,
                         TIPO_PAGAMENTO,
-                        MOVIMENTO,
-                        CASE
-                            WHEN MOVIMENTO = 'E' THEN 'SUPRIMENTO'
-                            WHEN MOVIMENTO = 'S' THEN 'RETIRADA'
-                        END AS STATUS_MOVIMENTO
+                        TIPO_MOVIMENTO
                     FROM Transacao_Caixa
                     ORDER BY ID_TRANSACAO DESC;
                 """;
