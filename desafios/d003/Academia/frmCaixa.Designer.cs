@@ -357,13 +357,17 @@
             // 
             dtgCaixa.AllowUserToAddRows = false;
             dtgCaixa.AllowUserToDeleteRows = false;
+            dtgCaixa.AllowUserToResizeColumns = false;
+            dtgCaixa.AllowUserToResizeRows = false;
             dtgCaixa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgCaixa.Columns.AddRange(new DataGridViewColumn[] { IMAGEM, MOVIMENTO, STATUS_MOVIMENTO, DATA, PAGAMENTO, VALOR });
             dtgCaixa.Location = new Point(8, 98);
+            dtgCaixa.MultiSelect = false;
             dtgCaixa.Name = "dtgCaixa";
             dtgCaixa.ReadOnly = true;
             dtgCaixa.RowHeadersVisible = false;
             dtgCaixa.RowHeadersWidth = 51;
+            dtgCaixa.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgCaixa.Size = new Size(775, 608);
             dtgCaixa.TabIndex = 19;
             dtgCaixa.CellFormatting += dtgCaixa_CellFormatting;
@@ -393,15 +397,16 @@
             STATUS_MOVIMENTO.MinimumWidth = 6;
             STATUS_MOVIMENTO.Name = "STATUS_MOVIMENTO";
             STATUS_MOVIMENTO.ReadOnly = true;
-            STATUS_MOVIMENTO.Width = 125;
+            STATUS_MOVIMENTO.Width = 225;
             // 
             // DATA
             // 
+            DATA.DataPropertyName = "DATA_TRANSACAO";
             DATA.HeaderText = "DATA";
             DATA.MinimumWidth = 6;
             DATA.Name = "DATA";
             DATA.ReadOnly = true;
-            DATA.Width = 125;
+            DATA.Width = 150;
             // 
             // PAGAMENTO
             // 
@@ -410,7 +415,7 @@
             PAGAMENTO.MinimumWidth = 6;
             PAGAMENTO.Name = "PAGAMENTO";
             PAGAMENTO.ReadOnly = true;
-            PAGAMENTO.Width = 125;
+            PAGAMENTO.Width = 150;
             // 
             // VALOR
             // 
@@ -419,7 +424,7 @@
             VALOR.MinimumWidth = 6;
             VALOR.Name = "VALOR";
             VALOR.ReadOnly = true;
-            VALOR.Width = 125;
+            VALOR.Width = 211;
             // 
             // frmCaixa
             // 
