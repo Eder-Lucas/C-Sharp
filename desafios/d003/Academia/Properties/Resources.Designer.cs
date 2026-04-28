@@ -313,6 +313,16 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pagamento_menor {
+            get {
+                object obj = ResourceManager.GetObject("pagamento-menor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap registrar_matriculas {
             get {
                 object obj = ResourceManager.GetObject("registrar-matriculas", resourceCulture);
