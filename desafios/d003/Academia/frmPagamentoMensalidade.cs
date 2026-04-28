@@ -54,7 +54,7 @@ namespace Academia
 
                 // Executa o pagamaento e salva a transação do caixa
                 novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
-                novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma);
+                novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma, "PAGAMENTO");
 
                 MessageBox.Show(
                 "Pagamento realizado com sucesso! Uma nova mensalidade foi gerada automaticamente para o próximo mês nessa turma, " +

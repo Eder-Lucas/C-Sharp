@@ -29,7 +29,7 @@ namespace Academia
             string forma = cboFormaPagamento.Text;
 
             // Executa a retirada
-            novoCaixa.SalvarTransacao(idCaixa, valor, "S", forma);
+            novoCaixa.SalvarTransacao(idCaixa, valor, "S", forma, "RETIRADA");
 
             MessageBox.Show(
             "Retirada realizada com sucesso!",

@@ -29,7 +29,7 @@ namespace Academia
             string forma = cboFormaPagamento.Text;
 
             // Executa o suprimento
-            novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma);
+            novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma, "SUPRIMENTO");
             MessageBox.Show(
             "Suprimento realizado com sucesso!",
             "Sucesso",
