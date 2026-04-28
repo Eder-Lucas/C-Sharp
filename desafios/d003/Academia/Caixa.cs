@@ -66,7 +66,7 @@ namespace Academia
             }
         }
 
-        public int SalvarTransacao(int idCaixa, decimal valor, string movimento, string tipoPagamento)
+        public void SalvarTransacao(int idCaixa, decimal valor, string movimento, string tipoPagamento)
         {
             try
             {
@@ -78,10 +78,8 @@ namespace Academia
                 conexao.Open();
 
                 string sql = """
-                    INSERT INTO Transacao_Caixa (ID_CAIXA, VALOR, MOVIMENTO, TIPO_PAGAMENTO)
-                    VALUES (@IdCaixa, @Valor, @Movimento, @TipoPagamento)
-
-                    SELECT SCOPE_IDENTITY()
+                    INSERT INTO Transacao_Caixa (ID_CAIXA, VALOR, MOVIMENTO, TIPO_PAGAMENTO, DATA_TRANSACAO)
+                    VALUES (@IdCaixa, @Valor, @Movimento, @TipoPagamento, GETDATE())
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
