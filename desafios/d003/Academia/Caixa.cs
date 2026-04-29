@@ -131,7 +131,7 @@ namespace Academia
             }
         }
 
-        public DataTable ListaTransacao()
+        public DataTable ListaTransacao(int idCaixa)
         {
             try
             {
@@ -145,10 +145,12 @@ namespace Academia
                         TIPO_PAGAMENTO,
                         TIPO_MOVIMENTO
                     FROM Transacao_Caixa
+                    WHERE ID_CAIXA = @idCaixa
                     ORDER BY ID_TRANSACAO DESC;
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
 
                 DataTable dadosTabela = new();
 
@@ -165,7 +167,7 @@ namespace Academia
         }
 
         // Obtém valores totais de entrada, retirada e saldo atual considerando o saldo inicial
-        public (decimal entrada, decimal retirada, decimal saldo) ObterTotal(decimal saldoInicial)
+        public (decimal entrada, decimal retirada, decimal saldo) ObterTotal(decimal saldoInicial, int idCaixa)
         {
             try
             {
@@ -182,12 +184,13 @@ namespace Academia
                                 WHEN MOVIMENTO = 'S' THEN -VALOR
                             END
                         ) + @saldoInicial AS SALDO
-                    FROM Transacao_Caixa;
+                    FROM Transacao_Caixa
+                    WHERE ID_CAIXA = @idCaixa;
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
                 cmd.Parameters.Add("@saldoInicial", SqlDbType.Decimal).Value = saldoInicial;
-
+                cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
                 // Validação para evitar valores nulos retornados pela consulta
                 using SqlDataReader leitor = cmd.ExecuteReader();
                 if (leitor.Read())
