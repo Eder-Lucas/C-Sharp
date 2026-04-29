@@ -93,7 +93,7 @@ namespace Academia
             DataTable dadosCaixa = novoCaixa.Listar();
 
             var situacao = dadosCaixa.Rows[0]["SITUACAO"];
-            
+
             bool caixaAberto = Convert.ToBoolean(situacao);
 
             btnFecharCaixa.Enabled = caixaAberto;
@@ -122,31 +122,7 @@ namespace Academia
                 dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR");
                 dtgCaixa.Columns?["DATA"]?.DefaultCellStyle.Format = "dd/MM/yyyy";
 
-                // Percorre as linhas do DataGridView para aplicar a formatação de cor com base no tipo de movimento
-                foreach (DataGridViewRow linha in dtgCaixa.Rows)
-                {
-                    if (linha.Cells["TIPO_MOVIMENTO"].Value == null) continue;
-
-                    var movimento = Convert.ToString(linha.Cells["TIPO_MOVIMENTO"].Value);
-
-                    if (movimento == "SUPRIMENTO")
-                    {
-                        linha.DefaultCellStyle.BackColor = Color.Green;
-                        linha.DefaultCellStyle.SelectionBackColor = Color.DarkGreen;
-                    }
-                    else if(movimento == "RETIRADA")
-                    {
-                        linha.DefaultCellStyle.BackColor = Color.Red;
-                        linha.DefaultCellStyle.SelectionBackColor = Color.DarkRed;
-                    }   
-                    else if (movimento == "PAGAMENTO")
-                    {
-                        linha.DefaultCellStyle.BackColor = Color.FromArgb(255, 140, 0);
-                        linha.DefaultCellStyle.SelectionBackColor = Color.FromArgb(184, 83, 0);
-                    }
-
-                    linha.DefaultCellStyle.ForeColor = Color.White;
-                }
+                PintarLinha();
 
                 DataTable dadosCaixa = novoCaixa.Listar();
                 valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
@@ -165,6 +141,26 @@ namespace Academia
             }
         }
 
+        private void PintarLinha()
+        {
+            foreach (DataGridViewRow linha in dtgCaixa.Rows)
+            {
+                // Pega o valor do tipo de movimento que está sendo verificado
+                // Em seguida converte para enum
+                if (linha.Cells["TIPO_MOVIMENTO"].Value is not string movimento) continue;
+
+                if (!Enum.TryParse(movimento, out TipoMovimento tipo)) continue;
+
+                // Aplica o estilo correspondete ao tipo usando o mapa
+                if (mapaMovimento.TryGetValue(tipo, out var estilo))
+                {
+                    linha.DefaultCellStyle.BackColor = estilo.fundo;
+                    linha.DefaultCellStyle.SelectionBackColor = estilo.selecao;
+                    linha.DefaultCellStyle.ForeColor = Color.White;
+                }
+            }
+        }
+
         private void dtgCaixa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
@@ -172,25 +168,38 @@ namespace Academia
 
             var coluna = dtg.Columns[e.ColumnIndex].Name;
             var linha = dtg.Rows[e.RowIndex];
-            
+
             if (linha.DataBoundItem is not DataRowView drv) return;
 
             switch (coluna)
             {
                 // Adiciona uma imagem na linha referente ao tipo do movimento
                 case "IMAGEM":
-                    var movimento = Convert.ToString(drv["TIPO_MOVIMENTO"]);
+                    if (Convert.ToString(drv["TIPO_MOVIMENTO"]) is not string movimento) break;
 
-                    if (movimento == "SUPRIMENTO")
-                        e.Value = Properties.Resources.setaCima_menor;
-                    else if (movimento == "PAGAMENTO")
-                        e.Value = Properties.Resources.pagamento_menor;
-                    else if (movimento == "RETIRADA")
-                        e.Value = Properties.Resources.setaBaixo_menor;                  
+                    if (!Enum.TryParse(movimento, out TipoMovimento tipo)) break;
+
+                    if (mapaMovimento.TryGetValue(tipo, out var estilo))
+                        e.Value = estilo.icone;
 
                     e.FormattingApplied = true;
                     break;
             }
+        }
+
+        // Mapa para associar cada tipo de movimento a um estilo de formatação específico
+        private readonly Dictionary<TipoMovimento, (Color fundo, Color selecao, Image icone)> mapaMovimento = new()
+        {
+            { TipoMovimento.SUPRIMENTO, (Color.Green, Color.DarkGreen, Properties.Resources.setaCima_menor) },
+            { TipoMovimento.RETIRADA, (Color.Red, Color.DarkRed, Properties.Resources.setaBaixo_menor) },
+            { TipoMovimento.PAGAMENTO, (Color.FromArgb(255, 140, 0), Color.FromArgb(184, 83, 0), Properties.Resources.pagamento_menor) }
+        };
+
+        private enum TipoMovimento
+        {
+            SUPRIMENTO,
+            RETIRADA,
+            PAGAMENTO
         }
     }
 }
