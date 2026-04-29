@@ -24,6 +24,9 @@ namespace Academia
 
         private void frmCaixa_Load(object sender, EventArgs e)
         {
+            dtgCaixa.AutoGenerateColumns = false;
+            DataGridViewUtils.RemoveOrdenacao(dtgCaixa);
+
             AtualizaComponentes();
             ListarDetalhesCaixa();
         }
@@ -94,7 +97,7 @@ namespace Academia
 
             var situacao = dadosCaixa.Rows[0]["SITUACAO"];
 
-            bool caixaAberto = Convert.ToBoolean(situacao);
+            bool caixaAberto = Convert.ToBoolean(situacao) == true;
 
             btnFecharCaixa.Enabled = caixaAberto;
             btnFecharCaixa.Visible = caixaAberto;
@@ -109,13 +112,31 @@ namespace Academia
             lblEntrada.Enabled = caixaAberto;
             lblRetirada.Enabled = caixaAberto;
             lblSaldo.Enabled = caixaAberto;
+
+            lblCaixaId.Enabled = caixaAberto;
+            lblCaixaId.Visible = caixaAberto;
+            lblDataAbertura.Enabled = caixaAberto;
+            lblDataAbertura.Visible = caixaAberto;
+
+            if (!caixaAberto) return;
+
+            int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
+            var dia = Convert.ToDateTime(dadosCaixa.Rows[0]["DIA"]);
+            TimeSpan hora = (TimeSpan)dadosCaixa.Rows[0]["HORA"];
+
+            lblCaixaId.Text = $"Caixa #{idCaixa}";
+            lblDataAbertura.Text = $"Aberto em: {dia:dd/MM/yyyy} às {hora:hh\\:mm\\:ss}";
         }
 
         public void ListarDetalhesCaixa()
         {
             try
             {
-                dtgCaixa.DataSource = novoCaixa.ListaTransacao();
+                DataTable dadosCaixa = novoCaixa.Listar();
+                valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
+                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
+
+                dtgCaixa.DataSource = novoCaixa.ListaTransacao(idCaixa);
 
                 // Formata a visualização dos dados para moeda e data
                 dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.Format = "C2";
@@ -124,10 +145,7 @@ namespace Academia
 
                 PintarLinha();
 
-                DataTable dadosCaixa = novoCaixa.Listar();
-                valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
-
-                var (entrada, retirada, saldo) = novoCaixa.ObterTotal(valorAbertura);
+                var (entrada, retirada, saldo) = novoCaixa.ObterTotal(valorAbertura, idCaixa);
 
                 lblInicial.Text = valorAbertura.ToString("C");
                 lblEntrada.Text = entrada.ToString("C");
