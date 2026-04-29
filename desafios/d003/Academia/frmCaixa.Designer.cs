@@ -60,6 +60,8 @@
             DATA = new DataGridViewTextBoxColumn();
             PAGAMENTO = new DataGridViewTextBoxColumn();
             VALOR = new DataGridViewTextBoxColumn();
+            lblCaixaId = new Label();
+            lblDataAbertura = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -344,7 +346,7 @@
             btnSair.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSair.Image = Properties.Resources.sair;
             btnSair.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSair.Location = new Point(802, 600);
+            btnSair.Location = new Point(801, 634);
             btnSair.Name = "btnSair";
             btnSair.Padding = new Padding(3, 0, 0, 0);
             btnSair.Size = new Size(76, 40);
@@ -368,7 +370,7 @@
             dtgCaixa.RowHeadersVisible = false;
             dtgCaixa.RowHeadersWidth = 51;
             dtgCaixa.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dtgCaixa.Size = new Size(775, 608);
+            dtgCaixa.Size = new Size(775, 576);
             dtgCaixa.TabIndex = 19;
             dtgCaixa.CellFormatting += dtgCaixa_CellFormatting;
             // 
@@ -419,18 +421,42 @@
             // 
             // VALOR
             // 
+            VALOR.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             VALOR.DataPropertyName = "VALOR";
             VALOR.HeaderText = "VALOR";
             VALOR.MinimumWidth = 6;
             VALOR.Name = "VALOR";
             VALOR.ReadOnly = true;
-            VALOR.Width = 211;
+            // 
+            // lblCaixaId
+            // 
+            lblCaixaId.AutoSize = true;
+            lblCaixaId.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCaixaId.ForeColor = Color.Blue;
+            lblCaixaId.Location = new Point(12, 686);
+            lblCaixaId.Name = "lblCaixaId";
+            lblCaixaId.Size = new Size(84, 19);
+            lblCaixaId.TabIndex = 20;
+            lblCaixaId.Text = "Caixa #00";
+            // 
+            // lblDataAbertura
+            // 
+            lblDataAbertura.AutoSize = true;
+            lblDataAbertura.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDataAbertura.ForeColor = Color.Purple;
+            lblDataAbertura.Location = new Point(118, 686);
+            lblDataAbertura.Name = "lblDataAbertura";
+            lblDataAbertura.Size = new Size(142, 19);
+            lblDataAbertura.TabIndex = 20;
+            lblDataAbertura.Text = "Caixa aberto em:";
             // 
             // frmCaixa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(974, 718);
+            ClientSize = new Size(974, 719);
+            Controls.Add(lblDataAbertura);
+            Controls.Add(lblCaixaId);
             Controls.Add(dtgCaixa);
             Controls.Add(btnSair);
             Controls.Add(btnFecharCaixa);
@@ -454,6 +480,7 @@
             groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgCaixa).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -489,5 +516,7 @@
         private DataGridViewTextBoxColumn DATA;
         private DataGridViewTextBoxColumn PAGAMENTO;
         private DataGridViewTextBoxColumn VALOR;
+        private Label lblCaixaId;
+        private Label lblDataAbertura;
     }
 }
