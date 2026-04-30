@@ -41,6 +41,7 @@
             btnConfig = new ToolStripButton();
             lblCaixa = new ToolStripLabel();
             toolStripLabel1 = new ToolStripLabel();
+            pnlConteudo = new Panel();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -155,15 +156,22 @@
             toolStripLabel1.Size = new Size(58, 56);
             toolStripLabel1.Text = "Caixa:";
             // 
+            // pnlConteudo
+            // 
+            pnlConteudo.Dock = DockStyle.Fill;
+            pnlConteudo.Location = new Point(0, 59);
+            pnlConteudo.Name = "pnlConteudo";
+            pnlConteudo.Size = new Size(800, 391);
+            pnlConteudo.TabIndex = 1;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pnlConteudo);
             Controls.Add(toolStrip1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Sistema de Controle de Academia";
@@ -188,5 +196,6 @@
         private ToolStripButton btnConfig;
         private ToolStripLabel lblCaixa;
         private ToolStripLabel toolStripLabel1;
+        private Panel pnlConteudo;
     }
 }
