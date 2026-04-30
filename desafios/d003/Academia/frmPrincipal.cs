@@ -15,7 +15,7 @@ namespace Academia
         private readonly Caixa novoCaixa = new();
 
         private UserControl? ucAtivo = null;
-        private UserControl ucProfessor;
+        private readonly UserControl ucProfessor = new ucProfessores();
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -46,9 +46,7 @@ namespace Academia
         // Linkando aos formulários
         private void btnProfessor_Click(object sender, EventArgs e)
         {
-            ucProfessor ??= new ucProfessores();
-
-            AbrirUc(ucProfessor);
+                AbrirUc(ucProfessor);
         }
 
         private void btnModalidades_Click(object sender, EventArgs e) => new frmModalidades().ShowDialog();
@@ -85,6 +83,8 @@ namespace Academia
         // Método para abrir os UserControls dentro do painel de conteúdo
         private void AbrirUc(UserControl uc)
         {
+            if (ucAtivo == uc) return;
+
             pnlConteudo.Controls.Remove(ucAtivo);
 
             uc.Dock = DockStyle.Fill;
