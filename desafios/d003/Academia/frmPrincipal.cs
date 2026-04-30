@@ -8,9 +8,14 @@ namespace Academia
         public frmPrincipal()
         {
             InitializeComponent();
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private readonly Caixa novoCaixa = new();
+
+        private UserControl? ucAtivo = null;
+        private UserControl ucProfessor;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -39,7 +44,13 @@ namespace Academia
         }
 
         // Linkando aos formulários
-        private void btnProfessor_Click(object sender, EventArgs e) => new frmProfessores().ShowDialog();
+        private void btnProfessor_Click(object sender, EventArgs e)
+        {
+            ucProfessor ??= new ucProfessores();
+
+            AbrirUc(ucProfessor);
+        }
+
         private void btnModalidades_Click(object sender, EventArgs e) => new frmModalidades().ShowDialog();
         private void btnTurmas_Click(object sender, EventArgs e) => new frmTurmas().ShowDialog();
         private void btnAlunos_Click(object sender, EventArgs e) => new frmAlunos().ShowDialog();
@@ -69,6 +80,17 @@ namespace Academia
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Método para abrir os UserControls dentro do painel de conteúdo
+        private void AbrirUc(UserControl uc)
+        {
+            pnlConteudo.Controls.Remove(ucAtivo);
+
+            uc.Dock = DockStyle.Fill;
+            pnlConteudo.Controls.Add(uc);
+
+            ucAtivo = uc;
         }
     }
 }
