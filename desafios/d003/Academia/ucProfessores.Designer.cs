@@ -325,7 +325,7 @@
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.Size = new Size(368, 27);
             txtPesquisa.TabIndex = 1;
-            txtPesquisa.Click += txtPesquisa_TextChanged;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // rbCpf
             // 
