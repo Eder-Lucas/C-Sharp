@@ -775,13 +775,13 @@ namespace Academia
 
                 if (!pagar) return;
 
-                using frmPagamentoMensalidade frm = new frmPagamentoMensalidade(
+                /* frmPagamentoMensalidade frm = new frmPagamentoMensalidade(
                     Convert.ToInt32(drv["ID_MENSALIDADE"]),
                     Convert.ToDecimal(drv["MENSALIDADE"]),
                     this
                 );
 
-                frm.ShowDialog();
+                frm.ShowDialog();*/
             }
             else
             {
