@@ -14,12 +14,11 @@ namespace Academia
 
         private readonly Caixa novoCaixa = new();
 
-        private UserControl? ucAtivo = null;
-
         private readonly ucProfessores professores = new();
         private readonly ucModalidades modalidades = new();
         private readonly ucTurmas turmas = new();
         private readonly ucConfiguracoes configuracoes = new();
+        private readonly ucAlunos alunos = new();
         private ucCaixa? caixa = null;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -29,6 +28,8 @@ namespace Academia
 
             try
             {
+                Navegacao.PanelPrincipal = pnlConteudo;
+
                 novaConexao.Open(); 
                 MessageBox.Show("Conexão com o banco de dados realizada!"); 
 
@@ -51,31 +52,34 @@ namespace Academia
         // Linkando aos formulários
         private void btnProfessor_Click(object sender, EventArgs e)
         {
-            AbrirUc(professores);
+            Navegacao.AbrirUc(professores);
         }
 
         private void btnModalidades_Click(object sender, EventArgs e)
         {
-            AbrirUc(modalidades);
+            Navegacao.AbrirUc(modalidades);
         }
 
         private void btnTurmas_Click(object sender, EventArgs e)
         {
-            AbrirUc(turmas);
+            Navegacao.AbrirUc(turmas);
         }
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
             caixa ??= new ucCaixa(this);
-            AbrirUc(caixa);
+            Navegacao.AbrirUc(caixa);
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            AbrirUc(configuracoes);
+            Navegacao.AbrirUc(configuracoes);
         }
 
-        private void btnAlunos_Click(object sender, EventArgs e) => new frmAlunos().ShowDialog();
+        private void btnAlunos_Click(object sender, EventArgs e)
+        {
+            Navegacao.AbrirUc(alunos);
+        }
 
         // Manipula a visualização do label dependendo da situação do caixa
         public void VerificaSituacaoCaixa()
@@ -100,19 +104,6 @@ namespace Academia
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        // Método para abrir os UserControls dentro do painel de conteúdo
-        private void AbrirUc(UserControl uc)
-        {
-            if (ucAtivo == uc) return; // Evita recarregar a mesma tela
-
-            pnlConteudo.Controls.Remove(ucAtivo);
-
-            uc.Dock = DockStyle.Fill;
-            pnlConteudo.Controls.Add(uc);
-
-            ucAtivo = uc;
         }
     }
 }
