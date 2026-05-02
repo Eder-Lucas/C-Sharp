@@ -10,9 +10,9 @@ namespace Academia
 {
     public partial class frmSuprimento : Form
     {
-        private readonly frmCaixa formCaixa;
+        private readonly ucCaixa formCaixa;
 
-        public frmSuprimento(frmCaixa formulario)
+        public frmSuprimento(ucCaixa formulario)
         {
             InitializeComponent();
             this.formCaixa = formulario;
