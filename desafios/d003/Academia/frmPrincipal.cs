@@ -15,7 +15,12 @@ namespace Academia
         private readonly Caixa novoCaixa = new();
 
         private UserControl? ucAtivo = null;
-        private readonly UserControl ucProfessor = new ucProfessores();
+
+        private readonly ucProfessores professores = new();
+        private readonly ucModalidades modalidades = new();
+        private readonly ucTurmas turmas = new();
+        private readonly ucConfiguracoes configuracoes = new();
+        private ucCaixa? caixa = null;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -46,14 +51,31 @@ namespace Academia
         // Linkando aos formulários
         private void btnProfessor_Click(object sender, EventArgs e)
         {
-                AbrirUc(ucProfessor);
+            AbrirUc(professores);
         }
 
-        private void btnModalidades_Click(object sender, EventArgs e) => new frmModalidades().ShowDialog();
-        private void btnTurmas_Click(object sender, EventArgs e) => new frmTurmas().ShowDialog();
+        private void btnModalidades_Click(object sender, EventArgs e)
+        {
+            AbrirUc(modalidades);
+        }
+
+        private void btnTurmas_Click(object sender, EventArgs e)
+        {
+            AbrirUc(turmas);
+        }
+
+        private void btnCaixa_Click(object sender, EventArgs e)
+        {
+            caixa ??= new ucCaixa(this);
+            AbrirUc(caixa);
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            AbrirUc(configuracoes);
+        }
+
         private void btnAlunos_Click(object sender, EventArgs e) => new frmAlunos().ShowDialog();
-        private void btnCaixa_Click(object sender, EventArgs e) => new frmCaixa(this).ShowDialog();
-        private void btnConfig_Click(object sender, EventArgs e) => new frmConfig().ShowDialog();
 
         // Manipula a visualização do label dependendo da situação do caixa
         public void VerificaSituacaoCaixa()
@@ -83,7 +105,7 @@ namespace Academia
         // Método para abrir os UserControls dentro do painel de conteúdo
         private void AbrirUc(UserControl uc)
         {
-            if (ucAtivo == uc) return;
+            if (ucAtivo == uc) return; // Evita recarregar a mesma tela
 
             pnlConteudo.Controls.Remove(ucAtivo);
 
