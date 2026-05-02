@@ -568,7 +568,7 @@
             Controls.Add(toolStrip1);
             Name = "ucProfessores";
             Size = new Size(1011, 695);
-            Load += frmProfessores_Load;
+            Load += ucProfessores_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgProfessores).EndInit();

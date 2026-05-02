@@ -18,7 +18,7 @@ namespace Academia
 
         private readonly Professores novoProfessor = new();
 
-        private void frmProfessores_Load(object sender, EventArgs e)
+        private void ucProfessores_Load(object sender, EventArgs e)
         {
             ListarProfessores();
 
