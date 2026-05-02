@@ -80,14 +80,14 @@ namespace Academia
         // Chamando o formulário de suprimento e retirada ao clicar no seu respectivo botão
         private void btnSuprimento_Click(object sender, EventArgs e)
         {
-            frmSuprimento suprimento = new(this);
-            suprimento.ShowDialog();
+            /*frmSuprimento suprimento = new(this);
+            suprimento.ShowDialog();*/
         }
 
         private void btnRetirada_Click(object sender, EventArgs e)
         {
-            frmRetirada retirada = new(this);
-            retirada.ShowDialog();
+            /*frmRetirada retirada = new(this);
+            retirada.ShowDialog();*/
         }
 
         // Atualiza os componentes dependendo da situação do caixa
