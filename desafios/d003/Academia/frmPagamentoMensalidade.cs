@@ -12,16 +12,16 @@ namespace Academia
     {
         int idMensalidade;
         decimal valor;
-        frmControleAlunos frmControleAlunos;
+        ucControleAlunos ucControleAlunos;
 
-        public frmPagamentoMensalidade(int idMensalidade, decimal valor, frmControleAlunos frmControleAlunos)
+        public frmPagamentoMensalidade(int idMensalidade, decimal valor, ucControleAlunos ucControleAlunos)
         {
             InitializeComponent();
 
             this.idMensalidade = idMensalidade;
             this.valor = valor;
             txtDinheiro.Text = $"{this.valor:C2}";
-            this.frmControleAlunos = frmControleAlunos;
+            this.ucControleAlunos = ucControleAlunos;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -64,8 +64,8 @@ namespace Academia
                 MessageBoxIcon.Information);
 
                 // Recarrega as mensalidades e matrículas do frmControleAlunos
-                frmControleAlunos.CarregarMensalidades();
-                frmControleAlunos.ListarMatriculas();
+                ucControleAlunos.CarregarMensalidades();
+                ucControleAlunos.ListarMatriculas();
 
                 this.Close();
             }
