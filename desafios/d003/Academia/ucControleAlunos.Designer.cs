@@ -57,12 +57,6 @@
             groupBox3 = new GroupBox();
             btnPagamento = new Button();
             groupBox4 = new GroupBox();
-            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
-            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
-            VALOR = new DataGridViewTextBoxColumn();
-            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
-            VENCIMENTO2 = new DataGridViewTextBoxColumn();
-            MODALIDADE1 = new DataGridViewTextBoxColumn();
             dtgMensalidades = new DataGridView();
             tabPageMensalidade = new TabPage();
             btnHora = new DataGridViewImageColumn();
@@ -120,6 +114,12 @@
             tabPageMatricula = new TabPage();
             dtgTurmasCadastradas = new DataGridView();
             lblUsuarioCarregado = new Label();
+            MODALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO2 = new DataGridViewTextBoxColumn();
+            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
+            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
+            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -434,61 +434,6 @@
             groupBox4.TabIndex = 12;
             groupBox4.TabStop = false;
             groupBox4.Text = "Controle";
-            // 
-            // STATUS_MENSALIDADE
-            // 
-            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
-            STATUS_MENSALIDADE.MinimumWidth = 6;
-            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.ReadOnly = true;
-            STATUS_MENSALIDADE.Width = 140;
-            // 
-            // SITUACAO_MENSALIDADE
-            // 
-            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
-            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
-            SITUACAO_MENSALIDADE.MinimumWidth = 6;
-            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
-            SITUACAO_MENSALIDADE.ReadOnly = true;
-            SITUACAO_MENSALIDADE.Visible = false;
-            SITUACAO_MENSALIDADE.Width = 125;
-            // 
-            // VALOR
-            // 
-            VALOR.DataPropertyName = "MENSALIDADE";
-            VALOR.HeaderText = "VALOR";
-            VALOR.MinimumWidth = 6;
-            VALOR.Name = "VALOR";
-            VALOR.ReadOnly = true;
-            VALOR.Width = 135;
-            // 
-            // DATA_PAGAMENTO
-            // 
-            DATA_PAGAMENTO.DataPropertyName = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
-            DATA_PAGAMENTO.MinimumWidth = 6;
-            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.ReadOnly = true;
-            DATA_PAGAMENTO.Width = 190;
-            // 
-            // VENCIMENTO2
-            // 
-            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
-            VENCIMENTO2.HeaderText = "VENCIMENTO";
-            VENCIMENTO2.MinimumWidth = 6;
-            VENCIMENTO2.Name = "VENCIMENTO2";
-            VENCIMENTO2.ReadOnly = true;
-            VENCIMENTO2.Width = 190;
-            // 
-            // MODALIDADE1
-            // 
-            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
-            MODALIDADE1.HeaderText = "MODALIDADE";
-            MODALIDADE1.MinimumWidth = 6;
-            MODALIDADE1.Name = "MODALIDADE1";
-            MODALIDADE1.ReadOnly = true;
-            MODALIDADE1.Width = 159;
             // 
             // dtgMensalidades
             // 
@@ -1120,6 +1065,61 @@
             lblUsuarioCarregado.Size = new Size(0, 20);
             lblUsuarioCarregado.TabIndex = 8;
             // 
+            // MODALIDADE1
+            // 
+            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
+            MODALIDADE1.HeaderText = "MODALIDADE";
+            MODALIDADE1.MinimumWidth = 6;
+            MODALIDADE1.Name = "MODALIDADE1";
+            MODALIDADE1.ReadOnly = true;
+            MODALIDADE1.Width = 159;
+            // 
+            // VENCIMENTO2
+            // 
+            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
+            VENCIMENTO2.HeaderText = "VENCIMENTO";
+            VENCIMENTO2.MinimumWidth = 6;
+            VENCIMENTO2.Name = "VENCIMENTO2";
+            VENCIMENTO2.ReadOnly = true;
+            VENCIMENTO2.Width = 190;
+            // 
+            // DATA_PAGAMENTO
+            // 
+            DATA_PAGAMENTO.DataPropertyName = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
+            DATA_PAGAMENTO.MinimumWidth = 6;
+            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.ReadOnly = true;
+            DATA_PAGAMENTO.Width = 190;
+            // 
+            // VALOR
+            // 
+            VALOR.DataPropertyName = "VALOR";
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 135;
+            // 
+            // SITUACAO_MENSALIDADE
+            // 
+            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
+            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
+            SITUACAO_MENSALIDADE.MinimumWidth = 6;
+            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
+            SITUACAO_MENSALIDADE.ReadOnly = true;
+            SITUACAO_MENSALIDADE.Visible = false;
+            SITUACAO_MENSALIDADE.Width = 125;
+            // 
+            // STATUS_MENSALIDADE
+            // 
+            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
+            STATUS_MENSALIDADE.MinimumWidth = 6;
+            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.ReadOnly = true;
+            STATUS_MENSALIDADE.Width = 140;
+            // 
             // ucControleAlunos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1188,12 +1188,6 @@
         private GroupBox groupBox3;
         private Button btnPagamento;
         private GroupBox groupBox4;
-        private DataGridViewTextBoxColumn STATUS_MENSALIDADE;
-        private DataGridViewTextBoxColumn SITUACAO_MENSALIDADE;
-        private DataGridViewTextBoxColumn VALOR;
-        private DataGridViewTextBoxColumn DATA_PAGAMENTO;
-        private DataGridViewTextBoxColumn VENCIMENTO2;
-        private DataGridViewTextBoxColumn MODALIDADE1;
         private DataGridView dtgMensalidades;
         private TabPage tabPageMensalidade;
         private DataGridViewImageColumn btnHora;
@@ -1251,5 +1245,11 @@
         private TabPage tabPageMatricula;
         private DataGridView dtgTurmasCadastradas;
         private Label lblUsuarioCarregado;
+        private DataGridViewTextBoxColumn MODALIDADE1;
+        private DataGridViewTextBoxColumn VENCIMENTO2;
+        private DataGridViewTextBoxColumn DATA_PAGAMENTO;
+        private DataGridViewTextBoxColumn VALOR;
+        private DataGridViewTextBoxColumn SITUACAO_MENSALIDADE;
+        private DataGridViewTextBoxColumn STATUS_MENSALIDADE;
     }
 }
