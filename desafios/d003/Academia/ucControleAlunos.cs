@@ -770,7 +770,7 @@ namespace Academia
 
                 using frmPagamentoMensalidade frm = new frmPagamentoMensalidade(
                     Convert.ToInt32(drv["ID_MENSALIDADE"]),
-                    Convert.ToDecimal(drv["MENSALIDADE"]),
+                    Convert.ToDecimal(drv["VALOR"]),
                     this
                 );
 
