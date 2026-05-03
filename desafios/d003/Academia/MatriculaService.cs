@@ -21,19 +21,22 @@ namespace Academia
 
                 string geraMensalidadeSql = """
                     WITH UltimaMensalidade AS (
-                        SELECT 
-                            m.ID_MATRICULA,
-                            m.VENCIMENTO,
-                            ISNULL(MAX(ms.DATA_VENCIMENTO), m.VENCIMENTO) AS ULTIMA_DATA
-                        FROM Matricula m
-                        LEFT JOIN Mensalidade ms ON ms.ID_MATRICULA = m.ID_MATRICULA
-                        WHERE m.SITUACAO = 1
-                        GROUP BY m.ID_MATRICULA, m.VENCIMENTO
+                    SELECT 
+                        m.ID_MATRICULA,
+                        m.VENCIMENTO,
+                        t.ID_MODALIDADE,
+                        ISNULL(MAX(ms.DATA_VENCIMENTO), m.VENCIMENTO) AS ULTIMA_DATA
+                    FROM Matricula m
+                    INNER JOIN Turma t ON t.ID_TURMA = m.ID_TURMA
+                    LEFT JOIN Mensalidade ms ON ms.ID_MATRICULA = m.ID_MATRICULA
+                    WHERE m.SITUACAO = 1
+                    GROUP BY m.ID_MATRICULA, m.VENCIMENTO, t.ID_MODALIDADE
                     ),
                     Meses AS (
                         SELECT 
                             ID_MATRICULA,
                             VENCIMENTO,
+                            ID_MODALIDADE,
                             DATEADD(MONTH, 1, ULTIMA_DATA) AS DATA
                         FROM UltimaMensalidade
                         WHERE DATEADD(MONTH, 1, ULTIMA_DATA) <= EOMONTH(GETDATE())
@@ -43,14 +46,14 @@ namespace Academia
                         SELECT 
                             ID_MATRICULA,
                             VENCIMENTO,
+                            ID_MODALIDADE,
                             DATEADD(MONTH, 1, DATA)
                         FROM Meses
-                        WHERE 
-                            DATEADD(MONTH, 1, DATA) <= EOMONTH(GETDATE())
+                        WHERE DATEADD(MONTH, 1, DATA) <= EOMONTH(GETDATE())
                     )
-                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
+                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO, VALOR)
                     SELECT 
-                        ID_MATRICULA,
+                        m.ID_MATRICULA,
                         DATEFROMPARTS(
                             YEAR(DATA),
                             MONTH(DATA),
@@ -60,13 +63,16 @@ namespace Academia
                                 ELSE DAY(VENCIMENTO)
                             END
                         ),
-                        0
-                    FROM Meses
+                        0,
+                        md.MENSALIDADE
+                    FROM Meses m
+                    INNER JOIN Modalidade md ON md.ID_MODALIDADE = m.ID_MODALIDADE
                     WHERE NOT EXISTS (
-                        SELECT 1 FROM Mensalidade ms
-                        WHERE ms.ID_MATRICULA = Meses.ID_MATRICULA
-                        AND YEAR(ms.DATA_VENCIMENTO) = YEAR(Meses.DATA)
-                        AND MONTH(ms.DATA_VENCIMENTO) = MONTH(Meses.DATA)
+                        SELECT 1 
+                        FROM Mensalidade ms
+                        WHERE ms.ID_MATRICULA = m.ID_MATRICULA
+                        AND YEAR(ms.DATA_VENCIMENTO) = YEAR(m.DATA)
+                        AND MONTH(ms.DATA_VENCIMENTO) = MONTH(m.DATA)
                     )
                     OPTION (MAXRECURSION 1000);
                 """;
@@ -135,14 +141,22 @@ namespace Academia
                 int idMatricula = Convert.ToInt32((decimal)cmdMatricula.ExecuteScalar());
 
                 string sqlMensalidade = """
-                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO)
-                    VALUES (@idMatricula, @venc, @pago);
+                    INSERT INTO Mensalidade (ID_MATRICULA, DATA_VENCIMENTO, SITUACAO, VALOR)
+                    SELECT 
+                        @idMatricula,
+                        @venc,
+                        @pago,
+                        md.MENSALIDADE
+                    FROM TURMA t
+                    INNER JOIN MODALIDADE md ON md.ID_MODALIDADE = t.ID_MODALIDADE
+                    WHERE t.ID_TURMA = @idTurma;              
                 """;
 
                 using SqlCommand cmdMensalidade = new(sqlMensalidade, conexao, transacao);
                 cmdMensalidade.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
                 cmdMensalidade.Parameters.Add("@venc", SqlDbType.Date).Value = venc;
                 cmdMensalidade.Parameters.Add("@pago", SqlDbType.Int).Value = pago;
+                cmdMensalidade.Parameters.Add("@idTurma", SqlDbType.Int).Value = idTurma;
 
                 cmdMensalidade.ExecuteNonQuery();
 
