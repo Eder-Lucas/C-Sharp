@@ -13,6 +13,7 @@ namespace Academia
         int idMensalidade;
         decimal valor;
         ucControleAlunos ucControleAlunos;
+        List<decimal> valorLista;
 
         public frmPagamentoMensalidade(int idMensalidade, decimal valor, ucControleAlunos ucControleAlunos)
         {
@@ -49,11 +50,13 @@ namespace Academia
 
                 // Dados para salvar a transação no caixa
                 int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
-                decimal valorFinal = valor * (int)numQuantosMeses.Value;
                 var forma = cboFormaPagamento.Text;
 
                 // Executa o pagamaento e salva a transação do caixa
-                novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
+                valorLista = novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
+
+                decimal valorFinal = valorLista.Sum();
+
                 novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma, "PAGAMENTO");
 
                 MessageBox.Show(
@@ -79,9 +82,11 @@ namespace Academia
         private void numQuantosMeses_ValueChanged(object sender, EventArgs e)
         {
             int meses = (int)numQuantosMeses.Value;
-            decimal valorTotal = valor * meses;
+            List<decimal> valores = novaMensalidade.ObterValores(meses, idMensalidade);
 
-            txtDinheiro.Text = $"{valorTotal:C2}";
+            decimal total = valores.Sum();
+
+            txtDinheiro.Text = $"{total:C2}";
         }
     }
 }
