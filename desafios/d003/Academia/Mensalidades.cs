@@ -140,7 +140,7 @@ namespace Academia
 			}
 		}
 
-        public List<decimal> Pagar(int idMensalidade, DateTime dataPagamento, bool situacao, bool gerar, int qtdMeses)
+        public List<decimal> Pagar(int idMensalidade, DateTime dataPagamento, bool gerar, int qtdMeses)
         {
             SqlTransaction? transacao = null;
 
@@ -152,24 +152,34 @@ namespace Academia
                 transacao = conexao.BeginTransaction();
 				
 				// obtem os dados necessarios para o pagamento
-				var (idMatricula, vencimentoAtual, valor) = ObterDadosMensalidade(transacao, conexao, idMensalidade);
-				var (ids, valores) = ObterMensalidadesAbertas(transacao, conexao, idMatricula, qtdMeses);
+				var (idMatricula, vencimentoAtual) = ObterDadosMensalidade(transacao, conexao, idMensalidade);
+				decimal valorModalidade = ObterValorModalidade(transacao, conexao, idMatricula);
+                var (ids, valorMenAberta) = ObterMensalidadesAbertas(transacao, conexao, idMatricula, qtdMeses);
                 var proximo = ObterUltimoVencimento(transacao, conexao, idMatricula, vencimentoAtual);
+
+                List<decimal> valorPago = [.. valorMenAberta]; // Copia os valores das mensalidades em aberto
+
                 int faltam = qtdMeses - ids.Count;
 
-                PagaMensalidades(transacao, conexao, ids, valores, dataPagamento);
+                // Se ainda faltar mensalidades, adiciona o valor da modalidade no "valorPago" para retornar à UI
+                if (faltam > 0)
+				{
+					for (int i = 0; i < faltam; i++)
+						valorPago.Add(valorModalidade);		
+				}
+
+                PagaMensalidades(transacao, conexao, ids, valorMenAberta, dataPagamento);
 				
                 if (faltam > 0)
-                    GerarMensalidadesFaltantes(transacao, conexao, idMatricula, faltam, proximo, vencimentoAtual, dataPagamento, valor);
+                    GerarMensalidadesFaltantes(transacao, conexao, idMatricula, faltam, proximo, vencimentoAtual, dataPagamento, valorModalidade);
 
                 if (gerar)
-					GerarMensalidadesAoPagar(transacao, conexao, idMatricula, vencimentoAtual, valor);
+					GerarMensalidadesAoPagar(transacao, conexao, idMatricula, vencimentoAtual, valorModalidade);
 
                 AtualizaMatriculas(transacao, conexao, idMatricula,	vencimentoAtual);
-
-                
+            
                 transacao.Commit();
-                return valores;
+                return valorPago; // Retorna os valores pagos para atualizar a UI
             }
             catch (Exception)
             {
@@ -179,7 +189,7 @@ namespace Academia
             }
         }
 
-		private (int idMatricula, DateTime vencimentoAtual, decimal valor) ObterDadosMensalidade(SqlTransaction transacao, SqlConnection conexao, int idMensalidade)
+		private (int idMatricula, DateTime vencimentoAtual) ObterDadosMensalidade(SqlTransaction transacao, SqlConnection conexao, int idMensalidade)
 		{
             // Coleta os dados
             string buscarDadosSql = """
@@ -197,14 +207,38 @@ namespace Academia
 
             int idMatricula = leitor.GetInt32(0);
             DateTime vencimentoAtual = leitor.GetDateTime(1);
-			decimal valor = leitor.GetDecimal(2);
 
             leitor.Close();
 
-			return (idMatricula, vencimentoAtual, valor);
+			return (idMatricula, vencimentoAtual);
         }
 
-		private (List<int>, List<decimal>) ObterMensalidadesAbertas(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int qtdMeses)
+		private decimal ObterValorModalidade(SqlTransaction transacao, SqlConnection conexao, int idMatricula)
+		{
+			try
+			{
+                // Busca o valor na modalidade para preencher as faltantes
+                string valorModalidadeSql = """
+						SELECT md.MENSALIDADE
+						FROM Matricula m
+						INNER JOIN Turma t ON t.ID_TURMA = m.ID_TURMA
+						INNER JOIN Modalidade md ON md.ID_MODALIDADE = t.ID_MODALIDADE
+						WHERE m.ID_MATRICULA = @idMatricula;
+					""";
+
+                using SqlCommand cmd = new(valorModalidadeSql, conexao, transacao);
+                cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+
+                return Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+			catch (Exception)
+			{
+
+				throw;
+			}
+		}
+
+        private (List<int>, List<decimal>) ObterMensalidadesAbertas(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int qtdMeses)
 		{
             List<int> ids = [];
 			List<decimal> valores = [];
@@ -269,17 +303,18 @@ namespace Academia
 				decimal valor = valores[i];
 
                 string updateSql = """
-						UPDATE Mensalidade
-						SET DATA_PAGAMENTO = @dataPagamento,
-							SITUACAO = 1,
-							VALOR = @valores
-						WHERE ID_MENSALIDADE = @id;
-					""";
+					UPDATE Mensalidade
+					SET DATA_PAGAMENTO = @dataPagamento,
+						SITUACAO = 1,
+						VALOR = @valores
+					WHERE ID_MENSALIDADE = @id;
+				""";
 
                 using SqlCommand cmdUpdate = new(updateSql, conexao, transacao);
                 cmdUpdate.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 cmdUpdate.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
 				cmdUpdate.Parameters.Add("@valores", SqlDbType.Decimal).Value = valor;
+
                 cmdUpdate.ExecuteNonQuery();
             }
         }
@@ -309,7 +344,7 @@ namespace Academia
             cmdUpdateMatricula.ExecuteNonQuery();
         }
 
-		private void GerarMensalidadesFaltantes(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int faltam, DateTime proximo, DateTime vencimentoAtual, DateTime dataPagamento, decimal valor)
+		private void GerarMensalidadesFaltantes(SqlTransaction transacao, SqlConnection conexao, int idMatricula, int faltam, DateTime proximo, DateTime vencimentoAtual, DateTime dataPagamento, decimal valorModalidade)
 		{
             for (int i = 0; i < faltam; i++)
             {
@@ -339,12 +374,13 @@ namespace Academia
                 cmdVarios.Parameters.Add("@dataPagamento", SqlDbType.Date).Value = dataPagamento;
                 cmdVarios.Parameters.Add("@data", SqlDbType.Date).Value = proximo;
                 cmdVarios.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
-				cmdVarios.Parameters.Add("@valor", SqlDbType.Decimal).Value = valor;
+				cmdVarios.Parameters.Add("@valor", SqlDbType.Decimal).Value = valorModalidade;
+
                 cmdVarios.ExecuteNonQuery();
             }
         }
 
-		private void GerarMensalidadesAoPagar(SqlTransaction transacao, SqlConnection conexao, int idMatricula, DateTime vencimentoAtual, decimal valor)
+		private void GerarMensalidadesAoPagar(SqlTransaction transacao, SqlConnection conexao, int idMatricula, DateTime vencimentoAtual, decimal valorModalidade)
 		{
             DateTime ultimo = ObterUltimoVencimento(transacao, conexao, idMatricula, vencimentoAtual);
             ultimo = ultimo.AddMonths(1);
@@ -379,7 +415,7 @@ namespace Academia
             cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
             cmd.Parameters.Add("@proximo", SqlDbType.Date).Value = ultimo;
             cmd.Parameters.Add("@vencimentoBase", SqlDbType.Date).Value = vencimentoAtual;
-			cmd.Parameters.Add("@valor", SqlDbType.Decimal).Value = valor;
+			cmd.Parameters.Add("@valor", SqlDbType.Decimal).Value = valorModalidade;
 
             cmd.ExecuteNonQuery();
         }
@@ -395,11 +431,13 @@ namespace Academia
 
                 transacao = conexao.BeginTransaction();
 
-				var (idMatricula, _, _) = ObterDadosMensalidade(transacao, conexao, idMensalidade);
+                // Armazena o idMatricula para buscar as próximas mensalidades
+                var (idMatricula, _) = ObterDadosMensalidade(transacao, conexao, idMensalidade);
+
                 List<decimal> valores = [];
 				List<int> ids = [];
 
-                // seleciona todas nao pagas
+				// Busca as próximas mensalidades em aberto coletando seus valores
                 string proximaMensalidadeSql = """
 					SELECT TOP (@qtd)
 						ID_MENSALIDADE,
@@ -416,6 +454,7 @@ namespace Academia
 
                 using SqlDataReader ler = cmdProxima.ExecuteReader();
 
+                // Armazena os valores encontrados na array
                 while (ler.Read())
                 {
 					ids.Add(ler.GetInt32(0));
@@ -423,24 +462,26 @@ namespace Academia
                 }
                 ler.Close();
 
-                string sql = """
-					SELECT md.MENSALIDADE
-					FROM Matricula m
-					INNER JOIN Turma t ON t.ID_TURMA = m.ID_TURMA
-					INNER JOIN Modalidade md ON md.ID_MODALIDADE = t.ID_MODALIDADE
-					WHERE m.ID_MATRICULA = @idMatricula;
-				""";
-
-                using SqlCommand cmd = new(sql, conexao, transacao);
-				cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
-
-                decimal valorAtual = Convert.ToDecimal(cmd.ExecuteScalar());
-
+                // Se ainda faltar mensalidades
                 int faltam = qtdMeses - ids.Count;
-
 				if (faltam > 0)
 				{
-					for (int i = 0; i < faltam; i++)
+                    // Busca o valor na modalidade para preencher as faltantes
+                    string faltamSql = """
+						SELECT md.MENSALIDADE
+						FROM Matricula m
+						INNER JOIN Turma t ON t.ID_TURMA = m.ID_TURMA
+						INNER JOIN Modalidade md ON md.ID_MODALIDADE = t.ID_MODALIDADE
+						WHERE m.ID_MATRICULA = @idMatricula;
+					""";
+
+                    using SqlCommand cmd = new(faltamSql, conexao, transacao);
+                    cmd.Parameters.Add("@idMatricula", SqlDbType.Int).Value = idMatricula;
+
+                    decimal valorAtual = Convert.ToDecimal(cmd.ExecuteScalar());
+
+                    // Preenche as faltantes adicionando o valor da modalidade
+                    for (int i = 0; i < faltam; i++)
 					{
 						valores.Add(valorAtual);
 					}
