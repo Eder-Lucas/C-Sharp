@@ -13,7 +13,6 @@ namespace Academia
         int idMensalidade;
         decimal valor;
         ucControleAlunos ucControleAlunos;
-        List<decimal> valorLista;
 
         public frmPagamentoMensalidade(int idMensalidade, decimal valor, ucControleAlunos ucControleAlunos)
         {
@@ -52,17 +51,16 @@ namespace Academia
                 int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
                 var forma = cboFormaPagamento.Text;
 
-                // Executa o pagamaento e salva a transação do caixa
-                valorLista = novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, true, gerar, meses);
+                // Executa o pagamaento e salva o valor total a ser pago
+                List<decimal> valorLista = novaMensalidade.Pagar(idMensalidade, dataAtualPagamento, gerar, meses);
 
                 decimal valorFinal = valorLista.Sum();
 
                 novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma, "PAGAMENTO");
 
                 MessageBox.Show(
-                "Pagamento realizado com sucesso! Uma nova mensalidade foi gerada automaticamente para o próximo mês nessa turma, " +
-                "verifique a lista de mensalidades. Você pode cancelar esta mensalidade caso inative a matrícula.",
-                "Pagamento de mensalidades",
+                "Pagamento realizado com sucesso!",
+                "Sucesso!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
