@@ -93,6 +93,26 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alunosIcon_branco {
+            get {
+                object obj = ResourceManager.GetObject("alunosIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alunosIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("alunosIcon_cinza", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cadeado_aberto {
             get {
                 object obj = ResourceManager.GetObject("cadeado-aberto", resourceCulture);
@@ -123,9 +143,39 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap configuracoes {
+        internal static System.Drawing.Bitmap caixaIcon_branco {
             get {
-                object obj = ResourceManager.GetObject("configuracoes", resourceCulture);
+                object obj = ResourceManager.GetObject("caixaIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap caixaIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("caixaIcon_cinza", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap configuracaoIcon_branco {
+            get {
+                object obj = ResourceManager.GetObject("configuracaoIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap configuracaoIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("configuracaoIcon_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,49 +283,9 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_alunos {
-            get {
-                object obj = ResourceManager.GetObject("icon-alunos", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_caixa {
-            get {
-                object obj = ResourceManager.GetObject("icon-caixa", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icon_filtro {
             get {
                 object obj = ResourceManager.GetObject("icon-filtro", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_modalidades {
-            get {
-                object obj = ResourceManager.GetObject("icon-modalidades", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_professores {
-            get {
-                object obj = ResourceManager.GetObject("icon-professores", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +303,19 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_turma {
+        internal static System.Drawing.Bitmap modalidadesIcon_branco {
             get {
-                object obj = ResourceManager.GetObject("icon-turma", resourceCulture);
+                object obj = ResourceManager.GetObject("modalidadesIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap modalidadesIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("modalidadesIcon_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -316,6 +336,26 @@ namespace Academia.Properties {
         internal static System.Drawing.Bitmap pagamento_menor {
             get {
                 object obj = ResourceManager.GetObject("pagamento-menor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap professoresIcon_branco {
+            get {
+                object obj = ResourceManager.GetObject("professoresIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap professoresIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("professoresIcon_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -406,6 +446,26 @@ namespace Academia.Properties {
         internal static System.Drawing.Bitmap turmas_maior {
             get {
                 object obj = ResourceManager.GetObject("turmas-maior", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turmasIcon_branco {
+            get {
+                object obj = ResourceManager.GetObject("turmasIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turmasIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("turmasIcon_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
