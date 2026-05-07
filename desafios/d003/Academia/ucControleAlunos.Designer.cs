@@ -58,6 +58,12 @@
             btnPagamento = new Button();
             groupBox4 = new GroupBox();
             dtgMensalidades = new DataGridView();
+            MODALIDADE1 = new DataGridViewTextBoxColumn();
+            VENCIMENTO2 = new DataGridViewTextBoxColumn();
+            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
+            VALOR = new DataGridViewTextBoxColumn();
+            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
+            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             tabPageMensalidade = new TabPage();
             btnHora = new DataGridViewImageColumn();
             lblMensagem = new Label();
@@ -114,12 +120,6 @@
             tabPageMatricula = new TabPage();
             dtgTurmasCadastradas = new DataGridView();
             lblUsuarioCarregado = new Label();
-            MODALIDADE1 = new DataGridViewTextBoxColumn();
-            VENCIMENTO2 = new DataGridViewTextBoxColumn();
-            DATA_PAGAMENTO = new DataGridViewTextBoxColumn();
-            VALOR = new DataGridViewTextBoxColumn();
-            SITUACAO_MENSALIDADE = new DataGridViewTextBoxColumn();
-            STATUS_MENSALIDADE = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -449,6 +449,61 @@
             dtgMensalidades.Size = new Size(817, 477);
             dtgMensalidades.TabIndex = 13;
             // 
+            // MODALIDADE1
+            // 
+            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
+            MODALIDADE1.HeaderText = "MODALIDADE";
+            MODALIDADE1.MinimumWidth = 6;
+            MODALIDADE1.Name = "MODALIDADE1";
+            MODALIDADE1.ReadOnly = true;
+            MODALIDADE1.Width = 159;
+            // 
+            // VENCIMENTO2
+            // 
+            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
+            VENCIMENTO2.HeaderText = "VENCIMENTO";
+            VENCIMENTO2.MinimumWidth = 6;
+            VENCIMENTO2.Name = "VENCIMENTO2";
+            VENCIMENTO2.ReadOnly = true;
+            VENCIMENTO2.Width = 190;
+            // 
+            // DATA_PAGAMENTO
+            // 
+            DATA_PAGAMENTO.DataPropertyName = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
+            DATA_PAGAMENTO.MinimumWidth = 6;
+            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
+            DATA_PAGAMENTO.ReadOnly = true;
+            DATA_PAGAMENTO.Width = 190;
+            // 
+            // VALOR
+            // 
+            VALOR.DataPropertyName = "VALOR";
+            VALOR.HeaderText = "VALOR";
+            VALOR.MinimumWidth = 6;
+            VALOR.Name = "VALOR";
+            VALOR.ReadOnly = true;
+            VALOR.Width = 135;
+            // 
+            // SITUACAO_MENSALIDADE
+            // 
+            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
+            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
+            SITUACAO_MENSALIDADE.MinimumWidth = 6;
+            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
+            SITUACAO_MENSALIDADE.ReadOnly = true;
+            SITUACAO_MENSALIDADE.Visible = false;
+            SITUACAO_MENSALIDADE.Width = 125;
+            // 
+            // STATUS_MENSALIDADE
+            // 
+            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
+            STATUS_MENSALIDADE.MinimumWidth = 6;
+            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
+            STATUS_MENSALIDADE.ReadOnly = true;
+            STATUS_MENSALIDADE.Width = 140;
+            // 
             // tabPageMensalidade
             // 
             tabPageMensalidade.Controls.Add(dtgMensalidades);
@@ -458,7 +513,7 @@
             tabPageMensalidade.Controls.Add(pictureBox4);
             tabPageMensalidade.Location = new Point(4, 29);
             tabPageMensalidade.Name = "tabPageMensalidade";
-            tabPageMensalidade.Size = new Size(838, 584);
+            tabPageMensalidade.Size = new Size(1378, 641);
             tabPageMensalidade.TabIndex = 2;
             tabPageMensalidade.Text = "Mensalidade";
             tabPageMensalidade.UseVisualStyleBackColor = true;
@@ -811,7 +866,7 @@
             tabPageCadastro.Location = new Point(4, 29);
             tabPageCadastro.Name = "tabPageCadastro";
             tabPageCadastro.Padding = new Padding(3);
-            tabPageCadastro.Size = new Size(838, 584);
+            tabPageCadastro.Size = new Size(837, 641);
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
@@ -972,7 +1027,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnSalvar, btnExcluir });
             toolStrip1.Location = new Point(3, 3);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(832, 39);
+            toolStrip1.Size = new Size(831, 39);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -1010,11 +1065,11 @@
             tcAluno.Controls.Add(tabPageCadastro);
             tcAluno.Controls.Add(tabPageMatricula);
             tcAluno.Controls.Add(tabPageMensalidade);
-            tcAluno.Dock = DockStyle.Top;
+            tcAluno.Dock = DockStyle.Fill;
             tcAluno.Location = new Point(0, 0);
             tcAluno.Name = "tcAluno";
             tcAluno.SelectedIndex = 0;
-            tcAluno.Size = new Size(846, 617);
+            tcAluno.Size = new Size(845, 674);
             tcAluno.TabIndex = 1;
             // 
             // tabPageMatricula
@@ -1038,7 +1093,7 @@
             tabPageMatricula.Location = new Point(4, 29);
             tabPageMatricula.Name = "tabPageMatricula";
             tabPageMatricula.Padding = new Padding(3);
-            tabPageMatricula.Size = new Size(838, 584);
+            tabPageMatricula.Size = new Size(1378, 641);
             tabPageMatricula.TabIndex = 1;
             tabPageMatricula.Text = "Matrícula";
             tabPageMatricula.UseVisualStyleBackColor = true;
@@ -1065,61 +1120,6 @@
             lblUsuarioCarregado.Size = new Size(0, 20);
             lblUsuarioCarregado.TabIndex = 8;
             // 
-            // MODALIDADE1
-            // 
-            MODALIDADE1.DataPropertyName = "NOME_MODALIDADE";
-            MODALIDADE1.HeaderText = "MODALIDADE";
-            MODALIDADE1.MinimumWidth = 6;
-            MODALIDADE1.Name = "MODALIDADE1";
-            MODALIDADE1.ReadOnly = true;
-            MODALIDADE1.Width = 159;
-            // 
-            // VENCIMENTO2
-            // 
-            VENCIMENTO2.DataPropertyName = "DATA_VENCIMENTO";
-            VENCIMENTO2.HeaderText = "VENCIMENTO";
-            VENCIMENTO2.MinimumWidth = 6;
-            VENCIMENTO2.Name = "VENCIMENTO2";
-            VENCIMENTO2.ReadOnly = true;
-            VENCIMENTO2.Width = 190;
-            // 
-            // DATA_PAGAMENTO
-            // 
-            DATA_PAGAMENTO.DataPropertyName = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.HeaderText = "DATA DO PAGAMENTO";
-            DATA_PAGAMENTO.MinimumWidth = 6;
-            DATA_PAGAMENTO.Name = "DATA_PAGAMENTO";
-            DATA_PAGAMENTO.ReadOnly = true;
-            DATA_PAGAMENTO.Width = 190;
-            // 
-            // VALOR
-            // 
-            VALOR.DataPropertyName = "VALOR";
-            VALOR.HeaderText = "VALOR";
-            VALOR.MinimumWidth = 6;
-            VALOR.Name = "VALOR";
-            VALOR.ReadOnly = true;
-            VALOR.Width = 135;
-            // 
-            // SITUACAO_MENSALIDADE
-            // 
-            SITUACAO_MENSALIDADE.DataPropertyName = "SITUACAO";
-            SITUACAO_MENSALIDADE.HeaderText = "SITUACAO";
-            SITUACAO_MENSALIDADE.MinimumWidth = 6;
-            SITUACAO_MENSALIDADE.Name = "SITUACAO_MENSALIDADE";
-            SITUACAO_MENSALIDADE.ReadOnly = true;
-            SITUACAO_MENSALIDADE.Visible = false;
-            SITUACAO_MENSALIDADE.Width = 125;
-            // 
-            // STATUS_MENSALIDADE
-            // 
-            STATUS_MENSALIDADE.DataPropertyName = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.HeaderText = "SITUAÇÃO";
-            STATUS_MENSALIDADE.MinimumWidth = 6;
-            STATUS_MENSALIDADE.Name = "STATUS_MENSALIDADE";
-            STATUS_MENSALIDADE.ReadOnly = true;
-            STATUS_MENSALIDADE.Width = 140;
-            // 
             // ucControleAlunos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1128,7 +1128,7 @@
             Controls.Add(lblUsuarioCarregado);
             Controls.Add(tcAluno);
             Name = "ucControleAlunos";
-            Size = new Size(846, 650);
+            Size = new Size(845, 674);
             Load += ucControleAlunos_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             groupBox2.ResumeLayout(false);
