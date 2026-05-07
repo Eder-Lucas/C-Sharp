@@ -109,12 +109,12 @@ namespace Academia
                 if (situacaoCaixa)
                 {
                     lblCaixa.Text = "ABERTO";
-                    lblCaixa.ForeColor = Color.DarkGreen;
+                    lblCaixa.ForeColor = Color.FromArgb(68, 255, 68);
                 }
                 else
                 {
                     lblCaixa.Text = "FECHADO";
-                    lblCaixa.ForeColor = Color.Firebrick;
+                    lblCaixa.ForeColor = Color.FromArgb(247, 68, 68);
                 }
             }
             catch (Exception ex)

@@ -33,6 +33,7 @@
             btnProfessor = new Button();
             pnlMenu = new Panel();
             pnlDecoração = new Panel();
+            label2 = new Label();
             label1 = new Label();
             lblCaixa = new Label();
             btnConfiguracao = new Button();
@@ -40,7 +41,6 @@
             btnTurma = new Button();
             btnModalidade = new Button();
             btnAluno = new Button();
-            label2 = new Label();
             pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -96,6 +96,19 @@
             pnlDecoração.Name = "pnlDecoração";
             pnlDecoração.Size = new Size(5, 36);
             pnlDecoração.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Arial", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(12, 649);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 16);
+            label2.TabIndex = 5;
+            label2.Text = "V 0.0.1";
             // 
             // label1
             // 
@@ -210,19 +223,6 @@
             btnAluno.Text = "  Alunos";
             btnAluno.UseVisualStyleBackColor = true;
             btnAluno.Click += btnAluno_Click;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label2.AutoSize = true;
-            label2.FlatStyle = FlatStyle.Flat;
-            label2.Font = new Font("Arial", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(12, 649);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 16);
-            label2.TabIndex = 5;
-            label2.Text = "V 0.0.1";
             // 
             // frmPrincipal
             // 
