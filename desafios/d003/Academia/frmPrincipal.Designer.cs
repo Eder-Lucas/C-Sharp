@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             pnlConteudo = new Panel();
+            pnlDecoração = new Panel();
             btnProfessor = new Button();
             pnlMenu = new Panel();
-            pnlDecoração = new Panel();
             label2 = new Label();
             label1 = new Label();
             lblCaixa = new Label();
@@ -41,6 +41,7 @@
             btnTurma = new Button();
             btnModalidade = new Button();
             btnAluno = new Button();
+            btnHome = new Button();
             pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,8 +50,17 @@
             pnlConteudo.Dock = DockStyle.Fill;
             pnlConteudo.Location = new Point(243, 0);
             pnlConteudo.Name = "pnlConteudo";
-            pnlConteudo.Size = new Size(1143, 674);
+            pnlConteudo.Size = new Size(1063, 668);
             pnlConteudo.TabIndex = 1;
+            // 
+            // pnlDecoração
+            // 
+            pnlDecoração.BackColor = Color.White;
+            pnlDecoração.Location = new Point(0, 601);
+            pnlDecoração.Name = "pnlDecoração";
+            pnlDecoração.Size = new Size(5, 36);
+            pnlDecoração.TabIndex = 0;
+            pnlDecoração.Visible = false;
             // 
             // btnProfessor
             // 
@@ -61,7 +71,7 @@
             btnProfessor.ForeColor = SystemColors.ControlDark;
             btnProfessor.Image = Properties.Resources.professoresIcon_cinza;
             btnProfessor.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProfessor.Location = new Point(0, 198);
+            btnProfessor.Location = new Point(0, 229);
             btnProfessor.Name = "btnProfessor";
             btnProfessor.Padding = new Padding(45, 0, 5, 0);
             btnProfessor.Size = new Size(243, 36);
@@ -83,19 +93,12 @@
             pnlMenu.Controls.Add(btnModalidade);
             pnlMenu.Controls.Add(btnAluno);
             pnlMenu.Controls.Add(btnProfessor);
+            pnlMenu.Controls.Add(btnHome);
             pnlMenu.Dock = DockStyle.Left;
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(243, 674);
+            pnlMenu.Size = new Size(243, 668);
             pnlMenu.TabIndex = 3;
-            // 
-            // pnlDecoração
-            // 
-            pnlDecoração.BackColor = Color.White;
-            pnlDecoração.Location = new Point(0, 249);
-            pnlDecoração.Name = "pnlDecoração";
-            pnlDecoração.Size = new Size(5, 36);
-            pnlDecoração.TabIndex = 0;
             // 
             // label2
             // 
@@ -104,11 +107,11 @@
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Arial", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(12, 649);
+            label2.Location = new Point(12, 643);
             label2.Name = "label2";
-            label2.Size = new Size(49, 16);
+            label2.Size = new Size(184, 16);
             label2.TabIndex = 5;
-            label2.Text = "V 0.0.1";
+            label2.Text = "ICS v0.0.1 by Cactus System";
             // 
             // label1
             // 
@@ -117,7 +120,7 @@
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonHighlight;
-            label1.Location = new Point(21, 575);
+            label1.Location = new Point(21, 569);
             label1.Name = "label1";
             label1.Size = new Size(84, 28);
             label1.TabIndex = 5;
@@ -129,13 +132,14 @@
             lblCaixa.AutoSize = true;
             lblCaixa.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCaixa.ForeColor = SystemColors.ControlText;
-            lblCaixa.Location = new Point(105, 575);
+            lblCaixa.Location = new Point(105, 569);
             lblCaixa.Name = "lblCaixa";
             lblCaixa.Size = new Size(0, 28);
             lblCaixa.TabIndex = 5;
             // 
             // btnConfiguracao
             // 
+            btnConfiguracao.BackColor = Color.FromArgb(9, 0, 94);
             btnConfiguracao.Cursor = Cursors.Hand;
             btnConfiguracao.FlatAppearance.BorderSize = 0;
             btnConfiguracao.FlatStyle = FlatStyle.Flat;
@@ -143,13 +147,13 @@
             btnConfiguracao.ForeColor = SystemColors.ControlDark;
             btnConfiguracao.Image = Properties.Resources.configuracaoIcon_cinza;
             btnConfiguracao.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfiguracao.Location = new Point(0, 453);
+            btnConfiguracao.Location = new Point(0, 474);
             btnConfiguracao.Name = "btnConfiguracao";
             btnConfiguracao.Padding = new Padding(45, 0, 0, 0);
             btnConfiguracao.Size = new Size(243, 36);
             btnConfiguracao.TabIndex = 2;
             btnConfiguracao.Text = "   Configurações";
-            btnConfiguracao.UseVisualStyleBackColor = true;
+            btnConfiguracao.UseVisualStyleBackColor = false;
             btnConfiguracao.Click += btnConfiguracao_Click;
             // 
             // btnCaixa
@@ -161,7 +165,7 @@
             btnCaixa.ForeColor = SystemColors.ControlDark;
             btnCaixa.Image = Properties.Resources.caixaIcon_cinza;
             btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCaixa.Location = new Point(0, 402);
+            btnCaixa.Location = new Point(0, 425);
             btnCaixa.Name = "btnCaixa";
             btnCaixa.Padding = new Padding(45, 0, 48, 0);
             btnCaixa.Size = new Size(243, 36);
@@ -179,7 +183,7 @@
             btnTurma.ForeColor = SystemColors.ControlDark;
             btnTurma.Image = Properties.Resources.turmasIcon_cinza;
             btnTurma.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTurma.Location = new Point(0, 351);
+            btnTurma.Location = new Point(0, 376);
             btnTurma.Name = "btnTurma";
             btnTurma.Padding = new Padding(45, 0, 48, 0);
             btnTurma.Size = new Size(243, 36);
@@ -197,7 +201,7 @@
             btnModalidade.ForeColor = SystemColors.ControlDark;
             btnModalidade.Image = Properties.Resources.modalidadesIcon_cinza;
             btnModalidade.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModalidade.Location = new Point(0, 300);
+            btnModalidade.Location = new Point(0, 327);
             btnModalidade.Name = "btnModalidade";
             btnModalidade.Padding = new Padding(45, 0, 3, 0);
             btnModalidade.Size = new Size(243, 36);
@@ -212,10 +216,10 @@
             btnAluno.FlatAppearance.BorderSize = 0;
             btnAluno.FlatStyle = FlatStyle.Flat;
             btnAluno.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAluno.ForeColor = SystemColors.ButtonHighlight;
-            btnAluno.Image = Properties.Resources.alunosIcon_branco;
+            btnAluno.ForeColor = SystemColors.ControlDark;
+            btnAluno.Image = Properties.Resources.alunosIcon_cinza;
             btnAluno.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAluno.Location = new Point(0, 249);
+            btnAluno.Location = new Point(0, 278);
             btnAluno.Name = "btnAluno";
             btnAluno.Padding = new Padding(45, 0, 48, 0);
             btnAluno.Size = new Size(243, 36);
@@ -224,17 +228,35 @@
             btnAluno.UseVisualStyleBackColor = true;
             btnAluno.Click += btnAluno_Click;
             // 
+            // btnHome
+            // 
+            btnHome.Cursor = Cursors.Hand;
+            btnHome.FlatAppearance.BorderSize = 0;
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHome.ForeColor = SystemColors.ControlDark;
+            btnHome.Image = Properties.Resources.inicioIcon_cinza;
+            btnHome.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHome.Location = new Point(0, 180);
+            btnHome.Name = "btnHome";
+            btnHome.Padding = new Padding(45, 0, 48, 0);
+            btnHome.Size = new Size(243, 36);
+            btnHome.TabIndex = 6;
+            btnHome.Text = "Início";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnHome_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1386, 674);
+            ClientSize = new Size(1306, 668);
             Controls.Add(pnlConteudo);
             Controls.Add(pnlMenu);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SCA - Sistema de Controle de Academia";
+            Text = "ICS - Gerenciamento de Academia";
             Load += frmPrincipal_Load;
             pnlMenu.ResumeLayout(false);
             pnlMenu.PerformLayout();
@@ -254,5 +276,6 @@
         private Panel pnlDecoração;
         private Label label1;
         private Label label2;
+        private Button btnHome;
     }
 }
