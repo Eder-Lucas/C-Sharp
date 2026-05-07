@@ -283,6 +283,16 @@ namespace Academia.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap home {
+            get {
+                object obj = ResourceManager.GetObject("home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_filtro {
             get {
                 object obj = ResourceManager.GetObject("icon-filtro", resourceCulture);
@@ -296,6 +306,26 @@ namespace Academia.Properties {
         internal static System.Drawing.Bitmap icon_relatorioCaixa {
             get {
                 object obj = ResourceManager.GetObject("icon-relatorioCaixa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap inicioIcon_branco {
+            get {
+                object obj = ResourceManager.GetObject("inicioIcon_branco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap inicioIcon_cinza {
+            get {
+                object obj = ResourceManager.GetObject("inicioIcon_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
