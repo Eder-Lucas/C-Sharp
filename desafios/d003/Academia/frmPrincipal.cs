@@ -23,6 +23,7 @@ namespace Academia
         private readonly ucConfiguracoes configuracoes = new();
         private readonly ucAlunos alunos = new();
         private ucCaixa? caixa = null;
+        private readonly ucHome home = new();
 
         private Dictionary<Button, (Image normal, Image ativo)> icones;
 
@@ -36,21 +37,18 @@ namespace Academia
                 Navegacao.PanelPrincipal = pnlConteudo;
 
                 novaConexao.Open();
-                MessageBox.Show("Conexão com o banco de dados realizada!");
 
                 MatriculaService matriculaService = new();
                 matriculaService.GerarMensalidade();
 
                 VerificaSituacaoCaixa();
+
+                Navegacao.AbrirUc(home);
+                SelecionaBotao(btnHome);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao tentar se conectar ao banco de dados: {ex.Message}");
-            }
-            // Executa sempre
-            finally
-            {
-                MessageBox.Show("Bem Vindo ao sistema de academia!");
             }
         }
 
@@ -58,14 +56,14 @@ namespace Academia
         private void btnAluno_Click(object sender, EventArgs e)
         {
             Navegacao.AbrirUc(alunos);
-                
+
             SelecionaBotao(btnAluno);
         }
 
         private void btnProfessor_Click(object sender, EventArgs e)
         {
             Navegacao.AbrirUc(professores);
-            
+
             SelecionaBotao(btnProfessor);
         }
 
@@ -96,6 +94,12 @@ namespace Academia
             Navegacao.AbrirUc(configuracoes);
 
             SelecionaBotao(btnConfiguracao);
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Navegacao.AbrirUc(home);
+            SelecionaBotao(btnHome);
         }
 
         // Manipula a visualização do label dependendo da situação do caixa
@@ -129,11 +133,14 @@ namespace Academia
             {
                 item.Key.ForeColor = SystemColors.ControlDark;
                 item.Key.Image = item.Value.normal;
+                item.Key.BackColor = Color.FromArgb(9, 0, 94);
             }
 
             btnSelecionado.ForeColor = SystemColors.ButtonHighlight;
             btnSelecionado.Image = icones[btnSelecionado].ativo;
+            btnSelecionado.BackColor = Color.FromArgb(36, 36, 163);
 
+            pnlDecoração.Visible = true;
             pnlDecoração.Height = btnSelecionado.Height;
             pnlDecoração.Top = btnSelecionado.Top;
 
@@ -150,8 +157,9 @@ namespace Academia
                 { btnModalidade, (Properties.Resources.modalidadesIcon_cinza, Properties.Resources.modalidadesIcon_branco) },
                 { btnTurma, (Properties.Resources.turmasIcon_cinza, Properties.Resources.turmasIcon_branco) },
                 { btnCaixa, (Properties.Resources.caixaIcon_cinza, Properties.Resources.caixaIcon_branco) },
-                { btnConfiguracao, (Properties.Resources.configuracaoIcon_cinza, Properties.Resources.configuracaoIcon_branco) }
+                { btnConfiguracao, (Properties.Resources.configuracaoIcon_cinza, Properties.Resources.configuracaoIcon_branco) },
+                { btnHome, (Properties.Resources.inicioIcon_cinza, Properties.Resources.inicioIcon_branco) }
             };
-    }
+        }
     }
 }
