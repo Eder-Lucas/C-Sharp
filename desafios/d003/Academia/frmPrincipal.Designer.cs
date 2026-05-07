@@ -29,173 +29,230 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            toolStrip1 = new ToolStrip();
-            btnProfessor = new ToolStripButton();
-            btnAlunos = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
-            btnModalidades = new ToolStripButton();
-            btnTurmas = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            btnCaixa = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            btnConfig = new ToolStripButton();
-            lblCaixa = new ToolStripLabel();
-            toolStripLabel1 = new ToolStripLabel();
             pnlConteudo = new Panel();
-            toolStrip1.SuspendLayout();
+            btnProfessor = new Button();
+            pnlMenu = new Panel();
+            pnlDecoração = new Panel();
+            label1 = new Label();
+            lblCaixa = new Label();
+            btnConfiguracao = new Button();
+            btnCaixa = new Button();
+            btnTurma = new Button();
+            btnModalidade = new Button();
+            btnAluno = new Button();
+            label2 = new Label();
+            pnlMenu.SuspendLayout();
             SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnProfessor, btnAlunos, toolStripSeparator1, btnModalidades, btnTurmas, toolStripSeparator2, btnCaixa, toolStripButton2, btnConfig, lblCaixa, toolStripLabel1 });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 59);
-            toolStrip1.TabIndex = 0;
-            toolStrip1.Text = "toolStrip1";
-            // 
-            // btnProfessor
-            // 
-            btnProfessor.Image = Properties.Resources.icon_professores;
-            btnProfessor.ImageScaling = ToolStripItemImageScaling.None;
-            btnProfessor.ImageTransparentColor = Color.Magenta;
-            btnProfessor.Name = "btnProfessor";
-            btnProfessor.Size = new Size(88, 56);
-            btnProfessor.Text = "Professores";
-            btnProfessor.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnProfessor.Click += btnProfessor_Click;
-            // 
-            // btnAlunos
-            // 
-            btnAlunos.Image = Properties.Resources.icon_alunos;
-            btnAlunos.ImageScaling = ToolStripItemImageScaling.None;
-            btnAlunos.ImageTransparentColor = Color.Magenta;
-            btnAlunos.Name = "btnAlunos";
-            btnAlunos.Size = new Size(58, 56);
-            btnAlunos.Text = "Alunos";
-            btnAlunos.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnAlunos.Click += btnAlunos_Click;
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 59);
-            // 
-            // btnModalidades
-            // 
-            btnModalidades.Image = Properties.Resources.icon_modalidades;
-            btnModalidades.ImageScaling = ToolStripItemImageScaling.None;
-            btnModalidades.ImageTransparentColor = Color.Magenta;
-            btnModalidades.Name = "btnModalidades";
-            btnModalidades.Size = new Size(100, 56);
-            btnModalidades.Text = "Modalidades";
-            btnModalidades.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnModalidades.Click += btnModalidades_Click;
-            // 
-            // btnTurmas
-            // 
-            btnTurmas.Image = Properties.Resources.icon_turma;
-            btnTurmas.ImageScaling = ToolStripItemImageScaling.None;
-            btnTurmas.ImageTransparentColor = Color.Magenta;
-            btnTurmas.Name = "btnTurmas";
-            btnTurmas.Size = new Size(61, 56);
-            btnTurmas.Text = "Turmas";
-            btnTurmas.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnTurmas.Click += btnTurmas_Click;
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 59);
-            // 
-            // btnCaixa
-            // 
-            btnCaixa.Image = Properties.Resources.icon_caixa;
-            btnCaixa.ImageScaling = ToolStripItemImageScaling.None;
-            btnCaixa.ImageTransparentColor = Color.Magenta;
-            btnCaixa.Name = "btnCaixa";
-            btnCaixa.Size = new Size(49, 56);
-            btnCaixa.Text = "Caixa";
-            btnCaixa.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnCaixa.Click += btnCaixa_Click;
-            // 
-            // toolStripButton2
-            // 
-            toolStripButton2.Image = Properties.Resources.icon_relatorioCaixa;
-            toolStripButton2.ImageScaling = ToolStripItemImageScaling.None;
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(135, 56);
-            toolStripButton2.Text = "Relatório de Caixa";
-            toolStripButton2.TextImageRelation = TextImageRelation.ImageAboveText;
-            // 
-            // btnConfig
-            // 
-            btnConfig.Image = Properties.Resources.configuracoes;
-            btnConfig.ImageScaling = ToolStripItemImageScaling.None;
-            btnConfig.ImageTransparentColor = Color.Magenta;
-            btnConfig.Name = "btnConfig";
-            btnConfig.Size = new Size(108, 56);
-            btnConfig.Text = "Configurações";
-            btnConfig.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnConfig.Click += btnConfig_Click;
-            // 
-            // lblCaixa
-            // 
-            lblCaixa.Alignment = ToolStripItemAlignment.Right;
-            lblCaixa.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCaixa.Name = "lblCaixa";
-            lblCaixa.Size = new Size(0, 56);
-            // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Alignment = ToolStripItemAlignment.Right;
-            toolStripLabel1.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(58, 56);
-            toolStripLabel1.Text = "Caixa:";
             // 
             // pnlConteudo
             // 
             pnlConteudo.Dock = DockStyle.Fill;
-            pnlConteudo.Location = new Point(0, 59);
+            pnlConteudo.Location = new Point(243, 0);
             pnlConteudo.Name = "pnlConteudo";
-            pnlConteudo.Size = new Size(800, 391);
+            pnlConteudo.Size = new Size(1143, 674);
             pnlConteudo.TabIndex = 1;
+            // 
+            // btnProfessor
+            // 
+            btnProfessor.Cursor = Cursors.Hand;
+            btnProfessor.FlatAppearance.BorderSize = 0;
+            btnProfessor.FlatStyle = FlatStyle.Flat;
+            btnProfessor.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnProfessor.ForeColor = SystemColors.ControlDark;
+            btnProfessor.Image = Properties.Resources.professoresIcon_cinza;
+            btnProfessor.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProfessor.Location = new Point(0, 198);
+            btnProfessor.Name = "btnProfessor";
+            btnProfessor.Padding = new Padding(45, 0, 5, 0);
+            btnProfessor.Size = new Size(243, 36);
+            btnProfessor.TabIndex = 2;
+            btnProfessor.Text = " Professores";
+            btnProfessor.UseVisualStyleBackColor = true;
+            btnProfessor.Click += btnProfessor_Click;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.BackColor = Color.FromArgb(9, 0, 94);
+            pnlMenu.Controls.Add(pnlDecoração);
+            pnlMenu.Controls.Add(label2);
+            pnlMenu.Controls.Add(label1);
+            pnlMenu.Controls.Add(lblCaixa);
+            pnlMenu.Controls.Add(btnConfiguracao);
+            pnlMenu.Controls.Add(btnCaixa);
+            pnlMenu.Controls.Add(btnTurma);
+            pnlMenu.Controls.Add(btnModalidade);
+            pnlMenu.Controls.Add(btnAluno);
+            pnlMenu.Controls.Add(btnProfessor);
+            pnlMenu.Dock = DockStyle.Left;
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(243, 674);
+            pnlMenu.TabIndex = 3;
+            // 
+            // pnlDecoração
+            // 
+            pnlDecoração.BackColor = Color.White;
+            pnlDecoração.Location = new Point(0, 249);
+            pnlDecoração.Name = "pnlDecoração";
+            pnlDecoração.Size = new Size(5, 36);
+            pnlDecoração.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(21, 575);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 28);
+            label1.TabIndex = 5;
+            label1.Text = "CAIXA";
+            // 
+            // lblCaixa
+            // 
+            lblCaixa.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblCaixa.AutoSize = true;
+            lblCaixa.Font = new Font("Arial Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCaixa.ForeColor = SystemColors.ControlText;
+            lblCaixa.Location = new Point(105, 575);
+            lblCaixa.Name = "lblCaixa";
+            lblCaixa.Size = new Size(0, 28);
+            lblCaixa.TabIndex = 5;
+            // 
+            // btnConfiguracao
+            // 
+            btnConfiguracao.Cursor = Cursors.Hand;
+            btnConfiguracao.FlatAppearance.BorderSize = 0;
+            btnConfiguracao.FlatStyle = FlatStyle.Flat;
+            btnConfiguracao.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConfiguracao.ForeColor = SystemColors.ControlDark;
+            btnConfiguracao.Image = Properties.Resources.configuracaoIcon_cinza;
+            btnConfiguracao.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfiguracao.Location = new Point(0, 453);
+            btnConfiguracao.Name = "btnConfiguracao";
+            btnConfiguracao.Padding = new Padding(45, 0, 0, 0);
+            btnConfiguracao.Size = new Size(243, 36);
+            btnConfiguracao.TabIndex = 2;
+            btnConfiguracao.Text = "   Configurações";
+            btnConfiguracao.UseVisualStyleBackColor = true;
+            btnConfiguracao.Click += btnConfiguracao_Click;
+            // 
+            // btnCaixa
+            // 
+            btnCaixa.Cursor = Cursors.Hand;
+            btnCaixa.FlatAppearance.BorderSize = 0;
+            btnCaixa.FlatStyle = FlatStyle.Flat;
+            btnCaixa.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCaixa.ForeColor = SystemColors.ControlDark;
+            btnCaixa.Image = Properties.Resources.caixaIcon_cinza;
+            btnCaixa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCaixa.Location = new Point(0, 402);
+            btnCaixa.Name = "btnCaixa";
+            btnCaixa.Padding = new Padding(45, 0, 48, 0);
+            btnCaixa.Size = new Size(243, 36);
+            btnCaixa.TabIndex = 2;
+            btnCaixa.Text = "Caixa";
+            btnCaixa.UseVisualStyleBackColor = true;
+            btnCaixa.Click += btnCaixa_Click;
+            // 
+            // btnTurma
+            // 
+            btnTurma.Cursor = Cursors.Hand;
+            btnTurma.FlatAppearance.BorderSize = 0;
+            btnTurma.FlatStyle = FlatStyle.Flat;
+            btnTurma.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTurma.ForeColor = SystemColors.ControlDark;
+            btnTurma.Image = Properties.Resources.turmasIcon_cinza;
+            btnTurma.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTurma.Location = new Point(0, 351);
+            btnTurma.Name = "btnTurma";
+            btnTurma.Padding = new Padding(45, 0, 48, 0);
+            btnTurma.Size = new Size(243, 36);
+            btnTurma.TabIndex = 2;
+            btnTurma.Text = "  Turmas";
+            btnTurma.UseVisualStyleBackColor = true;
+            btnTurma.Click += btnTurma_Click;
+            // 
+            // btnModalidade
+            // 
+            btnModalidade.Cursor = Cursors.Hand;
+            btnModalidade.FlatAppearance.BorderSize = 0;
+            btnModalidade.FlatStyle = FlatStyle.Flat;
+            btnModalidade.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModalidade.ForeColor = SystemColors.ControlDark;
+            btnModalidade.Image = Properties.Resources.modalidadesIcon_cinza;
+            btnModalidade.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModalidade.Location = new Point(0, 300);
+            btnModalidade.Name = "btnModalidade";
+            btnModalidade.Padding = new Padding(45, 0, 3, 0);
+            btnModalidade.Size = new Size(243, 36);
+            btnModalidade.TabIndex = 2;
+            btnModalidade.Text = "  Modalidades";
+            btnModalidade.UseVisualStyleBackColor = true;
+            btnModalidade.Click += btnModalidade_Click;
+            // 
+            // btnAluno
+            // 
+            btnAluno.Cursor = Cursors.Hand;
+            btnAluno.FlatAppearance.BorderSize = 0;
+            btnAluno.FlatStyle = FlatStyle.Flat;
+            btnAluno.Font = new Font("Bahnschrift SemiBold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAluno.ForeColor = SystemColors.ButtonHighlight;
+            btnAluno.Image = Properties.Resources.alunosIcon_branco;
+            btnAluno.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAluno.Location = new Point(0, 249);
+            btnAluno.Name = "btnAluno";
+            btnAluno.Padding = new Padding(45, 0, 48, 0);
+            btnAluno.Size = new Size(243, 36);
+            btnAluno.TabIndex = 2;
+            btnAluno.Text = "  Alunos";
+            btnAluno.UseVisualStyleBackColor = true;
+            btnAluno.Click += btnAluno_Click;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Arial", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(12, 649);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 16);
+            label2.TabIndex = 5;
+            label2.Text = "V 0.0.1";
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1386, 674);
             Controls.Add(pnlConteudo);
-            Controls.Add(toolStrip1);
+            Controls.Add(pnlMenu);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SCA - Sistema de Controle de Academia";
             Load += frmPrincipal_Load;
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            pnlMenu.ResumeLayout(false);
+            pnlMenu.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private ToolStrip toolStrip1;
-        private ToolStripButton btnProfessor;
-        private ToolStripButton btnAlunos;
-        private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton btnModalidades;
-        private ToolStripButton btnTurmas;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton btnCaixa;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton btnConfig;
-        private ToolStripLabel lblCaixa;
-        private ToolStripLabel toolStripLabel1;
         private Panel pnlConteudo;
+        private Button btnProfessor;
+        private Panel pnlMenu;
+        private Button btnModalidade;
+        private Button btnAluno;
+        private Button btnConfiguracao;
+        private Button btnCaixa;
+        private Button btnTurma;
+        private Label lblCaixa;
+        private Panel pnlDecoração;
+        private Label label1;
+        private Label label2;
     }
 }
