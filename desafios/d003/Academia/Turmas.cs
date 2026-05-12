@@ -177,6 +177,56 @@ namespace Academia
             }
         }
 
+        public DataTable PesquisaTurma(string modalidade)
+        {
+            try
+            {
+                SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 
+                        t.ID_TURMA,
+                        t.MAXIMO_ALUNOS,
+                        t.NUMERO_TURMA,
+                        md.NOME_MODALIDADE,
+                        (t.MAXIMO_ALUNOS - COUNT(m.ID_MATRICULA)) AS VAGAS
+                    
+                    FROM Turma t
+                
+                    LEFT JOIN Matricula m 
+                        ON m.ID_TURMA = t.ID_TURMA
+                        AND SITUACAO = 1
+                
+                    INNER JOIN Modalidade md 
+                        ON t.ID_MODALIDADE = md.ID_MODALIDADE
+
+                     WHERE md.NOME_MODALIDADE COLLATE Latin1_General_CI_AI LIKE @modalidade + '%'
+               
+                    GROUP BY
+                        t.ID_TURMA,
+                        t.NUMERO_TURMA,
+                        t.MAXIMO_ALUNOS,
+                        md.NOME_MODALIDADE                  
+                   
+                    ORDER BY t.ID_TURMA DESC
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@modalidade", SqlDbType.VarChar).Value = modalidade;
+
+                DataTable tabela = new();
+                tabela.Load(cmd.ExecuteReader());
+
+                return tabela;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public int QuantidadeMatriculas(int idTurma)
         {
             try

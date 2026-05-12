@@ -280,5 +280,10 @@ namespace Academia
             if (semDados)
                 lblMensagem.Text = msg;
         }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            dtgTurmas.DataSource = novaTurma.PesquisaTurma(txtPesquisa.Text);
+        }
     }
 }
