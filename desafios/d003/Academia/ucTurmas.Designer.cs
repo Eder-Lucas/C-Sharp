@@ -316,6 +316,7 @@
             // 
             // txtAluno
             // 
+            txtAluno.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAluno.Location = new Point(282, 89);
             txtAluno.Name = "txtAluno";
             txtAluno.Size = new Size(91, 27);
@@ -324,6 +325,7 @@
             // 
             // txtTurma
             // 
+            txtTurma.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTurma.Location = new Point(98, 89);
             txtTurma.Name = "txtTurma";
             txtTurma.Size = new Size(94, 27);
@@ -364,10 +366,12 @@
             // 
             // txtPesquisa
             // 
+            txtPesquisa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPesquisa.Location = new Point(6, 56);
             txtPesquisa.Name = "txtPesquisa";
-            txtPesquisa.Size = new Size(354, 28);
+            txtPesquisa.Size = new Size(354, 27);
             txtPesquisa.TabIndex = 3;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // label4
             // 
