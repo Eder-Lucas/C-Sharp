@@ -222,5 +222,21 @@ namespace Academia
             RETIRADA,
             PAGAMENTO
         }
+
+        // Filtro de movimento
+        private void cboMovimento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string movimento = cboMovimento.SelectedValue?.ToString() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(movimento)) return;
+
+            if (movimento == "T")
+            {
+                ListarDetalhesCaixa();
+                return;
+            }
+
+            dtgCaixa.DataSource = novoCaixa.PesquisarMovimento(movimento);
+        }
     }
 }

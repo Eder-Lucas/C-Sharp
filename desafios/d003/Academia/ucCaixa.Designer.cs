@@ -405,11 +405,11 @@
             cboMovimento.DropDownStyle = ComboBoxStyle.DropDownList;
             cboMovimento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboMovimento.FormattingEnabled = true;
-            cboMovimento.Items.AddRange(new object[] { "Todos", "Suprimento", "Retirada" });
             cboMovimento.Location = new Point(6, 54);
             cboMovimento.Name = "cboMovimento";
             cboMovimento.Size = new Size(205, 27);
             cboMovimento.TabIndex = 12;
+            cboMovimento.SelectedIndexChanged += cboMovimento_SelectedIndexChanged;
             // 
             // groupBox3
             // 
