@@ -191,6 +191,7 @@ namespace Academia
                 using SqlCommand cmd = new(sql, conexao);
                 cmd.Parameters.Add("@saldoInicial", SqlDbType.Decimal).Value = saldoInicial;
                 cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
+
                 // Validação para evitar valores nulos retornados pela consulta
                 using SqlDataReader leitor = cmd.ExecuteReader();
                 if (leitor.Read())
@@ -300,6 +301,31 @@ namespace Academia
             catch (Exception ex)
             {
                 throw new Exception("Erro ao obter caixa aberto", ex);
+            }
+        }
+
+        // Verifica se o caixa está aberto
+        public bool CaixaAberto(int idCaixa)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT SITUACAO
+                    FROM Caixa
+                    WHERE ID_CAIXA = @idCaixa
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
+
+                return Convert.ToBoolean(cmd.ExecuteScalar()) == true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao verificar situação do caixa: {idCaixa}. {ex.Message}", ex);
             }
         }
     }
