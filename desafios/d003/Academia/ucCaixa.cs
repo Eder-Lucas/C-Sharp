@@ -33,10 +33,17 @@ namespace Academia
             ListarDetalhesCaixa();
 
             // Carrega os tipos de movimento para o comboBox
-            var filtro = novoCaixa.FiltroMovimento().ToList();         
+            var filtroMovimento = novoCaixa.ObterFiltro("Movimento").ToList();
             cboMovimento.DisplayMember = "Key";
             cboMovimento.ValueMember = "Value";
-            cboMovimento.DataSource = filtro;
+            cboMovimento.DataSource = filtroMovimento;
+            cboMovimento.SelectedIndex = 0;
+
+            var filtroPagamento = novoCaixa.ObterFiltro("Pagamento").ToList();
+            cboTipoPagamento.DisplayMember = "Key";
+            cboTipoPagamento.ValueMember = "Value";
+            cboTipoPagamento.DataSource = filtroPagamento;
+            cboTipoPagamento.SelectedIndex = 0;
 
             // Impede o flicker (piscadas ao carregar o uc)
             typeof(DataGridView)
@@ -139,6 +146,8 @@ namespace Academia
 
             lblCaixaId.Text = $"Caixa #{idCaixa}";
             lblDataAbertura.Text = $"Aberto em: {dia:dd/MM/yyyy} às {hora:hh\\:mm\\:ss}";
+
+            dtpDataPagamento.Value = dia;
         }
 
         public void ListarDetalhesCaixa()
@@ -231,20 +240,16 @@ namespace Academia
             PAGAMENTO
         }
 
-        // Filtro de movimento
-        private void cboMovimento_SelectedIndexChanged(object sender, EventArgs e)
+        // Faz a pesquisa usando os filtros
+        private void EventoFiltro(object sender, EventArgs e)
         {
-            string movimento = cboMovimento.SelectedValue?.ToString() ?? string.Empty;
+            if (cboMovimento.SelectedValue == null || cboTipoPagamento.SelectedValue == null) return;
 
-            if (string.IsNullOrEmpty(movimento)) return;
+            string movimento = cboMovimento.SelectedValue.ToString() ?? "";
+            string pagamento = cboTipoPagamento.SelectedValue.ToString() ?? "";
+            DateTime data = dtpDataPagamento.Value.Date;
 
-            if (movimento == "T")
-            {
-                ListarDetalhesCaixa();
-                return;
-            }
-
-            dtgCaixa.DataSource = novoCaixa.PesquisarMovimento(idCaixa, movimento);
+            dtgCaixa.DataSource = novoCaixa.Pesquisar(idCaixa, movimento, pagamento, data);
         }
     }
 }

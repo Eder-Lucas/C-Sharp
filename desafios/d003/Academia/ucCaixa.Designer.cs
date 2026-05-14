@@ -358,6 +358,7 @@
             dtpDataPagamento.Name = "dtpDataPagamento";
             dtpDataPagamento.Size = new Size(167, 27);
             dtpDataPagamento.TabIndex = 13;
+            dtpDataPagamento.ValueChanged += EventoFiltro;
             // 
             // label3
             // 
@@ -394,11 +395,11 @@
             cboTipoPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTipoPagamento.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboTipoPagamento.FormattingEnabled = true;
-            cboTipoPagamento.Items.AddRange(new object[] { "PIX", "Dinheiro", "Cartão" });
             cboTipoPagamento.Location = new Point(229, 54);
             cboTipoPagamento.Name = "cboTipoPagamento";
             cboTipoPagamento.Size = new Size(205, 27);
             cboTipoPagamento.TabIndex = 12;
+            cboTipoPagamento.SelectedIndexChanged += EventoFiltro;
             // 
             // cboMovimento
             // 
@@ -409,7 +410,7 @@
             cboMovimento.Name = "cboMovimento";
             cboMovimento.Size = new Size(205, 27);
             cboMovimento.TabIndex = 12;
-            cboMovimento.SelectedIndexChanged += cboMovimento_SelectedIndexChanged;
+            cboMovimento.SelectedIndexChanged += EventoFiltro;
             // 
             // groupBox3
             // 
