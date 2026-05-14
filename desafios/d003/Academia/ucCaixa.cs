@@ -11,6 +11,7 @@ namespace Academia
     public partial class ucCaixa : UserControl
     {
         private readonly frmPrincipal formularioPrincipal;
+        private readonly int idCaixa;
 
         public ucCaixa(frmPrincipal formularioPrincipal)
         {
@@ -18,6 +19,7 @@ namespace Academia
             this.formularioPrincipal = formularioPrincipal;
 
             this.DoubleBuffered = true;
+            idCaixa = frmPrincipal.IdCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -242,7 +244,7 @@ namespace Academia
                 return;
             }
 
-            dtgCaixa.DataSource = novoCaixa.PesquisarMovimento(movimento);
+            dtgCaixa.DataSource = novoCaixa.PesquisarMovimento(idCaixa, movimento);
         }
     }
 }
