@@ -211,7 +211,7 @@ namespace Academia
             }
         }
 
-        public DataTable PesquisarMovimento(string tipoMovimento)
+        public DataTable PesquisarMovimento(int idCaixa, string tipoMovimento)
         {
             try
             {
@@ -225,12 +225,13 @@ namespace Academia
                         TIPO_PAGAMENTO,
                         TIPO_MOVIMENTO
                     FROM Transacao_Caixa
-                    WHERE MOVIMENTO = @tipoMovimento
+                    WHERE MOVIMENTO = @tipoMovimento AND ID_CAIXA = @idCaixa
                     ORDER BY ID_TRANSACAO DESC; 
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
                 cmd.Parameters.Add("@tipoMovimento", SqlDbType.VarChar, 20).Value = tipoMovimento;
+                cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
 
                 DataTable dadosTabela = new();
 
