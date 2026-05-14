@@ -30,6 +30,12 @@ namespace Academia
             AtualizaComponentes();
             ListarDetalhesCaixa();
 
+            // Carrega os tipos de movimento para o comboBox
+            var filtro = novoCaixa.FiltroMovimento().ToList();         
+            cboMovimento.DisplayMember = "Key";
+            cboMovimento.ValueMember = "Value";
+            cboMovimento.DataSource = filtro;
+
             // Impede o flicker (piscadas ao carregar o uc)
             typeof(DataGridView)
             .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
