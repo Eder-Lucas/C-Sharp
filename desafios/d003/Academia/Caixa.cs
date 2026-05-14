@@ -37,7 +37,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao salvar caixa", ex);
+                throw new Exception($"Erro ao salvar caixa. {ex.Message}", ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex);
+                throw new Exception($"Erro ao alterar situação do caixa: {idCaixa}. {ex.Message}", ex);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao salvar transação no caixa", ex);
+                throw new Exception($"Erro ao salvar transação no caixa: {idCaixa}. {ex.Message}", ex);
             }
         }
 
@@ -126,8 +126,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Erro ao salvar transação no caixa", ex);
+                throw new Exception($"Erro ao listar caixas. {ex.Message}", ex);
             }
         }
 
@@ -161,8 +160,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Erro ao listar transação do caixa", ex);
+                throw new Exception($"Erro ao listar transação do caixa: {idCaixa}. {ex.Message}", ex);
             }
         }
 
@@ -205,10 +203,10 @@ namespace Academia
 
                 return (0, 0, 0);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception($"Erro ao obter totais do caixa. {ex.Message}", ex);
             }
         }
 
@@ -248,7 +246,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pesquisar movimento", ex);
+                throw new Exception($"Erro ao tentar filtrar os dados. {ex.Message}", ex);
             }
         }
 
@@ -300,7 +298,7 @@ namespace Academia
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao obter caixa aberto", ex);
+                throw new Exception($"Erro ao obter caixa aberto. {ex.Message}", ex);
             }
         }
 
