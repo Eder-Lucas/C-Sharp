@@ -210,5 +210,110 @@ namespace Academia
                 throw;
             }
         }
+
+        public DataTable PesquisarMovimento(string tipoMovimento)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 
+                        VALOR,
+                        DATA_TRANSACAO,
+                        TIPO_PAGAMENTO,
+                        TIPO_MOVIMENTO
+                    FROM Transacao_Caixa
+                    WHERE MOVIMENTO = @tipoMovimento
+                    ORDER BY ID_TRANSACAO DESC; 
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@tipoMovimento", SqlDbType.VarChar, 20).Value = tipoMovimento;
+
+                DataTable dadosTabela = new();
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                dadosTabela.Load(leitor);
+
+                return dadosTabela;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar movimento", ex);
+            }
+        }
+
+        public void PesquisarPagamento(string tipoPagamento)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT 
+                        VALOR,
+                        DATA_TRANSACAO,
+                        TIPO_PAGAMENTO,
+                        TIPO_MOVIMENTO
+                    FROM Transacao_Caixa
+                    WHERE TIPO_PAGAMENTO = @tipoPagamento
+                    ORDER BY ID_TRANSACAO DESC;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@tipoPagamento", SqlDbType.VarChar, 20).Value = tipoPagamento;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao pesquisar pagamento", ex);
+            }
+        }
+
+        public void PesquisarData(DateTime dataPagamento)
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                dataPagamento = dataPagamento.Date; // Garante que a hora seja ignorada na comparação
+
+                string sql = """
+                    SELECT 
+                        VALOR,
+                        DATA_TRANSACAO,
+                        TIPO_PAGAMENTO,
+                        TIPO_MOVIMENTO
+                    FROM Transacao_Caixa
+                    WHERE CAST(DATA_TRANSACAO AS DATE) = CAST(@data AS DATE)
+                    ORDER BY ID_TRANSACAO DESC;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+                cmd.Parameters.Add("@data", SqlDbType.Date).Value = dataPagamento;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao listar pesquisar data", ex);
+            }
+        }
+
+        // Retorna os tipos de filtro disponíveis para pesquisa
+        public Dictionary<string, string> FiltroMovimento()
+        {
+            return new Dictionary<string, string>
+            {
+                { "Todos", "T" },
+                { "Entrada", "E" },
+                { "Retirada", "S" },
+            };
+        }
     }
 }
