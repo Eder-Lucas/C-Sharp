@@ -315,5 +315,30 @@ namespace Academia
                 { "Retirada", "S" },
             };
         }
+
+        // Retorna o ID do caixa aberto
+        public int ObterCaixaAberto()
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT TOP 1 ID_CAIXA
+                    FROM Caixa
+                    WHERE SITUACAO = 1
+                    ORDER BY ID_CAIXA DESC;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter caixa aberto", ex);
+            }
+        }
     }
 }
