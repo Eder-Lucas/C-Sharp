@@ -162,26 +162,6 @@ namespace Academia
             }
         }
 
-        private void PintarLinha()
-        {
-            foreach (DataGridViewRow linha in dtgCaixa.Rows)
-            {
-                // Pega o valor do tipo de movimento que está sendo verificado
-                // Em seguida converte para enum
-                if (linha.Cells["TIPO_MOVIMENTO"].Value is not string movimento) continue;
-
-                if (!Enum.TryParse(movimento, out TipoMovimento tipo)) continue;
-
-                // Aplica o estilo correspondete ao tipo usando o mapa
-                if (mapaMovimento.TryGetValue(tipo, out var estilo))
-                {
-                    linha.DefaultCellStyle.BackColor = estilo.fundo;
-                    linha.DefaultCellStyle.SelectionBackColor = estilo.selecao;
-                    linha.DefaultCellStyle.ForeColor = Color.White;
-                }
-            }
-        }
-
         private void dtgCaixa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
