@@ -211,7 +211,7 @@ namespace Academia
             }
         }
 
-        public DataTable PesquisarMovimento(int idCaixa, string tipoMovimento)
+        public DataTable Pesquisar(int idCaixa, string movimento, string pagamento, DateTime data)
         {
             try
             {
@@ -225,12 +225,17 @@ namespace Academia
                         TIPO_PAGAMENTO,
                         TIPO_MOVIMENTO
                     FROM Transacao_Caixa
-                    WHERE MOVIMENTO = @tipoMovimento AND ID_CAIXA = @idCaixa
+                    WHERE ID_CAIXA = @idCaixa
+                        AND (@tipoMovimento = '' OR MOVIMENTO = @tipoMovimento)
+                        AND (@tipoPagamento = '' OR TIPO_PAGAMENTO = @tipoPagamento)
+                        AND CAST(DATA_TRANSACAO AS DATE) >= CAST(@data AS DATE)
                     ORDER BY ID_TRANSACAO DESC; 
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
-                cmd.Parameters.Add("@tipoMovimento", SqlDbType.VarChar, 20).Value = tipoMovimento;
+                cmd.Parameters.Add("@tipoMovimento", SqlDbType.VarChar, 20).Value = movimento;
+                cmd.Parameters.Add("@tipoPagamento", SqlDbType.VarChar, 20).Value = pagamento;
+                cmd.Parameters.Add("@data", SqlDbType.Date).Value = data.Date;
                 cmd.Parameters.Add("@idCaixa", SqlDbType.Int).Value = idCaixa;
 
                 DataTable dadosTabela = new();
@@ -246,75 +251,31 @@ namespace Academia
             }
         }
 
-        public void PesquisarPagamento(string tipoPagamento)
-        {
-            try
-            {
-                using SqlConnection conexao = new(Conexao.StringConexao);
-                conexao.Open();
-
-                string sql = """
-                    SELECT 
-                        VALOR,
-                        DATA_TRANSACAO,
-                        TIPO_PAGAMENTO,
-                        TIPO_MOVIMENTO
-                    FROM Transacao_Caixa
-                    WHERE TIPO_PAGAMENTO = @tipoPagamento
-                    ORDER BY ID_TRANSACAO DESC;
-                """;
-
-                using SqlCommand cmd = new(sql, conexao);
-                cmd.Parameters.Add("@tipoPagamento", SqlDbType.VarChar, 20).Value = tipoPagamento;
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao pesquisar pagamento", ex);
-            }
-        }
-
-        public void PesquisarData(DateTime dataPagamento)
-        {
-            try
-            {
-                using SqlConnection conexao = new(Conexao.StringConexao);
-                conexao.Open();
-
-                dataPagamento = dataPagamento.Date; // Garante que a hora seja ignorada na comparação
-
-                string sql = """
-                    SELECT 
-                        VALOR,
-                        DATA_TRANSACAO,
-                        TIPO_PAGAMENTO,
-                        TIPO_MOVIMENTO
-                    FROM Transacao_Caixa
-                    WHERE CAST(DATA_TRANSACAO AS DATE) = CAST(@data AS DATE)
-                    ORDER BY ID_TRANSACAO DESC;
-                """;
-
-                using SqlCommand cmd = new(sql, conexao);
-                cmd.Parameters.Add("@data", SqlDbType.Date).Value = dataPagamento;
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao listar pesquisar data", ex);
-            }
-        }
-
         // Retorna os tipos de filtro disponíveis para pesquisa
-        public Dictionary<string, string> FiltroMovimento()
+        public Dictionary<string, string> ObterFiltro(string tipo)
         {
-            return new Dictionary<string, string>
+            if (tipo == "Movimento")
             {
-                { "Todos", "T" },
-                { "Entrada", "E" },
-                { "Retirada", "S" },
-            };
+                return new Dictionary<string, string>
+                {
+                    { "Todos", "" },
+                    { "Entrada", "E" },
+                    { "Retirada", "S" },
+                };
+            }
+
+            if (tipo == "Pagamento")
+            {
+                return new Dictionary<string, string>
+                {
+                    { "Todos", "" },
+                    { "Dinheiro", "DINHEIRO" },
+                    { "Pix", "PIX" },
+                    { "Cartão", "CARTÃO" }
+                };
+            }
+
+            return [];
         }
 
         // Retorna o ID do caixa aberto
