@@ -80,11 +80,9 @@ namespace Academia
 
                 if (fechar)
                 {
-                    DataTable dadosCaixa = novoCaixa.Listar();
-                    int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
-
                     // Fecha o caixa
                     novoCaixa.AlterarSituacao(idCaixa, false);
+
                     formularioPrincipal.VerificaSituacaoCaixa();
                     AtualizaComponentes();
 
@@ -113,11 +111,7 @@ namespace Academia
         // Atualiza os componentes dependendo da situação do caixa
         private void AtualizaComponentes()
         {
-            DataTable dadosCaixa = novoCaixa.Listar();
-
-            var situacao = dadosCaixa.Rows[0]["SITUACAO"];
-
-            bool caixaAberto = Convert.ToBoolean(situacao) == true;
+            bool caixaAberto = novoCaixa.CaixaAberto(idCaixa);
 
             btnFecharCaixa.Enabled = caixaAberto;
             btnFecharCaixa.Visible = caixaAberto;
@@ -140,7 +134,8 @@ namespace Academia
 
             if (!caixaAberto) return;
 
-            int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
+            DataTable dadosCaixa = novoCaixa.Listar();
+
             var dia = Convert.ToDateTime(dadosCaixa.Rows[0]["DIA"]);
             TimeSpan hora = (TimeSpan)dadosCaixa.Rows[0]["HORA"];
 
@@ -156,7 +151,6 @@ namespace Academia
             {
                 DataTable dadosCaixa = novoCaixa.Listar();
                 valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
-                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
 
                 dtgCaixa.DataSource = novoCaixa.ListaTransacao(idCaixa);
 

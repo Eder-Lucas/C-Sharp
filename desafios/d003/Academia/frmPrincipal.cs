@@ -111,10 +111,9 @@ namespace Academia
         {
             try
             {
-                DataTable dadosCaixa = novoCaixa.Listar();
-                bool situacaoCaixa = Convert.ToBoolean(dadosCaixa.Rows[0]["SITUACAO"]);
+                bool caixaAberto = novoCaixa.CaixaAberto(IdCaixa);
 
-                if (situacaoCaixa)
+                if (caixaAberto)
                 {
                     lblCaixa.Text = "ABERTO";
                     lblCaixa.ForeColor = Color.FromArgb(68, 255, 68);

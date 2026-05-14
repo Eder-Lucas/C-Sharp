@@ -10,6 +10,8 @@ namespace Academia
 {
     public partial class frmPagamentoMensalidade : Form
     {
+        private readonly int idCaixa;
+
         int idMensalidade;
         decimal valor;
         ucControleAlunos ucControleAlunos;
@@ -22,6 +24,8 @@ namespace Academia
             this.valor = valor;
             txtDinheiro.Text = $"{this.valor:C2}";
             this.ucControleAlunos = ucControleAlunos;
+
+            idCaixa = frmPrincipal.IdCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -39,16 +43,12 @@ namespace Academia
         {
             try
             {
-                // dadosCaixa armazena todas as informações do caixa através do método listar
-                DataTable dadosCaixa = novoCaixa.Listar();
-
                 // Dados para pagar a mensalidade
                 int meses = (int)numQuantosMeses.Value;
                 DateTime dataAtualPagamento = DateTime.Now.Date;
                 bool gerar = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
 
                 // Dados para salvar a transação no caixa
-                int idCaixa = Convert.ToInt32(dadosCaixa.Rows[0]["ID_CAIXA"]);
                 var forma = cboFormaPagamento.Text;
 
                 // Executa o pagamaento e salva o valor total a ser pago
