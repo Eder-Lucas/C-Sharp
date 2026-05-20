@@ -326,5 +326,31 @@ namespace Academia
                 throw new Exception($"Erro ao verificar situação do caixa: {idCaixa}. {ex.Message}", ex);
             }
         }
+
+        // Retorna o saldo inicial do último caixa fechado
+        public decimal SaldoAnterior()
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT TOP 1 SALDO_INICIAL
+                    FROM Caixa
+                    WHERE SITUACAO = 0
+                    ORDER BY ID_CAIXA DESC;
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                return Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Erro ao obter saldo anterior. {ex.Message}", ex);
+            }
+        }
     }
 }
