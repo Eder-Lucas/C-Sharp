@@ -112,6 +112,7 @@
             txtSaldoAnterior.TabIndex = 2;
             txtSaldoAnterior.Text = "0,00";
             txtSaldoAnterior.TextAlign = HorizontalAlignment.Right;
+            txtSaldoAnterior.TextChanged += txtValorAbertura_TextChanged;
             // 
             // txtValorAbertura
             // 
@@ -122,6 +123,7 @@
             txtValorAbertura.TabIndex = 2;
             txtValorAbertura.Text = "0,00";
             txtValorAbertura.TextAlign = HorizontalAlignment.Right;
+            txtValorAbertura.TextChanged += txtValorAbertura_TextChanged;
             // 
             // label3
             // 
@@ -275,6 +277,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAberturaCaixa";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += frmAberturaCaixa_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

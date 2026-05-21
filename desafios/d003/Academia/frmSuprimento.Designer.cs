@@ -188,6 +188,7 @@
             Controls.Add(panel1);
             Controls.Add(tcCaixa);
             Name = "frmSuprimento";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Movimento do caixa";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
