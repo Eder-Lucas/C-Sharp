@@ -5,8 +5,6 @@ namespace Academia
 {
     public partial class frmPrincipal : Form
     {
-        public static int IdCaixa { get; private set; }
-
         public frmPrincipal()
         {
             InitializeComponent();
@@ -16,7 +14,9 @@ namespace Academia
 
             InicializaIcones();
 
-            IdCaixa = novoCaixa.ObterCaixaAberto();
+            int idCaixa = novoCaixa.ObterCaixa();
+
+            Caixa.AtualizarCaixa(idCaixa);
         }
 
         private readonly Caixa novoCaixa = new();
@@ -111,7 +111,7 @@ namespace Academia
         {
             try
             {
-                bool caixaAberto = novoCaixa.CaixaAberto(IdCaixa);
+                bool caixaAberto = novoCaixa.CaixaAberto(Caixa.IdCaixa);
 
                 if (caixaAberto)
                 {
