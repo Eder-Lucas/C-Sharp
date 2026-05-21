@@ -8,6 +8,18 @@ namespace Academia
 {
     internal class Caixa
     {
+        // Evento para notificar quando uma transação é salva
+        public static event Action? TransacaoSalva;
+
+        // Propriedade para armazenar o ID atual do caixa
+        public static int IdCaixa { get; private set; }
+
+        // Método para atualizar o ID
+        public static void AtualizarCaixa(int id)
+        {
+            IdCaixa = id;
+        }
+
         public int Salvar(DateTime dia, DateTime hora, decimal saldo_inicial, bool situacao)
         {
             try
@@ -96,6 +108,9 @@ namespace Academia
                 paramValor.Value = valor;
 
                 cmd.ExecuteNonQuery();
+
+                // Dispara a notificação que uma transação foi salva para atualizar os dados em tempo real
+                TransacaoSalva?.Invoke(); 
             }
             catch (Exception ex)
             {
