@@ -112,7 +112,7 @@ namespace Academia
 
                 string sql = """
                     SELECT * FROM Caixa
-                    ORDER BY DIA DESC, HORA DESC
+                    ORDER BY ID_CAIXA DESC
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
@@ -277,8 +277,8 @@ namespace Academia
             return [];
         }
 
-        // Retorna o ID do caixa aberto
-        public int ObterCaixaAberto()
+        // Retorna o ID do último caixa
+        public int ObterCaixa()
         {
             try
             {
@@ -288,7 +288,6 @@ namespace Academia
                 string sql = """
                     SELECT TOP 1 ID_CAIXA
                     FROM Caixa
-                    WHERE SITUACAO = 1
                     ORDER BY ID_CAIXA DESC;
                 """;
 
