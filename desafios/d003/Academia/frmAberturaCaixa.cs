@@ -16,7 +16,7 @@ namespace Academia
         }
 
         private Caixa novoCaixa;
-
+   
         public decimal ValorAbertura { get; private set; }
 
         private void frmAberturaCaixa_Load(object sender, EventArgs e)
@@ -53,13 +53,20 @@ namespace Academia
                 {
                     IniciaZerado();
                 }
+                else if (switchSaldoAnterior.Checked)
+                {
+                    IniciaSaldoAnterior();
+                }
                 else
                 {
                     decimal valorAbertura = Convert.ToDecimal(txtValorAbertura.Text);
-                    decimal total = Convert.ToDecimal(txtTotal.Text) + valorAbertura;
+
+                    MessageBox.Show($"Valor de abertura: {valorAbertura:C2}", "Valor de Abertura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     novoCaixa = new Caixa();
 
-                    novoCaixa.Salvar(DateTime.Today, DateTime.Now, total, true);
+                    int IdCaixa = novoCaixa.Salvar(DateTime.Today, DateTime.Now, valorAbertura, true);
+                    Caixa.AtualizarCaixa(IdCaixa);
 
                     DataTable dadosCaixa = novoCaixa.Listar();
                     ValorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
@@ -82,6 +89,11 @@ namespace Academia
                 txtTotal.Enabled = false;
                 txtSaldoAnterior.Enabled = false;
                 txtValorAbertura.Enabled = false;
+
+                txtTotal.Text = "0,00";
+                txtSaldoAnterior.Text = "0,00";
+                txtValorAbertura.Text = "0,00";
+
             }
             else
             {
@@ -94,13 +106,24 @@ namespace Academia
 
         private void switchSaldoAnterior_CheckedChanged(object sender, EventArgs e)
         {
-            if (switchSaldoAnterior.Checked)
+            try
             {
-                txtSaldoAnterior.Enabled = false;
+                if (switchSaldoAnterior.Checked)
+                {
+                    novoCaixa = new Caixa();
+                    txtSaldoAnterior.Enabled = false;
+                    decimal saldoAnterior = novoCaixa.SaldoAnterior();
+                    txtSaldoAnterior.Text = saldoAnterior.ToString();
+                }
+                else
+                {
+                    txtSaldoAnterior.Enabled = true;
+                    txtSaldoAnterior.Text = "0,00";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                txtSaldoAnterior.Enabled = true;
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -112,13 +135,35 @@ namespace Academia
 
             novoCaixa = new Caixa();
 
-            novoCaixa.Salvar(DateTime.Today, DateTime.Now, Convert.ToDecimal(txtTotal.Text), true);
+            int IdCaixa = novoCaixa.Salvar(DateTime.Today, DateTime.Now, Convert.ToDecimal(txtTotal.Text), true);
+            Caixa.AtualizarCaixa(IdCaixa);
 
             DataTable dadosCaixa = novoCaixa.Listar();
             ValorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void IniciaSaldoAnterior()
+        {
+            novoCaixa = new Caixa();
+
+            decimal saldoAnterior = novoCaixa.SaldoAnterior();
+            decimal valorAbertura = Convert.ToDecimal(txtValorAbertura.Text);
+
+            decimal total = saldoAnterior + valorAbertura;
+
+            int IdCaixa = novoCaixa.Salvar(DateTime.Today, DateTime.Now, total, true);
+            Caixa.AtualizarCaixa(IdCaixa);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void txtValorAbertura_TextChanged(object sender, EventArgs e)
+        {
+            txtTotal.Text = (Convert.ToDecimal(txtValorAbertura.Text) + Convert.ToDecimal(txtSaldoAnterior.Text)).ToString();
         }
     }
 }
