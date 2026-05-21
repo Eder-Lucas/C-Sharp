@@ -10,8 +10,6 @@ namespace Academia
 {
     public partial class frmPagamentoMensalidade : Form
     {
-        private readonly int idCaixa;
-
         int idMensalidade;
         decimal valor;
         ucControleAlunos ucControleAlunos;
@@ -24,8 +22,6 @@ namespace Academia
             this.valor = valor;
             txtDinheiro.Text = $"{this.valor:C2}";
             this.ucControleAlunos = ucControleAlunos;
-
-            idCaixa = frmPrincipal.IdCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -56,7 +52,7 @@ namespace Academia
 
                 decimal valorFinal = valorLista.Sum();
 
-                novoCaixa.SalvarTransacao(idCaixa, valorFinal, "E", forma, "PAGAMENTO");
+                novoCaixa.SalvarTransacao(Caixa.IdCaixa, valorFinal, "E", forma, "PAGAMENTO");
 
                 MessageBox.Show(
                 "Pagamento realizado com sucesso!",
@@ -67,7 +63,7 @@ namespace Academia
                 // Recarrega as mensalidades e matrículas do frmControleAlunos
                 ucControleAlunos.CarregarMensalidades();
                 ucControleAlunos.ListarMatriculas();
-
+                
                 this.Close();
             }
             catch (Exception)

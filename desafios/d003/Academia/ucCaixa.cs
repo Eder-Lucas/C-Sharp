@@ -11,7 +11,6 @@ namespace Academia
     public partial class ucCaixa : UserControl
     {
         private readonly frmPrincipal formularioPrincipal;
-        private readonly int idCaixa;
 
         public ucCaixa(frmPrincipal formularioPrincipal)
         {
@@ -19,7 +18,10 @@ namespace Academia
             this.formularioPrincipal = formularioPrincipal;
 
             this.DoubleBuffered = true;
-            idCaixa = frmPrincipal.IdCaixa;
+
+            // Quando uma transação é salva, atualiza os dados no dtgCaixa
+            // Não precisa se preocupar com múltiplas assinaturas, pois o UC é criado apenas uma vez
+            Caixa.TransacaoSalva += ListarDetalhesCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -61,6 +63,7 @@ namespace Academia
             if (result)
             {
                 valorAbertura = formAbertura.ValorAbertura;
+                MessageBox.Show($"Caixa aberto com sucesso! Valor de abertura: {valorAbertura:C}", "Caixa aberto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ListarDetalhesCaixa();
                 AtualizaComponentes();
@@ -81,7 +84,7 @@ namespace Academia
                 if (fechar)
                 {
                     // Fecha o caixa
-                    novoCaixa.AlterarSituacao(idCaixa, false);
+                    novoCaixa.AlterarSituacao(Caixa.IdCaixa, false);
 
                     formularioPrincipal.VerificaSituacaoCaixa();
                     AtualizaComponentes();
@@ -111,7 +114,7 @@ namespace Academia
         // Atualiza os componentes dependendo da situação do caixa
         private void AtualizaComponentes()
         {
-            bool caixaAberto = novoCaixa.CaixaAberto(idCaixa);
+            bool caixaAberto = novoCaixa.CaixaAberto(Caixa.IdCaixa);
 
             btnFecharCaixa.Enabled = caixaAberto;
             btnFecharCaixa.Visible = caixaAberto;
@@ -139,7 +142,7 @@ namespace Academia
             var dia = Convert.ToDateTime(dadosCaixa.Rows[0]["DIA"]);
             TimeSpan hora = (TimeSpan)dadosCaixa.Rows[0]["HORA"];
 
-            lblCaixaId.Text = $"Caixa #{idCaixa}";
+            lblCaixaId.Text = $"Caixa #{Caixa.IdCaixa}";
             lblDataAbertura.Text = $"Aberto em: {dia:dd/MM/yyyy} às {hora:hh\\:mm\\:ss}";
 
             dtpDataPagamento.Value = dia;
@@ -152,14 +155,14 @@ namespace Academia
                 DataTable dadosCaixa = novoCaixa.Listar();
                 valorAbertura = Convert.ToDecimal(dadosCaixa.Rows[0]["SALDO_INICIAL"]);
 
-                dtgCaixa.DataSource = novoCaixa.ListaTransacao(idCaixa);
+                dtgCaixa.DataSource = novoCaixa.ListaTransacao(Caixa.IdCaixa);
 
                 // Formata a visualização dos dados para moeda e data
                 dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.Format = "C2";
                 dtgCaixa.Columns?["VALOR"]?.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR");
                 dtgCaixa.Columns?["DATA"]?.DefaultCellStyle.Format = "dd/MM/yyyy";
 
-                var (entrada, retirada, saldo) = novoCaixa.ObterTotal(valorAbertura, idCaixa);
+                var (entrada, retirada, saldo) = novoCaixa.ObterTotal(valorAbertura, Caixa.IdCaixa);
 
                 lblInicial.Text = valorAbertura.ToString("C");
                 lblEntrada.Text = entrada.ToString("C");
@@ -243,7 +246,7 @@ namespace Academia
             string pagamento = cboTipoPagamento.SelectedValue.ToString() ?? "";
             DateTime data = dtpDataPagamento.Value.Date;
 
-            dtgCaixa.DataSource = novoCaixa.Pesquisar(idCaixa, movimento, pagamento, data);
+            dtgCaixa.DataSource = novoCaixa.Pesquisar(Caixa.IdCaixa, movimento, pagamento, data);
         }
     }
 }

@@ -11,14 +11,11 @@ namespace Academia
     public partial class frmSuprimento : Form
     {
         private readonly ucCaixa formCaixa;
-        private readonly int idCaixa;
 
         public frmSuprimento(ucCaixa formulario)
         {
             InitializeComponent();
             this.formCaixa = formulario;
-
-            idCaixa = frmPrincipal.IdCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -30,7 +27,7 @@ namespace Academia
             string forma = cboFormaPagamento.Text;
 
             // Executa o suprimento
-            novoCaixa.SalvarTransacao(idCaixa, valor, "E", forma, "SUPRIMENTO");
+            novoCaixa.SalvarTransacao(Caixa.IdCaixa, valor, "E", forma, "SUPRIMENTO");
             MessageBox.Show(
             "Suprimento realizado com sucesso!",
             "Sucesso",

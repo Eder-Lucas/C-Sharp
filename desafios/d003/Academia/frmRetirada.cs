@@ -11,14 +11,11 @@ namespace Academia
     public partial class frmRetirada : Form
     {
         private readonly ucCaixa formCaixa;
-        private readonly int idCaixa;
 
         public frmRetirada(ucCaixa formulario)
         {
             InitializeComponent();
             this.formCaixa = formulario;
-
-            idCaixa = frmPrincipal.IdCaixa;
         }
 
         private readonly Caixa novoCaixa = new();
@@ -30,7 +27,7 @@ namespace Academia
             string forma = cboFormaPagamento.Text;
 
             // Executa a retirada
-            novoCaixa.SalvarTransacao(idCaixa, valor, "S", forma, "RETIRADA");
+            novoCaixa.SalvarTransacao(Caixa.IdCaixa, valor, "S", forma, "RETIRADA");
 
             MessageBox.Show(
             "Retirada realizada com sucesso!",
