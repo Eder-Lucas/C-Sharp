@@ -24,6 +24,7 @@ namespace Academia
 
             CursorUtils.HandButton(this);
             CursorUtils.AjustaCursorMaskedTextBox(this);
+            CursorUtils.HandToolStripButton(toolStrip1);
 
             DataGridViewUtils.HandButton(dtgProfessores, "btnEditar", "btnExcluir");
             DataGridViewUtils.AjustaBarraVertical("NOME_PROFESSOR", dtgProfessores);

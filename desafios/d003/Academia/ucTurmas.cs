@@ -34,6 +34,7 @@ namespace Academia
             DataGridViewUtils.EstiloZebrado(dtgTurmas, dtgHorarios);
 
             CursorUtils.HandButton(this);
+            CursorUtils.HandToolStripButton(toolStrip1);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
