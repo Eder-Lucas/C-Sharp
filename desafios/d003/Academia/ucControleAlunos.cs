@@ -39,7 +39,8 @@ namespace Academia
             dtgTurmasCadastradas.AutoGenerateColumns = false;
             dtgMensalidades.AutoGenerateColumns = false;
 
-            // O comboBox de filtro se inicia em "Todas"
+            CursorUtils.HandToolStripButton(toolStrip1);
+
             cboSituacaoMensalidade.SelectedIndex = 0;
 
             // Associa o evento genérico ao CellFormatting de ambos os DataGridViews
