@@ -75,7 +75,6 @@ namespace Academia
             DataGridViewUtils.AjustaBarraVertical("NOME_MODALIDADE", dtgModalidades);
 
             CursorUtils.HandButton(this);
-            CursorUtils.HandToolStripButton(toolStrip1);
 
             txtNome.Focus();
             rbModalidade.TabStop = false;

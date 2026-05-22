@@ -6,19 +6,6 @@ namespace Academia
 {
     internal class CursorUtils
     {
-        // Método para aplicar o cursor de mão em botões de ToolStrip
-        public static void HandToolStripButton(ToolStrip ts)
-        {
-            // Percorre todos os itens do ToolStrip que são do tipo ToolStripButton
-            // OfType<T>() filtra apenas os itens do tipo Button, não sendo necessário verificar o tipo manualmente
-            foreach (ToolStripItem item in ts.Items.OfType<ToolStripButton>())
-            {
-                // Adiciona os eventos para alterar o cursor
-                item.MouseEnter += (s, e) => ts.Cursor = Cursors.Hand;
-                item.MouseLeave += (s, e) => ts.Cursor = Cursors.Default;
-            }
-        }
-
         // Método para aplicar o cursor de mão em botões, checkboxes e comboboxes
         public static void HandButton(Control parent)
         {
