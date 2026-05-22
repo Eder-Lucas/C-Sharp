@@ -76,17 +76,13 @@ namespace Academia
         // Ao clicar em uma célula do DataGridView
         private void dtgProfessores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Se a coluna clicada for a de edição
             if (dtgProfessores.Columns[e.ColumnIndex].Name == "btnEditar")
             {
                 var row = dtgProfessores.Rows[e.RowIndex]; // Pega a linha clicada
 
-                // row?.DataBoundItem: pega o objeto de dados bruto
-                // is not DataRowView: checa se esse objeto realmente existe
-                // Se a linha for válida, já cria a variável drv do tipo DataRowView
+                // Salva a linha como DataRowView
                 if (row?.DataBoundItem is not DataRowView drv) return;
 
-                // Verifica cada controle do form
                 foreach (Control c in this.Controls)
                 {
                     // Ignora controles onde Tag é nulo
@@ -96,7 +92,6 @@ namespace Academia
                     // Ignora se a coluna do DataView não contém a tag do controle
                     if (drv.DataView?.Table?.Columns.Contains(tag) != true) continue;
 
-                    // Se for TextBox ou MaskedTextBox
                     // Preenche o campo com o valor correspondente do DataRowView
                     if (c is TextBox || c is MaskedTextBox)
                     {
@@ -187,6 +182,7 @@ namespace Academia
             }
         }
 
+        // Método para listar os professores no DataGridView
         private void ListarProfessores()
         {
             try
@@ -200,6 +196,7 @@ namespace Academia
             }
         }
 
+        // Método para limpar os campos de texto
         private void LimparCampos()
         {
             foreach (var txt in this.Controls.OfType<TextBox>())

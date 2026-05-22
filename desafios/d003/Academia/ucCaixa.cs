@@ -31,6 +31,7 @@ namespace Academia
         {
             dtgCaixa.AutoGenerateColumns = false;
             DataGridViewUtils.RemoveOrdenacao(dtgCaixa);
+
             AtualizaComponentes();
             ListarDetalhesCaixa();
 
@@ -104,7 +105,6 @@ namespace Academia
             frmSuprimento suprimento = new(this);
             suprimento.ShowDialog();
         }
-
         private void btnRetirada_Click(object sender, EventArgs e)
         {
             frmRetirada retirada = new(this);
@@ -148,6 +148,7 @@ namespace Academia
             dtpDataPagamento.Value = dia;
         }
 
+        // Lista todas as transações do caixa de forma detalhada
         public void ListarDetalhesCaixa()
         {
             try
@@ -176,6 +177,7 @@ namespace Academia
             }
         }
 
+        // Adiciona uma imagem na linha referente ao tipo do movimento
         private void dtgCaixa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
@@ -187,8 +189,7 @@ namespace Academia
             if (linha.DataBoundItem is not DataRowView drv) return;
 
             switch (coluna)
-            {
-                // Adiciona uma imagem na linha referente ao tipo do movimento
+            {            
                 case "IMAGEM":
                     if (Convert.ToString(drv["TIPO_MOVIMENTO"]) is not string movimento) break;
 
@@ -202,6 +203,7 @@ namespace Academia
             }
         }
 
+        // Formata a linha inteira dependendo do tipo do movimento
         private void dtgCaixa_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             if (sender is not DataGridView dtg) return;
@@ -230,6 +232,7 @@ namespace Academia
             { TipoMovimento.PAGAMENTO, (Color.FromArgb(255, 140, 0), Color.FromArgb(184, 83, 0), Properties.Resources.pagamento_menor) }
         };
 
+        // Enum para facilitar a manutenção do código
         private enum TipoMovimento
         {
             SUPRIMENTO,
@@ -242,6 +245,7 @@ namespace Academia
         {
             if (cboMovimento.SelectedValue == null || cboTipoPagamento.SelectedValue == null) return;
 
+            // Coletando os valores
             string movimento = cboMovimento.SelectedValue.ToString() ?? "";
             string pagamento = cboTipoPagamento.SelectedValue.ToString() ?? "";
             DateTime data = dtpDataPagamento.Value.Date;
