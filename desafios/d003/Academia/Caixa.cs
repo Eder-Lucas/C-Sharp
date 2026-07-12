@@ -145,6 +145,35 @@ namespace Academia
             }
         }
 
+        // O sistema tem uma limitação para exibir o relatorio de caixa,
+        // então provisoriamente será exibido apenas os 10 últimos caixas abertos, para não sobrecarregar a tela
+        public DataTable ListarCaixa()
+        {
+            try
+            {
+                using SqlConnection conexao = new(Conexao.StringConexao);
+                conexao.Open();
+
+                string sql = """
+                    SELECT TOP 10 * FROM Caixa
+                    ORDER BY ID_CAIXA DESC
+                """;
+
+                using SqlCommand cmd = new(sql, conexao);
+
+                DataTable dadosTabela = new();
+
+                using SqlDataReader leitor = cmd.ExecuteReader();
+                dadosTabela.Load(leitor);
+
+                return dadosTabela;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao listar caixas. {ex.Message}", ex);
+            }
+        }
+
         public DataTable ListaTransacao(int idCaixa)
         {
             try
