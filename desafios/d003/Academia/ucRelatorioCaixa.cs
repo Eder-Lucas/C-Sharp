@@ -23,14 +23,10 @@ namespace Academia
 
             foreach (DataRow row in caixa.Rows)
             {
-                Panel card = new Panel();
-                card.Width = 100;
-                card.Height = 50;
+                CardCaixa card = new();
+                card.IdCaixa = Convert.ToInt32(row["ID_CAIXA"]);              
 
-                Label nome = new Label();
-                nome.Text = $"caixa {row["ID_CAIXA"]}";
-
-                card.Controls.Add(nome);
+                card.Configurar($"Caixa {row["ID_CAIXA"]}", Convert.ToDecimal(row["SALDO_INICIAL"]));
 
                 flowLayoutPanel1.Controls.Add(card);
             }
