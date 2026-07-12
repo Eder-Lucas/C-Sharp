@@ -61,6 +61,7 @@
             groupBox3 = new GroupBox();
             groupBox1 = new GroupBox();
             pictureBox3 = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgCaixa).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -451,10 +452,21 @@
             pictureBox3.TabIndex = 21;
             pictureBox3.TabStop = false;
             // 
+            // button1
+            // 
+            button1.Location = new Point(797, 597);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 32;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // ucCaixa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button1);
             Controls.Add(lblDataAbertura);
             Controls.Add(dtgCaixa);
             Controls.Add(btnSair);
@@ -515,5 +527,6 @@
         private GroupBox groupBox3;
         private GroupBox groupBox1;
         private PictureBox pictureBox3;
+        private Button button1;
     }
 }

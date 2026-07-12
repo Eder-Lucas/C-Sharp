@@ -189,7 +189,7 @@ namespace Academia
             if (linha.DataBoundItem is not DataRowView drv) return;
 
             switch (coluna)
-            {            
+            {
                 case "IMAGEM":
                     if (Convert.ToString(drv["TIPO_MOVIMENTO"]) is not string movimento) break;
 
@@ -251,6 +251,11 @@ namespace Academia
             DateTime data = dtpDataPagamento.Value.Date;
 
             dtgCaixa.DataSource = novoCaixa.Pesquisar(Caixa.IdCaixa, movimento, pagamento, data);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Navegacao.AbrirUc(new ucRelatorioCaixa());
         }
     }
 }
