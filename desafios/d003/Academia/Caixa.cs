@@ -379,10 +379,21 @@ namespace Academia
                 conexao.Open();
 
                 string sql = """
-                    SELECT TOP 1 SALDO_INICIAL
-                    FROM Caixa
-                    WHERE SITUACAO = 0
-                    ORDER BY ID_CAIXA DESC;
+                    DECLARE @caixa INT
+                    SET @caixa = (SELECT TOP 1 ID_CAIXA FROM Caixa WHERE SITUACAO = 0 ORDER BY ID_CAIXA DESC);
+
+                    SELECT
+                        SUM(
+                            CASE 
+                                WHEN MOVIMENTO = 'E' THEN VALOR
+                                WHEN MOVIMENTO = 'S' THEN -VALOR
+                            END
+                        ) + c.SALDO_INICIAL AS SALDO
+                    FROM Transacao_Caixa t
+                    INNER JOIN Caixa c
+                    ON c.ID_CAIXA = t.ID_CAIXA
+                    WHERE c.ID_CAIXA = @caixa
+                    GROUP BY c.SALDO_INICIAL;
                 """;
 
                 using SqlCommand cmd = new(sql, conexao);
