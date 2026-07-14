@@ -18,10 +18,11 @@ namespace Academia
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int IdCaixa { get; set; }
 
-        public void Configurar(string nome, decimal saldo)
+        public void Configurar(string nome, decimal saldo, bool situacao)
         {
             lblCaixa.Text = nome;
             lblSaldo.Text = saldo.ToString("C");
+            lblSituacao.Text = situacao ? "Aberto" : "Fechado";
         }
     }
 }

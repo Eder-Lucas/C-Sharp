@@ -31,6 +31,7 @@
             label1 = new Label();
             lblCaixa = new Label();
             lblSaldo = new Label();
+            lblSituacao = new Label();
             SuspendLayout();
             // 
             // label1
@@ -60,14 +61,25 @@
             lblSaldo.TabIndex = 0;
             lblSaldo.Text = "saldo";
             // 
+            // lblSituacao
+            // 
+            lblSituacao.AutoSize = true;
+            lblSituacao.Location = new Point(14, 107);
+            lblSituacao.Name = "lblSituacao";
+            lblSituacao.Size = new Size(64, 20);
+            lblSituacao.TabIndex = 0;
+            lblSituacao.Text = "situacao";
+            // 
             // CardCaixa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
+            Controls.Add(lblSituacao);
             Controls.Add(lblSaldo);
             Controls.Add(lblCaixa);
             Controls.Add(label1);
+            Margin = new Padding(15);
             Name = "CardCaixa";
             Size = new Size(329, 236);
             ResumeLayout(false);
@@ -79,5 +91,6 @@
         private Label label1;
         private Label lblCaixa;
         private Label lblSaldo;
+        private Label lblSituacao;
     }
 }
