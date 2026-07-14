@@ -26,7 +26,7 @@ namespace Academia
                 CardCaixa card = new();
                 card.IdCaixa = Convert.ToInt32(row["ID_CAIXA"]);
 
-                card.Configurar($"Caixa {row["ID_CAIXA"]}", Convert.ToDecimal(row["SALDO_INICIAL"]));
+                card.Configurar($"Caixa {row["ID_CAIXA"]}", Convert.ToDecimal(row["SALDO_INICIAL"]), Convert.ToBoolean(row["SITUACAO"]));
 
                 flowLayoutPanel1.Controls.Add(card);
             }
@@ -41,30 +41,34 @@ namespace Academia
         {
             int colunas;
 
-            if(flowLayoutPanel1.Width <= 662)
+            if(flowLayoutPanel1.ClientSize.Width <= 662)
             {
                 colunas = 1;
+
+                flowLayoutPanel1.Padding = new Padding(8, 0, 15, 0);
             }
-            else if (flowLayoutPanel1.Width <= 982)
+            else if (flowLayoutPanel1.ClientSize.Width <= 982)
             {
                 colunas = 2;
+
+                flowLayoutPanel1.Padding = new Padding(15, 0, 0, 0);
             }
             else
             {
                 colunas = 3;
+
+                flowLayoutPanel1.Padding = new Padding(20, 0, 0, 0);
             }
 
-            int larguraCard = (flowLayoutPanel1.ClientSize.Width / colunas) - 30;
+            int larguraCard = (flowLayoutPanel1.ClientSize.Width / colunas) - 45;
 
             // Debug
-            label1.Text = $"Largura do FlowLayoutPanel: {flowLayoutPanel1.ClientSize.Width}, Colunas: {colunas}, Largura do Card: {larguraCard}";
+            //label1.Text = $"Largura do FlowLayoutPanel: {flowLayoutPanel1.ClientSize.Width}, Colunas: {colunas}, Largura do Card: {larguraCard}";
 
             foreach (Control control in flowLayoutPanel1.Controls)
             {
                 if (flowLayoutPanel1.Width > 350)
                     control.Width = larguraCard;
-                else
-                    control.Width = 300;
             }
         }
     }
