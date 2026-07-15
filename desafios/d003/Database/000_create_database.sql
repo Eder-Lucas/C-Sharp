@@ -1,3 +1,4 @@
+-- Cria o banco se não existir
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'Academia')
 BEGIN
     CREATE DATABASE Academia;
