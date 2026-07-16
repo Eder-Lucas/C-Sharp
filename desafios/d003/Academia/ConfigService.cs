@@ -50,7 +50,7 @@ namespace Academia
                 string tipo = (string)cmdTipo.ExecuteScalar();
 
                 if (tipo == null)
-                    throw new Exception("Configuração não encontrada");
+                    throw new Exception("Tipo de configuração não encontrada");
 
                 // valida o tipo
                 switch (tipo)

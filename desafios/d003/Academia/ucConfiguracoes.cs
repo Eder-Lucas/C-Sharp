@@ -18,7 +18,7 @@ namespace Academia
         private void frmConfig_Load(object sender, EventArgs e)
         {
             switchAutoGerar.EnableAnimation = false; // impede carregar a animação ao carregar o form
-            switchAutoGerar.Checked = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE");
+            switchAutoGerar.Checked = ConfigService.GetBool("GERAR_AUTO_MENSALIDADE"); // Coleta a situação da configuração
             switchAutoGerar.EnableAnimation = true;
         }
 
